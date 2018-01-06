@@ -1,5 +1,5 @@
 //
-//  AppError&APIKeyHelper.swift
+//  APIKeys.swift
 //  Unit4Week3Homework-StudentVersion
 //
 //  Created by C4Q on 1/6/18.
@@ -7,6 +7,7 @@
 //
 
 import Foundation
+
 
 //WEATHER: will need a unique identifier for input for the zipcode entry
 //7 day forecast
