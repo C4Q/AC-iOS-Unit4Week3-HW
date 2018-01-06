@@ -16,6 +16,40 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        
+        let tbc = UITabBarController()
+        
+        //creating tab one: WeatherVC
+        let weatherVC = WeatherViewController()
+        weatherVC.tabBarItem = UITabBarItem(title: "Weather", image: UIImage(named: "weatherTabBarItem"), tag: 0)
+        
+        //creating tab two: FavoritesVC
+        let favoritesVC = FavoritesViewController()
+        favoritesVC.tabBarItem = UITabBarItem(title: "Favorites", image: UIImage(named: "star"), tag: 1)
+        
+        //embedding nav controller with weather VC but not favorites VC
+        let navController = UINavigationController(rootViewController: weatherVC)
+        tbc.viewControllers = [navController,favoritesVC]
+            //controllers.map {UINavigationController(rootViewController: $0)}
+
+        //embedded VC's inside a tbc WITHOUT any nav controllers
+        //tbc.setViewControllers([weatherVC, favoritesVC], animated: true)
+        
+        
+        //MARK: for other use: Create and set a UINavigationController for each viewController.
+        
+        /*let controllers = [weatherVC, favoritesVC]
+        tabBarController.viewControllers = controllers
+        
+        tabBarController.viewControllers = controllers.map{ UINavigationController(rootViewController: $0)}*/
+        
+        //set window to be entire witdth of screen
+        window = UIWindow(frame: UIScreen.main.bounds)
+        //set window's rrot VC to myVC
+        window?.rootViewController = tbc
+        //make view visable on screen
+        window?.makeKeyAndVisible()
+        
         return true
     }
 
