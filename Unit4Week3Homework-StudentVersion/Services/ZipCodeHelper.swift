@@ -19,7 +19,7 @@ class ZipCodeHelper {
                 DispatchQueue.main.async {
                     if let placemark = placemarks?.first, let name = placemark.locality {
                         completionHandler(name)
-                    } else {
+                    } else if let error = error {
                         errorHandler(error)
                     }
                 }
