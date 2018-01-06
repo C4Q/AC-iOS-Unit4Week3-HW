@@ -12,7 +12,6 @@ struct UserDefaultsHelper {
     private init() {}
     
     private let dateKey = "date"
-    //private let ranAtLeastOnceKey = "ranAtLeastOnce"
     private let zipcodeKey = "zipcode"
     
     //Save Stuff
