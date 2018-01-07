@@ -15,6 +15,11 @@
 		8123B726200177000023E109 /* FavoriteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8123B725200177000023E109 /* FavoriteViewController.swift */; };
 		8123B72E200180800023E109 /* WeatherDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8123B72D200180800023E109 /* WeatherDetailViewController.swift */; };
 		8123B730200182E50023E109 /* WeatherCVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8123B72F200182E50023E109 /* WeatherCVCell.swift */; };
+		8123B732200186880023E109 /* MainWeatherViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8123B731200186880023E109 /* MainWeatherViewController+Extension.swift */; };
+		8187C1F820019D9B0036F976 /* NetworkHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8187C1F720019D9B0036F976 /* NetworkHelper.swift */; };
+		8187C1FA20019DBE0036F976 /* AppErrorHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8187C1F920019DBE0036F976 /* AppErrorHelper.swift */; };
+		8187C1FC2001AA660036F976 /* Weather.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8187C1FB2001AA660036F976 /* Weather.swift */; };
+		8187C1FE2001DEFD0036F976 /* WeatherAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8187C1FD2001DEFD0036F976 /* WeatherAPIClient.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +33,11 @@
 		8123B725200177000023E109 /* FavoriteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteViewController.swift; sourceTree = "<group>"; };
 		8123B72D200180800023E109 /* WeatherDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherDetailViewController.swift; sourceTree = "<group>"; };
 		8123B72F200182E50023E109 /* WeatherCVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherCVCell.swift; sourceTree = "<group>"; };
+		8123B731200186880023E109 /* MainWeatherViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MainWeatherViewController+Extension.swift"; sourceTree = "<group>"; };
+		8187C1F720019D9B0036F976 /* NetworkHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkHelper.swift; sourceTree = "<group>"; };
+		8187C1F920019DBE0036F976 /* AppErrorHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppErrorHelper.swift; sourceTree = "<group>"; };
+		8187C1FB2001AA660036F976 /* Weather.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Weather.swift; sourceTree = "<group>"; };
+		8187C1FD2001DEFD0036F976 /* WeatherAPIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherAPIClient.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -83,6 +93,7 @@
 			isa = PBXGroup;
 			children = (
 				8123B723200176F40023E109 /* MainWeatherViewController.swift */,
+				8123B731200186880023E109 /* MainWeatherViewController+Extension.swift */,
 				8123B72D200180800023E109 /* WeatherDetailViewController.swift */,
 				8123B725200177000023E109 /* FavoriteViewController.swift */,
 			);
@@ -100,6 +111,10 @@
 		8123B72C200177DD0023E109 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				8187C1F920019DBE0036F976 /* AppErrorHelper.swift */,
+				8187C1F720019D9B0036F976 /* NetworkHelper.swift */,
+				8187C1FD2001DEFD0036F976 /* WeatherAPIClient.swift */,
+				8187C1FB2001AA660036F976 /* Weather.swift */,
 				5410A6D21FFFDF6500935A9A /* ZipCodeHelper.swift */,
 			);
 			path = Models;
@@ -176,10 +191,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8187C1F820019D9B0036F976 /* NetworkHelper.swift in Sources */,
+				8187C1FA20019DBE0036F976 /* AppErrorHelper.swift in Sources */,
 				5410A6D31FFFDF6500935A9A /* ZipCodeHelper.swift in Sources */,
 				8123B724200176F40023E109 /* MainWeatherViewController.swift in Sources */,
+				8187C1FC2001AA660036F976 /* Weather.swift in Sources */,
+				8123B732200186880023E109 /* MainWeatherViewController+Extension.swift in Sources */,
 				8123B730200182E50023E109 /* WeatherCVCell.swift in Sources */,
 				5410A6C11FFFDF1200935A9A /* AppDelegate.swift in Sources */,
+				8187C1FE2001DEFD0036F976 /* WeatherAPIClient.swift in Sources */,
 				8123B72E200180800023E109 /* WeatherDetailViewController.swift in Sources */,
 				8123B726200177000023E109 /* FavoriteViewController.swift in Sources */,
 			);
