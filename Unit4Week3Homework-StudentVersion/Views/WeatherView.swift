@@ -17,7 +17,7 @@ class WeatherView: UIView {
         label.backgroundColor = .yellow
         label.textColor = .black
         label.font = UIFont.systemFont(ofSize: 20, weight: .medium)
-        label.text = "Weather Forecast for _______"
+        label.text = "Weather Forecast for ChiTown"
         return label
     }()
     
@@ -28,7 +28,7 @@ class WeatherView: UIView {
         layout.scrollDirection = .horizontal
         cv.backgroundColor = .green
         //register collectionViewCell
-        cv.register(UICollectionViewCell.self, forCellWithReuseIdentifier: "CollectionViewCell")
+        cv.register(WeatherCollectionViewCell.self, forCellWithReuseIdentifier: "CollectionViewCell")
         return cv
     }()
     

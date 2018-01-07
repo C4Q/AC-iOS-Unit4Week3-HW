@@ -9,6 +9,7 @@
 import UIKit
 
 class WeatherViewController: UIViewController {
+    let sampleArray = [1,2,3,4,5,6] //for testing ONLY
     
     let weatherView = WeatherView()
     
@@ -17,13 +18,14 @@ class WeatherViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .red
-        navigationItem.title = "Weather Forecast"
+        navigationItem.title = "7 Day Forecast"
         
         //CV Delegates
         view.addSubview(weatherView)
         weatherView.collectionView.delegate = self
         weatherView.collectionView.dataSource = self
         weatherView.textField.delegate = self
+        loadForecast()
         
         //loading most recent zipcode from user defaults
         if let savedZipcode = UserDefaultsHelper.manager.getZipcode() {
@@ -33,16 +35,34 @@ class WeatherViewController: UIViewController {
             weatherView.textField.text = ""
         }
     }
+    
+    func loadForecast(){
+        
+        setUpAutomaticScrolling()
+    }
+    
+    
+    //MARK: - Adding scrolling animation when the user draws another card: https://stackoverflow.com/questions/15985574/uicollectionview-auto-scroll-to-cell-at-indexpath
+    func setUpAutomaticScrolling(){
+        //set last index to be the last card in the array
+        let lastIndex = self.sampleArray.count - 1
+        //make sure that the last Index is not negative or else you will crash
+        guard lastIndex >= 0 else {return}
+        //creates an indexpath based on the lastIndex and whatever section you are referencing
+        let indexPathOfDay = IndexPath(item: lastIndex, section: 0)
+        //set scrolling animation
+        weatherView.collectionView.scrollToItem(at: indexPathOfDay, at: .right, animated: true)
+    }
 }
 
 extension WeatherViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 1
+        return sampleArray.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CollectionViewCell", for: indexPath)
-        cell.backgroundColor = .orange
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CollectionViewCell", for: indexPath) as! WeatherCollectionViewCell
+        cell.backgroundColor = .white
         return cell
     }
 }
