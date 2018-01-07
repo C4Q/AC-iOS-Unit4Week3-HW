@@ -186,7 +186,7 @@ class DetailView: UIView {
             topLabel.widthAnchor.constraint(equalTo: containerView.widthAnchor, multiplier: 0.80),
             
             //cityImageView
-            cityImageView.topAnchor.constraint(equalTo: topLabel.bottomAnchor, constant: 5),
+            cityImageView.topAnchor.constraint(equalTo: topLabel.bottomAnchor, constant: 15),
             cityImageView.centerXAnchor.constraint(equalTo: containerView.centerXAnchor),
             //cityImageView.leadingAnchor.constraint(equalTo: containerView.leadingAnchor),
             //cityImageView.trailingAnchor.constraint(equalTo: containerView.trailingAnchor),
@@ -194,7 +194,7 @@ class DetailView: UIView {
             cityImageView.heightAnchor.constraint(equalTo: containerView.heightAnchor, multiplier: 0.40),
             
             //weatherLabel
-            weatherLabel.topAnchor.constraint(equalTo: cityImageView.bottomAnchor, constant: 5),
+            weatherLabel.topAnchor.constraint(equalTo: cityImageView.bottomAnchor, constant: 35),
             weatherLabel.centerXAnchor.constraint(equalTo: containerView.centerXAnchor),
             weatherLabel.widthAnchor.constraint(equalTo: containerView.widthAnchor, multiplier: 0.80),
             
