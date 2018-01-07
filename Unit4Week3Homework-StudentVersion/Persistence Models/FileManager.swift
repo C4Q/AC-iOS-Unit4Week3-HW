@@ -13,13 +13,13 @@ class FileManagerHelper {
     let pathName = "sevenDayForecast.plist"
     
     static let manager = FileManagerHelper()
-    
-    private var sevenDayForecast = [Forecast]() {
-        didSet {
-            saveForecast()
-        }
-    }
-    
+    /*
+     private var sevenDayForecast = [Forecast]() {
+     didSet {
+     saveForecast()
+     }
+     }
+     */
     //Saving Images To Disk
     func saveImage(with urlStr: String, image: UIImage) {
         let imageData = UIImagePNGRepresentation(image)
@@ -46,40 +46,40 @@ class FileManagerHelper {
             return nil
         }
     }
-    
-    // takes forecast from phone brings it to FileManager
-    func loadForecast() {
-        let path = dataFilePath(withPathName: FileManagerHelper.pathName)
-        
-        do {
-            let data = try Data(contentsOf: path)
-            let forecast = try PropertyListDecoder().decode([Forecast].self, from: data)
-            self.sevenDayForecast = forecast
-        }
-        catch {
-            print(error.localizedDescription)
-        }
-    }
-    
-    //takes forecast from FileManager and places in VC
-    func addForecastToVC() -> [Forecast] {
-        return sevenDayForecast
-    }
-    
-    func saveForecast() {
-        //encode into data so they can be saved with propertyListEncoder
-        let path = dataFilePath(withPathName: FileManagerHelper.pathName)
-        do {
-            let data = try PropertyListEncoder().encode(sevenDayForecast)
-            //write this data to a plist
-            try data.write(to: path, options: .atomic)
-            
-        }
-        catch {
-            print("error encoding items: \(error.localizedDescription)")
-        }
-    }
-    
+    /*
+     // takes forecast from phone brings it to FileManager
+     func loadForecast() {
+     let path = dataFilePath(withPathName: FileManagerHelper.pathName)
+     
+     do {
+     let data = try Data(contentsOf: path)
+     let forecast = try PropertyListDecoder().decode([Forecast].self, from: data)
+     self.sevenDayForecast = forecast
+     }
+     catch {
+     print(error.localizedDescription)
+     }
+     }
+     
+     //takes forecast from FileManager and places in VC
+     func addForecastToVC() -> [Forecast] {
+     return sevenDayForecast
+     }
+     
+     func saveForecast() {
+     //encode into data so they can be saved with propertyListEncoder
+     let path = dataFilePath(withPathName: FileManagerHelper.pathName)
+     do {
+     let data = try PropertyListEncoder().encode(sevenDayForecast)
+     //write this data to a plist
+     try data.write(to: path, options: .atomic)
+     
+     }
+     catch {
+     print("error encoding items: \(error.localizedDescription)")
+     }
+     }
+     */
     //returns documents directory path for app sandbox
     private func documentsDirectory() -> URL {
         //this is finding the document folder in the app

@@ -116,8 +116,8 @@
 		811A1B722001381E000EE49B /* Persistence Models */ = {
 			isa = PBXGroup;
 			children = (
-				811A1B6E20013807000EE49B /* UserDefaultsHelper.swift */,
 				811A1B7020013817000EE49B /* FileManager.swift */,
+				811A1B6E20013807000EE49B /* UserDefaultsHelper.swift */,
 			);
 			path = "Persistence Models";
 			sourceTree = "<group>";
