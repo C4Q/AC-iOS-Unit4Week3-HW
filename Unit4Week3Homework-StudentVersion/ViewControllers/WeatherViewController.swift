@@ -66,6 +66,19 @@ extension WeatherViewController: UICollectionViewDataSource {
         return cell
     }
 }
+extension WeatherViewController: UICollectionViewDelegate{
+    
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
+        // using dependency injection to pass Fellow Model Object to DetailVC
+        let detailWVC = DetailWeatherViewController()
+        
+        detailWVC.modalTransitionStyle = .crossDissolve
+        detailWVC.modalPresentationStyle = .overCurrentContext
+        present(detailWVC, animated: true, completion: nil)
+    }
+}
 
 extension WeatherViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
