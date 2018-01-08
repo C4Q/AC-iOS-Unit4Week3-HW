@@ -9,101 +9,67 @@
 import UIKit
 
 class MainWeatherViewController: UIViewController {
-   
+    let weatherView = WeatherView()
+    var cityName = ""
+    //data model
+    var weatherForecasts = [DailyForecast]() {
+        didSet {
+            weatherView.collectionView.reloadData()
+        }
+    }
+    
     let cellSpacing: CGFloat = 15.0
-    
-    lazy var titleLabel: UILabel = {
-       let nameLabel = UILabel()
-        nameLabel.textAlignment = .center
-        //nameLabel.text = "PlaceHolder Text"
-        return nameLabel
-    }()
-    
-    lazy var collectionView: UICollectionView = {
-        let layout = UICollectionViewFlowLayout()
-        layout.scrollDirection = .horizontal
-        let cv = UICollectionView(frame: self.view.bounds, collectionViewLayout: layout)
-        cv.register(UICollectionViewCell.self, forCellWithReuseIdentifier: "WeatherCell")
-        cv.backgroundColor = .red
-        return cv
-    }()
-    
-    lazy var zipTextField: UITextField = {
-        let zipTextField = UITextField()
-        zipTextField.placeholder = "Enter Zipcode Here"
-        zipTextField.backgroundColor = .gray
-        zipTextField.textAlignment = .center
-        return zipTextField
-    }()
-    
-    lazy var enterZipLabel: UILabel = {
-        let enterZipLabel = UILabel()
-        enterZipLabel.textAlignment = .center
-        enterZipLabel.text = "Enter a Zip Code"
-        return enterZipLabel
-    }()
-    
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        collectionView.delegate = self
-        collectionView.dataSource = self
+        weatherView.collectionView.delegate = self
+        weatherView.collectionView.dataSource = self
+        weatherView.zipTextField.delegate = self
         view.backgroundColor = .white
         self.title = "Search"
-        setupViews()
+        view.addSubview(weatherView)
+        //loadData()
     }
-    
-    func setupViews() {
-        setupNameLabel()
-        setupCollectionView()
-        setupZipTextField()
-        setupEnterZipLabel()
-    }
-    
-    func setupNameLabel() {
-        view.addSubview(titleLabel)
-        titleLabel.translatesAutoresizingMaskIntoConstraints = false
-        titleLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor).isActive = true
-        titleLabel.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.8).isActive = true
-        titleLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-    }
-    
-    func setupCollectionView() {
-        view.addSubview(collectionView)
-        collectionView.translatesAutoresizingMaskIntoConstraints = false
-        collectionView.topAnchor.constraint(equalTo: titleLabel.bottomAnchor).isActive = true
-        collectionView.widthAnchor.constraint(equalTo: view.widthAnchor).isActive = true
-        collectionView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.3).isActive = true
-        collectionView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+    func loadData(zipcode: String) {
+        let clientId = "4rkzyfD1kqeSpt9wZ9Py7"
+        let clientSecret = "zeAypPfgH6ccGB2Nk5I17blQM4TdusP9qEepLlog"
+        let urlStr = "https://api.aerisapi.com/forecasts/\(zipcode)?client_id=\(clientId)&client_secret=\(clientSecret)"
+        let completion =  {(onlineWeather: [DailyForecast]) in
+            self.weatherForecasts = onlineWeather
+            print("starting",self.weatherForecasts, "here")
         }
-    
-    func setupZipTextField() {
-        view.addSubview(zipTextField)
-        zipTextField.translatesAutoresizingMaskIntoConstraints = false
-        zipTextField.topAnchor.constraint(equalTo: collectionView.bottomAnchor, constant: 20).isActive = true
-        zipTextField.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        zipTextField.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.4).isActive = true
-    }
-    
-    func setupEnterZipLabel() {
-        view.addSubview(titleLabel)
-        enterZipLabel.translatesAutoresizingMaskIntoConstraints = false
-        enterZipLabel.topAnchor.constraint(equalTo: zipTextField.bottomAnchor).isActive = true
-        enterZipLabel.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.8).isActive = true
-        enterZipLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        AerisAPIClient.manager.getWeather(from: urlStr,
+                                                completionHandler: completion,
+                                                errorHandler: {print($0, "error getting weather")})
+        ZipCodeHelper.manager.getLocationName(from: zipcode, completionHandler: {(self.cityName = $0)}, errorHandler: {print($0)})
     }
 }
 
 extension MainWeatherViewController: UICollectionViewDataSource {
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        <#code#>
+    }
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 10
+        return weatherForecasts.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "WeatherCell", for: indexPath)
+        let weatherForecast = weatherForecasts[indexPath.row]
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "WeatherCell", for: indexPath) as! WeatherCell
         cell.backgroundColor = .blue
+        let formattedDate = weatherForecast.validTime
+        let date = formattedDate.components(separatedBy: "T")
+        cell.dateLabel.text = date[0]
+        cell.highTempLabel.text = "High: \(weatherForecast.maxTempF)°"
+        cell.lowTempLabel.text = "Low: \(weatherForecast.minTempF)°"
+        cell.weatherImageView.image = UIImage(named: weatherForecast.icon)
+        weatherView.titleLabel.text = cityName
+        print("city: \(cityName)")
         return cell
     }
+    
 }
 
 extension MainWeatherViewController: UICollectionViewDelegateFlowLayout {
@@ -131,6 +97,20 @@ extension MainWeatherViewController: UICollectionViewDelegateFlowLayout {
     }
 }
 
+extension MainWeatherViewController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        
+        guard !(textField.text?.isEmpty)! else {
+            print("empty")
+            return true
+        }
+        if let zipCodeInput = textField.text {
+        loadData(zipcode: zipCodeInput)
+            
+        }
+    return true
+    }
+}
 
 
 

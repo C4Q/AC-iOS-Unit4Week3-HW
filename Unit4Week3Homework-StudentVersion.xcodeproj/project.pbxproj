@@ -14,6 +14,11 @@
 		5410A6D31FFFDF6500935A9A /* ZipCodeHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5410A6D21FFFDF6500935A9A /* ZipCodeHelper.swift */; };
 		D2548F912001BC6100DC0305 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2548F902001BC6100DC0305 /* TabBarController.swift */; };
 		D2548F932001BD0E00DC0305 /* FavoritesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2548F922001BD0E00DC0305 /* FavoritesViewController.swift */; };
+		D26839082002A79100D852DC /* ImageCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = D26839072002A79100D852DC /* ImageCache.swift */; };
+		D268390A2002AAB600D852DC /* NetworkHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = D26839092002AAB600D852DC /* NetworkHelper.swift */; };
+		D268390C2002ACC700D852DC /* AerisAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = D268390B2002ACC700D852DC /* AerisAPIClient.swift */; };
+		D268390E2002B38400D852DC /* WeatherCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D268390D2002B38400D852DC /* WeatherCell.swift */; };
+		D26839102002B45600D852DC /* WeatherView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D268390F2002B45600D852DC /* WeatherView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +31,11 @@
 		5410A6D21FFFDF6500935A9A /* ZipCodeHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZipCodeHelper.swift; sourceTree = "<group>"; };
 		D2548F902001BC6100DC0305 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		D2548F922001BD0E00DC0305 /* FavoritesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesViewController.swift; sourceTree = "<group>"; };
+		D26839072002A79100D852DC /* ImageCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCache.swift; sourceTree = "<group>"; };
+		D26839092002AAB600D852DC /* NetworkHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkHelper.swift; sourceTree = "<group>"; };
+		D268390B2002ACC700D852DC /* AerisAPIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AerisAPIClient.swift; sourceTree = "<group>"; };
+		D268390D2002B38400D852DC /* WeatherCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherCell.swift; sourceTree = "<group>"; };
+		D268390F2002B45600D852DC /* WeatherView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,21 +68,40 @@
 		5410A6BF1FFFDF1200935A9A /* Unit4Week3Homework-StudentVersion */ = {
 			isa = PBXGroup;
 			children = (
-				5410A6D21FFFDF6500935A9A /* ZipCodeHelper.swift */,
-				5410A6C01FFFDF1200935A9A /* AppDelegate.swift */,
-				D2548F902001BC6100DC0305 /* TabBarController.swift */,
-				D284B3482001DD29009106DC /* View Controllers */,
 				D284B3492001DD66009106DC /* Views */,
-				5410A6C71FFFDF1200935A9A /* Assets.xcassets */,
-				5410A6C91FFFDF1200935A9A /* LaunchScreen.storyboard */,
+				D284B3482001DD29009106DC /* View Controllers */,
+				D26839062002A75500D852DC /* Services */,
+				D26839052002A72300D852DC /* Supporting Files */,
 				5410A6CC1FFFDF1200935A9A /* Info.plist */,
 			);
 			path = "Unit4Week3Homework-StudentVersion";
 			sourceTree = "<group>";
 		};
+		D26839052002A72300D852DC /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				5410A6C01FFFDF1200935A9A /* AppDelegate.swift */,
+				5410A6C71FFFDF1200935A9A /* Assets.xcassets */,
+				5410A6C91FFFDF1200935A9A /* LaunchScreen.storyboard */,
+			);
+			path = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		D26839062002A75500D852DC /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				5410A6D21FFFDF6500935A9A /* ZipCodeHelper.swift */,
+				D26839072002A79100D852DC /* ImageCache.swift */,
+				D26839092002AAB600D852DC /* NetworkHelper.swift */,
+				D268390B2002ACC700D852DC /* AerisAPIClient.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
 		D284B3482001DD29009106DC /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				D2548F902001BC6100DC0305 /* TabBarController.swift */,
 				D2548F922001BD0E00DC0305 /* FavoritesViewController.swift */,
 				5410A6C21FFFDF1200935A9A /* MainWeatherViewController.swift */,
 			);
@@ -82,6 +111,8 @@
 		D284B3492001DD66009106DC /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				D268390D2002B38400D852DC /* WeatherCell.swift */,
+				D268390F2002B45600D852DC /* WeatherView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -157,8 +188,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D268390A2002AAB600D852DC /* NetworkHelper.swift in Sources */,
+				D26839082002A79100D852DC /* ImageCache.swift in Sources */,
+				D268390E2002B38400D852DC /* WeatherCell.swift in Sources */,
 				5410A6D31FFFDF6500935A9A /* ZipCodeHelper.swift in Sources */,
 				D2548F912001BC6100DC0305 /* TabBarController.swift in Sources */,
+				D26839102002B45600D852DC /* WeatherView.swift in Sources */,
+				D268390C2002ACC700D852DC /* AerisAPIClient.swift in Sources */,
 				5410A6C31FFFDF1200935A9A /* MainWeatherViewController.swift in Sources */,
 				D2548F932001BD0E00DC0305 /* FavoritesViewController.swift in Sources */,
 				5410A6C11FFFDF1200935A9A /* AppDelegate.swift in Sources */,
