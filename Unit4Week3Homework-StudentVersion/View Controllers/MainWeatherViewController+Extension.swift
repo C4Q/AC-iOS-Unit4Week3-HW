@@ -10,16 +10,19 @@ import UIKit
 
 extension MainWeatherViewController: UITextFieldDelegate {
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        // control input number
         let allowedCharacters = CharacterSet.decimalDigits
         let characterSet = CharacterSet(charactersIn: string)
-        return allowedCharacters.isSuperset(of: characterSet)
+        
+        // control lenght of numbers
+        guard let text = textField.text else { return true }
+        let newLength = text.count + string.count - range.length
+        return allowedCharacters.isSuperset(of: characterSet) && newLength <= 5
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        if let textZipCode = textField.text {
-            let urlForcast = "https://api.aerisapi.com/forecasts/\(textZipCode)?client_id=MZdEMiMKjSEIlWV7z95yS&client_secret=njMqfz1ZEAyo41K4GzsIny6jlciY3RCqA3IMhxrC"
-            ZipCodeHelper.manager.getLocationName(from: textZipCode, completionHandler: {self.nameCityLabel.text = "Weather Forecast for " + $0}, errorHandler: {print($0)})
-            self.getWeatherFromOnline(from: urlForcast)
+        if let textZipCode = textField.text, textZipCode.count == 5 {
+            self.getWeatherFromOnline(from: textZipCode)
         }
         self.zipCodeTextField.becomeFirstResponder()
         return true
@@ -27,7 +30,11 @@ extension MainWeatherViewController: UITextFieldDelegate {
 }
 
 extension MainWeatherViewController: UICollectionViewDelegate {
-    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let forecastDVC = WeatherDetailViewController()
+        forecastDVC.weather = weatherDays[indexPath.row]
+        self.navigationController?.pushViewController(forecastDVC, animated: true)
+    }
 }
 
 extension MainWeatherViewController: UICollectionViewDelegateFlowLayout {

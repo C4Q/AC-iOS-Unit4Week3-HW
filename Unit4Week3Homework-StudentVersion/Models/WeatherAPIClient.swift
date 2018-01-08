@@ -10,11 +10,13 @@ import Foundation
 struct WeatherAPIClient {
     private init() {}
     static let manager = WeatherAPIClient()
-    
-    func getWeather(from str: String,
+    private let clientId = "MZdEMiMKjSEIlWV7z95yS"
+    private let clientPWD = "njMqfz1ZEAyo41K4GzsIny6jlciY3RCqA3IMhxrC"
+    func getWeather(from zipcode: String,
                     completionHandler: @escaping ([Weather]) -> Void,
                     errorHandler: @escaping (Error) -> Void) {
-        guard let url = URL(string: str) else {return}
+        let urlWeather = "https://api.aerisapi.com/forecasts/\(zipcode)?client_id=\(clientId)&client_secret=\(clientPWD)"
+        guard let url = URL(string: urlWeather) else {return}
         let parseDataWeather = {(data: Data) in
             do {
                 let onlineWeather = try JSONDecoder().decode(WeatherAllInfo.self, from: data)

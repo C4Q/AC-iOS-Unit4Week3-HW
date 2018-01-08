@@ -21,7 +21,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let navController = UINavigationController(rootViewController: searchVC)
         
         let favoriteVC = FavoriteViewController()
-        favoriteVC.tabBarItem = UITabBarItem(tabBarSystemItem: UITabBarSystemItem.favorites, tag: 0)
+        favoriteVC.tabBarItem = UITabBarItem(tabBarSystemItem: UITabBarSystemItem.favorites, tag: 1)
         
         tbc.setViewControllers([navController, favoriteVC], animated: true)
         

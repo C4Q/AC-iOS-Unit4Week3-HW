@@ -20,6 +20,7 @@
 		8187C1FA20019DBE0036F976 /* AppErrorHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8187C1F920019DBE0036F976 /* AppErrorHelper.swift */; };
 		8187C1FC2001AA660036F976 /* Weather.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8187C1FB2001AA660036F976 /* Weather.swift */; };
 		8187C1FE2001DEFD0036F976 /* WeatherAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8187C1FD2001DEFD0036F976 /* WeatherAPIClient.swift */; };
+		81A701B82002FD87004AECC3 /* UserDefaultsHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81A701B72002FD87004AECC3 /* UserDefaultsHelper.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,6 +39,7 @@
 		8187C1F920019DBE0036F976 /* AppErrorHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppErrorHelper.swift; sourceTree = "<group>"; };
 		8187C1FB2001AA660036F976 /* Weather.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Weather.swift; sourceTree = "<group>"; };
 		8187C1FD2001DEFD0036F976 /* WeatherAPIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherAPIClient.swift; sourceTree = "<group>"; };
+		81A701B72002FD87004AECC3 /* UserDefaultsHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsHelper.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -70,6 +72,7 @@
 		5410A6BF1FFFDF1200935A9A /* Unit4Week3Homework-StudentVersion */ = {
 			isa = PBXGroup;
 			children = (
+				81A701B62002FD64004AECC3 /* Persistence Models */,
 				8123B72C200177DD0023E109 /* Models */,
 				8123B72B200177D30023E109 /* Views */,
 				8123B728200177540023E109 /* View Controllers */,
@@ -118,6 +121,14 @@
 				5410A6D21FFFDF6500935A9A /* ZipCodeHelper.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		81A701B62002FD64004AECC3 /* Persistence Models */ = {
+			isa = PBXGroup;
+			children = (
+				81A701B72002FD87004AECC3 /* UserDefaultsHelper.swift */,
+			);
+			path = "Persistence Models";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -197,6 +208,7 @@
 				8123B724200176F40023E109 /* MainWeatherViewController.swift in Sources */,
 				8187C1FC2001AA660036F976 /* Weather.swift in Sources */,
 				8123B732200186880023E109 /* MainWeatherViewController+Extension.swift in Sources */,
+				81A701B82002FD87004AECC3 /* UserDefaultsHelper.swift in Sources */,
 				8123B730200182E50023E109 /* WeatherCVCell.swift in Sources */,
 				5410A6C11FFFDF1200935A9A /* AppDelegate.swift in Sources */,
 				8187C1FE2001DEFD0036F976 /* WeatherAPIClient.swift in Sources */,

@@ -10,18 +10,18 @@ import UIKit
 
 class MainWeatherViewController: UIViewController {
 
+    let cellSpacing: CGFloat = 5.0
+    
     var weatherDays = [Weather]() {
         didSet {
             self.collectionView.reloadData()
         }
     }
     
-    let cellSpacing: CGFloat = 5.0
     lazy var nameCityLabel: UILabel = {
         let label = UILabel()
-        label.text = "Weather Forecast for Chicago"
+        label.text = "Weather Forecast for N/A"
         label.textAlignment = .center
-        //label.font = UIFont.systemFont(ofSize: 20, weight: .bold)
         return label
     }()
     
@@ -37,6 +37,7 @@ class MainWeatherViewController: UIViewController {
     lazy var zipCodeTextField: UITextField = {
         let textField = UITextField()
         textField.placeholder = "zipcode"
+        
         textField.textAlignment = .center
         textField.keyboardType = .numberPad
         textField.backgroundColor = .lightGray
@@ -84,42 +85,62 @@ class MainWeatherViewController: UIViewController {
         self.zipCodeTextField.delegate = self
         self.collectionView.delegate = self
         self.collectionView.dataSource = self
-        setupMainStackView()
-        setupViews()
-        
+        setupSubViews()
+        if let zipCode = UserDefaultsHelper.manager.getLastSearch() {
+            getWeatherFromOnline(from: zipCode)
+        }
+        self.zipCodeTextField.becomeFirstResponder()
     }
     
+    func getWeatherFromOnline(from zipCode: String) {
+        ZipCodeHelper.manager.getLocationName(from: zipCode, completionHandler: {self.nameCityLabel.text = "Weather Forecast for " + $0}, errorHandler: {print($0)})
+        WeatherAPIClient.manager.getWeather(from: zipCode, completionHandler: {self.weatherDays = $0}, errorHandler: {print($0)})
+        UserDefaultsHelper.manager.save(name: zipCode)
+    }
     
+}
+
+extension MainWeatherViewController {
+    private func setupSubViews(){
+        addMainStackViewIntoView()
+        mainStackViewConstraints()
+        addSubViewsIntoMainStackView()
+        addSubViewsIntoSubStackView()
+        displayAllSubViews()
+    }
     
-    private func setupMainStackView() {
+    private func addMainStackViewIntoView() {
         view.addSubview(mainStackView)
-        mainStackView.translatesAutoresizingMaskIntoConstraints = false
+    }
+    
+    private func mainStackViewConstraints() {
         mainStackView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 16).isActive = true
         mainStackView.widthAnchor.constraint(equalTo: view.widthAnchor).isActive = true
         mainStackView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.5).isActive = true
         mainStackView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+    }
+    
+    private func addSubViewsIntoMainStackView() {
+        mainStackView.addArrangedSubview(nameCityLabel)
+        mainStackView.addArrangedSubview(collectionViewStack)
+        mainStackView.addArrangedSubview(zipCodeStackView)
         
     }
     
-    private func setupViews() {
-        mainStackView.addArrangedSubview(nameCityLabel)
-        nameCityLabel.translatesAutoresizingMaskIntoConstraints = false
-        
-        mainStackView.addArrangedSubview(collectionViewStack)
+    private func addSubViewsIntoSubStackView() {
         collectionViewStack.addArrangedSubview(collectionView)
-        collectionViewStack.translatesAutoresizingMaskIntoConstraints = false
-        collectionView.translatesAutoresizingMaskIntoConstraints = false
-        
-        mainStackView.addArrangedSubview(zipCodeStackView)
-        zipCodeStackView.translatesAutoresizingMaskIntoConstraints = false
         zipCodeStackView.addArrangedSubview(zipCodeTextField)
         zipCodeStackView.addArrangedSubview(zipCodeLabel)
-        zipCodeTextField.translatesAutoresizingMaskIntoConstraints = false
-        zipCodeLabel.translatesAutoresizingMaskIntoConstraints = false
         zipCodeTextField.widthAnchor.constraint(equalTo: zipCodeLabel.widthAnchor).isActive = true
     }
     
-    func getWeatherFromOnline(from url: String) {
-        WeatherAPIClient.manager.getWeather(from: url, completionHandler: {self.weatherDays = $0}, errorHandler: {print($0)})
+    private func displayAllSubViews(){
+        mainStackView.translatesAutoresizingMaskIntoConstraints = false
+        nameCityLabel.translatesAutoresizingMaskIntoConstraints = false
+        collectionViewStack.translatesAutoresizingMaskIntoConstraints = false
+        collectionView.translatesAutoresizingMaskIntoConstraints = false
+        zipCodeStackView.translatesAutoresizingMaskIntoConstraints = false
+        zipCodeTextField.translatesAutoresizingMaskIntoConstraints = false
+        zipCodeLabel.translatesAutoresizingMaskIntoConstraints = false
     }
 }

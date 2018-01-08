@@ -45,25 +45,27 @@ class WeatherCVCell: UICollectionViewCell {
     }
     
     private func commonInit() {
-        self.contentView.backgroundColor = .white
-        setupCellConstrains()
+        self.contentView.backgroundColor = .orange
+        addSubViewsIntoRootView()
+        subViewDisplay()
+        rootViewConstraints()
     }
     
-    private func setupCellConstrains() {
+    private func addSubViewsIntoRootView() {
         self.contentView.addSubview(dateLabel)
         self.contentView.addSubview(weatherImageView)
         self.contentView.addSubview(highLabel)
         self.contentView.addSubview(lowLabel)
-        
+    }
+    
+    private func subViewDisplay() {
         dateLabel.translatesAutoresizingMaskIntoConstraints = false
         weatherImageView.translatesAutoresizingMaskIntoConstraints = false
         highLabel.translatesAutoresizingMaskIntoConstraints = false
         lowLabel.translatesAutoresizingMaskIntoConstraints = false
-        
-        cellViewConstrains()
     }
     
-    private func cellViewConstrains() {
+    private func rootViewConstraints() {
         dateLabel.topAnchor.constraint(equalTo: self.contentView.topAnchor).isActive = true
         dateLabel.centerXAnchor.constraint(equalTo: self.contentView.centerXAnchor).isActive = true
         weatherImageView.topAnchor.constraint(equalTo: dateLabel.bottomAnchor).isActive = true

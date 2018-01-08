@@ -14,7 +14,6 @@ struct WeatherAllInfo: Codable {
 
 struct Response: Codable {
     let periods: [Weather]
-    let profile: Profile
 }
 
 struct Weather: Codable {
@@ -28,11 +27,9 @@ struct Weather: Codable {
     let avgTempF: Int
     let pressureIN: Double
     let weather: String
+    let windSpeedMPH: Int
     let icon: String
     let sunriseISO: String
     let sunsetISO: String
 }
 
-struct Profile: Codable {
-    let tz: String
-}
