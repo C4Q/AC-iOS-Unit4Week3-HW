@@ -10,7 +10,12 @@ import UIKit
 
 class MainWeatherViewController: UIViewController {
     let weatherView = WeatherView()
-    var cityName = ""
+    var cityName = "" {
+        didSet{
+            weatherView.titleLabel.text = "Weather Forecast for \(cityName)"
+            print("city: \(cityName)")
+        }
+    }
     //data model
     var weatherForecasts = [DailyForecast]() {
         didSet {
@@ -25,7 +30,7 @@ class MainWeatherViewController: UIViewController {
         weatherView.collectionView.delegate = self
         weatherView.collectionView.dataSource = self
         weatherView.zipTextField.delegate = self
-        view.backgroundColor = .white
+        
         self.title = "Search"
         view.addSubview(weatherView)
         //loadData()
@@ -43,14 +48,14 @@ class MainWeatherViewController: UIViewController {
                                                 errorHandler: {print($0, "error getting weather")})
         ZipCodeHelper.manager.getLocationName(from: zipcode, completionHandler: {(self.cityName = $0)}, errorHandler: {print($0)})
     }
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let forecastInfo = weatherForecasts[indexPath.row]
+        //let detailVC = WeatherDetailViewController(forecast: forecastInfo)
+       // navigationController?.pushViewController(detailVC, animated: true)
+    }
 }
 
 extension MainWeatherViewController: UICollectionViewDataSource {
-    
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        <#code#>
-    }
-    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return weatherForecasts.count
     }
@@ -58,15 +63,14 @@ extension MainWeatherViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let weatherForecast = weatherForecasts[indexPath.row]
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "WeatherCell", for: indexPath) as! WeatherCell
-        cell.backgroundColor = .blue
+        //cell.backgroundColor = .blue
         let formattedDate = weatherForecast.validTime
         let date = formattedDate.components(separatedBy: "T")
         cell.dateLabel.text = date[0]
         cell.highTempLabel.text = "High: \(weatherForecast.maxTempF)°"
         cell.lowTempLabel.text = "Low: \(weatherForecast.minTempF)°"
         cell.weatherImageView.image = UIImage(named: weatherForecast.icon)
-        weatherView.titleLabel.text = cityName
-        print("city: \(cityName)")
+    
         return cell
     }
     

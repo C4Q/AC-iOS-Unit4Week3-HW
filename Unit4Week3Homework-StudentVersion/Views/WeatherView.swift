@@ -14,6 +14,7 @@ class WeatherView: UIView {
         let nameLabel = UILabel()
         nameLabel.textAlignment = .center
         nameLabel.text = "PlaceHolder Text"
+        nameLabel.textColor = .white
         return nameLabel
     }()
     
@@ -22,14 +23,16 @@ class WeatherView: UIView {
         layout.scrollDirection = .horizontal
         let cv = UICollectionView(frame:self.bounds, collectionViewLayout: layout)
         cv.register(WeatherCell.self, forCellWithReuseIdentifier: "WeatherCell")
-        cv.backgroundColor = .red
+        cv.backgroundColor = .white
+        //cv.backgroundColor?.withAlphaComponent(0.2)
         return cv
     }()
     
     lazy var zipTextField: UITextField = {
         let zipTextField = UITextField()
         zipTextField.placeholder = "Enter Zipcode Here"
-        zipTextField.backgroundColor = .gray
+        zipTextField.backgroundColor = .white
+        zipTextField.alpha = 0.9
         zipTextField.textAlignment = .center
         return zipTextField
     }()
@@ -37,6 +40,7 @@ class WeatherView: UIView {
     lazy var enterZipLabel: UILabel = {
         let enterZipLabel = UILabel()
         enterZipLabel.textAlignment = .center
+        enterZipLabel.textColor = .white
         enterZipLabel.text = "Enter a Zip Code"
         return enterZipLabel
     }()
@@ -54,6 +58,10 @@ class WeatherView: UIView {
     
     private func commonInit() {
         backgroundColor = .white
+        let backgroundImage = UIImageView(frame: UIScreen.main.bounds)
+        backgroundImage.image = UIImage(named: "sunset.jpg")
+        backgroundImage.contentMode = UIViewContentMode.scaleAspectFill
+       insertSubview(backgroundImage, at: 0)
         setupViews()
     }
     

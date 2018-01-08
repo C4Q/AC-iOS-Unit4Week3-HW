@@ -36,7 +36,7 @@ class WeatherCell: UICollectionViewCell {
     //UIElements
     lazy var dateLabel: UILabel = {
        let dateLabel = UILabel()
-        dateLabel.backgroundColor = .green
+        //dateLabel.backgroundColor = .green
         dateLabel.textAlignment = .center
         dateLabel.text = "Date"
         return dateLabel
@@ -51,7 +51,7 @@ class WeatherCell: UICollectionViewCell {
     
     lazy var highTempLabel: UILabel = {
         let highTempLabel = UILabel()
-        highTempLabel.backgroundColor = .green
+        //highTempLabel.backgroundColor = .green
         highTempLabel.textAlignment = .center
         highTempLabel.text = "highTempLabel"
         return highTempLabel
@@ -59,7 +59,7 @@ class WeatherCell: UICollectionViewCell {
     
     lazy var lowTempLabel: UILabel = {
         let lowTempLabel = UILabel()
-        lowTempLabel.backgroundColor = .green
+        //lowTempLabel.backgroundColor = .green
         lowTempLabel.textAlignment = .center
         lowTempLabel.text = "lowTempLabel"
         return lowTempLabel
