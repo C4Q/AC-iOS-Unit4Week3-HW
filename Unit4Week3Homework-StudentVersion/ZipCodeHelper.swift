@@ -6,7 +6,12 @@
 //  Copyright © 2018 C4Q . All rights reserved.
 //
 
-import Foundation
+import MapKit
+
+enum ZipAppError: Error {
+    case zipCodeError
+}
+
 
 class ZipCodeHelper {
     private init() {}
@@ -19,7 +24,7 @@ class ZipCodeHelper {
                     if let placemark = placemarks?.first, let name = placemark.locality {
                         completionHandler(name)
                     } else {
-                        errorHandler(AppError.zipCodeError)
+                        errorHandler(ZipAppError.zipCodeError)
                     }
                 }
             }

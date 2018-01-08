@@ -8,20 +8,42 @@
 
 /* Begin PBXBuildFile section */
 		5410A6C11FFFDF1200935A9A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5410A6C01FFFDF1200935A9A /* AppDelegate.swift */; };
-		5410A6C31FFFDF1200935A9A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5410A6C21FFFDF1200935A9A /* ViewController.swift */; };
 		5410A6C81FFFDF1200935A9A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5410A6C71FFFDF1200935A9A /* Assets.xcassets */; };
 		5410A6CB1FFFDF1200935A9A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5410A6C91FFFDF1200935A9A /* LaunchScreen.storyboard */; };
 		5410A6D31FFFDF6500935A9A /* ZipCodeHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5410A6D21FFFDF6500935A9A /* ZipCodeHelper.swift */; };
+		8114D8A62000053B00D2E4CF /* FavoritesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8114D8A52000053B00D2E4CF /* FavoritesViewController.swift */; };
+		8114D8A8200005A000D2E4CF /* ForecastViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8114D8A7200005A000D2E4CF /* ForecastViewController.swift */; };
+		8114D8AA200005BB00D2E4CF /* WeatherDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8114D8A9200005BB00D2E4CF /* WeatherDetailViewController.swift */; };
+		8145BA86200062700065DA9F /* ForecastView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8145BA85200062700065DA9F /* ForecastView.swift */; };
+		8145BA882000627D0065DA9F /* FavoritesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8145BA872000627D0065DA9F /* FavoritesView.swift */; };
+		8145BA8A200062900065DA9F /* WeatherDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8145BA89200062900065DA9F /* WeatherDetailView.swift */; };
+		8145BA8C200089000065DA9F /* NetworkHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8145BA8B200089000065DA9F /* NetworkHelper.swift */; };
+		8145BA8E20008A750065DA9F /* ImageHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8145BA8D20008A750065DA9F /* ImageHelper.swift */; };
+		8145BA9020008D160065DA9F /* ForecastCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8145BA8F20008D160065DA9F /* ForecastCollectionViewCell.swift */; };
+		8145BA9220008DDA0065DA9F /* FavoriteCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8145BA9120008DD90065DA9F /* FavoriteCollectionViewCell.swift */; };
+		8145BA94200311190065DA9F /* AerisWeatherAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8145BA93200311190065DA9F /* AerisWeatherAPIClient.swift */; };
+		8145BA962003163E0065DA9F /* Forecast.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8145BA952003163E0065DA9F /* Forecast.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		5410A6BD1FFFDF1200935A9A /* Unit4Week3Homework-StudentVersion.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Unit4Week3Homework-StudentVersion.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		5410A6C01FFFDF1200935A9A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		5410A6C21FFFDF1200935A9A /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		5410A6C71FFFDF1200935A9A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		5410A6CA1FFFDF1200935A9A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		5410A6CC1FFFDF1200935A9A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5410A6D21FFFDF6500935A9A /* ZipCodeHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZipCodeHelper.swift; sourceTree = "<group>"; };
+		8114D8A52000053B00D2E4CF /* FavoritesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesViewController.swift; sourceTree = "<group>"; };
+		8114D8A7200005A000D2E4CF /* ForecastViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForecastViewController.swift; sourceTree = "<group>"; };
+		8114D8A9200005BB00D2E4CF /* WeatherDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherDetailViewController.swift; sourceTree = "<group>"; };
+		8145BA85200062700065DA9F /* ForecastView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForecastView.swift; sourceTree = "<group>"; };
+		8145BA872000627D0065DA9F /* FavoritesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesView.swift; sourceTree = "<group>"; };
+		8145BA89200062900065DA9F /* WeatherDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherDetailView.swift; sourceTree = "<group>"; };
+		8145BA8B200089000065DA9F /* NetworkHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkHelper.swift; sourceTree = "<group>"; };
+		8145BA8D20008A750065DA9F /* ImageHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageHelper.swift; sourceTree = "<group>"; };
+		8145BA8F20008D160065DA9F /* ForecastCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForecastCollectionViewCell.swift; sourceTree = "<group>"; };
+		8145BA9120008DD90065DA9F /* FavoriteCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteCollectionViewCell.swift; sourceTree = "<group>"; };
+		8145BA93200311190065DA9F /* AerisWeatherAPIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AerisWeatherAPIClient.swift; sourceTree = "<group>"; };
+		8145BA952003163E0065DA9F /* Forecast.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Forecast.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,12 +78,47 @@
 			children = (
 				5410A6D21FFFDF6500935A9A /* ZipCodeHelper.swift */,
 				5410A6C01FFFDF1200935A9A /* AppDelegate.swift */,
-				5410A6C21FFFDF1200935A9A /* ViewController.swift */,
+				8145BAB52003E5190065DA9F /* Views */,
+				8145BAB62003E53E0065DA9F /* Models */,
+				8114D8AB200005C300D2E4CF /* View Controllers */,
 				5410A6C71FFFDF1200935A9A /* Assets.xcassets */,
 				5410A6C91FFFDF1200935A9A /* LaunchScreen.storyboard */,
 				5410A6CC1FFFDF1200935A9A /* Info.plist */,
 			);
 			path = "Unit4Week3Homework-StudentVersion";
+			sourceTree = "<group>";
+		};
+		8114D8AB200005C300D2E4CF /* View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				8114D8A52000053B00D2E4CF /* FavoritesViewController.swift */,
+				8114D8A7200005A000D2E4CF /* ForecastViewController.swift */,
+				8114D8A9200005BB00D2E4CF /* WeatherDetailViewController.swift */,
+			);
+			path = "View Controllers";
+			sourceTree = "<group>";
+		};
+		8145BAB52003E5190065DA9F /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				8145BA85200062700065DA9F /* ForecastView.swift */,
+				8145BA872000627D0065DA9F /* FavoritesView.swift */,
+				8145BA9120008DD90065DA9F /* FavoriteCollectionViewCell.swift */,
+				8145BA8F20008D160065DA9F /* ForecastCollectionViewCell.swift */,
+				8145BA89200062900065DA9F /* WeatherDetailView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		8145BAB62003E53E0065DA9F /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				8145BA8B200089000065DA9F /* NetworkHelper.swift */,
+				8145BA93200311190065DA9F /* AerisWeatherAPIClient.swift */,
+				8145BA952003163E0065DA9F /* Forecast.swift */,
+				8145BA8D20008A750065DA9F /* ImageHelper.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -135,9 +192,20 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8145BA8A200062900065DA9F /* WeatherDetailView.swift in Sources */,
+				8145BA8E20008A750065DA9F /* ImageHelper.swift in Sources */,
+				8145BA962003163E0065DA9F /* Forecast.swift in Sources */,
+				8145BA8C200089000065DA9F /* NetworkHelper.swift in Sources */,
 				5410A6D31FFFDF6500935A9A /* ZipCodeHelper.swift in Sources */,
-				5410A6C31FFFDF1200935A9A /* ViewController.swift in Sources */,
+				8145BA9220008DDA0065DA9F /* FavoriteCollectionViewCell.swift in Sources */,
+				8145BA9020008D160065DA9F /* ForecastCollectionViewCell.swift in Sources */,
+				8114D8A8200005A000D2E4CF /* ForecastViewController.swift in Sources */,
+				8114D8A62000053B00D2E4CF /* FavoritesViewController.swift in Sources */,
+				8114D8AA200005BB00D2E4CF /* WeatherDetailViewController.swift in Sources */,
+				8145BA882000627D0065DA9F /* FavoritesView.swift in Sources */,
 				5410A6C11FFFDF1200935A9A /* AppDelegate.swift in Sources */,
+				8145BA86200062700065DA9F /* ForecastView.swift in Sources */,
+				8145BA94200311190065DA9F /* AerisWeatherAPIClient.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

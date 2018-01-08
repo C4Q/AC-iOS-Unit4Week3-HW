@@ -15,7 +15,24 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
+        
+        let forecastVC = ForecastViewController()
+        let favoritesVC = FavoritesViewController()
+        let detailVC = WeatherDetailViewController()
+        let tbc = UITabBarController()
+        tbc.setViewControllers([forecastVC, favoritesVC, detailVC], animated: true)
+        tbc.tabBar.barStyle = .blackOpaque
+        
+        let forecastTabItem = UITabBarItem(title: "Forecast", image: #imageLiteral(resourceName: "cloud"), selectedImage: #imageLiteral(resourceName: "cloud"))
+        forecastVC.tabBarItem = forecastTabItem
+        
+        let favoriteTabItem = UITabBarItem(title: "Favorites", image: #imageLiteral(resourceName: "heart"), selectedImage: #imageLiteral(resourceName: "heart"))
+        favoritesVC.tabBarItem = favoriteTabItem
+        
+        window = UIWindow(frame: UIScreen.main.bounds)
+        window?.rootViewController = tbc
+        window?.makeKeyAndVisible()
+        
         return true
     }
 
