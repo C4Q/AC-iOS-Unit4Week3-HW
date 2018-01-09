@@ -17,7 +17,7 @@ class ZipCodeHelper {
                          completionHandler: @escaping (String) -> Void,
                          errorHandler: @escaping (Error) -> Void) {
         
-        let geocoder = CLGeocoder()
+        let geocoder = CLGeocoder() // An interface for converting between geographic coordinates and place names.
         
         DispatchQueue.global(qos: .userInitiated).async {
             geocoder.geocodeAddressString(zipCode){(placemarks, error) -> Void in

@@ -27,7 +27,6 @@ class CityImageTableViewCell: UITableViewCell {
     required init?(coder aDecoder: NSCoder) {//Since we are overriding the storyboard, we need to tell our app to initialize this instead as our superview.
         super.init(coder: aDecoder)
         setUpGUI()
-        
     }
     
     //this gets called right
@@ -59,7 +58,6 @@ class CityImageTableViewCell: UITableViewCell {
             cityImageView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
             cityImageView.topAnchor.constraint(equalTo: contentView.topAnchor),
             cityImageView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
-            
             ])
     }
     

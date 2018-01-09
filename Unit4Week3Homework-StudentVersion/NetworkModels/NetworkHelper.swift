@@ -44,10 +44,12 @@ class NetworkHelper {
                     errorHandler(AppError.noDataReceived)
                     return
                 }
+                
                 if let response = response as? HTTPURLResponse {
                     errorHandler(AppError.goodStatusCode(num: response.statusCode))
                     
                 }
+                
                 if let error = error as? URLError {
                     switch error {
                     case URLError.notConnectedToInternet:
@@ -57,6 +59,7 @@ class NetworkHelper {
                         errorHandler(AppError.urlError(rawError: error))
                     }
                 }
+                
                 if let error = error {
                     let error = error as NSError
                     if error.domain == NSURLErrorDomain && error.code == NSURLErrorNotConnectedToInternet {

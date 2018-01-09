@@ -14,25 +14,18 @@ class FavoritesViewController: UIViewController {
     
     let favoritesView = FavoritesView()
     let favoritesCustomCell = CityImageTableViewCell()
-    
-//    override func viewDidAppear(_ animated: Bool) {
-//        super.viewDidAppear(true)
-//        favoritesView.tableView.reloadData()
-//    }
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .yellow
         view.addSubview(favoritesView) //adding the custom view into the View Controller
-        //contentView.addSubview(favoritesCustomCell.cityImageView)
         
         //TBV Delegates
         favoritesView.tableView.delegate = self
         favoritesView.tableView.dataSource = self
-        favoritesView.tableView.estimatedRowHeight = 80
+        favoritesView.tableView.estimatedRowHeight = 100
         favoritesView.tableView.rowHeight = UITableViewAutomaticDimension
-        //favoritesView.tableView.separatorStyle = .none
- 
     }
 }
 
@@ -49,32 +42,13 @@ extension FavoritesViewController: UITableViewDataSource {
         
         let cityImage = sampleCityArray[indexPath.row]
         
-        cell.imageView?.image = cityImage
-        
-       
+        cell.cityImageView.image = cityImage
+
         //TODO will be passing in a fellow object here
         //cell.configureTableViewCellFor(fellow: fellow)
-        
-//        func resizeImage(image:UIImage, toTheSize size:CGSize)->UIImage{
-//            
-//            
-//            var scale = CGFloat(max(size.width/image.size.width,
-//                                    size.height/image.size.height))
-//            var width:CGFloat  = image.size.width * scale
-//            var height:CGFloat = image.size.height * scale;
-//            
-//            let rr:CGRect = CGRect( x: 0, y: 0, width: width, height: height)
-//            
-//            UIGraphicsBeginImageContextWithOptions(size, false, 0);
-//            image.draw(in: rr)
-//            let newImage = UIGraphicsGetImageFromCurrentImageContext()
-//            UIGraphicsEndImageContext();
-//            return newImage!
-//        }
-        
+
         return cell
     }
-    
 }
 
 extension FavoritesViewController: UITableViewDelegate {
@@ -100,17 +74,9 @@ extension FavoritesViewController: UITableViewDelegate {
 //        present(detailViewController, animated: true, completion: nil)
 //
 //    }
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 200.0
-    }
-//
-//
-//    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
-//        // optionally, return an calculated estimate for the cell heights
-//        return 200
-//    }
+  }
 
-}
+
 
 
 

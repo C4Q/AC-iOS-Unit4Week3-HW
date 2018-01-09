@@ -9,12 +9,19 @@
 import UIKit
 
 class WeatherViewController: UIViewController {
+    
     let sampleArray = [1,2,3,4,5,6] //for testing ONLY
     
     let weatherView = WeatherView()
+       let cellSpacing: CGFloat =  10.0
+    var keyWord = "" //what the user enters into the textField
+    var cityForecast = [WeatherResponse](){
+        didSet {
+            weatherView.collectionView.reloadData()
+        }
+    }
     
-    let cellSpacing: CGFloat =  10.0
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .red
@@ -25,7 +32,6 @@ class WeatherViewController: UIViewController {
         weatherView.collectionView.delegate = self
         weatherView.collectionView.dataSource = self
         weatherView.textField.delegate = self
-        loadForecast()
         
         //loading most recent zipcode from user defaults
         if let savedZipcode = UserDefaultsHelper.manager.getZipcode() {
@@ -34,13 +40,14 @@ class WeatherViewController: UIViewController {
         } else {
             weatherView.textField.text = ""
         }
+        //loading saved forecast from sandbox
+        loadSavedForecastFromSandBox()
     }
     
-    func loadForecast(){
-        
-        setUpAutomaticScrolling()
+    func loadSavedForecastFromSandBox(){
+        //load forecast from sandbox to FM
+        //load forecast from FM to VC
     }
-    
     
     //MARK: - Adding scrolling animation when the user draws another card: https://stackoverflow.com/questions/15985574/uicollectionview-auto-scroll-to-cell-at-indexpath
     func setUpAutomaticScrolling(){
@@ -63,7 +70,19 @@ extension WeatherViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CollectionViewCell", for: indexPath) as! WeatherCollectionViewCell
         cell.backgroundColor = .white
+        
+        //TODO: - set up properties for custom collection cell
+        
         return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        // using dependency injection to pass Fellow Model Object to DetailVC
+        let detailWVC = DetailWeatherViewController()
+        
+        detailWVC.modalTransitionStyle = .crossDissolve
+        detailWVC.modalPresentationStyle = .overCurrentContext
+        present(detailWVC, animated: true, completion: nil)
     }
 }
 
@@ -92,27 +111,50 @@ extension WeatherViewController: UICollectionViewDelegateFlowLayout {
 }
 
 extension WeatherViewController: UITextFieldDelegate {
+    
+    //Did Begin Editing
     func textFieldDidBeginEditing(_ textField: UITextField) {
         textField.becomeFirstResponder()
     }
     
+    //Changing Characters
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        
+        // guard textField.text != nil else {return false}
+        
         //handling for numbers only
         let allowedCharacters = CharacterSet.decimalDigits //digits ONLY
         let characterSet = CharacterSet(charactersIn: string)
         return allowedCharacters.isSuperset(of: characterSet)
     }
     
+    //Should Return
+    //MARK: - Meat of the functionality
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         guard let text = textField.text else {return true}
-        
+
         //calling userDefaults to save zipcode entered
         if let textFieldAsInt = Int(text){
             //var textFieldAsInt = Int(text)
             UserDefaultsHelper.manager.setZipcode(to: textFieldAsInt)
             print("\(textFieldAsInt) zipcode was saved!")
         }
-        //make Weather API call: reload collection View as part of the completion handler in the weather API call
+        
+        //string being used to pass into Weather API call
+        let urlStr = "https://api.aerisapi.com/forecasts/\(keyWord)?\(APIKeys.weatherClientID)&client_secret=\(APIKeys.weatherSecretKey)"
+        
+        //Make Weather API call: save forecast to file manager in completion handler in the weather API call
+        let loadForecastFromInternet: ([WeatherResponse]) -> Void = {(onlineForcast: [WeatherResponse] ) in
+            self.cityForecast = onlineForcast
+            print("7 Day Forecast exists!")
+            //save to file manager
+            //save to sandbox
+        }
+        WeatherAPIClient.manager.getForecast(from: urlStr,
+                                             completionHandler: loadForecastFromInternet,
+                                             errorHandler: {print($0)})
+        setUpAutomaticScrolling()
+        
         textField.resignFirstResponder()
         return true
     }
