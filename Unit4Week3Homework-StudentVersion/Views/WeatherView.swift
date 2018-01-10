@@ -13,8 +13,9 @@ class WeatherView: UIView {
     lazy var titleLabel: UILabel = {
         let nameLabel = UILabel()
         nameLabel.textAlignment = .center
-        nameLabel.text = "PlaceHolder Text"
+        nameLabel.text = "7 Day Forecast"
         nameLabel.textColor = .white
+        //TODO: Make text bigger & bolder
         return nameLabel
     }()
     
@@ -23,7 +24,7 @@ class WeatherView: UIView {
         layout.scrollDirection = .horizontal
         let cv = UICollectionView(frame:self.bounds, collectionViewLayout: layout)
         cv.register(WeatherCell.self, forCellWithReuseIdentifier: "WeatherCell")
-        cv.backgroundColor = .white
+        cv.backgroundColor = .clear
         //cv.backgroundColor?.withAlphaComponent(0.2)
         return cv
     }()
@@ -34,6 +35,7 @@ class WeatherView: UIView {
         zipTextField.backgroundColor = .white
         zipTextField.alpha = 0.9
         zipTextField.textAlignment = .center
+        zipTextField.layer.cornerRadius = 5.0
         return zipTextField
     }()
     

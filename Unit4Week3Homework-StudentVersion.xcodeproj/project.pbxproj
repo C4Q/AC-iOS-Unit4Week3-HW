@@ -12,6 +12,7 @@
 		5410A6C81FFFDF1200935A9A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5410A6C71FFFDF1200935A9A /* Assets.xcassets */; };
 		5410A6CB1FFFDF1200935A9A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5410A6C91FFFDF1200935A9A /* LaunchScreen.storyboard */; };
 		5410A6D31FFFDF6500935A9A /* ZipCodeHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5410A6D21FFFDF6500935A9A /* ZipCodeHelper.swift */; };
+		D239991720047D930020A034 /* WeatherDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D239991620047D930020A034 /* WeatherDetailView.swift */; };
 		D2548F912001BC6100DC0305 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2548F902001BC6100DC0305 /* TabBarController.swift */; };
 		D2548F932001BD0E00DC0305 /* FavoritesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2548F922001BD0E00DC0305 /* FavoritesViewController.swift */; };
 		D26839082002A79100D852DC /* ImageCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = D26839072002A79100D852DC /* ImageCache.swift */; };
@@ -30,6 +31,7 @@
 		5410A6CA1FFFDF1200935A9A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		5410A6CC1FFFDF1200935A9A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5410A6D21FFFDF6500935A9A /* ZipCodeHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZipCodeHelper.swift; sourceTree = "<group>"; };
+		D239991620047D930020A034 /* WeatherDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherDetailView.swift; sourceTree = "<group>"; };
 		D2548F902001BC6100DC0305 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		D2548F922001BD0E00DC0305 /* FavoritesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesViewController.swift; sourceTree = "<group>"; };
 		D26839072002A79100D852DC /* ImageCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCache.swift; sourceTree = "<group>"; };
@@ -116,6 +118,7 @@
 			children = (
 				D268390D2002B38400D852DC /* WeatherCell.swift */,
 				D268390F2002B45600D852DC /* WeatherView.swift */,
+				D239991620047D930020A034 /* WeatherDetailView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -191,6 +194,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D239991720047D930020A034 /* WeatherDetailView.swift in Sources */,
 				D268390A2002AAB600D852DC /* NetworkHelper.swift in Sources */,
 				D26839082002A79100D852DC /* ImageCache.swift in Sources */,
 				D268390E2002B38400D852DC /* WeatherCell.swift in Sources */,

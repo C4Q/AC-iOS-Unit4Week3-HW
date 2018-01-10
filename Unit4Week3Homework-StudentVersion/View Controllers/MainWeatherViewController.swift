@@ -10,6 +10,7 @@ import UIKit
 
 class MainWeatherViewController: UIViewController {
     let weatherView = WeatherView()
+    //TODO: format city name before image api call, get array of urls, var randomImg = array[ar4random]
     var cityName = "" {
         didSet{
             weatherView.titleLabel.text = "Weather Forecast for \(cityName)"
@@ -35,6 +36,10 @@ class MainWeatherViewController: UIViewController {
         view.addSubview(weatherView)
         //loadData()
     }
+//    func passCity() {
+//        let view = WeatherDetailView()
+//        view.thisCity = cityName
+//    }
     func loadData(zipcode: String) {
         let clientId = "4rkzyfD1kqeSpt9wZ9Py7"
         let clientSecret = "zeAypPfgH6ccGB2Nk5I17blQM4TdusP9qEepLlog"
@@ -48,10 +53,13 @@ class MainWeatherViewController: UIViewController {
                                                 errorHandler: {print($0, "error getting weather")})
         ZipCodeHelper.manager.getLocationName(from: zipcode, completionHandler: {(self.cityName = $0)}, errorHandler: {print($0)})
     }
+    
+    //MARK: Sends weatherforecasts object to detail vc
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let forecastInfo = weatherForecasts[indexPath.row]
-        //let detailVC = WeatherDetailViewController(forecast: forecastInfo)
-       // navigationController?.pushViewController(detailVC, animated: true)
+        let detailVC = WeatherDetailViewController.init(weather: forecastInfo, city: cityName)
+        navigationController?.pushViewController(detailVC, animated: true)
+        
     }
 }
 
@@ -63,7 +71,7 @@ extension MainWeatherViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let weatherForecast = weatherForecasts[indexPath.row]
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "WeatherCell", for: indexPath) as! WeatherCell
-        //cell.backgroundColor = .blue
+        //cell.alpha = 0.1
         let formattedDate = weatherForecast.validTime
         let date = formattedDate.components(separatedBy: "T")
         cell.dateLabel.text = date[0]
@@ -112,6 +120,7 @@ extension MainWeatherViewController: UITextFieldDelegate {
         loadData(zipcode: zipCodeInput)
             
         }
+        textField.resignFirstResponder()
     return true
     }
 }

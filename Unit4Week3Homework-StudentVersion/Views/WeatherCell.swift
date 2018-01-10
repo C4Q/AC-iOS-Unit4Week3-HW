@@ -23,6 +23,8 @@ class WeatherCell: UICollectionViewCell {
     
     private func commonInit() {
         backgroundColor = .white
+        let translucent = backgroundColor?.withAlphaComponent(0.1)
+        backgroundColor = translucent
         setupViews()
     }
     
@@ -46,6 +48,7 @@ class WeatherCell: UICollectionViewCell {
        let weatherImageView = UIImageView()
         weatherImageView.image = #imageLiteral(resourceName: "clear")
         weatherImageView.contentMode = .scaleAspectFit
+        weatherImageView.backgroundColor = .gray
         return weatherImageView
     }()
     
