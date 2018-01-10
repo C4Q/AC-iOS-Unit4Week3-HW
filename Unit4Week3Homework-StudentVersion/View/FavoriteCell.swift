@@ -1,0 +1,49 @@
+//
+//  FavoriteCell.swift
+//  Unit4Week3Homework-StudentVersion
+//
+//  Created by Masai Young on 1/9/18.
+//  Copyright © 2018 C4Q . All rights reserved.
+//
+
+import UIKit
+
+class FavoriteCell: UITableViewCell {
+
+    lazy var favImageView: UIImageView = {
+        let iv = UIImageView()
+        return iv
+    }()
+    
+    override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
+        super.init(style: style, reuseIdentifier: reuseIdentifier)
+        commonInit()
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        commonInit()
+    }
+    
+    func commonInit() {
+        setupViews()
+    }
+    
+    func setupViews() {
+        addSubview(favImageView)
+        self.selectionStyle = .none
+        setupConstaints()
+    }
+
+    func setupConstaints() {
+        favImageView.translatesAutoresizingMaskIntoConstraints = false
+        favImageView.widthAnchor.constraint(equalTo: self.widthAnchor).isActive = true
+        favImageView.heightAnchor.constraint(equalTo: self.heightAnchor).isActive = true
+        favImageView.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
+        favImageView.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
+    }
+    
+    override func layoutSubviews() {
+        favImageView.bounds = CGRect(x: 0, y: 0, width: self.bounds.width, height: self.bounds.height / 2)
+    }
+}

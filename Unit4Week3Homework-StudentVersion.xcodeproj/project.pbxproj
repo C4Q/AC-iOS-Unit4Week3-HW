@@ -8,20 +8,42 @@
 
 /* Begin PBXBuildFile section */
 		5410A6C11FFFDF1200935A9A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5410A6C01FFFDF1200935A9A /* AppDelegate.swift */; };
-		5410A6C31FFFDF1200935A9A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5410A6C21FFFDF1200935A9A /* ViewController.swift */; };
 		5410A6C81FFFDF1200935A9A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5410A6C71FFFDF1200935A9A /* Assets.xcassets */; };
 		5410A6CB1FFFDF1200935A9A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5410A6C91FFFDF1200935A9A /* LaunchScreen.storyboard */; };
 		5410A6D31FFFDF6500935A9A /* ZipCodeHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5410A6D21FFFDF6500935A9A /* ZipCodeHelper.swift */; };
+		C4123AA020054C2C004E043B /* KeyedArchiver.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4123A9F20054C2C004E043B /* KeyedArchiver.swift */; };
+		C4123AA220055120004E043B /* FavoriteCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4123AA120055120004E043B /* FavoriteCell.swift */; };
+		C41B0E8B2003FB8800597E13 /* SearchVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C41B0E8A2003FB8800597E13 /* SearchVC.swift */; };
+		C41B0E8D2003FB9100597E13 /* FavoritesVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C41B0E8C2003FB9100597E13 /* FavoritesVC.swift */; };
+		C41B0E8F200409D500597E13 /* WeatherModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C41B0E8E200409D500597E13 /* WeatherModel.swift */; };
+		C41B0E9120040ABD00597E13 /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = C41B0E9020040ABD00597E13 /* Network.swift */; };
+		C41B0E932004108200597E13 /* WeatherCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C41B0E922004108200597E13 /* WeatherCell.swift */; };
+		C44B1A3620068ADF0079039F /* DialogView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C44B1A3520068ADF0079039F /* DialogView.swift */; };
+		C44B1A382006A99A0079039F /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = C44B1A372006A99A0079039F /* Constants.swift */; };
+		C462063220041996009A5F53 /* DateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C462063120041996009A5F53 /* DateFormatter.swift */; };
+		C4620636200422D3009A5F53 /* DetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4620635200422D3009A5F53 /* DetailVC.swift */; };
+		C462063820042E79009A5F53 /* PixabayModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C462063720042E79009A5F53 /* PixabayModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		5410A6BD1FFFDF1200935A9A /* Unit4Week3Homework-StudentVersion.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Unit4Week3Homework-StudentVersion.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		5410A6C01FFFDF1200935A9A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		5410A6C21FFFDF1200935A9A /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		5410A6C71FFFDF1200935A9A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		5410A6CA1FFFDF1200935A9A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		5410A6CC1FFFDF1200935A9A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5410A6D21FFFDF6500935A9A /* ZipCodeHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZipCodeHelper.swift; sourceTree = "<group>"; };
+		C4123A9F20054C2C004E043B /* KeyedArchiver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyedArchiver.swift; sourceTree = "<group>"; };
+		C4123AA120055120004E043B /* FavoriteCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteCell.swift; sourceTree = "<group>"; };
+		C41B0E8A2003FB8800597E13 /* SearchVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchVC.swift; sourceTree = "<group>"; };
+		C41B0E8C2003FB9100597E13 /* FavoritesVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesVC.swift; sourceTree = "<group>"; };
+		C41B0E8E200409D500597E13 /* WeatherModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherModel.swift; sourceTree = "<group>"; };
+		C41B0E9020040ABD00597E13 /* Network.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Network.swift; sourceTree = "<group>"; };
+		C41B0E922004108200597E13 /* WeatherCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherCell.swift; sourceTree = "<group>"; };
+		C44B1A3520068ADF0079039F /* DialogView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DialogView.swift; sourceTree = "<group>"; };
+		C44B1A372006A99A0079039F /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		C462063120041996009A5F53 /* DateFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateFormatter.swift; sourceTree = "<group>"; };
+		C4620635200422D3009A5F53 /* DetailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailVC.swift; sourceTree = "<group>"; };
+		C462063720042E79009A5F53 /* PixabayModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PixabayModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,14 +76,49 @@
 		5410A6BF1FFFDF1200935A9A /* Unit4Week3Homework-StudentVersion */ = {
 			isa = PBXGroup;
 			children = (
-				5410A6D21FFFDF6500935A9A /* ZipCodeHelper.swift */,
 				5410A6C01FFFDF1200935A9A /* AppDelegate.swift */,
-				5410A6C21FFFDF1200935A9A /* ViewController.swift */,
+				C462063B20042F16009A5F53 /* View */,
+				C462063920042EEE009A5F53 /* Model */,
+				C462063A20042EFD009A5F53 /* ViewController */,
 				5410A6C71FFFDF1200935A9A /* Assets.xcassets */,
 				5410A6C91FFFDF1200935A9A /* LaunchScreen.storyboard */,
 				5410A6CC1FFFDF1200935A9A /* Info.plist */,
 			);
 			path = "Unit4Week3Homework-StudentVersion";
+			sourceTree = "<group>";
+		};
+		C462063920042EEE009A5F53 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				5410A6D21FFFDF6500935A9A /* ZipCodeHelper.swift */,
+				C41B0E8E200409D500597E13 /* WeatherModel.swift */,
+				C462063720042E79009A5F53 /* PixabayModel.swift */,
+				C41B0E9020040ABD00597E13 /* Network.swift */,
+				C462063120041996009A5F53 /* DateFormatter.swift */,
+				C4123A9F20054C2C004E043B /* KeyedArchiver.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		C462063A20042EFD009A5F53 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				C4620635200422D3009A5F53 /* DetailVC.swift */,
+				C41B0E8A2003FB8800597E13 /* SearchVC.swift */,
+				C41B0E8C2003FB9100597E13 /* FavoritesVC.swift */,
+				C44B1A372006A99A0079039F /* Constants.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		C462063B20042F16009A5F53 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				C44B1A3520068ADF0079039F /* DialogView.swift */,
+				C41B0E922004108200597E13 /* WeatherCell.swift */,
+				C4123AA120055120004E043B /* FavoriteCell.swift */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -135,8 +192,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C462063220041996009A5F53 /* DateFormatter.swift in Sources */,
+				C41B0E8D2003FB9100597E13 /* FavoritesVC.swift in Sources */,
+				C462063820042E79009A5F53 /* PixabayModel.swift in Sources */,
+				C41B0E8B2003FB8800597E13 /* SearchVC.swift in Sources */,
+				C44B1A3620068ADF0079039F /* DialogView.swift in Sources */,
 				5410A6D31FFFDF6500935A9A /* ZipCodeHelper.swift in Sources */,
-				5410A6C31FFFDF1200935A9A /* ViewController.swift in Sources */,
+				C4620636200422D3009A5F53 /* DetailVC.swift in Sources */,
+				C41B0E932004108200597E13 /* WeatherCell.swift in Sources */,
+				C4123AA020054C2C004E043B /* KeyedArchiver.swift in Sources */,
+				C41B0E8F200409D500597E13 /* WeatherModel.swift in Sources */,
+				C4123AA220055120004E043B /* FavoriteCell.swift in Sources */,
+				C44B1A382006A99A0079039F /* Constants.swift in Sources */,
+				C41B0E9120040ABD00597E13 /* Network.swift in Sources */,
 				5410A6C11FFFDF1200935A9A /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -268,6 +336,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = "Unit4Week3Homework-StudentVersion/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "c4q.Unit4Week3Homework-StudentVersion";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -282,6 +351,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = "Unit4Week3Homework-StudentVersion/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "c4q.Unit4Week3Homework-StudentVersion";
 				PRODUCT_NAME = "$(TARGET_NAME)";

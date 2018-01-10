@@ -16,6 +16,23 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        KeyedArchiverClient.shared.loadFavorites()
+        
+        let tabBar = UITabBarController()
+        let searchVC = SearchVC()
+        let favoriteVC = FavoritesVC()
+        
+        let navSearchVC = UINavigationController(rootViewController: searchVC)
+        let navFavoritesVC = UINavigationController(rootViewController: favoriteVC)
+        
+        tabBar.viewControllers = [navSearchVC, navFavoritesVC]
+        
+        searchVC.tabBarItem = UITabBarItem(tabBarSystemItem: .search, tag: 0)
+        favoriteVC.tabBarItem = UITabBarItem(tabBarSystemItem: .favorites, tag: 1)
+        
+        window = UIWindow(frame: UIScreen.main.bounds)
+        window?.rootViewController = tabBar
+        window?.makeKeyAndVisible()
         return true
     }
 
