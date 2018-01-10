@@ -10,6 +10,8 @@ import UIKit
 
 class DetailView: UIView {
     
+    
+    
     lazy var dismissView: UIButton = {
         let button = UIButton(frame: UIScreen.main.bounds) //This tells the button to be the size of the screen
         button.backgroundColor = .clear
@@ -231,13 +233,17 @@ class DetailView: UIView {
             ])
     }
     
-    /*
+    
      
-     public func configureDetailView(fellow: Fellow, image: UIImage) {
-     nameLabel.text = fellow.name
-     profileImage.image = image
-     bioTextView.text = fellow.bio ?? "what???????"
-     }
-     */
+    public func configureDetailView(forecast: SevenDayForecast) {
+        self.topLabel.text = "Weather for DATE for CITY"
+        self.highLabel.text = "High: \(forecast.highTempF)"
+        self.lowLabel.text = "Low: \(forecast.lowTempF)"
+        self.sunriseLabel.text = "Sunrise: \(forecast.sunrise)"
+        self.sunsetLabel.text = "Sunset: \(forecast.sunset)"
+        self.windspeedLabel.text = "Windspeed \(forecast.windSpeedMPH)"
+        self.inchesOfPrecipitationLabel.text = "Inches: \(forecast.rainPrecipIN)"
+    }
+    
     
 }

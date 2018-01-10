@@ -15,30 +15,24 @@ class WeatherAPIClient {
     private init(){}
     static let manager = WeatherAPIClient()
     
-    func getForecast(from urlStr: String,
-                     completionHandler: @escaping ([WeatherResponse]) -> Void,
+    func getForecast(for zipcode: String,
+                     completionHandler: @escaping ([SevenDayForecast]) -> Void,
                      errorHandler: @escaping (Error) -> Void){
         
         //valid url check and pass in zipcode here
         
-        guard let url = URL(string: "https://api.aerisapi.com/forecasts/" + urlStr + "client_id=\(id)&client_secret=\(secret)") else {return}
+        guard let url = URL(string: "https://api.aerisapi.com/forecasts/" + zipcode + "?client_id=\(id)&client_secret=\(secret)") else {return}
         //internet request using urlStr
         let request = URLRequest(url: url)
         //set completion
         let parseDataIntoWeather: (Data) -> Void = {(data) in
             do{
                 let decoder = JSONDecoder()
-                let results = try decoder.decode(WeatherResponseWrapper.self, from: data)
-                let response = results.response
-                
-                
-                print("JSON Data is now an [SevenDayForecast]")
-                
-                
-                completionHandler(response)
-                
+                let response = try decoder.decode(WeatherResponseWrapper.self, from: data)
+                let results = response.response.first!.periods
+                completionHandler(results)
             } catch {
-                errorHandler(AppError.badData)
+                errorHandler(AppError.codingError(rawError: error))
             }
         }
         NetworkHelper.manager.performDataTask(with: request,

@@ -19,6 +19,7 @@ struct PixabayAPIClient {
             do {
                 let allResults = try JSONDecoder().decode(ImageResponseWrapper.self, from: data)
                 let firstPixabay = allResults.hits.first ?? PixabayImage(previewURL: "", webURL: "", id: 0.0)
+                
                 completionHandler(firstPixabay)
             }
             catch {

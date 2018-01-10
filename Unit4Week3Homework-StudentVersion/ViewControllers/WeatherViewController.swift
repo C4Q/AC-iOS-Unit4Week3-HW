@@ -9,7 +9,16 @@
 import UIKit
 
 class WeatherViewController: UIViewController {
-    let sampleArray = [1,2,3,4,5,6] //for testing ONLY
+    //let sampleArray = [1,2,3,4,5,6] //for testing ONLY
+    
+    var currentTextField = "" //This will be used for the PixelBay call which happens once a user clicks on the collectionView
+    
+    var weatherToDisplay = [SevenDayForecast]() {
+        didSet {
+            weatherView.collectionView.reloadData()
+        }
+    }
+    
     
     let weatherView = WeatherView()
     
@@ -45,7 +54,7 @@ class WeatherViewController: UIViewController {
     //MARK: - Adding scrolling animation when the user draws another card: https://stackoverflow.com/questions/15985574/uicollectionview-auto-scroll-to-cell-at-indexpath
     func setUpAutomaticScrolling(){
         //set last index to be the last card in the array
-        let lastIndex = self.sampleArray.count - 1
+        let lastIndex = self.weatherToDisplay.count - 1
         //make sure that the last Index is not negative or else you will crash
         guard lastIndex >= 0 else {return}
         //creates an indexpath based on the lastIndex and whatever section you are referencing
@@ -57,17 +66,26 @@ class WeatherViewController: UIViewController {
 
 extension WeatherViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return sampleArray.count
+        //return sampleArray.count
+        return weatherToDisplay.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CollectionViewCell", for: indexPath) as! WeatherCollectionViewCell
         cell.backgroundColor = .white
+        
+        let aSpecificDay = weatherToDisplay[indexPath.row]
+        
+        cell.weatherImage.image = (UIImage(named: aSpecificDay.weatherIcon))
+        cell.highLabel.text = "High \(aSpecificDay.highTempF)"
+        cell.lowLabel.text = "Low \(aSpecificDay.lowTempF)"
+        
+        cell.dateLabel.text = Date.dateStringFromTimeInterval(timeinterval: aSpecificDay.timestamp)
+        
         return cell
     }
 }
 extension WeatherViewController: UICollectionViewDelegate{
-    
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
@@ -77,6 +95,26 @@ extension WeatherViewController: UICollectionViewDelegate{
         detailWVC.modalTransitionStyle = .crossDissolve
         detailWVC.modalPresentationStyle = .overCurrentContext
         present(detailWVC, animated: true, completion: nil)
+        
+        //Get the first image from an array from PixelBay
+        let setPixelBayImageDetailsToLaterBeCalledByImageAPI: (PixabayImage) -> Void = {(onlineImage: PixabayImage) in
+            
+            let setImageToOnlineImage: (UIImage) -> Void = {(otherOnlineImage: UIImage) in
+                detailWVC.detailView.cityImageView.image = otherOnlineImage
+                detailWVC.detailView.cityImageView.setNeedsLayout()
+                detailWVC.imageURLtoSave = onlineImage.webURL
+                //func to configure detailview
+                
+                
+            }
+            
+            //Use Image API to turn the details from Pixelbay into an actual image
+            ImageAPIClient.manager.loadImage(from: onlineImage.webURL, completionHandler: setImageToOnlineImage, errorHandler: {print($0)})
+            
+        }
+        
+        PixabayAPIClient.manager.getFirstImage(named: currentTextField, completionHandler: setPixelBayImageDetailsToLaterBeCalledByImageAPI, errorHandler: {print($0)})
+        
     }
 }
 
@@ -119,6 +157,8 @@ extension WeatherViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         guard let text = textField.text else {return true}
         
+        currentTextField = text
+        
         let bounds = weatherView.textField.bounds
         
         if text.count < 5{
@@ -142,7 +182,14 @@ extension WeatherViewController: UITextFieldDelegate {
             UserDefaultsHelper.manager.setZipcode(to: textFieldAsInt)
             print("\(textFieldAsInt) zipcode was saved!")
         }
+        
         //make Weather API call: reload collection View as part of the completion handler in the weather API call
+        let completionForWeather: ([SevenDayForecast]) -> Void = {onlineThing in
+            self.weatherToDisplay = onlineThing
+        }
+        
+        WeatherAPIClient.manager.getForecast(for: text, completionHandler: completionForWeather, errorHandler: {print($0)})
+        
         textField.resignFirstResponder()
         return true
     }

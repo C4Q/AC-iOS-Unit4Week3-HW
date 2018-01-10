@@ -12,6 +12,8 @@ class DetailWeatherViewController: UIViewController {
 
     let detailView = DetailView()
     
+    //For saving the image to the phone
+    var imageURLtoSave = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,11 +22,16 @@ class DetailWeatherViewController: UIViewController {
         
         //setup dismiss buttons
         detailView.dismissView.addTarget(self, action: #selector(dismissView), for: .touchUpInside)
-        //detailView.dismissButton.addTarget(self, action: #selector(dismissView), for: .touchUpInside)
+        detailView.exitButton.addTarget(self, action: #selector(dismissView), for: .touchUpInside)
+        detailView.saveButton.addTarget(self, action: #selector(saveImage), for: .touchUpInside)
     }
 
     @objc func dismissView() {
         dismiss(animated: true, completion: nil)
+    }
+    
+    @objc func saveImage() {
+        FileManagerHelper.manager.addFavoriteImage(from: imageURL)
     }
 
 }

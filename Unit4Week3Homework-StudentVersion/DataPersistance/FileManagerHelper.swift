@@ -15,10 +15,53 @@ class FileManagerHelper {
     static let manager = FileManagerHelper()
     
     var pathName = "sevenDayForecast.plist"
+    var favPathName = "Favorites.plist"
     
     private var sevenDayForecast = [SevenDayForecast]() {
         didSet {
             saveForecastToSandBox()
+        }
+    }
+    
+    var favoriteImages = [UIImage]()
+    
+    private var favoriteURLS = [String]() {
+        didSet {
+            saveFavorites()
+        }
+    }
+    
+    //This saves the array of Favorites to the phone
+    private func saveFavorites() {
+        //Save URLs
+        let path = dataFilePath(withPathName: favPathName)
+        do {
+            let data = try PropertyListEncoder().encode(favoriteURLS)
+            try data.write(to: path, options: .atomic)
+        }
+        catch {
+            print("WHYYYYYYYYY")
+        }
+    }
+    
+    //When the save button is clicked
+    func addFavoriteImage(from urlstr: String) {
+        favoriteURLS.append(urlstr)
+    }
+    
+    //Get Favorites Images
+    func getFavoritesImages() -> [UIImage]{
+        return favoriteImages
+    }
+    
+    //This is called in the app delegate to bring up favorited images
+    func loadFavorites() {
+        for imageURLS in favoriteURLS {
+            if let loadedimage = getImage(with: imageURLS) {
+                favoriteImages.append(loadedimage)
+            } else {
+                print("No image with that name saved on phone")
+            }
         }
     }
     
@@ -34,6 +77,7 @@ class FileManagerHelper {
             print(error.localizedDescription)
         }
     }
+    
     
     //Getting images from disk
     func getImage(with urlStr: String) -> UIImage? {
@@ -79,8 +123,6 @@ class FileManagerHelper {
         sevenDayForecast = forecast
     }
     
-    
-    
     //takes array from File Manager and puts into sandbox
     func saveForecastToSandBox() {
         //encode into data so they can be saved with propertyListEncoder
@@ -95,7 +137,6 @@ class FileManagerHelper {
             print("error encoding items: \(error.localizedDescription)")
         }
     }
-    
     
     //returns documents directory path for app sandbox
     private func documentsDirectory() -> URL {

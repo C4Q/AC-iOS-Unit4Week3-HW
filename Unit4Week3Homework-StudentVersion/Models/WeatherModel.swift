@@ -9,7 +9,7 @@
 
 //var id = "9USWp4cVqBZB37WLnjMzc"                             ID
 //var secret = "87dY4L6mShGRCMN6W3D3WJAdnG6FRfWr562ClOup"      Secret
-
+//var testEndpoint = "https://api.aerisapi.com/forecasts/11231?client_id=9USWp4cVqBZB37WLnjMzc&client_secret=87dY4L6mShGRCMN6W3D3WJAdnG6FRfWr562ClOup"
 
 import Foundation
 
@@ -30,6 +30,7 @@ struct CoordinateWrapper: Codable {
     let lat: Double
 }
 struct SevenDayForecast : Codable {
+    let timestamp: TimeInterval
     let currentDateAndTime: String
     let highTempF: Double
     let lowTempF: Double
@@ -43,6 +44,7 @@ struct SevenDayForecast : Codable {
     let sunset: String
     
     enum CodingKeys: String, CodingKey {
+        case timestamp = "timestamp"
         case currentDateAndTime = "validTime"
         case highTempF = "maxTempF"
         case lowTempF = "minTempF"

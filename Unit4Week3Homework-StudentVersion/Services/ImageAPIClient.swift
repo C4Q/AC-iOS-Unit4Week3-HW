@@ -38,7 +38,6 @@ class ImageAPIClient {
                 FileManagerHelper.manager.saveImage(with: urlStr, image: onlineImage)
                 print("Saved Image to Phone")
                 
-                
             }
             
             NetworkHelper.manager.performDataTask(with: URLRequest(url: url),

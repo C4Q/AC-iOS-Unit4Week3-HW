@@ -50,6 +50,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         //make view visable on screen
         window?.makeKeyAndVisible()
         
+        FileManagerHelper.manager.loadFavorites()
+        
         return true
     }
 

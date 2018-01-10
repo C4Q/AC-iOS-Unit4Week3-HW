@@ -13,6 +13,8 @@
 		5410A6D31FFFDF6500935A9A /* ZipCodeHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5410A6D21FFFDF6500935A9A /* ZipCodeHelper.swift */; };
 		DB626B4C2002DBD80001D74B /* CityImageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB626B4B2002DBD80001D74B /* CityImageTableViewCell.swift */; };
 		DB626B4E2002DC0E0001D74B /* WeatherCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB626B4D2002DC0E0001D74B /* WeatherCollectionViewCell.swift */; };
+		DBA47935200688650069A02E /* Date+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBA47934200688650069A02E /* Date+Additions.swift */; };
+		DBA4793720069D950069A02E /* FavImagesModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBA4793620069D950069A02E /* FavImagesModel.swift */; };
 		DBE8087420015F6E000D9CAF /* NetworkHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBE8087320015F6E000D9CAF /* NetworkHelper.swift */; };
 		DBE8087620015FA2000D9CAF /* ImageAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBE8087520015FA2000D9CAF /* ImageAPIClient.swift */; };
 		DBE8087820015FC1000D9CAF /* UserDefaultsHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBE8087720015FC1000D9CAF /* UserDefaultsHelper.swift */; };
@@ -39,6 +41,8 @@
 		5410A6D21FFFDF6500935A9A /* ZipCodeHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZipCodeHelper.swift; sourceTree = "<group>"; };
 		DB626B4B2002DBD80001D74B /* CityImageTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityImageTableViewCell.swift; sourceTree = "<group>"; };
 		DB626B4D2002DC0E0001D74B /* WeatherCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherCollectionViewCell.swift; sourceTree = "<group>"; };
+		DBA47934200688650069A02E /* Date+Additions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Additions.swift"; sourceTree = "<group>"; };
+		DBA4793620069D950069A02E /* FavImagesModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavImagesModel.swift; sourceTree = "<group>"; };
 		DBE8087320015F6E000D9CAF /* NetworkHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkHelper.swift; sourceTree = "<group>"; };
 		DBE8087520015FA2000D9CAF /* ImageAPIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageAPIClient.swift; sourceTree = "<group>"; };
 		DBE8087720015FC1000D9CAF /* UserDefaultsHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsHelper.swift; sourceTree = "<group>"; };
@@ -86,6 +90,7 @@
 		5410A6BF1FFFDF1200935A9A /* Unit4Week3Homework-StudentVersion */ = {
 			isa = PBXGroup;
 			children = (
+				DBA479332006883C0069A02E /* Extensions+Additions */,
 				5410A6C01FFFDF1200935A9A /* AppDelegate.swift */,
 				DBE8088F200165B2000D9CAF /* Services */,
 				DBE80890200165E6000D9CAF /* DataPersistance */,
@@ -97,6 +102,14 @@
 				5410A6CC1FFFDF1200935A9A /* Info.plist */,
 			);
 			path = "Unit4Week3Homework-StudentVersion";
+			sourceTree = "<group>";
+		};
+		DBA479332006883C0069A02E /* Extensions+Additions */ = {
+			isa = PBXGroup;
+			children = (
+				DBA47934200688650069A02E /* Date+Additions.swift */,
+			);
+			path = "Extensions+Additions";
 			sourceTree = "<group>";
 		};
 		DBE8088D2001658B000D9CAF /* Views */ = {
@@ -148,6 +161,7 @@
 			children = (
 				DBE8087B20016092000D9CAF /* WeatherModel.swift */,
 				DBE80891200166CF000D9CAF /* PixelbayModel.swift */,
+				DBA4793620069D950069A02E /* FavImagesModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -223,6 +237,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DBA4793720069D950069A02E /* FavImagesModel.swift in Sources */,
 				DBE8087620015FA2000D9CAF /* ImageAPIClient.swift in Sources */,
 				DBE80882200161C4000D9CAF /* WeatherViewController.swift in Sources */,
 				DBE8087820015FC1000D9CAF /* UserDefaultsHelper.swift in Sources */,
@@ -242,6 +257,7 @@
 				DBE80892200166CF000D9CAF /* PixelbayModel.swift in Sources */,
 				DBE8088C2001646A000D9CAF /* DetailView.swift in Sources */,
 				5410A6C11FFFDF1200935A9A /* AppDelegate.swift in Sources */,
+				DBA47935200688650069A02E /* Date+Additions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
