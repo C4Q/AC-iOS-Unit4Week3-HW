@@ -16,13 +16,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
+
         let weatherViewController = WeatherViewController() //the story board you created
         let weatherNavController = UINavigationController(rootViewController: weatherViewController)
+        weatherNavController.navigationItem.title = "Weather"
         let weatherDetailedViewController = WeatherDetailedViewController()
         let favoritesViewController = FavoritesViewController()
 
         window = UIWindow(frame: UIScreen.main.bounds) //create window for view controller
-        window?.rootViewController = favoritesViewController //makes a rootController
+        window?.rootViewController = weatherNavController //makes a rootController
         window?.makeKeyAndVisible() //makes window seen on screen
         
         return true

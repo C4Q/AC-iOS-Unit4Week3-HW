@@ -11,6 +11,7 @@
 		5410A6C81FFFDF1200935A9A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5410A6C71FFFDF1200935A9A /* Assets.xcassets */; };
 		5410A6CB1FFFDF1200935A9A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5410A6C91FFFDF1200935A9A /* LaunchScreen.storyboard */; };
 		5410A6D31FFFDF6500935A9A /* ZipCodeHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5410A6D21FFFDF6500935A9A /* ZipCodeHelper.swift */; };
+		810FD5D3200559F100FB1C44 /* CaviarDreams_Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 810FD5D2200559AE00FB1C44 /* CaviarDreams_Italic.ttf */; settings = {ASSET_TAGS = (New, ); }; };
 		8112D9782001B90F0001A5FA /* WeatherViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8112D9772001B90F0001A5FA /* WeatherViewCell.swift */; };
 		8112D97B2001BD330001A5FA /* WeatherDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8112D97A2001BD330001A5FA /* WeatherDetailView.swift */; };
 		8112D97D2001C08E0001A5FA /* WeatherDetailedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8112D97C2001C08E0001A5FA /* WeatherDetailedViewController.swift */; };
@@ -18,6 +19,7 @@
 		8112D9812001C1D50001A5FA /* FavoritesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8112D9802001C1D50001A5FA /* FavoritesTableViewCell.swift */; };
 		8112D9852001C2F90001A5FA /* FavoritesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8112D9842001C2F90001A5FA /* FavoritesViewController.swift */; };
 		8112D9872001C53F0001A5FA /* ImageCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8112D9862001C53F0001A5FA /* ImageCache.swift */; };
+		817D4EB220058D6E00AE28A2 /* UserDefaultsHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 817D4EB120058D6E00AE28A2 /* UserDefaultsHelper.swift */; };
 		81FBB32E200054290033B055 /* Weather.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81FBB32D200054290033B055 /* Weather.swift */; };
 		81FBB330200054420033B055 /* NetworkHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81FBB32F200054420033B055 /* NetworkHelper.swift */; };
 		81FBB33220005A9D0033B055 /* Pixabay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81FBB33120005A9D0033B055 /* Pixabay.swift */; };
@@ -32,6 +34,8 @@
 		5410A6CA1FFFDF1200935A9A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		5410A6CC1FFFDF1200935A9A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5410A6D21FFFDF6500935A9A /* ZipCodeHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZipCodeHelper.swift; sourceTree = "<group>"; };
+		810FD5D2200559AE00FB1C44 /* CaviarDreams_Italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = CaviarDreams_Italic.ttf; path = ../../../../../Downloads/caviar_dreams/CaviarDreams_Italic.ttf; sourceTree = SOURCE_ROOT; };
+		810FD5D420055A6F00FB1C44 /* CaviarDreams.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = CaviarDreams.ttf; path = ../../../../../../Downloads/caviar_dreams/CaviarDreams.ttf; sourceTree = "<group>"; };
 		8112D9772001B90F0001A5FA /* WeatherViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherViewCell.swift; sourceTree = "<group>"; };
 		8112D97A2001BD330001A5FA /* WeatherDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherDetailView.swift; sourceTree = "<group>"; };
 		8112D97C2001C08E0001A5FA /* WeatherDetailedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherDetailedViewController.swift; sourceTree = "<group>"; };
@@ -39,6 +43,7 @@
 		8112D9802001C1D50001A5FA /* FavoritesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesTableViewCell.swift; sourceTree = "<group>"; };
 		8112D9842001C2F90001A5FA /* FavoritesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesViewController.swift; sourceTree = "<group>"; };
 		8112D9862001C53F0001A5FA /* ImageCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCache.swift; sourceTree = "<group>"; };
+		817D4EB120058D6E00AE28A2 /* UserDefaultsHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsHelper.swift; sourceTree = "<group>"; };
 		81FBB32D200054290033B055 /* Weather.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Weather.swift; sourceTree = "<group>"; };
 		81FBB32F200054420033B055 /* NetworkHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkHelper.swift; sourceTree = "<group>"; };
 		81FBB33120005A9D0033B055 /* Pixabay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pixabay.swift; sourceTree = "<group>"; };
@@ -76,6 +81,8 @@
 		5410A6BF1FFFDF1200935A9A /* Unit4Week3Homework-StudentVersion */ = {
 			isa = PBXGroup;
 			children = (
+				810FD5D420055A6F00FB1C44 /* CaviarDreams.ttf */,
+				810FD5D2200559AE00FB1C44 /* CaviarDreams_Italic.ttf */,
 				81FBB333200061CE0033B055 /* Helpers */,
 				81FBB334200061DA0033B055 /* Models */,
 				811805C320003DE000B77744 /* View Controllers */,
@@ -120,6 +127,7 @@
 			isa = PBXGroup;
 			children = (
 				5410A6D21FFFDF6500935A9A /* ZipCodeHelper.swift */,
+				817D4EB120058D6E00AE28A2 /* UserDefaultsHelper.swift */,
 				81FBB32F200054420033B055 /* NetworkHelper.swift */,
 				8112D9862001C53F0001A5FA /* ImageCache.swift */,
 			);
@@ -171,6 +179,9 @@
 		5410A6B51FFFDF1200935A9A /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				KnownAssetTags = (
+					New,
+				);
 				LastSwiftUpdateCheck = 0920;
 				LastUpgradeCheck = 0920;
 				ORGANIZATIONNAME = "C4Q ";
@@ -204,6 +215,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				810FD5D3200559F100FB1C44 /* CaviarDreams_Italic.ttf in Resources */,
 				5410A6CB1FFFDF1200935A9A /* LaunchScreen.storyboard in Resources */,
 				5410A6C81FFFDF1200935A9A /* Assets.xcassets in Resources */,
 			);
@@ -216,6 +228,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				817D4EB220058D6E00AE28A2 /* UserDefaultsHelper.swift in Sources */,
 				8112D9852001C2F90001A5FA /* FavoritesViewController.swift in Sources */,
 				8112D97F2001C1590001A5FA /* FavoritesView.swift in Sources */,
 				8112D9812001C1D50001A5FA /* FavoritesTableViewCell.swift in Sources */,

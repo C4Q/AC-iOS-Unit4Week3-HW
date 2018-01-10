@@ -10,6 +10,8 @@ import UIKit
 
 class WeatherDetailView: UIView {
     
+    var weatherOfTheDay: Weather!
+    
     lazy var cityLabel: UILabel = {
         let label = UILabel()
         label.backgroundColor = UIColor.darkGray

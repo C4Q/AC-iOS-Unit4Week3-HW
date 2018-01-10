@@ -11,8 +11,8 @@ import Foundation
 struct Weather: Codable {
     let validTime: String
     let dateTimeISO: String
-    let maxTempF: String
-    let minTempF: String
+    let maxTempF: Int
+    let minTempF: Int
     let sunriseISO: String
     let sunsetISO: String
     let icon: String
@@ -27,8 +27,9 @@ struct LongLat: Codable {
     let lat: Double
 }
 
+
 struct TwoWeekPeriod: Codable {
-    let period: [Weather]
+    let periods: [Weather]
     let loc: LongLat
 }
 
@@ -42,11 +43,16 @@ struct AerisWeatherAPI {
     private init() {}
     static let manager = AerisWeatherAPI()
     func getWeather(from url: URL, completionHandler: @escaping ([TwoWeekPeriod]) -> Void, errorHandler: @escaping (Error) -> Void) {
+        print("Started manager")
         let urlRequest = URLRequest(url: url)
+        print("Did request")
         let completion: (Data) -> Void = { (data: Data) in
             do {
-                let onlineWeather = try JSONDecoder().decode([TwoWeekPeriod].self, from: data)
-                completionHandler(onlineWeather)
+                let onlineWeather = try JSONDecoder().decode( AerisWeather.self, from: data)
+                let result = onlineWeather.response
+                print("This is the result count!")
+                print(result.count)
+                completionHandler(result)
             }
             catch {
                 errorHandler(error)
