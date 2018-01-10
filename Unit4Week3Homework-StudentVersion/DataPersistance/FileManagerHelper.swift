@@ -11,16 +11,17 @@ import Foundation
 
 class FileManagerHelper {
     private init() {}
-    let pathName = "sevenDayForecast.plist"
     
     static let manager = FileManagerHelper()
-    /*
-    private var sevenDayForecast = [Forecast]() {
+    
+    var pathName = "sevenDayForecast.plist"
+    
+    private var sevenDayForecast = [SevenDayForecast]() {
         didSet {
-            saveForecast()
+            saveForecastToSandBox()
         }
     }
-    */
+    
     //Saving Images To Disk
     func saveImage(with urlStr: String, image: UIImage) {
         let imageData = UIImagePNGRepresentation(image)
@@ -47,14 +48,18 @@ class FileManagerHelper {
             return nil
         }
     }
-/*
-    // takes forecast from phone brings it to FileManager
-    func loadForecast() {
-        let path = dataFilePath(withPathName: FileManagerHelper.pathName)
+    
+    
+    // takes forecast from phone(sandbox) brings it to FileManager
+    func loadForecastFromFileManager(using zipCode: String) {
+        let newPathName = zipCode + ".plist" // EX) 60506.plist
+        self.pathName = newPathName
+        
+        let path = dataFilePath(withPathName: pathName)
         
         do {
             let data = try Data(contentsOf: path)
-            let forecast = try PropertyListDecoder().decode([Forecast].self, from: data)
+            let forecast = try PropertyListDecoder().decode([SevenDayForecast].self, from: data)
             self.sevenDayForecast = forecast
         }
         catch {
@@ -63,13 +68,23 @@ class FileManagerHelper {
     }
     
     //takes forecast from FileManager and places in VC
-    func addForecastToVC() -> [Forecast] {
+    func addForecastToVC() -> [SevenDayForecast] {
         return sevenDayForecast
     }
- 
-    func saveForecast() {
+    
+    func sendForecastToFileManager(forecast: [SevenDayForecast], with zipCode: String){
+        let newPathName = zipCode + ".plist" // EX) 60506.plist
+        self.pathName = newPathName // saving to pathName so that you can actually save it in File Manager
+        //saving the array from VC to the array in FileManager
+        sevenDayForecast = forecast
+    }
+    
+    
+    
+    //takes array from File Manager and puts into sandbox
+    func saveForecastToSandBox() {
         //encode into data so they can be saved with propertyListEncoder
-        let path = dataFilePath(withPathName: FileManagerHelper.pathName)
+        let path = dataFilePath(withPathName: pathName)
         do {
             let data = try PropertyListEncoder().encode(sevenDayForecast)
             //write this data to a plist
@@ -80,7 +95,8 @@ class FileManagerHelper {
             print("error encoding items: \(error.localizedDescription)")
         }
     }
-    */
+    
+    
     //returns documents directory path for app sandbox
     private func documentsDirectory() -> URL {
         //this is finding the document folder in the app

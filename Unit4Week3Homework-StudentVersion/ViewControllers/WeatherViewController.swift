@@ -119,9 +119,26 @@ extension WeatherViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         guard let text = textField.text else {return true}
         
-        //calling userDefaults to save zipcode entered
-        if let textFieldAsInt = Int(text){
-            //var textFieldAsInt = Int(text)
+        let bounds = weatherView.textField.bounds
+        
+        if text.count < 5{
+            textField.text = ""
+            textField.placeholder = "e.g. 12345"
+            
+            UIView.animate(withDuration: 1, delay: 0, usingSpringWithDamping: 0.2, initialSpringVelocity: 10, options: .curveEaseInOut, animations: {
+                self.weatherView.textField.bounds = CGRect(x: bounds.origin.x - 20, y: bounds.origin.y, width: bounds.size.width + 60, height: bounds.size.height)
+            }) { (success:Bool) in
+                if success {
+                    
+                    UIView.animate(withDuration: 0.5, animations: {
+                        self.weatherView.textField.bounds = bounds
+                    })
+                    
+                }
+            }
+            
+        } else if let textFieldAsInt = Int(text) {
+            //calling userDefaults to save zipcode entered
             UserDefaultsHelper.manager.setZipcode(to: textFieldAsInt)
             print("\(textFieldAsInt) zipcode was saved!")
         }
@@ -129,4 +146,6 @@ extension WeatherViewController: UITextFieldDelegate {
         textField.resignFirstResponder()
         return true
     }
+    
+    
 }
