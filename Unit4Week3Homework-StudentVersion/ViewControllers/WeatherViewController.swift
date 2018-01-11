@@ -115,9 +115,6 @@ extension WeatherViewController: UICollectionViewDelegate{
         present(detailWVC, animated: true, completion: nil)
         
         //func to configure detailview
-        
-        // TODO: ADD IMAGE API CALL AS PART OF CONFIGURE CELL
-        
         detailWVC.detailView.configureDetailView(forecast: aSpecificDay, cityName: cityName)
         
         //Get the first image from an array from PixelBay
@@ -126,6 +123,7 @@ extension WeatherViewController: UICollectionViewDelegate{
             //Get the image based off the webURL from PixelBay
             let setImageToOnlineImage: (UIImage) -> Void = {(otherOnlineImage: UIImage) in
                 detailWVC.detailView.cityImageView.image = otherOnlineImage
+                detailWVC.detailView.cityImageViewForAnimation.image = otherOnlineImage
                 detailWVC.imageURLtoSave = onlineImage.webURL // the link from the pixelbay download. One of these will work
                 detailWVC.detailView.cityImageView.setNeedsLayout()
             }

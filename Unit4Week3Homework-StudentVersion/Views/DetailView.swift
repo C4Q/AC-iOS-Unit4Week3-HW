@@ -54,6 +54,14 @@ class DetailView: UIView {
         return imageView
     }()
     
+    lazy var cityImageViewForAnimation: UIImageView = {
+        let imageView = UIImageView()
+        imageView.contentMode = .scaleAspectFill
+        imageView.image = nil
+        imageView.isHidden = true
+        return imageView
+    }()
+    
     lazy var weatherLabel: UILabel = {
         let label = UILabel()
         label.textAlignment = .center
@@ -159,7 +167,7 @@ class DetailView: UIView {
     private func setupAndConstrainObjects() {
         
         //ARRAY MUST BE ON ORDER!!
-        let allDetailViewObjects = [containerView, saveButton, exitButton, topLabel, cityImageView, weatherLabel, highLabel, lowLabel, sunriseLabel, sunsetLabel, windspeedLabel, inchesOfPrecipitationLabel] as [UIView]
+        let allDetailViewObjects = [containerView, saveButton, exitButton, topLabel, cityImageView, weatherLabel, highLabel, lowLabel, sunriseLabel, sunsetLabel, windspeedLabel, inchesOfPrecipitationLabel, cityImageViewForAnimation] as [UIView]
         
         allDetailViewObjects.forEach{addSubview($0); ($0).translatesAutoresizingMaskIntoConstraints = false}
         
@@ -191,10 +199,14 @@ class DetailView: UIView {
             //cityImageView
             cityImageView.topAnchor.constraint(equalTo: topLabel.bottomAnchor, constant: 15),
             cityImageView.centerXAnchor.constraint(equalTo: containerView.centerXAnchor),
-            //cityImageView.leadingAnchor.constraint(equalTo: containerView.leadingAnchor),
-            //cityImageView.trailingAnchor.constraint(equalTo: containerView.trailingAnchor),
             cityImageView.widthAnchor.constraint(equalTo: containerView.widthAnchor, multiplier: 0.95),
             cityImageView.heightAnchor.constraint(equalTo: containerView.heightAnchor, multiplier: 0.40),
+            
+            //cityImageViewForAnimation
+            cityImageViewForAnimation.topAnchor.constraint(equalTo: topLabel.bottomAnchor, constant: 15),
+            cityImageViewForAnimation.centerXAnchor.constraint(equalTo: containerView.centerXAnchor),
+            cityImageViewForAnimation.widthAnchor.constraint(equalTo: containerView.widthAnchor, multiplier: 0.95),
+            cityImageViewForAnimation.heightAnchor.constraint(equalTo: containerView.heightAnchor, multiplier: 0.40),
             
             //weatherLabel
             weatherLabel.topAnchor.constraint(equalTo: cityImageView.bottomAnchor, constant: 30),

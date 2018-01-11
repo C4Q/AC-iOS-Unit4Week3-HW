@@ -33,6 +33,14 @@ class DetailWeatherViewController: UIViewController {
     @objc func saveImage() {
         FileManagerHelper.manager.addFavoriteImage(from: imageURLtoSave)
         print("Save Button clicked")
+        detailView.cityImageViewForAnimation.isHidden = false
+        
+        UIView.animate(withDuration: 5.0, animations: {
+            
+            self.detailView.cityImageViewForAnimation.layer.opacity = 0.0
+            self.detailView.cityImageViewForAnimation.transform = CGAffineTransform(translationX: self.view.bounds.maxX * 0.66, y: self.view.bounds.maxY).scaledBy(x: 0.001, y: 0.001)
+
+            })
     }
     
     // TODO: Add animation for save button being clicked
