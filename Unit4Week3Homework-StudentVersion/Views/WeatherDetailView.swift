@@ -107,7 +107,7 @@ class WeatherDetailView: UIView {
         addSubview(detailTitleLabel)
         detailTitleLabel.translatesAutoresizingMaskIntoConstraints = false
         detailTitleLabel.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 30).isActive = true
-       detailTitleLabel.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.8).isActive = true
+       detailTitleLabel.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.9).isActive = true
         detailTitleLabel.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
     }
     
@@ -176,13 +176,26 @@ class WeatherDetailView: UIView {
         precipitationLabel.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
     }
     
-    public func configureDetailView(weatherInfo: DailyForecast, city: String) {
+    public func configureDetailView(weatherInfo: DailyForecast, city: String, imageUrl : String) {
         
         //TODO: Add images
-        let formattedDate = weatherInfo.validTime
-        let date = formattedDate.components(separatedBy: "T")
-        detailTitleLabel.text = "Your Forecast for \(city) \(date[0])"
-        highTempLabel.text = "High Temp: \(weatherInfo.maxTempF)"
+        let date = weatherInfo.validTime
+        let formattedDate = date.components(separatedBy: "T")
+        let sunriseTime = weatherInfo.sunriseISO
+        let formattedSunriseTime = sunriseTime.components(separatedBy: "T")
+        let sunsetTime = weatherInfo.sunsetISO
+        let formattedSunsetTime = sunsetTime.components(separatedBy: "T")
+        detailTitleLabel.text = "Forecast for \(city) \(formattedDate[0])"
+        weatherLabel.text = "\(weatherInfo.weather)"
+        highTempLabel.text = "High Temp: \(weatherInfo.maxTempF)°F"
+        lowTempLabel.text = "Low Temp: \(weatherInfo.minTempF)°F"
+        sunriseLabel.text = "Sunrise: \(formattedSunriseTime[1])"
+        sunsetLabel.text = "Sunset: \(formattedSunsetTime[1])"
+        windSpeedLabel.text = "Windspeed: \(weatherInfo.windSpeedMPH)Mph"
+        precipitationLabel.text = "Inches of Precipitation: \(weatherInfo.precipIN)"
+        
+        
+        //detailImageView
         
     }
     

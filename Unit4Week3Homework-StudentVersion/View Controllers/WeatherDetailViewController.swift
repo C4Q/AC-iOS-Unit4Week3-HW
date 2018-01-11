@@ -13,15 +13,18 @@ class WeatherDetailViewController: UIViewController {
     let weatherDetailView = WeatherDetailView()
     
     private var dayForecast: DailyForecast!
-    //TODO: Fix passed in city value
     var chosenCity: String!
     
-    init(weather: DailyForecast, city: String) {
+    var imageUrl: String!
+    
+    init(weather: DailyForecast, city: String, imageUrl: String) {
         super.init(nibName: nil, bundle: nil)
         self.dayForecast = weather
         self.chosenCity = city
+        self.imageUrl = imageUrl
         print("this is the weather in dvc\(weather)")
-        weatherDetailView.configureDetailView(weatherInfo: weather, city: city)
+        weatherDetailView.configureDetailView(weatherInfo: weather, city: city, imageUrl: imageUrl)
+        ImageAPIClient.manager.getImage(from: imageUrl, completionHandler: {self.weatherDetailView.detailImageView.image = $0}, errorHandler: {print($0,"error getting image")})
     }
     
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {

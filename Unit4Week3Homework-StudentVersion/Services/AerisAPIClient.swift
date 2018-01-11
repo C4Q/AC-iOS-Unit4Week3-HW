@@ -31,8 +31,9 @@ struct DailyForecast: Codable {
     let sunsetISO: String
     let precipIN: Double
     let icon: String
+    let windSpeedMPH: Int
 }
-//TODO: Fin API Client
+
 struct AerisAPIClient {
     private init() {}
     static let manager = AerisAPIClient()

@@ -9,14 +9,17 @@
 import UIKit
 
 class MainWeatherViewController: UIViewController {
+    
     let weatherView = WeatherView()
     //TODO: format city name before image api call, get array of urls, var randomImg = array[ar4random]
+    
     var cityName = "" {
         didSet{
             weatherView.titleLabel.text = "Weather Forecast for \(cityName)"
             print("city: \(cityName)")
         }
     }
+    
     //data model
     var weatherForecasts = [DailyForecast]() {
         didSet {
@@ -24,6 +27,8 @@ class MainWeatherViewController: UIViewController {
         }
     }
     
+    var pixabayImageUrls = [PixabayWrapper]()
+
     let cellSpacing: CGFloat = 15.0
 
     override func viewDidLoad() {
@@ -57,8 +62,13 @@ class MainWeatherViewController: UIViewController {
     //MARK: Sends weatherforecasts object to detail vc
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let forecastInfo = weatherForecasts[indexPath.row]
-        let detailVC = WeatherDetailViewController.init(weather: forecastInfo, city: cityName)
+        let randomNumber = arc4random_uniform((UInt32(pixabayImageUrls.count)))
+        let randomPictureUrl = pixabayImageUrls[Int(randomNumber)]
+        let stringRandomPictureUrl = randomPictureUrl.webformatURL
+        let detailVC = WeatherDetailViewController.init(weather: forecastInfo, city: cityName, imageUrl: stringRandomPictureUrl)
         navigationController?.pushViewController(detailVC, animated: true)
+        
+        print("random url \(stringRandomPictureUrl)")
         
     }
 }
@@ -113,15 +123,25 @@ extension MainWeatherViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         
         guard !(textField.text?.isEmpty)! else {
-            print("empty")
+            print("Please enter a valid zipcode")
             return true
         }
         if let zipCodeInput = textField.text {
         loadData(zipcode: zipCodeInput)
-            
         }
         textField.resignFirstResponder()
-    return true
+        //TODO: formattedcityname is not being set before pixa api call is made
+        let formattedCityName = cityName.lowercased().replacingOccurrences(of: "", with: "+")
+        let key = "7316927-2a8380daf1fdd7eb7b23df261"
+        print(formattedCityName)
+        let pixabayURL = "https://pixabay.com/api/?key=\(key)&q=\(formattedCityName)+travel&safe_search=true"
+        let completion = {(onlineImages: [PixabayWrapper]) in
+            self.pixabayImageUrls = onlineImages
+            //print("got images \(self.pixabayImageURLS)")
+        }
+        PixabayImageAPIClient.manager.getImage(from: pixabayURL, completionHandler: completion, errorHandler: {print($0,"error getting images")})
+        
+        return true
     }
 }
 

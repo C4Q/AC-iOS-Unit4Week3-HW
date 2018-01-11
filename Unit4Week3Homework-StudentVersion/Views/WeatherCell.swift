@@ -48,7 +48,7 @@ class WeatherCell: UICollectionViewCell {
        let weatherImageView = UIImageView()
         weatherImageView.image = #imageLiteral(resourceName: "clear")
         weatherImageView.contentMode = .scaleAspectFit
-        weatherImageView.backgroundColor = .gray
+        weatherImageView.backgroundColor = .clear
         return weatherImageView
     }()
     
