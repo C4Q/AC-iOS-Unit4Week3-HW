@@ -10,6 +10,7 @@ import UIKit
 
 class WeatherViewCell: UICollectionViewCell {
     
+    
     lazy var dateLabel: UILabel = {
         let label = UILabel()
         label.text = "10/12/90"

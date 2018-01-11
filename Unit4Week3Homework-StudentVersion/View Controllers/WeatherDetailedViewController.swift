@@ -29,8 +29,8 @@ class WeatherDetailedViewController: UIViewController {
         super.viewDidLoad()
         view.addSubview(detailedWeatherView)
         view.backgroundColor = UIColor.darkGray
-        navigationItem.title = "City Name Here"
         setUpWeatherDetailWithInformation()
+        setUpSaveButton()
     }
     
     

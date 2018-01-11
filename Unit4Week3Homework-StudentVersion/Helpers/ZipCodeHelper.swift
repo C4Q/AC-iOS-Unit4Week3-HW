@@ -26,4 +26,7 @@ class ZipCodeHelper {
             }
         }
     }
+    func getLocationName(from zipCode: String) -> String {
+        return "the name of the place"
+    }
 }

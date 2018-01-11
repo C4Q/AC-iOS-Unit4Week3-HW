@@ -12,12 +12,10 @@ class UserDefaultsHelper {
     private init() {}
     static let manager = UserDefaultsHelper()
     
-    let nameKey = "10002"
-    
-    
+
     
     func saveNewZipCode(ZipCode: String) {
-        UserDefaults.standard.set(nameKey, forKey: "SavedZipCode")
+        UserDefaults.standard.set(ZipCode, forKey: "SavedZipCode")
     }
     
     func getSavedZipCode() -> String? {

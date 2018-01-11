@@ -9,11 +9,11 @@
 import UIKit
 
 /*To Do/Need Help:
- - Fix problem where app crashes when second weather clicked (fatal error out of range)
- - Sending information
- - Getting the city name / how to use zip code manager
  - Setting random image
  - How to make tab bar controller
+ - Set up Favorites View Controller
+ - Figure out autoresizing?
+ - Reset collection view to first cell when new city entered
  */
 
 class WeatherViewController: UIViewController {
@@ -25,11 +25,13 @@ class WeatherViewController: UIViewController {
     }
     
     var weatherInfo = [TwoWeekPeriod]()
+    var cityName: String!
     
     var zipCode: String? = {
         var variable = String()
         if let savedZip = UserDefaultsHelper.manager.getSavedZipCode() {
             variable = savedZip
+            print("This is the saved zip from manager: \(variable)")
         }
         return variable
     }()
@@ -44,8 +46,9 @@ class WeatherViewController: UIViewController {
         weatherView.weatherCollectionView.dataSource = self
         weatherView.weatherCollectionView.delegate = self
         weatherView.weatherTextField.delegate = self
-        
         loadData()
+        setUpNameOfCity()
+       
         
     }
     
@@ -56,9 +59,6 @@ class WeatherViewController: UIViewController {
         guard let url = URL(string: urlStr) else { return }
         print(url)
         let completion: ([TwoWeekPeriod]) -> Void = { (onlineWeather: [TwoWeekPeriod]) in
-            print(onlineWeather)
-            print("Count starts here!!!!")
-            print(onlineWeather.count)
             self.twoWeekWeather = onlineWeather
         }
         let errorHandler: (Error) -> Void = { (error: Error) in
@@ -67,20 +67,33 @@ class WeatherViewController: UIViewController {
         AerisWeatherAPI.manager.getWeather(from: url, completionHandler: completion, errorHandler: errorHandler)
         
         //Loads User Default for zipCode
-        if let savedZipCode = UserDefaultsHelper.manager.getSavedZipCode() as? String {
+        if let savedZipCode = UserDefaultsHelper.manager.getSavedZipCode() {
             zipCode = savedZipCode
+            print("Loaded User Default: \(savedZipCode)")
         }
     }
     
     
     func setUpNameOfCity() {
-        
+        if let savedZipCode = zipCode {
+            let completion: (String) -> Void = { (onlineZip: String) in
+                print("Here is the zip code used: \(savedZipCode)")
+                print("Here is the name: \(onlineZip)")
+                self.cityName = onlineZip
+                self.weatherView.cityNameLabel.text  = self.cityName
+                print(self.cityName)
+            }
+            let errorHandler: (Error) -> Void = { (error: Error) in
+                print(error.localizedDescription)
+            }
+            ZipCodeHelper.manager.getLocationName(from: savedZipCode , completionHandler: completion, errorHandler: errorHandler)
+        }
     }
     
     
-//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-//        
-//    }
+    //    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+    //
+    //    }
 }
 
 
@@ -100,7 +113,7 @@ extension WeatherViewController: UICollectionViewDataSource {
         let weatherThatDay = twoWeekWeather[0].periods[indexPath.row]
         let cell = weatherView.weatherCollectionView.dequeueReusableCell(withReuseIdentifier: "WeatherViewCell", for: indexPath) as! WeatherViewCell
         
-        cell.dateLabel.text = weatherThatDay.dateTimeISO
+        cell.dateLabel.text = weatherThatDay.dateTimeISO.components(separatedBy: "T")[0]
         cell.weatherImageView.image = UIImage(named: weatherThatDay.icon)
         cell.highLabel.text = "High: \(weatherThatDay.maxTempF.description)"
         cell.lowLabel.text = "Low: \(weatherThatDay.minTempF.description)"
@@ -115,6 +128,7 @@ extension WeatherViewController: UICollectionViewDataSource {
         let destination = WeatherDetailedViewController(fullWeatherDetail: selectedWeather)
         self.navigationController?.pushViewController(destination, animated: true)
         destination.fullWeatherDetail = selectedWeather
+        destination.navigationItem.title = cityName
         // destination.weather = selectedFoo
         //        weatherInfo = [twoWeekWeather[indexPath.row]]
         //        self.performSegue(withIdentifier: "ToDetailWeather", sender: self)
@@ -131,14 +145,17 @@ extension WeatherViewController: UITextFieldDelegate {
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         if let userZipCode = textField.text {
-            UserDefaultsHelper.manager.saveNewZipCode(ZipCode: userZipCode)
             zipCode = userZipCode
+            print("Here is the zip code for the text field: \(userZipCode)")
+            UserDefaultsHelper.manager.saveNewZipCode(ZipCode: userZipCode)
             print("Zip saved!")
             textField.text = ""
             weatherView.cityNameLabel.text = nil
         }
+        
         loadData()
-        resignFirstResponder()
+        setUpNameOfCity()
+        //        resignFirstResponder()
         
         return true
     }
