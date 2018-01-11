@@ -18,13 +18,18 @@ import Foundation
  7BZndrbuPuS1o8S0OEarpVsn0FMW3bdLBnuvXlUt
  */
 
-struct WeatherAPIClient {
-    private init() {}
-    static let manager = WeatherAPIClient()
+protocol APIServiceDelegate: class {
     
+    func apiLoaded()
+}
+
+class WeatherAPIClient {
+    private init() {}
+    weak var delegate: APIServiceDelegate?
+    static let manager = WeatherAPIClient()
     private let id = "1krHhkxLdoql0xYggtUB4"
     private let secretId = "7BZndrbuPuS1o8S0OEarpVsn0FMW3bdLBnuvXlUt"
-    func getForecast(for location: String, completion: @escaping ([Forecast]) -> Void,
+    func getForecast(for location: String, completion: @escaping (Weather) -> Void,
                      errorHandler: @escaping (Error) -> Void) {
         print("zipcode: \(location)")
         let forecastURL = "https://api.aerisapi.com/forecasts/\(location)?client_id=\(id)&client_secret=\(secretId)"
@@ -35,7 +40,8 @@ struct WeatherAPIClient {
         let completion: (Data) -> Void = { ( data: Data) in
             do {
                 let json = try JSONDecoder().decode(Weather.self, from: data)
-                completion(json.response)
+                self.delegate?.apiLoaded()
+                completion(json)
             } catch {
                 errorHandler(AppError.codingError(rawError: error))
             }

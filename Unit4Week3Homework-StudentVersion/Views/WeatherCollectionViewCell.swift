@@ -14,25 +14,28 @@ class WeatherCollectionViewCell: UICollectionViewCell {
     lazy var dateLabel: UILabel = {
         let label = UILabel()
         label.text = "2018-05-05"
+        label.font = UIFont.systemFont(ofSize: 14, weight: .regular)
         return label
     }()
     
     lazy var weatherGraphic: UIImageView = {
         let imageView = UIImageView()
         imageView.image = #imageLiteral(resourceName: "rain")
-        imageView.contentMode = .scaleAspectFill
+        imageView.contentMode = .scaleAspectFit
         return imageView
     }()
     
     lazy var highTempLabel: UILabel = {
         let label = UILabel()
         label.text = "High: 17 F"
+        label.font = UIFont.systemFont(ofSize: 14, weight: .regular)
         return label
     }()
     
     lazy var lowTempLabel: UILabel = {
         let label = UILabel()
         label.text = "Low: 17 F"
+        label.font = UIFont.systemFont(ofSize: 14, weight: .regular)
         return label
     }()
     
@@ -48,16 +51,16 @@ class WeatherCollectionViewCell: UICollectionViewCell {
         commonInit()
     }
     
-    convenience init(date: String,
-                     weatherGraphic: String,
-                     highTemp: Int,
-                     lowTemp: Int){
-        self.init(frame: UIScreen.main.bounds)
-        self.weatherGraphic.image = UIImage(named: weatherGraphic)
-        self.highTempLabel.text = "High: \(highTemp)°F"
-        self.lowTempLabel.text = "High: \(lowTemp)°F"
-        setupViews()
-    }
+//    convenience init(date: String,
+//                     weatherGraphic: String,
+//                     highTemp: Int,
+//                     lowTemp: Int){
+//        self.init(frame: UIScreen.main.bounds)
+//        self.weatherGraphic.image = UIImage(named: weatherGraphic)
+//        self.highTempLabel.text = "High: \(highTemp)°F"
+//        self.lowTempLabel.text = "High: \(lowTemp)°F"
+//        setupViews()
+//    }
     
     //MARK: - Functions
     private func commonInit() {
@@ -83,16 +86,17 @@ class WeatherCollectionViewCell: UICollectionViewCell {
     private func setupWeatherGraphic() {
         addSubview(weatherGraphic)
         weatherGraphic.translatesAutoresizingMaskIntoConstraints = false
-        weatherGraphic.topAnchor.constraint(equalTo: dateLabel.bottomAnchor, constant: 0).isActive = true
+        weatherGraphic.topAnchor.constraint(equalTo: dateLabel.bottomAnchor, constant: 10).isActive = true
         weatherGraphic.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 0).isActive = true
         weatherGraphic.trailingAnchor.constraint(equalTo: trailingAnchor, constant: 0).isActive = true
-        weatherGraphic.heightAnchor.constraint(equalTo: widthAnchor).isActive = true
+        weatherGraphic.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.5).isActive = true
+        
     }
     
     private func setupHighTempLabel() {
         addSubview(highTempLabel)
         highTempLabel.translatesAutoresizingMaskIntoConstraints = false
-        highTempLabel.topAnchor.constraint(equalTo: weatherGraphic.bottomAnchor, constant: 5).isActive = true
+        highTempLabel.topAnchor.constraint(equalTo: weatherGraphic.bottomAnchor, constant: 20).isActive = true
         highTempLabel.centerXAnchor.constraint(equalTo: centerXAnchor, constant: 0).isActive = true
     }
     
@@ -102,13 +106,14 @@ class WeatherCollectionViewCell: UICollectionViewCell {
         lowTempLabel.topAnchor.constraint(equalTo: highTempLabel.bottomAnchor, constant: 5).isActive = true
         lowTempLabel.centerXAnchor.constraint(equalTo: centerXAnchor, constant: 0).isActive = true
     }
+
+    public func configureCell(with weather: Details) {
+        self.dateLabel.text = weather.dateTimeISO
+        self.weatherGraphic.image = UIImage(named: "\(weather.icon)")
+        self.highTempLabel.text = "High: \(weather.maxTempF)°F"
+        self.lowTempLabel.text = "Low: \(weather.minTempF)°F"
+    }
 }
-//    public func configureCell(with weather: Details) {
-//        self.dateLabel.text = weather.dateTimeIso
-//        self.weatherGraphic.image = UIImage(named: "\(weather.icon)")
-//        self.highTempLabel.text = "High: \(weather.maxTempF)°F"
-//        self.lowTempLabel.text = "Low: \(weather.minTempF)°F"
-//    }
     //        self.dateLabel.text = weather.pe
     //        if let imageURL = fellow.imageURL {
     //            if let image = ImageCache.manager.cachedImage(url: imageURL) {

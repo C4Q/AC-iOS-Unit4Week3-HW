@@ -1,3 +1,11 @@
+//        let tabBarController = UITabBarController()
+//        let weatherviewController = WeatherViewController()
+//        let favoriteViewController = FavoriteViewController()
+//
+//
+//        weatherviewController.tabBarItem = UITabBarItem(tabBarSystemItem: .search, tag: 0)
+//        favoriteViewController.tabBarItem = UITabBarItem(tabBarSystemItem: .favorites, tag: 1)
+//        tabBarController.setViewControllers([weatherviewController, favoriteViewController], animated: true)
 //
 //  AppDelegate.swift
 //  Unit4Week3Homework-StudentVersion
@@ -19,14 +27,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
 //        FileManagerHelper.manager.loadImages()
         
-        let tabBarController = UITabBarController()
-        let weatherviewController = WeatherViewController()
-        let favoriteViewController = FavoriteViewController()
-
-
-        weatherviewController.tabBarItem = UITabBarItem(tabBarSystemItem: .search, tag: 0)
-        favoriteViewController.tabBarItem = UITabBarItem(tabBarSystemItem: .favorites, tag: 1)
-        tabBarController.setViewControllers([weatherviewController, favoriteViewController], animated: true)
+        let tabBarController = TabBarController()
+        
         
         window = UIWindow(frame: UIScreen.main.bounds)
         window?.rootViewController = tabBarController

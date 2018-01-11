@@ -1,5 +1,5 @@
 //
-//  Forecast.swift
+//  Weather.swift
 //  Unit4Week3Homework-StudentVersion
 //
 //  Created by Clint Mejia on 1/6/18.
@@ -17,11 +17,11 @@ struct Forecast: Codable {
 }
 
 struct Details: Codable {
-    let dateTimeIso: String
+    let dateTimeISO: String
     let maxTempF: Int
     let minTempF: Int
     let feelslikeF: Int
-    let precipIN: Int
+    let precipIN: Double
     let windSpeedMPH: Int
     let windDir: String
     let weather: String
@@ -29,6 +29,7 @@ struct Details: Codable {
     let sunriseISO: String
     let sunsetISO: String
 }
+
 
 
 /*

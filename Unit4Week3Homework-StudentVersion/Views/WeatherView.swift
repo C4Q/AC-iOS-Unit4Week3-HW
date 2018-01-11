@@ -11,21 +11,21 @@ import UIKit
 class WeatherView: UIView {
     
     let cellId = "WeatherCollectionViewCell"
-    let cellSpacing: CGFloat = 2.0
+    let cellSpacing = UIScreen.main.bounds.width * 0.01
     let numberOfCells: CGFloat = 3
     
-//    var weatherForecast: [Forecast] = [] {
-//        didSet {
-//            weatherCollectionView.reloadData()
-//        }
-//    }
+    //    var weatherForecast: [Forecast] = [] {
+    //        didSet {
+    //            weatherCollectionView.reloadData()
+    //        }
+    //    }
     
     //MARK: - Outlets
     lazy var cityLabel: UILabel = {
         let label = UILabel() // instantiating
         label.text = "Weather forecast for New York"
         label.textAlignment = .center
-        label.font = UIFont.systemFont(ofSize: 24, weight: .medium)
+        label.font = UIFont.systemFont(ofSize: 20, weight: .medium)
         return label
     }()
     
@@ -37,8 +37,9 @@ class WeatherView: UIView {
     
     lazy var searchField: UITextField = {
         let textFeld = UITextField() // instantiating
-        textFeld.text = "Enter a zipcode"
+        textFeld.placeholder = "Zip Code"
         textFeld.textAlignment = .center
+        textFeld.delegate = self
         return textFeld
     }()
     
@@ -57,12 +58,14 @@ class WeatherView: UIView {
         let label = UILabel() // instantiating
         label.text = "Enter a Zip Code"
         label.textAlignment = .center
+        label.font = UIFont.systemFont(ofSize: 14, weight: .regular)
         return label
     }()
     
     override init(frame: CGRect) {
         super.init(frame: UIScreen.main.bounds)
         commonInit()
+        WeatherAPIClient.manager.delegate = self
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -71,8 +74,9 @@ class WeatherView: UIView {
     }
     
     private func commonInit() {
-        backgroundColor = .purple
+        backgroundColor = .white
         setupViews()
+        WeatherDataModel.manager.setDefaultForecast()
     }
     
     private func setupViews() {
@@ -81,28 +85,28 @@ class WeatherView: UIView {
         setupSearchField()
         setupZipCodeLabel()
     }
-    
 }
 
-//extension WeatherView: UITextFieldDelegate {
-
-//    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-//
-//        guard let text = textField.text else { return false }
-//        WeatherAPIClient.manager.getForecast(for: text, completion: { self.weatherForecast = $0 }, errorHandler: { print($0) })
-//        return true
-//    }
-//}
+extension WeatherView: UITextFieldDelegate {
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        guard let text = textField.text else { return false }
+        WeatherDataModel.manager.searchForForecast(by: text)
+        //        WeatherAPIClient.manager.getForecast(for: text, completion: { self.weatherForecast = $0 }, errorHandler: { print($0) })
+        return true
+    }
+}
 
 extension WeatherView: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 1 //weatherForecast.count
-    }
+        return WeatherDataModel.manager.getForecastCount()
+    }  
     
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell { 
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! WeatherCollectionViewCell
-//        cell.dateLabel.text = weatherForecast[0].periods[indexPath.row].dateTimeIso
-        cell.backgroundColor = .orange
+        let index = indexPath.row
+        guard let details = WeatherDataModel.manager.getForecast(for: index) else { return cell }
+        cell.configureCell(with: details )
         return cell
     }
 }
@@ -114,7 +118,7 @@ extension WeatherView: UICollectionViewDelegateFlowLayout {
         let weatherCollectionViewWidth = collectionView.bounds.width
         let weatherCollectionViewwHeight = collectionView.bounds.height
         
-        return CGSize(width: (weatherCollectionViewWidth - (cellSpacing * numSpaces)) / numberOfCells, height: weatherCollectionViewwHeight * 0.25)
+        return CGSize(width: (weatherCollectionViewWidth - (cellSpacing * numSpaces)) / numberOfCells, height: weatherCollectionViewwHeight * 0.90)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
@@ -128,6 +132,17 @@ extension WeatherView: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
         return cellSpacing
     }
+}
+
+extension WeatherView: UICollectionViewDelegate {
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let index = indexPath.row
+        guard let selectedForecast = WeatherDataModel.manager.getForecast(for: index) else { return }
+        let detailViewController = DetailViewController
+        
+    }
+    
 }
 
 
@@ -158,10 +173,10 @@ extension WeatherView {
         addSubview(searchField)
         let safeArea = safeAreaLayoutGuide
         searchField.translatesAutoresizingMaskIntoConstraints = false
-        searchField.backgroundColor = .white
+        searchField.backgroundColor = UIColor.lightGray
         searchField.topAnchor.constraint(equalTo: weatherCollectionView.bottomAnchor, constant: 12).isActive = true
         searchField.centerXAnchor.constraint(equalTo: safeArea.centerXAnchor, constant: 0).isActive = true
-        searchField.heightAnchor.constraint(equalTo: safeArea.heightAnchor, multiplier: 0.05).isActive = true
+        searchField.heightAnchor.constraint(equalTo: safeArea.heightAnchor, multiplier: 0.04).isActive = true
         searchField.widthAnchor.constraint(equalTo: safeArea.widthAnchor, multiplier: 0.50).isActive = true
     }
     
@@ -177,6 +192,11 @@ extension WeatherView {
     
 }
 
+extension WeatherView: APIServiceDelegate {
+    func apiLoaded() {
+        weatherCollectionView.reloadData()
+    }
+}
 
 
 
