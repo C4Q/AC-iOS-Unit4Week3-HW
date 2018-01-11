@@ -8,6 +8,14 @@
 
 import UIKit
 
+/*To Do/Need Help:
+ - Fix problem where app crashes when second weather clicked (fatal error out of range)
+ - Sending information
+ - Getting the city name / how to use zip code manager
+ - Setting random image
+ - How to make tab bar controller
+ */
+
 class WeatherViewController: UIViewController {
     
     var twoWeekWeather = [TwoWeekPeriod]() {
@@ -15,6 +23,8 @@ class WeatherViewController: UIViewController {
             weatherView.weatherCollectionView.reloadData()
         }
     }
+    
+    var weatherInfo = [TwoWeekPeriod]()
     
     var zipCode: String? = {
         var variable = String()
@@ -34,9 +44,11 @@ class WeatherViewController: UIViewController {
         weatherView.weatherCollectionView.dataSource = self
         weatherView.weatherCollectionView.delegate = self
         weatherView.weatherTextField.delegate = self
+        
         loadData()
         
     }
+    
     
     
     func loadData() {
@@ -53,15 +65,22 @@ class WeatherViewController: UIViewController {
             print(error.localizedDescription)
         }
         AerisWeatherAPI.manager.getWeather(from: url, completionHandler: completion, errorHandler: errorHandler)
+        
+        //Loads User Default for zipCode
+        if let savedZipCode = UserDefaultsHelper.manager.getSavedZipCode() as? String {
+            zipCode = savedZipCode
+        }
     }
     
     
     func setUpNameOfCity() {
-
+        
     }
     
     
-    
+//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+//        
+//    }
 }
 
 
@@ -80,12 +99,25 @@ extension WeatherViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let weatherThatDay = twoWeekWeather[0].periods[indexPath.row]
         let cell = weatherView.weatherCollectionView.dequeueReusableCell(withReuseIdentifier: "WeatherViewCell", for: indexPath) as! WeatherViewCell
+        
         cell.dateLabel.text = weatherThatDay.dateTimeISO
         cell.weatherImageView.image = UIImage(named: weatherThatDay.icon)
         cell.highLabel.text = "High: \(weatherThatDay.maxTempF.description)"
         cell.lowLabel.text = "Low: \(weatherThatDay.minTempF.description)"
         
         return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath)
+    {
+        
+        let selectedWeather  = twoWeekWeather[0].periods[indexPath.row]
+        let destination = WeatherDetailedViewController(fullWeatherDetail: selectedWeather)
+        self.navigationController?.pushViewController(destination, animated: true)
+        destination.fullWeatherDetail = selectedWeather
+        // destination.weather = selectedFoo
+        //        weatherInfo = [twoWeekWeather[indexPath.row]]
+        //        self.performSegue(withIdentifier: "ToDetailWeather", sender: self)
     }
 }
 

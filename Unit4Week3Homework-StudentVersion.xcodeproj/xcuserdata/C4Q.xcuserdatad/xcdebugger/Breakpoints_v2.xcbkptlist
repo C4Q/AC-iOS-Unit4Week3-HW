@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Unit4Week3Homework-StudentVersion/Models/Weather.swift"
-            timestampString = "537242440.286579"
+            timestampString = "537318602.35022"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "55"
-            endingLineNumber = "55"
+            startingLineNumber = "56"
+            endingLineNumber = "56"
             landmarkName = "getWeather(from:completionHandler:errorHandler:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -26,11 +26,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Unit4Week3Homework-StudentVersion/Models/Weather.swift"
-            timestampString = "537242440.286653"
+            timestampString = "537318602.350314"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "51"
-            endingLineNumber = "51"
+            startingLineNumber = "52"
+            endingLineNumber = "52"
             landmarkName = "getWeather(from:completionHandler:errorHandler:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -42,11 +42,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Unit4Week3Homework-StudentVersion/Models/Weather.swift"
-            timestampString = "537242440.28671"
+            timestampString = "537318602.350369"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "58"
-            endingLineNumber = "58"
+            startingLineNumber = "59"
+            endingLineNumber = "59"
             landmarkName = "getWeather(from:completionHandler:errorHandler:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -58,11 +58,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Unit4Week3Homework-StudentVersion/Models/Weather.swift"
-            timestampString = "537242440.286763"
+            timestampString = "537318602.350417"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "45"
-            endingLineNumber = "45"
+            startingLineNumber = "46"
+            endingLineNumber = "46"
             landmarkName = "getWeather(from:completionHandler:errorHandler:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -74,28 +74,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Unit4Week3Homework-StudentVersion/Models/Weather.swift"
-            timestampString = "537242440.286815"
+            timestampString = "537318602.350463"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "49"
-            endingLineNumber = "49"
+            startingLineNumber = "50"
+            endingLineNumber = "50"
             landmarkName = "getWeather(from:completionHandler:errorHandler:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Unit4Week3Homework-StudentVersion/Helpers/NetworkHelper.swift"
-            timestampString = "537242440.2868659"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "30"
-            endingLineNumber = "30"
-            landmarkName = "performDataTask(with:completionHandler:errorHandler:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

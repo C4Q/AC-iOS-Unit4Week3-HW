@@ -17,7 +17,6 @@ class FavoritesViewController: UIViewController {
         view.backgroundColor = UIColor.magenta
         view.addSubview(favoritesView)
         navigationItem.title =  "Favorties"
-
         favoritesView.favoritesTableView.dataSource = self
         favoritesView.favoritesTableView.delegate = self
         // Do any additional setup after loading the view.

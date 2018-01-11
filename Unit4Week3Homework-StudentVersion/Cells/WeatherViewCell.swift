@@ -82,6 +82,7 @@ class WeatherViewCell: UICollectionViewCell {
     
     private func setUpHighLabelConstraints() {
         NSLayoutConstraint.activate([highLabel.centerXAnchor.constraint(equalTo: centerXAnchor), highLabel.centerYAnchor.constraint(equalTo: centerYAnchor, constant: 40), highLabel.widthAnchor.constraint(equalTo: safeAreaLayoutGuide.widthAnchor, multiplier: 0.8), highLabel.heightAnchor.constraint(equalTo: safeAreaLayoutGuide.heightAnchor, multiplier: 0.2)])
+        
     }
     
     private func setUpLowLabelConstraints() {

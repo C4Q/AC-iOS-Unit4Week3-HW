@@ -20,6 +20,7 @@ struct Weather: Codable {
     let precipIN: Double
     let feelslikeF: Int
     let weather: String
+    let windSpeedMPH: Int
 }
 
 struct LongLat: Codable {

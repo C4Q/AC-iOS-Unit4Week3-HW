@@ -15,22 +15,21 @@ class WeatherView: UIView {
         let layout = UICollectionViewFlowLayout()
         let cv = UICollectionView(frame: .zero, collectionViewLayout: layout)
         cv.backgroundColor = UIColor.clear
-        //        cv.layer.cornerRadius = 10.0
-        //        cv.layer.masksToBounds = true
         cv.register(WeatherViewCell.self, forCellWithReuseIdentifier: "WeatherViewCell")
         layout.scrollDirection = UICollectionViewScrollDirection.horizontal
+        // layout.itemSize = view.bound.size
         return cv
     }()
     
     lazy var cityNameLabel: UILabel = {
         let label = UILabel()
-        label.text = "Here is your text label."
-        //        label.backgroundColor = UIColor.brown
+        label.text = "New York"
+        label.font = UIFont(name: "Avenir", size: 20)?.italic
         label.textColor = UIColor.lightGray
-        //        label.addBottomBorderWithColor(color: UIColor.black, width: 1)
         label.textAlignment = .left
         label.numberOfLines = 0
-        label.font = label.font.italic
+        //        label.backgroundColor = UIColor.brown
+   
         
         return label
         
@@ -38,25 +37,15 @@ class WeatherView: UIView {
     
     lazy var weatherTextField: UITextField = {
         let textField = UITextField()
-        textField.placeholder = "Place Zip Here"
+        textField.placeholder = "Place Zip Code Here"
         textField.backgroundColor = UIColor.lightGray
+        textField.layer.cornerRadius = 5
+        textField.layer.masksToBounds = true
         return textField
     }()
     
     
-    
-    //    lazy var lineView: UIView = {
-    //        let lineUIView = UIView(frame: CGRect(x: cityNameLabel.bounds.size.height / 2,
-    //                                              y: cityNameLabel.bounds.size.height / 2,
-    //                                              width: cityNameLabel.bounds.size.width,
-    //                                              height: 3
-    //            )
-    //        )
-    //        lineUIView.backgroundColor = UIColor.black
-    //
-    //     return lineUIView
-    //    }()
-    //
+ 
     
     
     override init(frame: CGRect) {
@@ -84,7 +73,8 @@ class WeatherView: UIView {
     
     private func setUpNameLabelConstraints() {
         
-        let lineView = UIView(frame: CGRect(x: 0, y: cityNameLabel.frame.height + 20, width: frame.width, height: 1.0))
+        //Adds line under label
+        let lineView = UIView(frame: CGRect(x: 0, y: cityNameLabel.frame.height + 28, width: frame.width, height: 1.0))
         lineView.backgroundColor = UIColor.lightGray
         cityNameLabel.addSubview(lineView)
         
@@ -100,7 +90,7 @@ class WeatherView: UIView {
     
     private func setUpCollectionViewConstraints() {
         NSLayoutConstraint.activate([weatherCollectionView.centerXAnchor.constraint(equalTo: centerXAnchor),
-                                     weatherCollectionView.centerYAnchor.constraint(equalTo: centerYAnchor, constant: -100),
+                                     weatherCollectionView.centerYAnchor.constraint(equalTo: centerYAnchor, constant: -75),
                                      weatherCollectionView.heightAnchor.constraint(equalTo: safeAreaLayoutGuide.heightAnchor, multiplier: 0.3),
                                      weatherCollectionView.widthAnchor.constraint(equalTo: safeAreaLayoutGuide.widthAnchor, multiplier: 0.99)
             
@@ -119,7 +109,7 @@ class WeatherView: UIView {
     }
     
 }
-
+//Could not make font italic with name alone so needed to use extension to do so
 extension UIFont {
     var bold: UIFont {
         return with(traits: .traitBold)

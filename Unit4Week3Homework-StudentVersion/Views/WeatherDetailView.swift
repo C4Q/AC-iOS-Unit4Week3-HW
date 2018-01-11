@@ -22,27 +22,32 @@ class WeatherDetailView: UIView {
     lazy var detailImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.backgroundColor = UIColor.green
+        imageView.image = #imageLiteral(resourceName: "fantasy-2543658_1920")
         return imageView
     }()
     
     lazy var shortWeatherDescriptionLabel: UILabel = {
         let label = UILabel()
-        label.backgroundColor = UIColor.lightGray
+        label.font = UIFont(name: "Avenir Next Condensed Ultra Light", size: 35)
         label.text = "Partly Cloudy"
-        label.textAlignment = .center
+        label.textAlignment = .left
+        label.adjustsFontSizeToFitWidth = true
         return label
     }()
     
     lazy var weatherStatusTextView: UITextView = {
         let textView = UITextView()
-        textView.backgroundColor = UIColor.cyan
-        textView.textAlignment = .center
+        textView.backgroundColor = .clear
+        textView.font = UIFont(name: "Avenir Next", size: 18)
+        textView.textAlignment = .left
         textView.text =
         """
-        Hi. A lot of text goes here.
-        Remember to make it 0 lines.
-        Remember to make this uneditable/unselectable
-        Bye.
+        High: 60
+        Low: 30
+        Sunrise: 5:41 AM
+        Sunset: 6: 22 PM
+        Wind Speed: 0 MPH
+        Precipitation: 0
         """
         //remember to make this uneditable/unselectable
         return textView
@@ -61,10 +66,10 @@ class WeatherDetailView: UIView {
     private func commonInit() {
         backgroundColor = UIColor.brown
         setupViews()
-        setUpCityLabelConstraints()
-        setUpDetailImageViewConstraints()
+        //        setUpCityLabelConstraints()
+//        setUpDetailImageViewConstraints()
         setUpShortWeatherDescriptionLabelConstraints()
-        setUpWeatherStatusTextViewConstraints()
+                setUpWeatherStatusTextViewConstraints()
     }
     
     private func setupViews() {
@@ -84,6 +89,25 @@ class WeatherDetailView: UIView {
             ])
         
     }
+    private func setUpShortWeatherDescriptionLabelConstraints() {
+        NSLayoutConstraint.activate([
+            shortWeatherDescriptionLabel.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor),
+            shortWeatherDescriptionLabel.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor),
+            shortWeatherDescriptionLabel.heightAnchor.constraint(equalTo: safeAreaLayoutGuide.heightAnchor, multiplier: 0.06), shortWeatherDescriptionLabel.widthAnchor.constraint(equalTo: safeAreaLayoutGuide.widthAnchor, multiplier: 0.8)
+            ])
+    }
+    
+    private func setUpWeatherStatusTextViewConstraints() {
+        NSLayoutConstraint.activate([
+            weatherStatusTextView.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor),
+            weatherStatusTextView.bottomAnchor.constraint(equalTo: shortWeatherDescriptionLabel.topAnchor),
+            weatherStatusTextView.heightAnchor.constraint(equalTo: safeAreaLayoutGuide.heightAnchor, multiplier: 0.27),
+            weatherStatusTextView.widthAnchor.constraint(equalTo: safeAreaLayoutGuide.widthAnchor, multiplier: 0.8)
+            
+            
+            ])
+        
+    }
     
     private func setUpDetailImageViewConstraints() {
         NSLayoutConstraint.activate([
@@ -91,29 +115,10 @@ class WeatherDetailView: UIView {
             detailImageView.centerYAnchor.constraint(equalTo: centerYAnchor, constant: -90),
             detailImageView.heightAnchor.constraint(equalTo: safeAreaLayoutGuide.heightAnchor, multiplier: 0.4),
             detailImageView.widthAnchor.constraint(equalTo: safeAreaLayoutGuide.widthAnchor, multiplier: 0.9)
-    
-            
+        
+        
             ])
         
     }
     
-    private func setUpShortWeatherDescriptionLabelConstraints() {
-    NSLayoutConstraint.activate([
-        shortWeatherDescriptionLabel.centerXAnchor.constraint(equalTo: centerXAnchor),
-        shortWeatherDescriptionLabel.centerYAnchor.constraint(equalTo: centerYAnchor, constant: 45),
-        shortWeatherDescriptionLabel.heightAnchor.constraint(equalTo: safeAreaLayoutGuide.heightAnchor, multiplier: 0.06), shortWeatherDescriptionLabel.widthAnchor.constraint(equalTo: safeAreaLayoutGuide.widthAnchor, multiplier: 0.8)
-        ])
-    }
-    
-    private func setUpWeatherStatusTextViewConstraints() {
-        NSLayoutConstraint.activate([
-            weatherStatusTextView.centerXAnchor.constraint(equalTo: centerXAnchor),
-            weatherStatusTextView.centerYAnchor.constraint(equalTo: centerYAnchor, constant: 155),
-            weatherStatusTextView.heightAnchor.constraint(equalTo: safeAreaLayoutGuide.heightAnchor, multiplier: 0.3),
-            weatherStatusTextView.widthAnchor.constraint(equalTo: safeAreaLayoutGuide.widthAnchor, multiplier: 0.8)
-            
-            
-            ])
-        
-    }
 }

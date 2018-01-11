@@ -20,11 +20,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let weatherViewController = WeatherViewController() //the story board you created
         let weatherNavController = UINavigationController(rootViewController: weatherViewController)
         weatherNavController.navigationItem.title = "Weather"
-        let weatherDetailedViewController = WeatherDetailedViewController()
+//        let weatherDetailedViewController = WeatherDetailedViewController(
+//        let weatherDetailedNavController = UINavigationController(rootViewController: weatherDetailedViewController)
         let favoritesViewController = FavoritesViewController()
 
         window = UIWindow(frame: UIScreen.main.bounds) //create window for view controller
-        window?.rootViewController = weatherNavController //makes a rootController
+        window?.rootViewController = weatherNavController//makes a rootController
         window?.makeKeyAndVisible() //makes window seen on screen
         
         return true
