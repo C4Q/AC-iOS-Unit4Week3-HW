@@ -14,12 +14,12 @@ class NetworkHelper {
     }
     static let manager = NetworkHelper()
     private let urlSession = URLSession(configuration: URLSessionConfiguration.default)
-    func performDataTask(with request: URL, completionHandler: @escaping (Data) -> Void, errorHandler: @escaping (Error) -> Void) {
+    func performDataTask(with request: URLRequest, completionHandler: @escaping (Data) -> Void, errorHandler: @escaping (Error) -> Void) {
         
-//        if let cachedResponse = URLCache.shared.cachedResponse(for: request) {
-//            completionHandler(cachedResponse.data)
-//            return
-//        }
+        if let cachedResponse = URLCache.shared.cachedResponse(for: request) {
+            completionHandler(cachedResponse.data)
+            return
+        }
         
         self.urlSession.dataTask(with: request){(data: Data?, response: URLResponse?, error: Error?) in
             DispatchQueue.main.async {
@@ -54,7 +54,7 @@ struct WeatherAPIClient {
                 print(error)
             }
         }
-        NetworkHelper.manager.performDataTask(with: url,
+        NetworkHelper.manager.performDataTask(with: URLRequest(url: url),
                                               completionHandler: completion,
                                               errorHandler: {print($0)})
     }
@@ -80,7 +80,7 @@ struct PixabayAPIClient {
                 print(error)
             }
         }
-        NetworkHelper.manager.performDataTask(with: url,
+        NetworkHelper.manager.performDataTask(with: URLRequest(url: url),
                                               completionHandler: completion,
                                               errorHandler: {print($0)})
     }

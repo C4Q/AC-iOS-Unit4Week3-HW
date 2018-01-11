@@ -17,6 +17,8 @@ class ZipCodeHelper {
     
     func setLocationName(name: String) {
         locationName = name
+        let keyToSaveZipCode = UserDefaultManager.shared.userDefaultKey
+//        UserDefaultManager.shared.setDefaultZip(value: name, key: keyToSaveZipCode)
     }
     
     func viewLocationName() -> String {

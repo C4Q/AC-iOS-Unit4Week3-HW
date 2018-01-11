@@ -8,109 +8,81 @@
 
 import UIKit
 
+
 class SearchVC: UIViewController {
     
+    // MARK: - Views
+    let searchView = SearchView() 
+    
+    // MARK: - Properties
     var weatherData: Weather? {
         didSet {
-            dump(weatherData)
-            collectionView.reloadData()
+            let temp = weatherData?.response.first?.periods.first?.maxTempF
+            self.setBackgroundImage(temp: temp!)
+            searchView.collectionView.reloadData()
         }
     }
     
-    lazy var collectionView: UICollectionView = {
-        let layout = UICollectionViewFlowLayout()
-        layout.scrollDirection = .horizontal
-        
-        let cv = UICollectionView(frame: CGRect.zero, collectionViewLayout: layout)
-        cv.dataSource = self
-        cv.delegate = self
-        cv.backgroundColor = .white
-        cv.register(WeatherCell.self, forCellWithReuseIdentifier: "WeatherCell")
-        return cv
-    }()
+    func setBackgroundImage(temp: Int) {
+        switch temp {
+        case ...40:
+            searchView.backgroundColor = UIColor(patternImage: #imageLiteral(resourceName: "coldestDay"))
+        case 41...70:
+            searchView.backgroundColor = UIColor(patternImage: #imageLiteral(resourceName: "rainyDay"))
+        case 70...:
+            searchView.backgroundColor = UIColor(patternImage: #imageLiteral(resourceName: "sunnyDay"))
+        default:
+            searchView.backgroundColor = UIColor(patternImage: #imageLiteral(resourceName: "sunnyDay"))
+        }
+    }
     
-    lazy var zipInputField: UITextField = {
-        let tf = UITextField()
-        tf.backgroundColor = .gray
-        tf.borderStyle = .roundedRect
-        tf.delegate = self
-        tf.textColor = .white
-        tf.textAlignment = .center
-        return tf
-    }()
-    
-    lazy var zipLabel: UILabel = {
-        let label = UILabel()
-        let text = "Enter a Zip Code"
-        label.text = text
-        return label
-    }()
-    
+    // MARK: - View Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.title = "Search"
-        view.backgroundColor = .white
-        setupViews()
-        
+        setupSearchView()
+        getForecast()
     }
     
-    func getForecast() {
-        
-        let zipCode = WeatherModel.manager.getZipCode()
-        
-        var endpoint = URLComponents(string: "https://api.aerisapi.com/forecasts/\(zipCode)")
-        endpoint?.queryItems = [
-            URLQueryItem(name: "client_id", value: "4TrQgLECYWUSFoL0EZIjL"),
-            URLQueryItem(name: "client_secret", value: "QQzbq5bvl5pPR5DG81LkwyuNmdUK3kFzHnruexkA")
-        ]
-        
-        guard let weatherEndpoint = endpoint?.url?.absoluteString else { return }
-        
-        ZipCodeHelper.manager.getLocationName(from: zipCode,
-                                              completionHandler: {ZipCodeHelper.manager.setLocationName(name: $0);
-                                                self.zipLabel.text = "Weather for \(ZipCodeHelper.manager.viewLocationName())"
+    private func setupSearchView() {
+        view.addSubview(searchView)
+        searchView.collectionView.delegate = self
+        searchView.collectionView.dataSource = self
+        searchView.zipInputField.delegate = self
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardShown(notification:)), name: NSNotification.Name.UIKeyboardDidShow, object: nil)
+    }
+    
+    // MARK: - User Actions
+    @objc func keyboardShown(notification: NSNotification) {
+        if let infokey = notification.userInfo?[UIKeyboardFrameEndUserInfoKey] {
+            let frame = (infokey as! AnyObject).cgRectValue
+            let keyboardFrame = view.convert(frame!, from: nil)
+            print(keyboardFrame)
+        }
+    }
 
-        },
+    private func getForecast() {
+        let savedZip = UserDefaultManager.shared.fetchDefaultZip(key: UserDefaultManager.shared.userDefaultKey)
+        
+        guard let zipCode = savedZip ?? WeatherModel.manager.getZipCode()  else { return }
+        guard let weatherEndpoint = WeatherModel.manager.weatherEndpointFromZipCode(zipCode) else { return }
+        
+        print("Running api")
+        ZipCodeHelper.manager.getLocationName(from: zipCode,
+                                              completionHandler: { ZipCodeHelper.manager.setLocationName(name: $0)},
                                               errorHandler: {print($0)})
         
         WeatherAPIClient.manager.getForecast(from: weatherEndpoint,
                                              completionHandler: {self.weatherData = $0},
                                              errorHandler: {print($0)})
-        
-        
-        
     }
-    
-    private func setupViews() {
-        setupCollectionView()
-        setupZipInputField()
-        setupZipLabel()
-    }
-    
-    private func setupCollectionView() {
-        view.addSubview(collectionView)
-        collectionView.translatesAutoresizingMaskIntoConstraints = false
-        collectionView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
-        collectionView.bottomAnchor.constraint(equalTo: view.centerYAnchor, constant: 100).isActive = true
-        collectionView.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
-        collectionView.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
-    }
-    
-    private func setupZipInputField() {
-        view.addSubview(zipInputField)
-        zipInputField.translatesAutoresizingMaskIntoConstraints = false
-        zipInputField.topAnchor.constraint(equalTo: collectionView.bottomAnchor, constant: 30).isActive = true
-        zipInputField.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        zipInputField.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.5).isActive = true
-    }
-    
-    private func setupZipLabel() {
-        view.addSubview(zipLabel)
-        zipLabel.translatesAutoresizingMaskIntoConstraints = false
-        zipLabel.topAnchor.constraint(equalTo: zipInputField.bottomAnchor, constant: 30).isActive = true
-        zipLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-    }
+
 }
+
+    
 
 // MARK: Table View Data Source
 extension SearchVC: UICollectionViewDataSource {
@@ -118,17 +90,10 @@ extension SearchVC: UICollectionViewDataSource {
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         guard let weatherData = weatherData else { return 0 }
         if weatherData.success == false {
-            collectionView.backgroundView = {
-                let label = UILabel()
-                label.center = collectionView.center
-                label.font = UIFont(name: "EuphemiaUCAS-Bold", size: 24)
-                label.text = "No weather data found. 😎"
-                label.textAlignment = .center
-                return label
-            }()
+            searchView.collectionView.backgroundView = searchView.backgroundView
             return 0
         } else {
-            collectionView.backgroundView = nil
+            searchView.collectionView.backgroundView = nil
             return 1
         }
     }
@@ -138,15 +103,10 @@ extension SearchVC: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "WeatherCell", for: indexPath) as! WeatherCell
-        let index = indexPath.item
-        let forecast = weatherData?.response.first?.periods[index]
+        let cell = searchView.collectionView.dequeueReusableCell(withReuseIdentifier: "WeatherCell", for: indexPath) as! WeatherCell
+        let forecast = weatherData?.response.first?.periods[indexPath.item]
         guard let dailyForecast = forecast else { return UICollectionViewCell() }
-        cell.dateLabel.text = DateManager.shared.convertDateToString(date: dailyForecast.validTime)
-        cell.highTempLabel.text = "Max Temp (F): " + dailyForecast.maxTempF.description
-        cell.lowTempLabel.text = "Min Temp (F): " + dailyForecast.minTempF.description
-        
-        cell.imageView.image = UIImage(named: dailyForecast.icon)
+        cell.configureCell(dailyForecast)
         return cell
     }
     
@@ -168,6 +128,7 @@ extension SearchVC: UICollectionViewDelegate, UICollectionViewDelegateFlowLayout
     
 }
 
+// MARK: Text Field Delegate
 extension SearchVC: UITextFieldDelegate {
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         let digitsInField = range.location
@@ -178,15 +139,21 @@ extension SearchVC: UITextFieldDelegate {
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        view.endEditing(true)
+        
         guard textField.text?.count == 5 else { return false }
         guard let zipCode = textField.text else { return false }
         if zipCode == "00000" {
             return false
         }
-        WeatherModel.manager.setZipCode(zip: zipCode)
-        getForecast()
+        textFieldDidReturn(text: zipCode)
         return true
     }
     
+    func textFieldDidReturn(text: String) {
+        WeatherModel.manager.setZipCode(zip: text)
+        UserDefaultManager.shared.setDefaultZip(value: text, key: UserDefaultManager.shared.userDefaultKey)
+        getForecast()
+    }
     
 }

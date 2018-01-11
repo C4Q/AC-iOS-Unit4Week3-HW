@@ -9,6 +9,13 @@
 import UIKit
 
 class FavoriteCell: UITableViewCell {
+    
+    func configureCell(_ cell: FavoriteCell, index: IndexPath) -> FavoriteCell {
+        let index = index.row
+        let imageName = KeyedArchiverClient.shared.fetchListOfImages()[index]
+        favImageView.image = KeyedArchiverClient.shared.getImageFromDisk(artworkPath: imageName)
+        return cell
+    }
 
     lazy var favImageView: UIImageView = {
         let iv = UIImageView()

@@ -9,23 +9,17 @@ import UIKit
 
 class DetailVC: UIViewController {
     
-    // MARK: - Types
-    
     // MARK: - Properties
-    var pictures: PixabayResults? {
-        didSet {
-            dump(pictures)
-        }
-    }
-    
     var endpointOfRandomPicture = String()
-    
     var weatherData: Period!
+    
+    var pictures: PixabayResults?
+    
+    let detailView = DetailView()
     
     // MARK: - View Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .white
         setupViews()
         PixabayModel.manager.fetchPictures(searchTerm: ZipCodeHelper.manager.viewLocationName(),
                                            completion: completionForPictures)
@@ -42,115 +36,44 @@ class DetailVC: UIViewController {
     }
     
     // MARK: - Layout
-    func setupViews() {
-        setupCityImageView()
-        setupStackView()
+    private func setupViews() {
+        setupController()
         setupNavBar()
     }
     
-    func setupNavBar() {
+    private func setupController() {
+        view.backgroundColor = .white
+        view.addSubview(detailView)
+    }
+    
+    private func setupNavBar() {
         navigationItem.title = ZipCodeHelper.manager.viewLocationName()
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Save", style: .plain, target: self, action: #selector(savePicture))
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Save", style: .plain, target: self, action: #selector(saveButtonPressed))
     }
     
-    private func setupCityImageView() {
-        view.addSubview(cityImageView)
-        cityImageView.translatesAutoresizingMaskIntoConstraints = false
-        cityImageView.bottomAnchor.constraint(equalTo: view.centerYAnchor, constant: 30).isActive = true
-        cityImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        cityImageView.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 1).isActive = true
-        cityImageView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.5).isActive = true
-    }
-    
-    private func setupStackView() {
-        view.addSubview(stackView)
-        stackView.translatesAutoresizingMaskIntoConstraints = false
-        stackView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        stackView.topAnchor.constraint(equalTo: view.centerYAnchor, constant: 100).isActive = true
-    }
     
     // MARK: - Setup - View/Data
-    lazy var cityImageView: UIImageView = {
-        let iv = UIImageView()
-        let activityIndicator = UIActivityIndicatorView.init(frame: iv.frame)
-        activityIndicator.startAnimating()
-        activityIndicator.center = iv.center
-        self.view.addSubview(activityIndicator)
-        activityIndicator.color = .green
-        print(iv.subviews)
-        return iv
-    }()
-    
-    lazy var highLabel: UILabel = {
-        let label = UILabel()
-        let text = "High : " + weatherData.maxTempF.description + "°F"
-        label.text = text
-        return label
-    }()
-    
-    lazy var lowLabel: UILabel = {
-        let label = UILabel()
-        let text = "Low : " + weatherData.minTempF.description + "°F"
-        label.text = text
-        return label
-    }()
-    
-    lazy var sunriseLabel: UILabel = {
-        let label = UILabel()
-        let time = DateManager.shared.convertDateToTime(date: weatherData.sunriseISO)
-        let text = "Sunrise: " + (time ?? "00.00")
-        label.text = text
-        return label
-    }()
-    
-    lazy var sunsetLabel: UILabel = {
-        let label = UILabel()
-        let time = DateManager.shared.convertDateToTime(date: weatherData.sunsetISO)
-        let text = "Sunset: " + (time ?? "00.00")
-        label.text = text
-        return label
-    }()
-    
-    lazy var dayLabel: UILabel = {
-        let label = UILabel()
-        let text = "Day: " + weatherData.isDay.description
-        label.text = text
-        return label
-    }()
-    
-    lazy var stackView: UIStackView = {
-        let stack = UIStackView()
-        stack.axis = .vertical
-        stack.distribution = .equalSpacing
-        stack.alignment = .center
-        stack.spacing = 15
-        
-        stack.addArrangedSubview(highLabel)
-        stack.addArrangedSubview(lowLabel)
-        stack.addArrangedSubview(sunriseLabel)
-        stack.addArrangedSubview(sunsetLabel)
-        stack.addArrangedSubview(dayLabel)
-        
-        stack.translatesAutoresizingMaskIntoConstraints = false
-        return stack
-    }()
-    
     lazy var completionForPictures: (PixabayResults) -> Void = { results in
         PixabayModel.manager.writeResults(results: results)
         guard let endpoint = PixabayModel.manager.fetchRandomPictureEndpoint() else {
             //Set placeholder image
-            self.cityImageView.image = UIImage(named: "noImagePlaceholder")
+            self.detailView.cityImageView.image = UIImage(named: "noImagePlaceholder")
             return
         }
         self.endpointOfRandomPicture = PixabayModel.manager.uniqueStringFromEndpoint(endpoint)
         ImageDownloader.manager.getImage(from: endpoint,
-                                         completionHandler: {self.cityImageView.image = UIImage(data: $0)},
+                                         completionHandler: {self.detailView.cityImageView.image = UIImage(data: $0);
+                                            self.detailView.activity.stopAnimating()},
                                          errorHandler: {print($0)})
     }
     
     // MARK: - User Actions
-    @objc func savePicture() {
-        guard let imageToSave = cityImageView.image else { return }
+    @objc func saveButtonPressed() {
+        savePicture()
+    }
+    
+    func savePicture() {
+        guard let imageToSave = detailView.cityImageView.image else { return }
         let savedImageName = endpointOfRandomPicture + "." + ZipCodeHelper.manager.viewLocationName()
         let imageIsAlreadySaved = KeyedArchiverClient.shared.fetchListOfImages().contains(savedImageName)
         
@@ -172,11 +95,10 @@ class DetailVC: UIViewController {
     // MARK: - Update Interface
     func addDuplicateImageView(to superView: UIView) -> UIView {
         let iv = UIImageView()
-        iv.image = cityImageView.image
-        superView.addSubview(iv)
+        iv.image = detailView.cityImageView.image
         iv.frame = CGRect(x: 265, y: 261, width: 82, height: 73)
-        let addedView = view.subviews.last!
-        return addedView
+        superView.addSubview(iv)
+        return iv
     }
     
     // MARK: - Animations
@@ -189,7 +111,6 @@ class DetailVC: UIViewController {
         let bottomOfImageView = duplicateView.frame.origin.y + duplicateView.frame.height
         let topOfTabBar = (tabBarController?.tabBar.frame.origin.y)!
         let distance = abs(bottomOfImageView - (topOfTabBar))
-        guard let favTab = tabBarController?.tabBar.items?.last?.value(forKey: "view") as? UIView else { return }
         
         UIView.animate(withDuration: 1.5, animations: {
             duplicateView.transform = CGAffineTransform(translationX: 0, y: distance)

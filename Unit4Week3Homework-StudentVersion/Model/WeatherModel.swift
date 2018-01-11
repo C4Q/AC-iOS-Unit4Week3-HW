@@ -12,20 +12,33 @@ class WeatherModel {
     private init() {}
     static let manager = WeatherModel()
     
-    private var zipCode = String()
+    private var zipCode: String?
     
     private var weatherData: Weather?
-    
-    func setZipCode(zip: String) {
-        zipCode = zip
-    }
     
     func getWeatherData() -> Weather? {
         return weatherData
     }
     
-    func getZipCode() -> String {
+    func setZipCode(zip: String) {
+        zipCode = zip
+    }
+    
+    func getZipCode() -> String? {
         return zipCode
+    }
+    
+    func weatherEndpointFromZipCode(_ zipCode: String?) -> String? {
+        guard let zipCode = zipCode else { return nil }
+        
+        var endpoint = URLComponents(string: "https://api.aerisapi.com/forecasts/\(zipCode)")
+        endpoint?.queryItems = [
+            URLQueryItem(name: "client_id", value: "4TrQgLECYWUSFoL0EZIjL"),
+            URLQueryItem(name: "client_secret", value: "QQzbq5bvl5pPR5DG81LkwyuNmdUK3kFzHnruexkA")
+        ]
+        
+        guard let weatherEndpoint = endpoint?.url?.absoluteString else { return nil }
+        return weatherEndpoint
     }
 }
 

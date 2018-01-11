@@ -10,8 +10,17 @@ import UIKit
 
 class WeatherCell: UICollectionViewCell {
     
+    func configureCell(_ weatherData: Period) {
+        self.dateLabel.text = DateManager.shared.convertDateToString(date: weatherData.validTime)
+        self.highTempLabel.text = "Max Temp (F): " + weatherData.maxTempF.description
+        self.lowTempLabel.text = "Min Temp (F): " + weatherData.minTempF.description
+        self.imageView.image = UIImage(named: weatherData.icon)
+    }
+    
     lazy var dateLabel: UILabel = {
         let label = UILabel()
+        label.font = UIFont(name: "EuphemiaUCAS-Bold", size: 24)
+        label.textColor = .white
         return label
     }()
     
@@ -22,11 +31,15 @@ class WeatherCell: UICollectionViewCell {
     
     lazy var highTempLabel: UILabel = {
         let label = UILabel()
+        label.font = UIFont(name: "EuphemiaUCAS-Bold", size: 16)
+        label.textColor = .white
         return label
     }()
     
     lazy var lowTempLabel: UILabel = {
         let label = UILabel()
+        label.font = UIFont(name: "EuphemiaUCAS-Bold", size: 16)
+        label.textColor = .white
         return label
     }()
     
@@ -36,12 +49,12 @@ class WeatherCell: UICollectionViewCell {
     }
     
     required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-        commonInit()
+        fatalError("Using coder init without the use of storyboards!")
     }
     
     func commonInit() {
-        self.backgroundColor = UIColor(red:0.59, green:0.65, blue:0.96, alpha:1.00)
+        self.backgroundColor = UIColor(red:0.67, green:0.73, blue:0.80, alpha:0.20)
+        self.layer.cornerRadius = 10.0
         setupViews()
     }
     
