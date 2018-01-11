@@ -14,10 +14,10 @@ class WeatherView: UIView {
     lazy var messageLabel: UILabel = {
         let label  = UILabel()
         label.textAlignment = .center
-        label.backgroundColor = .yellow
-        label.textColor = .black
+        label.backgroundColor = .clear
+        label.textColor = .white
         label.font = UIFont.systemFont(ofSize: 20, weight: .medium)
-        label.text = "Weather Forecast for ChiTown"
+        label.text = "Welcome"
         return label
     }()
     
@@ -26,7 +26,7 @@ class WeatherView: UIView {
         let layout = UICollectionViewFlowLayout()
         let cv = UICollectionView(frame: frame, collectionViewLayout: layout)
         layout.scrollDirection = .horizontal
-        cv.backgroundColor = .green
+        cv.backgroundColor = UIColor(red: 0.1, green: 0.1, blue: 0.1, alpha: 1.00)
         //register collectionViewCell
         cv.register(WeatherCollectionViewCell.self, forCellWithReuseIdentifier: "CollectionViewCell")
         return cv
@@ -36,12 +36,14 @@ class WeatherView: UIView {
     //TextField
     lazy var textField: UITextField = {
         let tField = UITextField()
-        tField.backgroundColor = UIColor(red: 0.922, green: 0.259, blue: 0.184, alpha: 1.00)
+        tField.backgroundColor = UIColor(red: 0.161, green: 0.169, blue: 0.204, alpha: 1.00)
         tField.font = UIFont.systemFont(ofSize: 17, weight: .medium)
         tField.textAlignment = .center
         tField.placeholder = "12345"
         tField.keyboardType = .numbersAndPunctuation
         tField.keyboardAppearance = .dark
+        tField.textColor = .white
+        tField.borderStyle = .roundedRect
         return tField
     }()
     
@@ -52,7 +54,7 @@ class WeatherView: UIView {
         label.textAlignment = .center
         label.font = UIFont.systemFont(ofSize: 17, weight: .medium)
         label.backgroundColor = .clear
-        label.textColor = .black
+        label.textColor = .white
         label.numberOfLines = 0
         label.text = "Enter a Zone Improvement Plan Code"
         return label
@@ -71,7 +73,7 @@ class WeatherView: UIView {
     }
     
     private func setUpGUI() {
-        backgroundColor = .white
+        backgroundColor = .black
         setupAndConstrainObjects()
     }
     

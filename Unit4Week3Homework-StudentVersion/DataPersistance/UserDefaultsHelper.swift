@@ -13,6 +13,7 @@ struct UserDefaultsHelper {
     
     private let dateKey = "date"
     private let zipcodeKey = "zipcode"
+    private let zipcodeKeyAsString = "zipcodeKeyasString"
     
     //Save Stuff
     func getTomorrowDate() -> Date? {
@@ -21,6 +22,9 @@ struct UserDefaultsHelper {
     func getZipcode() -> Int? {
         return UserDefaults.standard.integer(forKey: zipcodeKey)
     }
+    func getZipcodeAsString() -> String? {
+        return UserDefaults.standard.string(forKey: zipcodeKeyAsString)
+    }
     
     //Get Stuff
     func setTomorrowDate(to newDate: Date) {
@@ -28,5 +32,8 @@ struct UserDefaultsHelper {
     }
     func setZipcode(to newZipcode: Int) {
         UserDefaults.standard.setValue(newZipcode, forKey: zipcodeKey)
+    }
+    func setZipcodeAsString(to newZipcode: String) {
+        UserDefaults.standard.setValue(newZipcode, forKey: zipcodeKeyAsString)
     }
 }

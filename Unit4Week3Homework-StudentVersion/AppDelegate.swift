@@ -51,7 +51,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window?.makeKeyAndVisible()
         
         FileManagerHelper.manager.loadFavoritesFromSandBox()
-        FileManagerHelper.manager.loadFavorites()
+        //FileManagerHelper.manager.loadFavorites()
         
         return true
     }

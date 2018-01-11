@@ -34,5 +34,8 @@ class DetailWeatherViewController: UIViewController {
         FileManagerHelper.manager.addFavoriteImage(from: imageURLtoSave)
         print("Save Button clicked")
     }
+    
+    
+    // TODO: Add animation for save button being clicked
 
 }

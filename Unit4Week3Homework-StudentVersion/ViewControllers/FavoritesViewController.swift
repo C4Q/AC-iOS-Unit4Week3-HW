@@ -34,6 +34,8 @@ class FavoritesViewController: UIViewController {
         view.addSubview(favoritesView) //adding the custom view into the View Controller
         
         //Load Favorite Images from File Manager to VC
+        
+        FileManagerHelper.manager.loadFavorites()
         self.favoritedImages = FileManagerHelper.manager.getFavoritesImages()
         
         

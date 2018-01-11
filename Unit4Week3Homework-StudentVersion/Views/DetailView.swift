@@ -50,7 +50,7 @@ class DetailView: UIView {
     lazy var cityImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFill
-        imageView.image = #imageLiteral(resourceName: "chicago")
+        imageView.image = #imageLiteral(resourceName: "NoDataAvailable")
         return imageView
     }()
     
@@ -242,7 +242,7 @@ class DetailView: UIView {
         self.lowLabel.text = "Low: \(forecast.lowTempF)"
         self.sunriseLabel.text = "Sunrise: \(Date.timeStringFromTimeInterval(timeinterval: forecast.sunrise))"
         self.sunsetLabel.text = "Sunset: \(Date.timeStringFromTimeInterval(timeinterval: forecast.sunset))"
-        self.windspeedLabel.text = "Windspeed \(forecast.windSpeedMPH)"
+        self.windspeedLabel.text = "Windspeed: \(forecast.windSpeedMPH)"
         self.inchesOfPrecipitationLabel.text = "Inches: \(forecast.rainPrecipIN)"
         self.weatherLabel.text = forecast.weatherConditions
     }

@@ -6,16 +6,16 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Unit4Week3Homework-StudentVersion/Services/ImageAPIClient.swift"
-            timestampString = "537338135.2744"
+            filePath = "Unit4Week3Homework-StudentVersion/Views/WeatherCollectionViewCell.swift"
+            timestampString = "537384262.765093"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "18"
-            endingLineNumber = "18"
-            landmarkName = "loadImage(from:completionHandler:errorHandler:)"
+            startingLineNumber = "79"
+            endingLineNumber = "79"
+            landmarkName = "setUpGUI()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

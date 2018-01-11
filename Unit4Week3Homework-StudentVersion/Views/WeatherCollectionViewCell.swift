@@ -13,7 +13,7 @@ class WeatherCollectionViewCell: UICollectionViewCell {
     //dateLabel
     lazy var dateLabel: UILabel = {
         let label = UILabel()
-        label.textColor = .black
+        label.textColor = .white
         label.font = UIFont.systemFont(ofSize: 15, weight: .bold)
         label.backgroundColor = .clear
         label.textAlignment = .center
@@ -25,6 +25,7 @@ class WeatherCollectionViewCell: UICollectionViewCell {
     lazy var weatherImage: UIImageView = {
         let iv = UIImageView()
         iv.contentMode = .scaleAspectFit
+        iv.backgroundColor = .clear
         iv.image = #imageLiteral(resourceName: "sunnyw")
         return iv
     }()
@@ -32,7 +33,7 @@ class WeatherCollectionViewCell: UICollectionViewCell {
     //highLabel
     lazy var highLabel: UILabel = {
         let label = UILabel()
-        label.textColor = .black
+        label.textColor = .white
         label.font = UIFont.systemFont(ofSize: 15, weight: .medium)
         label.backgroundColor = .clear
         label.textAlignment = .center
@@ -43,7 +44,7 @@ class WeatherCollectionViewCell: UICollectionViewCell {
     //lowLabel
     lazy var lowLabel: UILabel = {
         let label = UILabel()
-        label.textColor = .black
+        label.textColor = .white
         label.font = UIFont.systemFont(ofSize: 15, weight: .medium)
         label.backgroundColor = .clear
         label.textAlignment = .center
@@ -62,7 +63,7 @@ class WeatherCollectionViewCell: UICollectionViewCell {
     
     required init?(coder aDecoder: NSCoder) { //now the new initializer required for this uiView
         super.init(coder: aDecoder)
-        //setUpGUI()
+        setUpGUI()
     }
     
     //this gets called right away
@@ -74,7 +75,7 @@ class WeatherCollectionViewCell: UICollectionViewCell {
     }
     
     private func setUpGUI() {
-        backgroundColor = .white
+        backgroundColor = .black //Doesn't work?
         setupAndConstrainObjects()
     }
     

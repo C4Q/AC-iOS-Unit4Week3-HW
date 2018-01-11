@@ -24,7 +24,7 @@ class FileManagerHelper {
         }
     }
     
-    var favoriteImages = [UIImage]()
+    private var favoriteImages = [UIImage]()
     
     private var favoriteURLS = [String]() {
         didSet {
@@ -32,7 +32,7 @@ class FileManagerHelper {
         }
     }
     
-    //This saves the array of Favorites to the phone
+    //This saves the array of Favorites to the sandbox
     private func saveFavoritesToSandbox() {
         //Save URLs
         let path = dataFilePath(withPathName: favPathName)
@@ -45,8 +45,8 @@ class FileManagerHelper {
         }
     }
     
-    // Load array of favoriteURLs from SandBox
-    func loadFavoritesFromSandBox() {
+    // Load array of favoriteURLs from SandBox. This should happen IN THE APP DELEGATE
+   public func loadFavoritesFromSandBox() {
         //Save URLs
         let path = dataFilePath(withPathName: favPathName)
         do {
@@ -59,18 +59,18 @@ class FileManagerHelper {
         }
     }
     
-    //When the save button is clicked
-    func addFavoriteImage(from urlstr: String) {
+    //When the save button is clicked, add the imageURL to the File Manager
+    public func addFavoriteImage(from urlstr: String) {
         favoriteURLS.append(urlstr)
     }
     
     //Get Favorites Images to VC from File Manager
-    func getFavoritesImages() -> [UIImage]{
+    public func getFavoritesImages() -> [UIImage]{
         return favoriteImages
     }
     
     //This is called in the app delegate to bring up favorited images
-    func loadFavorites() {
+    public func loadFavorites() {
         var arrayOfFavorites = [UIImage]()
         for imageURLS in favoriteURLS {
             if let loadedimage = getImage(with: imageURLS) {
@@ -82,8 +82,8 @@ class FileManagerHelper {
         self.favoriteImages = arrayOfFavorites
     }
     
-    //Saving Images To Disk
-    func saveImage(with urlStr: String, image: UIImage) {
+    //Saving Images To sandbox
+    public func saveImage(with urlStr: String, image: UIImage) {
         let imageData = UIImagePNGRepresentation(image)
         let imagePathName = urlStr.components(separatedBy: "/").last!
         let url = dataFilePath(withPathName: imagePathName)
@@ -95,9 +95,8 @@ class FileManagerHelper {
         }
     }
     
-    
-    //Getting images from disk
-    func getImage(with urlStr: String) -> UIImage? {
+    //Getting images from sandbox
+    public func getImage(with urlStr: String) -> UIImage? {
         do {
             let imagePathName = urlStr.components(separatedBy: "/").last!
             let url = dataFilePath(withPathName: imagePathName)
@@ -110,9 +109,8 @@ class FileManagerHelper {
         }
     }
     
-    
     // takes forecast from phone(sandbox) brings it to FileManager
-    func loadForecastFromFileManager(using zipCode: String) {
+    public func loadForecastFromFileManager(using zipCode: String) {
         let newPathName = zipCode + ".plist" // EX) 60506.plist
         self.pathName = newPathName
         
@@ -129,7 +127,7 @@ class FileManagerHelper {
     }
     
     //takes forecast from FileManager and places in VC
-    func addForecastToVC() -> [SevenDayForecast] {
+    public func addForecastToVC() -> [SevenDayForecast] {
         return sevenDayForecast
     }
     
@@ -141,7 +139,7 @@ class FileManagerHelper {
     }
     
     //takes array from File Manager and puts into sandbox
-    func saveForecastToSandBox() {
+    private func saveForecastToSandBox() {
         //encode into data so they can be saved with propertyListEncoder
         let path = dataFilePath(withPathName: pathName)
         do {

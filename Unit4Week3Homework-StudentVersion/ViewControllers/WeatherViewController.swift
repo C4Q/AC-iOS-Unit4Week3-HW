@@ -9,7 +9,6 @@
 import UIKit
 
 class WeatherViewController: UIViewController {
-    //let sampleArray = [1,2,3,4,5,6] //for testing ONLY
     
     var currentTextField = "" //This will be used for the PixelBay call which happens once a user clicks on the collectionView
     var cityName = "" {
@@ -38,21 +37,33 @@ class WeatherViewController: UIViewController {
         weatherView.collectionView.delegate = self
         weatherView.collectionView.dataSource = self
         weatherView.textField.delegate = self
-        loadForecast()
         
         //loading most recent zipcode from user defaults
-        if let savedZipcode = UserDefaultsHelper.manager.getZipcode() {
-            weatherView.textField.text = String(savedZipcode)
+        if let savedZipcode = UserDefaultsHelper.manager.getZipcodeAsString() {
+            weatherView.textField.text = savedZipcode
             print("zipcode loaded from UD")
         } else {
             weatherView.textField.text = ""
         }
+        
     }
     
-    func loadForecast(){
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(true)
         
-        //TODO: Add Animations to Collection View
-        setUpAutomaticScrolling()
+        //Animate textfield to indicate user should enter a zipcode
+        
+        // only works if it starts as not .bezel
+        UIView.animate(withDuration: 2.0, delay: 0, usingSpringWithDamping: 0.2, initialSpringVelocity: 10, options: .curveEaseInOut, animations: {
+            self.weatherView.textField.backgroundColor = .green
+        }) { (success:Bool) in
+            if success {
+                UIView.animate(withDuration: 0.5, animations: {
+                    self.weatherView.textField.backgroundColor = UIColor(red: 0.2, green: 0.2, blue: 0.2, alpha: 1.00)
+                    self.weatherView.textField.borderStyle = .bezel
+                })
+            }
+        }
     }
     
     
@@ -77,7 +88,7 @@ extension WeatherViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CollectionViewCell", for: indexPath) as! WeatherCollectionViewCell
-        cell.backgroundColor = .white
+        cell.backgroundColor = .clear
         
         let aSpecificDay = weatherToDisplay[indexPath.row]
         
@@ -106,36 +117,29 @@ extension WeatherViewController: UICollectionViewDelegate{
         
         //func to configure detailview
         
+        // TODO: ADD IMAGE API CALL AS PART OF CONFIGURE CELL
+        
         detailWVC.detailView.configureDetailView(forecast: aSpecificDay, cityName: cityName)
         
-        print("ZipCode Helper call before Pixelbay Call happening now")
-        // Completion Hanlder for ZipCodeHelper Call
-        let completionForZipCode: (String) -> Void = {cityFromZip in
-            self.cityName = cityFromZip
+        //Get the first image from an array from PixelBay
+        let setPixelBayImageDetailsToLaterBeCalledByImageAPI: (PixabayImage) -> Void = {(onlineImage: PixabayImage) in
             
-            //Get the first image from an array from PixelBay
-            let setPixelBayImageDetailsToLaterBeCalledByImageAPI: (PixabayImage) -> Void = {(onlineImage: PixabayImage) in
-                
-                //Get the image based off the webURL from PixelBay
-                let setImageToOnlineImage: (UIImage) -> Void = {(otherOnlineImage: UIImage) in
-                    detailWVC.detailView.cityImageView.image = otherOnlineImage
-                    detailWVC.imageURLtoSave = onlineImage.webURL // the link from the pixelbay download. One of these will work
-                    detailWVC.detailView.cityImageView.setNeedsLayout()
-                }
-                
-                //Use Image API to turn the details from Pixelbay into an actual image
-                print("Image API Called on \"\(onlineImage.webURL)\"")
-                detailWVC.imageURLtoSave = onlineImage.webURL  // the link from the pixelbay download. One of these will work
-                ImageAPIClient.manager.loadImage(from: onlineImage.webURL, completionHandler: setImageToOnlineImage, errorHandler: {_ in print("ImageAPICall failed")})
-                
-                
+            //Get the image based off the webURL from PixelBay
+            let setImageToOnlineImage: (UIImage) -> Void = {(otherOnlineImage: UIImage) in
+                detailWVC.detailView.cityImageView.image = otherOnlineImage
+                detailWVC.imageURLtoSave = onlineImage.webURL // the link from the pixelbay download. One of these will work
+                detailWVC.detailView.cityImageView.setNeedsLayout()
             }
             
+            //Use Image API to turn the details from Pixelbay into an actual image
+            print("Image API Called on \"\(onlineImage.webURL)\"")
+            detailWVC.imageURLtoSave = onlineImage.webURL  // the link from the pixelbay download. One of these will work
+            ImageAPIClient.manager.loadImage(from: onlineImage.webURL, completionHandler: setImageToOnlineImage, errorHandler: {_ in print("ImageAPICall failed")})
             
-            PixabayAPIClient.manager.getFirstImage(named: cityFromZip, completionHandler: setPixelBayImageDetailsToLaterBeCalledByImageAPI, errorHandler: {_ in print("Bad name passed into PixaBay Call: Name - \(self.cityName)")})
         }
         
-        ZipCodeHelper.manager.getLocationName(from: currentTextField, completionHandler: completionForZipCode, errorHandler: {print($0)})
+        PixabayAPIClient.manager.getFirstImage(named: self.cityName, completionHandler: setPixelBayImageDetailsToLaterBeCalledByImageAPI, errorHandler: {_ in print("Bad name passed into PixaBay Call: Name - \(self.cityName)")})
+        
     }
 }
 
@@ -195,17 +199,19 @@ extension WeatherViewController: UITextFieldDelegate {
             
             UIView.animate(withDuration: 1, delay: 0, usingSpringWithDamping: 0.2, initialSpringVelocity: 10, options: .curveEaseInOut, animations: {
                 self.weatherView.textField.bounds = CGRect(x: bounds.origin.x - 20, y: bounds.origin.y, width: bounds.size.width + 60, height: bounds.size.height)
+                self.weatherView.textField.backgroundColor = .red
             }) { (success:Bool) in
                 if success {
                     UIView.animate(withDuration: 0.5, animations: {
                         self.weatherView.textField.bounds = bounds
+                        self.weatherView.textField.backgroundColor = UIColor(red: 0.2, green: 0.2, blue: 0.2, alpha: 1.00)
                     })
                 }
             }
             return false
         } else if let textFieldAsInt = Int(text) {
             //calling userDefaults to save zipcode entered
-            UserDefaultsHelper.manager.setZipcode(to: textFieldAsInt)
+            UserDefaultsHelper.manager.setZipcodeAsString(to: text)
             print("\(textFieldAsInt) zipcode was saved!")
         }
         

@@ -37,6 +37,10 @@ class NetworkHelper {
     
     func performDataTask(with url: URLRequest, completionHandler: @escaping ((Data) -> Void), errorHandler: @escaping ((AppError) -> Void)) {
         
+        if let req = URLCache.shared.cachedResponse(for: url) {
+            completionHandler(req.data) //This will cache internet calls. Similar to cookies
+        }
+        
         self.urlSession.dataTask(with: url){(data: Data?, response: URLResponse?, error: Error?) in
             DispatchQueue.main.async {
                 
