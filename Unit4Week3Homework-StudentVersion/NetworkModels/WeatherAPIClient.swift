@@ -8,12 +8,47 @@
 
 import Foundation
 
+
+//struct WeatherResponseWrapper: Codable {
+//    let response: [WeatherResponse]
+//}
+//
+//struct WeatherResponse: Codable {
+//    let location: CoordinateWrapper
+//    let periods: [SevenDayForecast] //gives stats for each of the seven days
+//
+//    enum CodingKeys: String, CodingKey {
+//        case location = "loc"
+//        case periods = "periods"
+//    }
+//}
+//
+//struct CoordinateWrapper: Codable {
+//    let long: Double
+//    let lat: Double
+//}
+//
+//struct SevenDayForecast : Codable {
+//    let currentDateAndTime: String
+//    let highTempF: Double
+//    let lowTempF: Double
+//    let avgTempF: Double
+//    let rainPrecipIN: Double
+//    let windSpeedMPH: Double
+//    let weatherConditions: String // "Mostly Cloudy"
+//    let weatherIcon: String
+//    let isTheDayToday : Bool //perfect for date check!
+//    let sunrise: String
+//    let sunset: String
+//}
+
+
 class WeatherAPIClient {
     private init(){}
     static let manager = WeatherAPIClient()
     
     func getForecast(from urlStr: String,
-                     completionHandler: @escaping ([WeatherResponse]) -> Void,
+                     completionHandler: @escaping ([SevenDayForecast]) -> Void,
                      errorHandler: @escaping (Error) -> Void){
         
         //valid url check
@@ -24,16 +59,17 @@ class WeatherAPIClient {
         let parseDataIntoWeather: (Data) -> Void = {(data) in
             do{
                 let decoder = JSONDecoder()
-                let results = try decoder.decode(WeatherResponse.self, from: data)
-                let forecast = results.periods
-                print("JSON Data is now an [SevenDayForecast]")
-                
-                for weather in forecast{
-                    print(weather.highTempF, weather.lowTempF)
+                let results = try decoder.decode(WeatherResponseWrapper.self, from: data) // when you decode the top layer you see what's inside.
+                if let forecast = results.response.first?.periods{ //[SevenDayResponse]
+                //call completionHandler ON the forecast
+                    completionHandler(forecast)
                 }
+                
+                print("JSON Data is now an [WeatherResponse]")
                 
             } catch {
                 errorHandler(AppError.badData)
+                print("bad data from weather")
             }
         }
         NetworkHelper.manager.performDataTask(with: request,

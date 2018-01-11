@@ -17,7 +17,7 @@ class WeatherCollectionViewCell: UICollectionViewCell {
         label.font = UIFont.systemFont(ofSize: 15, weight: .bold)
         label.backgroundColor = .clear
         label.textAlignment = .center
-        label.text = "2017-01-09"
+        //label.text = "2017-01-09"
         return label
     }()
     
@@ -25,7 +25,7 @@ class WeatherCollectionViewCell: UICollectionViewCell {
     lazy var weatherImage: UIImageView = {
         let iv = UIImageView()
         iv.contentMode = .scaleAspectFit
-        iv.image = #imageLiteral(resourceName: "sunnyw")
+        //iv.image = #imageLiteral(resourceName: "sunnyw")
         return iv
     }()
     
@@ -36,7 +36,7 @@ class WeatherCollectionViewCell: UICollectionViewCell {
         label.font = UIFont.systemFont(ofSize: 15, weight: .medium)
         label.backgroundColor = .clear
         label.textAlignment = .center
-        label.text = "10 F"
+        //label.text = "10 F"
         return label
     }()
     
@@ -47,7 +47,7 @@ class WeatherCollectionViewCell: UICollectionViewCell {
         label.font = UIFont.systemFont(ofSize: 15, weight: .medium)
         label.backgroundColor = .clear
         label.textAlignment = .center
-        label.text = "5 F"
+        //label.text = "5 F"
         return label
     }()
     
@@ -70,6 +70,8 @@ class WeatherCollectionViewCell: UICollectionViewCell {
         super.layoutSubviews()
         //you get the frame of the UI Objects here
         weatherImage.layer.cornerRadius = weatherImage.bounds.width / 2.0
+        weatherImage.layer.borderWidth = 1
+        weatherImage.layer.borderColor = UIColor.black.cgColor
         weatherImage.layer.masksToBounds = true
     }
     
@@ -106,13 +108,12 @@ class WeatherCollectionViewCell: UICollectionViewCell {
             ])
     }
     
-    //Logic
-    public func configureCollectionViewCell(){ //pass in forecast
-        //TODO: Fill this when I get data
-        //set date label
-        //set high Label
-        //set low label
-        //set image
-            //set default image to placeholder image
+    //MARK: - configure custom collection view cell
+    public func configureCollectionViewCell(for forecast: SevenDayForecast){ //pass in forecast
+        //setting properties for the custom collection view cell
+        dateLabel.text = Date.dateStringFromTimeInterval(timeinterval: forecast.timeStamp) //need to filter out time
+        highLabel.text = "High: \(forecast.highTempF)°F"
+        lowLabel.text = "Low: \(forecast.lowTempF)°F"
+        weatherImage.image = (UIImage(named: forecast.weatherIcon))
     }
 }

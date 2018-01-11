@@ -61,6 +61,12 @@ class CityImageTableViewCell: UITableViewCell {
             ])
     }
     
+    // TODO: - do animation for name to pop up when you click on the cell
+    
+    
+    
+    
+    
     //This data is coming from the json that was used to populate
     //    public func configureTableViewCellFor(fellow: Fellow){
     //        nameLabel.text = fellow.name

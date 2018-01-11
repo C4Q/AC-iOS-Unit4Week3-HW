@@ -27,6 +27,7 @@
 		811A1B8920018512000EE49B /* PixabayAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 811A1B8820018512000EE49B /* PixabayAPIClient.swift */; };
 		811A1B8B20018529000EE49B /* APIKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 811A1B8A20018529000EE49B /* APIKeys.swift */; };
 		811A1B8D20027B8A000EE49B /* WeatherCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 811A1B8C20027B8A000EE49B /* WeatherCollectionViewCell.swift */; };
+		813893B92006EE3100988B84 /* DateHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 813893B82006EE3100988B84 /* DateHelper.swift */; };
 		81663F7E2002D78F0023ECD1 /* CityImageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81663F7D2002D78F0023ECD1 /* CityImageTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
@@ -53,6 +54,7 @@
 		811A1B8820018512000EE49B /* PixabayAPIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PixabayAPIClient.swift; sourceTree = "<group>"; };
 		811A1B8A20018529000EE49B /* APIKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIKeys.swift; sourceTree = "<group>"; };
 		811A1B8C20027B8A000EE49B /* WeatherCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherCollectionViewCell.swift; sourceTree = "<group>"; };
+		813893B82006EE3100988B84 /* DateHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateHelper.swift; sourceTree = "<group>"; };
 		81663F7D2002D78F0023ECD1 /* CityImageTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityImageTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -134,6 +136,7 @@
 				811A1B75200139EB000EE49B /* ImageAPIClient.swift */,
 				811A1B7820013A7C000EE49B /* WeatherAPIClient.swift */,
 				811A1B8820018512000EE49B /* PixabayAPIClient.swift */,
+				813893B82006EE3100988B84 /* DateHelper.swift */,
 				811A1B8A20018529000EE49B /* APIKeys.swift */,
 			);
 			path = NetworkModels;
@@ -236,6 +239,7 @@
 				811A1B7E20013BBD000EE49B /* WeatherView.swift in Sources */,
 				811A1B842001402B000EE49B /* WeatherModel.swift in Sources */,
 				81663F7E2002D78F0023ECD1 /* CityImageTableViewCell.swift in Sources */,
+				813893B92006EE3100988B84 /* DateHelper.swift in Sources */,
 				811A1B8220013BD5000EE49B /* FavoritesView.swift in Sources */,
 				811A1B8920018512000EE49B /* PixabayAPIClient.swift in Sources */,
 				5410A6D31FFFDF6500935A9A /* ZipCodeHelper.swift in Sources */,

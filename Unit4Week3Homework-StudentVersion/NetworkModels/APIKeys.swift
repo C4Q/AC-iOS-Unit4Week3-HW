@@ -16,7 +16,7 @@ import Foundation
 
 //PIXABAY: will need keyword to get random image for the city
 //keyword will be whatever the user searches for
-//EX) "https://pixabay.com/api/?key=\(APIKeys.pixabayAPIKey)&q=\(keyword)=photo"
+//EX) "https://pixabay.com/api/?key=\(APIKeys.pixabayAPIKey)&q=\(keyword)=photo/safesearch=true"
 
 struct APIKeys{
     private init(){}

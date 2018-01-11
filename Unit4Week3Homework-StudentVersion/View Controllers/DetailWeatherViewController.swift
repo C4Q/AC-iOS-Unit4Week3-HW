@@ -13,6 +13,9 @@ class DetailWeatherViewController: UIViewController {
     
     let detailView = DetailView()
     
+    var detailCityImage = ""
+        
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,19 +28,24 @@ class DetailWeatherViewController: UIViewController {
         detailView.saveButton.addTarget(self, action: #selector(saveImage), for: .touchUpInside)
     }
     
+    
+    //MARK: - button functionality
     @objc func dismissView() {
         dismiss(animated: true, completion: nil)
     }
     
-    //TODO: - add button action to dismiss view
+    
     @objc func dismissViewWithButton() {
-        //dismiss(animated: true, completion: nil)
-    }
-    //TODO: - save button action
-    @objc func saveImage() {
-        //dismiss(animated: true, completion: nil)
-        //TODO: - creat alert letting user know they have saves OR create animation that shows image going to favorites VC
+        dismiss(animated: true, completion: nil)
     }
     
+    //TODO: - save button action
+    @objc func saveImage() {
+        //just saving string of url
+        FileManagerHelper.manager.addFavoriteImageToFileManager(from: detailCityImage)
+        print("Saved image url to file manager")
+        //TODO: - create alert
+
+    }
 }
 

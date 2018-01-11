@@ -50,6 +50,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         //make view visable on screen
         window?.makeKeyAndVisible()
         
+        //loading favorites as soon as app opens
+        FileManagerHelper.manager.loadFavoritesFromSandBox()
+        FileManagerHelper.manager.loadFavorites()
+        
         return true
     }
 

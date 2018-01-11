@@ -29,20 +29,20 @@ struct CoordinateWrapper: Codable {
 }
 
 struct SevenDayForecast : Codable {
-    let currentDateAndTime: String
-    let highTempF: Double
-    let lowTempF: Double
+    let timeStamp: Double
+    let highTempF: Int
+    let lowTempF: Int
     let avgTempF: Double
     let rainPrecipIN: Double
     let windSpeedMPH: Double
     let weatherConditions: String // "Mostly Cloudy"
     let weatherIcon: String
     let isTheDayToday : Bool //perfect for date check!
-    let sunrise: String
-    let sunset: String
+    let sunrise: Double
+    let sunset: Double
     
     enum CodingKeys: String, CodingKey {
-        case currentDateAndTime = "validTime"
+        case timeStamp = "timestamp"
         case highTempF = "maxTempF"
         case lowTempF = "minTempF"
         case avgTempF
@@ -51,8 +51,8 @@ struct SevenDayForecast : Codable {
         case weatherConditions = "weather"
         case weatherIcon = "icon"
         case isTheDayToday = "isDay"
-        case sunrise = "sunriseISO"
-        case sunset = "sunsetISO"
+        case sunrise
+        case sunset
     }
 }
 

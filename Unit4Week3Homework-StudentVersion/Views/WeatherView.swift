@@ -17,7 +17,7 @@ class WeatherView: UIView {
         label.backgroundColor = .yellow
         label.textColor = .black
         label.font = UIFont.systemFont(ofSize: 20, weight: .medium)
-        label.text = "Weather Forecast for ChiTown"
+        label.text = "Weather Forecast for..."
         return label
     }()
     
@@ -109,6 +109,4 @@ class WeatherView: UIView {
             
             ])
     }
-    //Logic
-  
 }

@@ -24,3 +24,4 @@ struct PixabayImage: Codable {
         case id
     }
 }
+

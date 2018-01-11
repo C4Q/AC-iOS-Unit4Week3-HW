@@ -39,7 +39,7 @@ class DetailView: UIView {
     lazy var topLabel: UILabel = {
         let label = UILabel()
         label.textAlignment = .center
-        label.font = UIFont.systemFont(ofSize: 20, weight: .bold)
+        label.font = UIFont.systemFont(ofSize: 15, weight: .bold)
         label.text = "TopLabel"
         return label
     }()
@@ -54,8 +54,9 @@ class DetailView: UIView {
     lazy var weatherLabel: UILabel = {
         let label = UILabel()
         label.textAlignment = .center
-        label.font = UIFont.systemFont(ofSize: 15, weight: .regular)
+        label.font = UIFont.systemFont(ofSize: 15, weight: .bold)
         label.text = "WeatherLabel"
+        label.numberOfLines = 0
         return label
     }()
     
@@ -183,7 +184,7 @@ class DetailView: UIView {
             //topLabel
             topLabel.topAnchor.constraint(equalTo: exitButton.bottomAnchor, constant: 5),
             topLabel.centerXAnchor.constraint(equalTo: containerView.centerXAnchor),
-            topLabel.widthAnchor.constraint(equalTo: containerView.widthAnchor, multiplier: 0.80),
+            topLabel.widthAnchor.constraint(equalTo: containerView.widthAnchor, multiplier: 0.90),
             
             //cityImageView
             cityImageView.topAnchor.constraint(equalTo: topLabel.bottomAnchor, constant: 15),
@@ -194,12 +195,12 @@ class DetailView: UIView {
             cityImageView.heightAnchor.constraint(equalTo: containerView.heightAnchor, multiplier: 0.40),
             
             //weatherLabel
-            weatherLabel.topAnchor.constraint(equalTo: cityImageView.bottomAnchor, constant: 35),
+            weatherLabel.topAnchor.constraint(equalTo: cityImageView.bottomAnchor, constant: 20),
             weatherLabel.centerXAnchor.constraint(equalTo: containerView.centerXAnchor),
             weatherLabel.widthAnchor.constraint(equalTo: containerView.widthAnchor, multiplier: 0.80),
             
             //highLabel
-            highLabel.topAnchor.constraint(equalTo: weatherLabel.bottomAnchor, constant: 5),
+            highLabel.topAnchor.constraint(equalTo: weatherLabel.bottomAnchor, constant: 20),
             highLabel.centerXAnchor.constraint(equalTo: containerView.centerXAnchor),
             highLabel.widthAnchor.constraint(equalTo: containerView.widthAnchor, multiplier: 0.80),
             
@@ -230,15 +231,17 @@ class DetailView: UIView {
             
             ])
     }
-    
-    /*
-     
-     public func configureDetailView(fellow: Fellow, image: UIImage) {
-     nameLabel.text = fellow.name
-     profileImage.image = image
-     bioTextView.text = fellow.bio ?? "what???????"
-     }
-     */
-    
+
+    public func configureDetailView(forecast: SevenDayForecast, city: String) {
+        topLabel.text = "\(city)'s forecast for \(Date.dateStringFromTimeInterval(timeinterval: forecast.timeStamp))"
+        weatherLabel.text = forecast.weatherConditions
+        highLabel.text = "High: \(forecast.highTempF)°F"
+        lowLabel.text = "Low: \(forecast.lowTempF)°F"
+        sunriseLabel.text = "Sunrise: \(Date.timeStringFromTimeInterval(timeinterval: forecast.sunrise))"
+        sunsetLabel.text = "Sunset: \(Date.timeStringFromTimeInterval(timeinterval: forecast.sunset))"
+        windspeedLabel.text = " Wind Speed: \(forecast.windSpeedMPH) MPH"
+        inchesOfPrecipitationLabel.text = "Rain Precipitation: \(forecast.rainPrecipIN)"
+        //cityImageView.image = UIImage(named: "\(forecast.weatherIcon)")
+    }
 }
 
