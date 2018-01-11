@@ -32,6 +32,8 @@ class FavoritesViewController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = .yellow
         view.addSubview(favoritesView) //adding the custom view into the View Controller
+        
+        //Load Favorite Images from File Manager to VC
         self.favoritedImages = FileManagerHelper.manager.getFavoritesImages()
         
         

@@ -40,8 +40,8 @@ struct SevenDayForecast : Codable {
     let weatherConditions: String // "Mostly Cloudy"
     let weatherIcon: String
     let isTheDayToday : Bool //perfect for date check!
-    let sunrise: String
-    let sunset: String
+    let sunrise: Double
+    let sunset: Double
     
     enum CodingKeys: String, CodingKey {
         case timestamp = "timestamp"
@@ -54,7 +54,7 @@ struct SevenDayForecast : Codable {
         case weatherConditions = "weather"
         case weatherIcon = "icon"
         case isTheDayToday = "isDay"
-        case sunrise = "sunriseISO"
-        case sunset = "sunsetISO"
+        case sunrise
+        case sunset
     }
 }

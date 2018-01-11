@@ -20,8 +20,8 @@ class WeatherAPIClient {
                      errorHandler: @escaping (Error) -> Void){
         
         //valid url check and pass in zipcode here
-        
         guard let url = URL(string: "https://api.aerisapi.com/forecasts/" + zipcode + "?client_id=\(id)&client_secret=\(secret)") else {return}
+        
         //internet request using urlStr
         let request = URLRequest(url: url)
         //set completion
@@ -29,6 +29,7 @@ class WeatherAPIClient {
             do{
                 let decoder = JSONDecoder()
                 let response = try decoder.decode(WeatherResponseWrapper.self, from: data)
+                // Data will sometimes return null
                 if let results = response.response.first?.periods {
                     completionHandler(results)
                 }

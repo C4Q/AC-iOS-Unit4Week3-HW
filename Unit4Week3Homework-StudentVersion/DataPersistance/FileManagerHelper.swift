@@ -17,6 +17,7 @@ class FileManagerHelper {
     var pathName = "sevenDayForecast.plist"
     var favPathName = "Favorites.plist"
     
+    // Skipping saving Forecast, since weather can change during the day
     private var sevenDayForecast = [SevenDayForecast]() {
         didSet {
             saveForecastToSandBox()
@@ -27,12 +28,12 @@ class FileManagerHelper {
     
     private var favoriteURLS = [String]() {
         didSet {
-            saveFavorites()
+            saveFavoritesToSandbox()
         }
     }
     
     //This saves the array of Favorites to the phone
-    private func saveFavorites() {
+    private func saveFavoritesToSandbox() {
         //Save URLs
         let path = dataFilePath(withPathName: favPathName)
         do {
@@ -44,6 +45,7 @@ class FileManagerHelper {
         }
     }
     
+    // Load array of favoriteURLs from SandBox
     func loadFavoritesFromSandBox() {
         //Save URLs
         let path = dataFilePath(withPathName: favPathName)
@@ -62,9 +64,8 @@ class FileManagerHelper {
         favoriteURLS.append(urlstr)
     }
     
-    //Get Favorites Images to VC
+    //Get Favorites Images to VC from File Manager
     func getFavoritesImages() -> [UIImage]{
-        //loadFavoritesFromSandBox()
         return favoriteImages
     }
     

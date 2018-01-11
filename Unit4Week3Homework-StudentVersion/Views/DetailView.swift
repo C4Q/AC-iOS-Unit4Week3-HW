@@ -240,8 +240,8 @@ class DetailView: UIView {
         self.topLabel.text = "Weather for \(Date.dateStringFromTimeInterval(timeinterval: forecast.timestamp)) for \(cityName)"
         self.highLabel.text = "High: \(forecast.highTempF)"
         self.lowLabel.text = "Low: \(forecast.lowTempF)"
-        self.sunriseLabel.text = "Sunrise: \(forecast.sunrise)"
-        self.sunsetLabel.text = "Sunset: \(forecast.sunset)"
+        self.sunriseLabel.text = "Sunrise: \(Date.timeStringFromTimeInterval(timeinterval: forecast.sunrise))"
+        self.sunsetLabel.text = "Sunset: \(Date.timeStringFromTimeInterval(timeinterval: forecast.sunset))"
         self.windspeedLabel.text = "Windspeed \(forecast.windSpeedMPH)"
         self.inchesOfPrecipitationLabel.text = "Inches: \(forecast.rainPrecipIN)"
         self.weatherLabel.text = forecast.weatherConditions
