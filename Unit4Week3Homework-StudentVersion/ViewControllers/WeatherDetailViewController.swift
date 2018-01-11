@@ -11,21 +11,29 @@ import UIKit
 class WeatherDetailViewController: UIViewController {
 
     var weatherObject: Weather!
-    var cityName: String!
     
     let detailView = DetailView()
+    var picture: PixabayResults?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         view.addSubview(detailView)
         constraintView()
         setView()
+        PixabayAPIClient.manager.getImages(from: ZipCodeHelper.manager.CityName(), completionHandler: {self.picture = $0}, errorHandler: {print($0)})
+        navigationItem.title = ZipCodeHelper.manager.CityName()
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Save", style: .plain, target: self, action: #selector(saveImage))
+    }
+    
+    @objc func saveImage() {
+        guard let image = detailView.cityImage.image else { return }
+        //TODO: Save Image
+        
     }
     
     func setView() {
         
-        guard let cityName = cityName else {return}
-        detailView.cityDateLabel.text = "\(cityName) for \(Date.dateStringFromTimeInterval(timeinterval: TimeInterval(weatherObject.timestamp))) "
+        detailView.cityDateLabel.text = "Weather forecast in \(ZipCodeHelper.manager.CityName()) for \(Date.dateStringFromTimeInterval(timeinterval: TimeInterval(weatherObject.timestamp))) "
         
         //TODO: Image
         

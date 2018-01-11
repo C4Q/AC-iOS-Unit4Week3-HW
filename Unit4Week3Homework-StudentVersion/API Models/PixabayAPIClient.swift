@@ -18,39 +18,23 @@ struct Pixabay: Codable {
 struct PixabayAPIClient {
     private init() {}
     static let manager = PixabayAPIClient()
-    func getFirstImage(named str: String, completionHandler: @escaping (Pixabay) -> Void, errorHandler: @escaping (Error) -> Void) {
-        guard let request = buildRequest(with: str) else {errorHandler(AppError.badURL(str: str)); return}
-        let parsePixabay: (Data) -> Void = {(data: Data) in
-            do {
-                let allResults = try JSONDecoder().decode(PixabayResults.self, from: data)
-                let firstPixabay = allResults.hits.first
-                completionHandler(firstPixabay!)
-            }
-            catch {
-                errorHandler(error)
-            }
-        }
-        NetworkHelper.manager.performDataTask(with: request, completionHandler: parsePixabay, errorHandler: errorHandler)
-    }
-    func getImages(named str: String, completionHandler: @escaping ([Pixabay]) -> Void, errorHandler: @escaping (Error) -> Void) {
-        guard let request = buildRequest(with: str) else {errorHandler(AppError.badURL(str: str)); return}
-        let parsePixabays: (Data) -> Void = {(data) in
-            do {
-                let allResults = try JSONDecoder().decode(PixabayResults.self, from: data)
-                let pixabays = allResults.hits
-                completionHandler(pixabays)
-            }
-            catch {
-                errorHandler(error)
-            }
-        }
-        NetworkHelper.manager.performDataTask(with: request, completionHandler: parsePixabays, errorHandler: errorHandler)
-    }
-    private func buildRequest(with str: String) -> URLRequest? {
-        let urlStr = "https://pixabay.com/api/?key=\(PixabayAPIClient.key)&q=" + str
-        guard let url = URL(string: urlStr) else { return nil }
+    func getImages(from city: String, completionHandler: @escaping (PixabayResults) -> Void, errorHandler: (Error) -> Void) {
+        
+        let key = "7289923-0b68ed7d233fab7c0c5f1be3f"
+        guard let url = URL(string: "https://pixabay.com/api/?key=\(key)&q=\(city)") else {return}
         let request = URLRequest(url: url)
-        return request
+        let completion: (Data) -> Void = {(data: Data) in
+            do {
+                let images = try JSONDecoder().decode(PixabayResults.self, from: data)
+                completionHandler(images)
+            }
+            catch {
+                print(error)
+            }
+        }
+        NetworkHelper.manager.performDataTask(with: request,
+                                              completionHandler: completion,
+                                              errorHandler: {print($0)})
     }
 }
 

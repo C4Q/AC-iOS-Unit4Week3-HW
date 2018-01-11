@@ -22,6 +22,7 @@
 		8199C8DD200682BA00D08494 /* PixabayAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8199C8DC200682BA00D08494 /* PixabayAPIClient.swift */; };
 		8199C8DF200683C400D08494 /* imageCacheAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8199C8DE200683C400D08494 /* imageCacheAPI.swift */; };
 		8199C8E320071C3A00D08494 /* DateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8199C8E220071C3A00D08494 /* DateFormatter.swift */; };
+		8199C8E52007330000D08494 /* KeyArchiver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8199C8E42007330000D08494 /* KeyArchiver.swift */; };
 		81C5A5D620041F5700E53CBC /* FavoriteCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81C5A5D520041F5700E53CBC /* FavoriteCell.swift */; };
 		81C5A6152005519100E53CBC /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81C5A6142005519100E53CBC /* DetailView.swift */; };
 /* End PBXBuildFile section */
@@ -44,6 +45,7 @@
 		8199C8DC200682BA00D08494 /* PixabayAPIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PixabayAPIClient.swift; sourceTree = "<group>"; };
 		8199C8DE200683C400D08494 /* imageCacheAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = imageCacheAPI.swift; sourceTree = "<group>"; };
 		8199C8E220071C3A00D08494 /* DateFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateFormatter.swift; sourceTree = "<group>"; };
+		8199C8E42007330000D08494 /* KeyArchiver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyArchiver.swift; sourceTree = "<group>"; };
 		81C5A5D520041F5700E53CBC /* FavoriteCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteCell.swift; sourceTree = "<group>"; };
 		81C5A6142005519100E53CBC /* DetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -117,6 +119,7 @@
 				5410A6D21FFFDF6500935A9A /* ZipCodeHelper.swift */,
 				8199C8E220071C3A00D08494 /* DateFormatter.swift */,
 				8199C8D820059E0600D08494 /* NetworkHelper.swift */,
+				8199C8E42007330000D08494 /* KeyArchiver.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -212,6 +215,7 @@
 				81C5A5D620041F5700E53CBC /* FavoriteCell.swift in Sources */,
 				8199C8DB20059F7000D08494 /* WeatherAPIClient.swift in Sources */,
 				5410A6D31FFFDF6500935A9A /* ZipCodeHelper.swift in Sources */,
+				8199C8E52007330000D08494 /* KeyArchiver.swift in Sources */,
 				8199C8E320071C3A00D08494 /* DateFormatter.swift in Sources */,
 				5410A6C31FFFDF1200935A9A /* MainWeatherViewController.swift in Sources */,
 				81474E8D2001554E00CF9DE7 /* WeatherDetailViewController.swift in Sources */,

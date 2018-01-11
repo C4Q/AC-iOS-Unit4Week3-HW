@@ -61,7 +61,6 @@ class WeatherCell: UICollectionViewCell {
             ])
     }
     func configureWeatherCell(weather: Weather) {
-//        dateLabel.text = weather.dateTimeISO.prefix(10).description
         
         dateLabel.text = Date.dateStringFromTimeInterval(timeinterval: TimeInterval(weather.timestamp))
         highLabel.text = "High: \(weather.maxTempF.description)\u{00B0}F"

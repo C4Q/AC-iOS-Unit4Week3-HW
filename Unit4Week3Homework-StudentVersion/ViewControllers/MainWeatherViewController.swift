@@ -36,7 +36,7 @@ class MainWeatherViewController: UIViewController {
         WeatherAPIClient.manager.getWeather(from: zipCode, completionHandler: {self.weatherArray = $0}, errorHandler: {print($0)})
     }
     func getCityName() {
-        ZipCodeHelper.manager.getLocationName(from: zipCode.description, completionHandler: {self.weatherView.cityLabel.text = "Weather Forecast in \($0)"}, errorHandler: {print($0)})
+        ZipCodeHelper.manager.getLocationName(from: zipCode.description, completionHandler: {ZipCodeHelper.manager.setCityName(name: $0)}, errorHandler: {print($0)})
     }
     
     func constraintView() {
@@ -70,7 +70,6 @@ UICollectionViewDelegateFlowLayout, UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let detailVC = WeatherDetailViewController()
         detailVC.weatherObject = weatherArray[indexPath.row]
-        detailVC.cityName = weatherView.cityLabel.text
         //TODO add extra descriptions
         navigationController?.pushViewController(detailVC, animated: true)
 

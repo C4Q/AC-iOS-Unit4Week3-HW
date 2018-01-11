@@ -26,6 +26,7 @@ class WeatherView: UIView {
     
     lazy var cityLabel: UILabel = {
        let label = UILabel()
+        label.text = "Weather forecast in \(ZipCodeHelper.manager.CityName())"
         return label
     }()
     lazy var instructionLabel: UILabel = {
