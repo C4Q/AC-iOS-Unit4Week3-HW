@@ -26,9 +26,16 @@ class PixabayModel {
         
         let randomNumber = Int(arc4random_uniform(UInt32(numberOfPicture)))
         let pic = pixabayResults?.hits[randomNumber]
+        
         guard let endpoint = pic?.webformatURL else { return nil }
         print(endpoint)
         return endpoint
+    }
+    
+    func uniqueStringFromEndpoint(_ endpoint: String) -> String {
+        let uniqueStringWithFileExtension = endpoint.components(separatedBy: "/").last!
+        let uniqueStringReadyForSaving = uniqueStringWithFileExtension.components(separatedBy: ".").first!
+        return uniqueStringReadyForSaving
     }
     
     func fetchPictures(searchTerm: String, completion: @escaping (PixabayResults) -> Void) {
@@ -41,8 +48,8 @@ class PixabayModel {
             URLQueryItem(name: "category", value: "places"),
             URLQueryItem(name: "page", value: "1")
         ]
-        guard let pixabayEndpoint = endpoint?.url?.absoluteString else { return }
         
+        guard let pixabayEndpoint = endpoint?.url?.absoluteString else { return }
         PixabayAPIClient.manager.getPictures(from: pixabayEndpoint,
                                              completionHandler: completion,
                                              errorHandler: {print($0)})

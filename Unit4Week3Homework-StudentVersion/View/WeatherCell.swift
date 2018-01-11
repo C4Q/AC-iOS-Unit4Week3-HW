@@ -45,38 +45,42 @@ class WeatherCell: UICollectionViewCell {
         setupViews()
     }
     
-    func setupViews() {
-        addSubview(dateLabel)
-        addSubview(imageView)
-        addSubview(highTempLabel)
-        addSubview(lowTempLabel)
-        setupConstaints()
+    private func setupViews() {
+        setupDateLabel()
+        setupImageView()
+        setupHighTempLabel()
+        setupLowTempLabel()
     }
     
-    func setupConstaints() {
+    private func setupDateLabel() {
+        addSubview(dateLabel)
         dateLabel.translatesAutoresizingMaskIntoConstraints = false
         dateLabel.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
         dateLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: 30).isActive = true
-        
+    }
+    
+    private func setupImageView() {
+        addSubview(imageView)
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
         imageView.topAnchor.constraint(equalTo: dateLabel.bottomAnchor, constant: 30).isActive = true
         imageView.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.4).isActive = true
         imageView.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 0.4).isActive = true
-
-        
+    }
+    
+    private func setupHighTempLabel() {
+        addSubview(highTempLabel)
         highTempLabel.translatesAutoresizingMaskIntoConstraints = false
         highTempLabel.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
         highTempLabel.topAnchor.constraint(equalTo: imageView.bottomAnchor, constant: 20).isActive = true
-
-        
+    }
+    
+    private func setupLowTempLabel() {
+        addSubview(lowTempLabel)
         lowTempLabel.translatesAutoresizingMaskIntoConstraints = false
         lowTempLabel.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
         lowTempLabel.topAnchor.constraint(equalTo: highTempLabel.bottomAnchor, constant: 20).isActive = true
         lowTempLabel.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -10).isActive = true
-
     }
-
-
     
 }

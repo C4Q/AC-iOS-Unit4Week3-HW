@@ -18,15 +18,15 @@ class DetailVC: UIViewController {
         }
     }
     
+    var endpointOfRandomPicture = String()
+    
     var weatherData: Period!
     
     // MARK: - View Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
-        addNavBar()
-        addSubviews()
-        setupConstraints()
+        setupViews()
         PixabayModel.manager.fetchPictures(searchTerm: ZipCodeHelper.manager.viewLocationName(),
                                            completion: completionForPictures)
     }
@@ -42,13 +42,28 @@ class DetailVC: UIViewController {
     }
     
     // MARK: - Layout
-    func setupConstraints() {
+    func setupViews() {
+        setupCityImageView()
+        setupStackView()
+        setupNavBar()
+    }
+    
+    func setupNavBar() {
+        navigationItem.title = ZipCodeHelper.manager.viewLocationName()
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Save", style: .plain, target: self, action: #selector(savePicture))
+    }
+    
+    private func setupCityImageView() {
+        view.addSubview(cityImageView)
         cityImageView.translatesAutoresizingMaskIntoConstraints = false
         cityImageView.bottomAnchor.constraint(equalTo: view.centerYAnchor, constant: 30).isActive = true
         cityImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         cityImageView.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 1).isActive = true
         cityImageView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.5).isActive = true
-        
+    }
+    
+    private func setupStackView() {
+        view.addSubview(stackView)
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         stackView.topAnchor.constraint(equalTo: view.centerYAnchor, constant: 100).isActive = true
@@ -127,6 +142,7 @@ class DetailVC: UIViewController {
             self.cityImageView.image = UIImage(named: "noImagePlaceholder")
             return
         }
+        self.endpointOfRandomPicture = PixabayModel.manager.uniqueStringFromEndpoint(endpoint)
         ImageDownloader.manager.getImage(from: endpoint,
                                          completionHandler: {self.cityImageView.image = UIImage(data: $0)},
                                          errorHandler: {print($0)})
@@ -134,29 +150,26 @@ class DetailVC: UIViewController {
     
     // MARK: - User Actions
     @objc func savePicture() {
+        guard let imageToSave = cityImageView.image else { return }
+        let savedImageName = endpointOfRandomPicture + "." + ZipCodeHelper.manager.viewLocationName()
+        let imageIsAlreadySaved = KeyedArchiverClient.shared.fetchListOfImages().contains(savedImageName)
+        
+        guard !imageIsAlreadySaved else {
+            print("Image already saved!")
+            return
+        }
+        
         let duplicateView = addDuplicateImageView(to: self.view)
         performAnimations(on: duplicateView)
-        guard let imageToSave = cityImageView.image else { return }
-        let dateAsString = Date().description + "." + ZipCodeHelper.manager.viewLocationName()
-        let success = KeyedArchiverClient.shared.saveImageToDisk(image: imageToSave, artworkPath: dateAsString)
+        
+        let success = KeyedArchiverClient.shared.saveImageToDisk(image: imageToSave, artworkPath: savedImageName)
         if success {
-            print(dateAsString)
             KeyedArchiverClient.shared.saveFavorites()
         }
         
     }
     
     // MARK: - Update Interface
-    func addSubviews() {
-        view.addSubview(stackView)
-        view.addSubview(cityImageView)
-    }
-    
-    func addNavBar() {
-        navigationItem.title = ZipCodeHelper.manager.viewLocationName()
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Save", style: .plain, target: self, action: #selector(savePicture))
-    }
-    
     func addDuplicateImageView(to superView: UIView) -> UIView {
         let iv = UIImageView()
         iv.image = cityImageView.image
@@ -165,7 +178,8 @@ class DetailVC: UIViewController {
         let addedView = view.subviews.last!
         return addedView
     }
-
+    
+    // MARK: - Animations
     func performAnimations(on view: UIView) {
         translateDuplicateImageDown(view)
         changeDuplicateImageOpacity(view)
@@ -181,7 +195,6 @@ class DetailVC: UIViewController {
             duplicateView.transform = CGAffineTransform(translationX: 0, y: distance)
         }) { (success) in
             self.view.subviews.last?.removeFromSuperview()
-            print("blah")
         }
     }
     

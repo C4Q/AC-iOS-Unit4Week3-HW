@@ -30,12 +30,12 @@ class FavoriteCell: UITableViewCell {
     }
     
     func setupViews() {
-        addSubview(favImageView)
         self.selectionStyle = .none
-        setupConstaints()
+        setupFavImageView()
     }
 
-    func setupConstaints() {
+    func setupFavImageView() {
+        addSubview(favImageView)
         favImageView.translatesAutoresizingMaskIntoConstraints = false
         favImageView.widthAnchor.constraint(equalTo: self.widthAnchor).isActive = true
         favImageView.heightAnchor.constraint(equalTo: self.heightAnchor).isActive = true
