@@ -25,6 +25,7 @@
 		939973852006F46F00F5752F /* AppError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 939973842006F46F00F5752F /* AppError.swift */; };
 		939973872006F47F00F5752F /* UserDefaultsHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 939973862006F47F00F5752F /* UserDefaultsHelper.swift */; };
 		9399738A2006FFB000F5752F /* ForecastCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 939973892006FFB000F5752F /* ForecastCell.swift */; };
+		939973C62007FC9200F5752F /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 939973C52007FC9200F5752F /* Date.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -48,6 +49,7 @@
 		939973842006F46F00F5752F /* AppError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppError.swift; sourceTree = "<group>"; };
 		939973862006F47F00F5752F /* UserDefaultsHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsHelper.swift; sourceTree = "<group>"; };
 		939973892006FFB000F5752F /* ForecastCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForecastCell.swift; sourceTree = "<group>"; };
+		939973C52007FC9200F5752F /* Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -127,6 +129,7 @@
 			children = (
 				939973782006EB4F00F5752F /* WeatherModel.swift */,
 				9399737B2006EB7000F5752F /* PixabayModel.swift */,
+				939973C52007FC9200F5752F /* Date.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -228,6 +231,7 @@
 				5410A6D31FFFDF6500935A9A /* ZipCodeHelper.swift in Sources */,
 				9399738A2006FFB000F5752F /* ForecastCell.swift in Sources */,
 				939973752006E12A00F5752F /* DetailedVC.swift in Sources */,
+				939973C62007FC9200F5752F /* Date.swift in Sources */,
 				939973812006F43600F5752F /* ImageAPIClient.swift in Sources */,
 				5410A6C31FFFDF1200935A9A /* WeeklyForecastVC.swift in Sources */,
 				939973852006F46F00F5752F /* AppError.swift in Sources */,

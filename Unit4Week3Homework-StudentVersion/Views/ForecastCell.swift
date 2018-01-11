@@ -69,7 +69,6 @@ class ForecastCell: UICollectionViewCell {
         //we get the frame of the UI elements here
         weatherTypeImage.layer.cornerRadius = weatherTypeImage.bounds.width / 2.0 //making round
         weatherTypeImage.layer.masksToBounds = true //doesnt allow bleeding out of bounds
-        weatherTypeImage.image = #imageLiteral(resourceName: "sunny")
         
     }
     
@@ -117,4 +116,6 @@ class ForecastCell: UICollectionViewCell {
         lowTempLabel.trailingAnchor.constraint(equalTo: sf.trailingAnchor).isActive = true
         lowTempLabel.centerXAnchor.constraint(equalTo: sf.centerXAnchor).isActive = true
     }
+    
+
 }

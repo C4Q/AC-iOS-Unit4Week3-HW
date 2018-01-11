@@ -19,8 +19,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         
         let tabBarController = UITabBarController()
-        
         let weeklyForecastVC = WeeklyForecastVC()
+        let navController = UINavigationController(rootViewController: weeklyForecastVC)
         let favoritesVC = FavoritesVC()
         
         window = UIWindow(frame: UIScreen.main.bounds) //Sets window to all sides
@@ -30,7 +30,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         weeklyForecastVC.tabBarItem = UITabBarItem(tabBarSystemItem: UITabBarSystemItem.search, tag: 0) //Sets Icon and tag
         favoritesVC.tabBarItem = UITabBarItem(tabBarSystemItem: UITabBarSystemItem.favorites, tag: 1)
         //
-        tabBarController.setViewControllers([weeklyForecastVC, favoritesVC], animated: true)
+        tabBarController.setViewControllers([navController, favoritesVC], animated: true)
         
         return true
     }

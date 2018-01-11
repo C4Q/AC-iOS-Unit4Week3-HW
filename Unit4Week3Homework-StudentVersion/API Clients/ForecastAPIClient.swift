@@ -25,7 +25,10 @@ struct WeatherAPIClient{
                 let myDecoder = JSONDecoder()
                 
                 let forecastsSearch = try myDecoder.decode(Response.self, from: data)
+           
+                if !forecastsSearch.response.isEmpty {
                 completionHandler(forecastsSearch.response[0].periods)
+                }
                 
             } catch{
                 print("Category Has This Error: " + error.localizedDescription)

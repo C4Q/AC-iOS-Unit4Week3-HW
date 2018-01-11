@@ -12,22 +12,6 @@ import Foundation
 //Access ID: Yc9YCvSnauHy1TLwYolYe
 
 
-/*
- Forecast Weekly:
- validTime : String
- maxTempF : Int
- minTempF : Int
- 
- 
- DetailedVC:
- maxTempF : Int
- minTempF : Int
- sunriseISO : String
- sunsetISO : String
- windSpeedMPH : Int
- precipIN : Int
- 
- */
 
 
 struct Response: Codable {
@@ -39,14 +23,14 @@ struct Periods: Codable {
 }
 
 struct Forecast: Codable {
-    let validTime: String
+    let timestamp: Int
     let maxTempF: Int
     let minTempF: Int
     let precipIN: Double
     let windSpeedMPH: Int
     let weather: String
     let icon: String
-    let sunriseISO: String
-    let sunsetISO: String
+    let sunrise: Int
+    let sunset: Int
     
 }

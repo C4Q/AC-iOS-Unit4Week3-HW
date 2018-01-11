@@ -10,20 +10,33 @@ import UIKit
 
 class DetailedVC: UIViewController {
     
+    let detailView = DetailedView()
+    var forecast: Forecast
     
-    // TODO:
-    //    Create Detailed View
-    //    A Label naming the city and the forecast date
-    //    A random image of the city
-    //    A Label with a longer description of the weather
-    //    Additional information about the weather including the high, low, sunrise, sunset, windspeed and precipitation
-    //    Selecting the "Save" bar button item should save the image to your favorites and present an alert view informing the user.
+   
+    //Dependency Injection
+    
+    init(forecast: Forecast) {
+        self.forecast = forecast
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        view.backgroundColor = .white
         // Do any additional setup after loading the view.
     }
+    
+    
+   
+    
     
     
     

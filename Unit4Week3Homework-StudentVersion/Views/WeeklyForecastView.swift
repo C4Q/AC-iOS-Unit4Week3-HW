@@ -24,7 +24,10 @@ class WeeklyForecastView: UIView {
     lazy var label: UILabel = {
         let label = UILabel()
         label.textAlignment = .center
-        label.text = "Weather Forecast for New York"
+        label.font = UIFont(name: "AmericanTypewriter-Bold", size: 20)
+        if UserDefaultHelper.manager.getZip() != nil {
+        ZipCodeHelper.manager.getLocationName(from: UserDefaultHelper.manager.getZip()!, completionHandler: {label.text = "Weather Forecast for " + $0 }, errorHandler: {print($0)})
+    }
         return label
     }()
     
@@ -49,7 +52,7 @@ class WeeklyForecastView: UIView {
         tf.textAlignment = .center
         tf.borderStyle = .roundedRect
         tf.backgroundColor = .lightText
-        tf.keyboardType = .numberPad
+//        tf.keyboardType = .numberPad
         return tf
     }()
     
@@ -101,6 +104,12 @@ class WeeklyForecastView: UIView {
         textField.centerXAnchor.constraint(equalTo: sf.centerXAnchor).isActive = true
     }
     
+//    func loadZip() {
+//        guard (textField.text?.count)! < 6 else {return}
+//        if textField.text?.count == 5 {
+//            
+//        }
+    }
     
-}
+
 
