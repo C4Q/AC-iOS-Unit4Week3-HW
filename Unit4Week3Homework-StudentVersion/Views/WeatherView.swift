@@ -8,17 +8,17 @@
 
 import UIKit
 
+//TODO:
+//PUBLIC APIs
+// Private implementations
+
 class WeatherView: UIView {
+    
+    
     
     let cellId = "WeatherCollectionViewCell"
     let cellSpacing = UIScreen.main.bounds.width * 0.01
     let numberOfCells: CGFloat = 3
-    
-    //    var weatherForecast: [Forecast] = [] {
-    //        didSet {
-    //            weatherCollectionView.reloadData()
-    //        }
-    //    }
     
     //MARK: - Outlets
     lazy var cityLabel: UILabel = {
@@ -92,7 +92,6 @@ extension WeatherView: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         guard let text = textField.text else { return false }
         WeatherDataModel.manager.searchForForecast(by: text)
-        //        WeatherAPIClient.manager.getForecast(for: text, completion: { self.weatherForecast = $0 }, errorHandler: { print($0) })
         return true
     }
 }
@@ -134,16 +133,16 @@ extension WeatherView: UICollectionViewDelegateFlowLayout {
     }
 }
 
-extension WeatherView: UICollectionViewDelegate {
-    
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let index = indexPath.row
-        guard let selectedForecast = WeatherDataModel.manager.getForecast(for: index) else { return }
-        let detailViewController = DetailViewController
-        
-    }
-    
-}
+//extension WeatherView: UICollectionViewDelegate {
+//
+//    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+//        let index = indexPath.row
+//        guard let selectedForecast = WeatherDataModel.manager.getForecast(for: index) else { return }
+//        let detailViewController = DetailViewController
+//
+//    }
+//
+//}
 
 
 //MARK: -Constraints

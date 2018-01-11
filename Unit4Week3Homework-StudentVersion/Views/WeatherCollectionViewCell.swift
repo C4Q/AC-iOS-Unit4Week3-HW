@@ -73,7 +73,6 @@ class WeatherCollectionViewCell: UICollectionViewCell {
         setupWeatherGraphic()
         setupHighTempLabel()
         setupLowTempLabel()
-        
     }
     
     private func setupDateLabel() {
@@ -114,24 +113,6 @@ class WeatherCollectionViewCell: UICollectionViewCell {
         self.lowTempLabel.text = "Low: \(weather.minTempF)°F"
     }
 }
-    //        self.dateLabel.text = weather.pe
-    //        if let imageURL = fellow.imageURL {
-    //            if let image = ImageCache.manager.cachedImage(url: imageURL) {
-    //                profileImageView.image = image
-    //            } else {
-    //                ImageCache.manager.processImageInBackground(imageURL: imageURL, completion: { ( error, image) in
-    //                    if let error = error {
-    //                        print("fellowCell - error processing image: \(error.localizedDescription)")
-    //                    } else if let image = image {
-    //                        DispatchQueue.main.sync {
-    //                            self.profileImageView.image = image
-    //                        }
-    //                    }
-    //                })
-    //            }
-    //        } else {
-    //            profileImageView.image = UIImage(named: "VRmLo5A")
-    //        }
-    //    }
+
     
 

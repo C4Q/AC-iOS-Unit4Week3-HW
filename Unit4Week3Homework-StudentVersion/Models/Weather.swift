@@ -29,18 +29,3 @@ struct Details: Codable {
     let sunriseISO: String
     let sunsetISO: String
 }
-
-
-
-/*
-name of loc
-date
-png
-high
-low temp
-
-sunrise
-sunset
-windspeed
-percip
-*/
