@@ -46,13 +46,17 @@ struct PixabayAPIClient {
     
     
     private func buildRequest(with str: String) -> URLRequest? {
-        let urlStr = "https://pixabay.com/api/?key=\(PixabayAPIClient.key)&q=" + str
-        guard let url = URL(string: urlStr) else { return nil }
+        let urlStr = "https://pixabay.com/api/?key=\(PixabayAPIClient.key)&q=" + str + "&safesearch=true"
+        guard let url = URL(string: urlStr.removingWhitespaces()) else { return nil }
         let request = URLRequest(url: url)
         return request
     }
 }
-
+extension String {
+    func removingWhitespaces() -> String {
+        return components(separatedBy: .whitespaces).joined()
+    }
+}
 
 
 

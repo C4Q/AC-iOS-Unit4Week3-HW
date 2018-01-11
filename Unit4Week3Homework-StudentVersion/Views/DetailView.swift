@@ -41,8 +41,9 @@ class DetailView: UIView {
     lazy var topLabel: UILabel = {
         let label = UILabel()
         label.textAlignment = .center
-        label.font = UIFont.systemFont(ofSize: 20, weight: .bold)
+        label.font = UIFont.systemFont(ofSize: 15, weight: .bold)
         label.text = "TopLabel"
+        label.numberOfLines = 0
         return label
     }()
     
@@ -196,7 +197,7 @@ class DetailView: UIView {
             cityImageView.heightAnchor.constraint(equalTo: containerView.heightAnchor, multiplier: 0.40),
             
             //weatherLabel
-            weatherLabel.topAnchor.constraint(equalTo: cityImageView.bottomAnchor, constant: 35),
+            weatherLabel.topAnchor.constraint(equalTo: cityImageView.bottomAnchor, constant: 30),
             weatherLabel.centerXAnchor.constraint(equalTo: containerView.centerXAnchor),
             weatherLabel.widthAnchor.constraint(equalTo: containerView.widthAnchor, multiplier: 0.80),
             
@@ -234,15 +235,16 @@ class DetailView: UIView {
     }
     
     
-     
-    public func configureDetailView(forecast: SevenDayForecast) {
-        self.topLabel.text = "Weather for DATE for CITY"
+     //Func to set up detailView when called 
+    public func configureDetailView(forecast: SevenDayForecast, cityName: String) {
+        self.topLabel.text = "Weather for \(Date.dateStringFromTimeInterval(timeinterval: forecast.timestamp)) for \(cityName)"
         self.highLabel.text = "High: \(forecast.highTempF)"
         self.lowLabel.text = "Low: \(forecast.lowTempF)"
         self.sunriseLabel.text = "Sunrise: \(forecast.sunrise)"
         self.sunsetLabel.text = "Sunset: \(forecast.sunset)"
         self.windspeedLabel.text = "Windspeed \(forecast.windSpeedMPH)"
         self.inchesOfPrecipitationLabel.text = "Inches: \(forecast.rainPrecipIN)"
+        self.weatherLabel.text = forecast.weatherConditions
     }
     
     

@@ -31,7 +31,8 @@ class DetailWeatherViewController: UIViewController {
     }
     
     @objc func saveImage() {
-        FileManagerHelper.manager.addFavoriteImage(from: imageURL)
+        FileManagerHelper.manager.addFavoriteImage(from: imageURLtoSave)
+        print("Save Button clicked")
     }
 
 }

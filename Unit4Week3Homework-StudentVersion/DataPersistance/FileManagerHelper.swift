@@ -44,25 +44,41 @@ class FileManagerHelper {
         }
     }
     
+    func loadFavoritesFromSandBox() {
+        //Save URLs
+        let path = dataFilePath(withPathName: favPathName)
+        do {
+            let data = try Data(contentsOf: path)
+            let arrayOfFavoritedImageUrlStrings = try PropertyListDecoder().decode([String].self, from: data)
+            self.favoriteURLS = arrayOfFavoritedImageUrlStrings
+        }
+        catch {
+            print("error decoding items: \(error.localizedDescription)")
+        }
+    }
+    
     //When the save button is clicked
     func addFavoriteImage(from urlstr: String) {
         favoriteURLS.append(urlstr)
     }
     
-    //Get Favorites Images
+    //Get Favorites Images to VC
     func getFavoritesImages() -> [UIImage]{
+        //loadFavoritesFromSandBox()
         return favoriteImages
     }
     
     //This is called in the app delegate to bring up favorited images
     func loadFavorites() {
+        var arrayOfFavorites = [UIImage]()
         for imageURLS in favoriteURLS {
             if let loadedimage = getImage(with: imageURLS) {
-                favoriteImages.append(loadedimage)
+                arrayOfFavorites.append(loadedimage)
             } else {
                 print("No image with that name saved on phone")
             }
         }
+        self.favoriteImages = arrayOfFavorites
     }
     
     //Saving Images To Disk

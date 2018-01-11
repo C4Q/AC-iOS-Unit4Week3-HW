@@ -15,7 +15,7 @@ class ImageAPIClient {
                    completionHandler: @escaping (UIImage) -> Void,
                    errorHandler: @escaping (Error) -> Void) {
         
-        guard let url = URL(string: urlStr) else {
+        guard let url = URL(string: urlStr.removingWhitespaces()) else {
             errorHandler(AppError.invalidImage)
             return
         }
@@ -23,7 +23,7 @@ class ImageAPIClient {
         //Check to see if you downloaded an image with the same url
         if let savedImage = FileManagerHelper.manager.getImage(with: urlStr) {
             completionHandler(savedImage)
-            print("Loaded Iamge from Phone")
+            print("Loaded Image from Phone from API Client")
         } else {
             //If there is no image saved, get it from the internet
             
@@ -46,5 +46,6 @@ class ImageAPIClient {
         }
     }
 }
+
 
 

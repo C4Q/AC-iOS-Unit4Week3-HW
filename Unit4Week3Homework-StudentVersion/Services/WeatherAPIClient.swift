@@ -29,8 +29,9 @@ class WeatherAPIClient {
             do{
                 let decoder = JSONDecoder()
                 let response = try decoder.decode(WeatherResponseWrapper.self, from: data)
-                let results = response.response.first!.periods
-                completionHandler(results)
+                if let results = response.response.first?.periods {
+                    completionHandler(results)
+                }
             } catch {
                 errorHandler(AppError.codingError(rawError: error))
             }
