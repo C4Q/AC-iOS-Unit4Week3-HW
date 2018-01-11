@@ -10,7 +10,7 @@ import UIKit
 
 class FavoritesViewController: UIViewController {
 
-    var sampleCityArray = [#imageLiteral(resourceName: "chicago"), #imageLiteral(resourceName: "Hastings"), #imageLiteral(resourceName: "phili"), #imageLiteral(resourceName: "tokyo")]
+    //var sampleCityArray = [#imageLiteral(resourceName: "chicago"), #imageLiteral(resourceName: "Hastings"), #imageLiteral(resourceName: "phili"), #imageLiteral(resourceName: "tokyo")]
     
     let favoritesView = FavoritesView()
     let favoritesCustomCell = CityImageTableViewCell()
@@ -25,27 +25,41 @@ class FavoritesViewController: UIViewController {
         }
     }
     
-    
-    
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .yellow
         view.addSubview(favoritesView) //adding the custom view into the View Controller
         
         //Load Favorite Images from File Manager to VC
-        
         FileManagerHelper.manager.loadFavorites()
         self.favoritedImages = FileManagerHelper.manager.getFavoritesImages()
-        
         
         //TBV Delegates
         favoritesView.tableView.delegate = self
         favoritesView.tableView.dataSource = self
         favoritesView.tableView.estimatedRowHeight = 80
         favoritesView.tableView.rowHeight = UITableViewAutomaticDimension
-        
-        
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        animateTable()
+    }
+    
+    func animateTable() {
+        favoritesView.tableView.reloadData()
+        let cells = favoritesView.tableView.visibleCells
+        let tableViewHeight = favoritesView.tableView.bounds.size.height
+        for cell in cells {
+            cell.transform = CGAffineTransform(translationX: 0, y: tableViewHeight)
+        }
+        var delayCounter = 0
+        for cell in cells {
+            UIView.animate(withDuration: 1.75, delay: Double(delayCounter) * 0.05, usingSpringWithDamping: 0.7, initialSpringVelocity: 0, options: .curveEaseInOut, animations: {
+                cell.transform = CGAffineTransform.identity
+            }, completion: nil)
+            delayCounter += 1
+        }
     }
 }
 

@@ -21,27 +21,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         //creating tab one: WeatherVC
         let weatherVC = WeatherViewController()
-        weatherVC.tabBarItem = UITabBarItem(title: "Weather", image: UIImage(named: "weatherTabBarItem"), tag: 0)
+        weatherVC.tabBarItem = UITabBarItem(title: "Weather", image: UIImage(named: "weatherTabBarItem2"), tag: 0)
         
         //creating tab two: FavoritesVC
         let favoritesVC = FavoritesViewController()
-        favoritesVC.tabBarItem = UITabBarItem(title: "Favorites", image: UIImage(named: "star"), tag: 1)
+        favoritesVC.tabBarItem = UITabBarItem(title: "Favorites", image: UIImage(named: "star2"), tag: 1)
         
         //embedding nav controller with weather VC but not favorites VC
         let navController = UINavigationController(rootViewController: weatherVC)
         tbc.viewControllers = [navController,favoritesVC]
-        //controllers.map {UINavigationController(rootViewController: $0)}
-        
-        //embedded VC's inside a tbc WITHOUT any nav controllers
-        //tbc.setViewControllers([weatherVC, favoritesVC], animated: true)
-        
-        
-        //MARK: for other use: Create and set a UINavigationController for each viewController.
-        
-        /*let controllers = [weatherVC, favoritesVC]
-         tabBarController.viewControllers = controllers
-         
-         tabBarController.viewControllers = controllers.map{ UINavigationController(rootViewController: $0)}*/
         
         //set window to be entire witdth of screen
         window = UIWindow(frame: UIScreen.main.bounds)
@@ -51,7 +39,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window?.makeKeyAndVisible()
         
         FileManagerHelper.manager.loadFavoritesFromSandBox()
-        //FileManagerHelper.manager.loadFavorites()
         
         return true
     }

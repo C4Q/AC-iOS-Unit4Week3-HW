@@ -56,7 +56,7 @@ class WeatherView: UIView {
         label.backgroundColor = .clear
         label.textColor = .white
         label.numberOfLines = 0
-        label.text = "Enter a Zone Improvement Plan Code"
+        label.text = "Enter ZIP Code for Weather!"
         return label
     }()
     
@@ -111,5 +111,5 @@ class WeatherView: UIView {
             
             ])
     }
-    //Logic
+    
 }

@@ -35,7 +35,7 @@ class DetailWeatherViewController: UIViewController {
         print("Save Button clicked")
     }
     
-    
     // TODO: Add animation for save button being clicked
+    
 
 }

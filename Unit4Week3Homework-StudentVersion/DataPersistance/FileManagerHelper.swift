@@ -24,9 +24,9 @@ class FileManagerHelper {
         }
     }
     
-    private var favoriteImages = [UIImage]()
+    private var favoriteImages = [UIImage]() // This is where your saved images will be appended when you load the images
     
-    private var favoriteURLS = [String]() {
+    private var favoriteURLS = [String]() { // This is how you keep track of the names of your favorite images
         didSet {
             saveFavoritesToSandbox()
         }

@@ -11,6 +11,7 @@ import UIKit
 class WeatherViewController: UIViewController {
     
     var currentTextField = "" //This will be used for the PixelBay call which happens once a user clicks on the collectionView
+    
     var cityName = "" {
         didSet {
             weatherView.messageLabel.text = "Weather Forecast for \(cityName)"
@@ -30,7 +31,7 @@ class WeatherViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .red
-        navigationItem.title = "7 Day Forecast"
+        navigationItem.title = "Seven Day Forecast"
         
         //CV Delegates
         view.addSubview(weatherView)
@@ -45,7 +46,6 @@ class WeatherViewController: UIViewController {
         } else {
             weatherView.textField.text = ""
         }
-        
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -65,7 +65,6 @@ class WeatherViewController: UIViewController {
             }
         }
     }
-    
     
     //MARK: - Adding scrolling animation when the user draws another card: https://stackoverflow.com/questions/15985574/uicollectionview-auto-scroll-to-cell-at-indexpath
     func setUpAutomaticScrolling(){
