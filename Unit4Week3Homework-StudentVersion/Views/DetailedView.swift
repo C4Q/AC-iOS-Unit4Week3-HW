@@ -38,6 +38,7 @@ class DetailedView: UIView {
     
     lazy var textScroll: UITextView = {
         let ts = UITextView()
+        ts.text = "ngcgfhjcfhzdsdbbgkdsdagfdvbhgjhfdSZdxfcgvhbjnkmlmkjhgcfxdzsAZsxdcfgvbhjnknhbgvfcdxszawsedrfgvbhjnknhgftdrseawesrtfyguhjkhgfdresawesrdtfyguhijkjhugyftdresawesrdtfyhijkohgfdxszawsedrftgvbhnjkmjnhbvgcfxdzsAAZSXDFCGVHBJNKBHVGCFXDSZAAZsdxfcgvhbjnkmjnhugyftdrseawesdrftgyhujiokihugyftdresaweszxdrcfgvhbjvgcfxdrzsexdcfgvhb"
         return ts
     }()
     
@@ -48,7 +49,7 @@ class DetailedView: UIView {
     }()
     
     override init(frame: CGRect) { // Required : Progamatic
-        super.init(frame: frame)
+        super.init(frame: UIScreen.main.bounds)
         commonInit()
     }
     
