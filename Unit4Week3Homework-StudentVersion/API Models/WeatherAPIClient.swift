@@ -9,7 +9,7 @@
 import Foundation
 
 struct WeatherTopInfo: Codable {
-    let response: [WeatherInfo]
+    let response: [WeatherInfo]?
 }
 struct WeatherInfo: Codable {
     let periods: [Weather]
@@ -35,7 +35,9 @@ class WeatherAPIClient {
         let weatherData: (Data) -> Void = {(data) in
             do {
                 let result = try JSONDecoder().decode(WeatherTopInfo.self, from: data)
-                completionHandler(result.response[0].periods)
+                if let response = result.response?.first?.periods {
+                completionHandler(response)
+                }
             } catch {
                 errorHandler(AppError.codingError(rawError: error))
             }

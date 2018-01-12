@@ -22,7 +22,7 @@ class WeatherDetailViewController: UIViewController {
         view.addSubview(detailView)
         constraintView()
         setView()
-        PixabayAPIClient.manager.getImages(from: cityName.replacingOccurrences(of: " ", with: ""), completionHandler: {self.imageURL = $0.webformatURL
+        PixabayAPIClient.manager.getImages(from: cityName.replacingOccurrences(of: " ", with: "%20"), completionHandler: {self.imageURL = $0.webformatURL
             ImageAPIClient.manager.loadImage(from: self.imageURL, completionHandler: {self.detailView.cityImage.image = $0}, errorHandler: {print($0)})
         }, errorHandler: {print($0)})
         navigationItem.title = cityName
