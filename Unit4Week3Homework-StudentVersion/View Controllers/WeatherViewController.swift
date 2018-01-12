@@ -124,6 +124,7 @@ extension WeatherViewController: UICollectionViewDelegate {
         detailWVC.modalPresentationStyle = .overCurrentContext
         detailWVC.detailView.configureDetailView(forecast: forecast, city: cityName )
         present(detailWVC, animated: true, completion: nil)
+
         
         //MARK: - Making Pixabay API Call to get random city image
         //Pixabay API completion
@@ -143,6 +144,7 @@ extension WeatherViewController: UICollectionViewDelegate {
         PixabayAPIClient.manager.getCityImage(from: keyWord, //get pic based off of what the user inputs
             completionHandler: loadImageFromInternet,
             errorHandler: {print($0)})
+        
         
         //Spring animation when User clicks on a specific day for weather
         let forecastCell = collectionView.cellForItem(at: indexPath)
@@ -185,6 +187,7 @@ extension WeatherViewController: UITextFieldDelegate {
     
     //Did Begin Editing
     func textFieldDidBeginEditing(_ textField: UITextField) {
+        textField.text = ""
         textField.becomeFirstResponder()
     }
     
@@ -209,6 +212,10 @@ extension WeatherViewController: UITextFieldDelegate {
         if text.count != 5 {
             textField.text = ""
             invalidZipCodeAlert()
+        }
+        
+        if text < String(00501) && text > String(99950) {
+            unknownZipCodeAlert()
         }
         
         //calling userDefaults to save zipcode entered

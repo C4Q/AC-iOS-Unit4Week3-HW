@@ -25,7 +25,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         //creating tab two: FavoritesVC
         let favoritesVC = FavoritesViewController()
-        favoritesVC.tabBarItem = UITabBarItem(title: "Favorites", image: UIImage(named: "star"), tag: 1)
+        favoritesVC.tabBarItem = UITabBarItem(tabBarSystemItem: .favorites, tag: 1)
         
         //embedding nav controller with weather VC but not favorites VC
         let navController = UINavigationController(rootViewController: weatherVC)

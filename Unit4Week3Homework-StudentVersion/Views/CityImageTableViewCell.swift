@@ -25,8 +25,13 @@ class CityImageTableViewCell: UITableViewCell {
         label.textColor = UIColor.white
         label.font = UIFont.systemFont(ofSize: 35, weight: .bold)
         label.text = "cityName".uppercased()
-        //label.isHidden = true
         return label
+    }()
+    
+    lazy var deleteImgButton: UIButton = {
+        let button = UIButton()
+        button.setImage(UIImage(named:"exit"), for: .normal)
+        return button
     }()
     
     //This is boiler plate for UIView
@@ -57,7 +62,7 @@ class CityImageTableViewCell: UITableViewCell {
     private func setupAndConstrainObjects(){
         
         //ARRAY MUST BE ON ORDER!!
-        let tableViewCellObjects = [cityImageView, nameLabel] as [UIView]
+        let tableViewCellObjects = [cityImageView, nameLabel, deleteImgButton] as [UIView]
         
         tableViewCellObjects.forEach{addSubview($0); ($0).translatesAutoresizingMaskIntoConstraints = false}
         
@@ -73,7 +78,21 @@ class CityImageTableViewCell: UITableViewCell {
             
             //nameLabel
             nameLabel.centerXAnchor.constraint(equalTo: centerXAnchor),
-            nameLabel.centerYAnchor.constraint(equalTo: centerYAnchor)
+            nameLabel.centerYAnchor.constraint(equalTo: centerYAnchor),
+            
+            //deleteImg
+            deleteImgButton.topAnchor.constraint(equalTo: topAnchor , constant: 10),
+            deleteImgButton.trailingAnchor.constraint(equalTo: trailingAnchor),
+            deleteImgButton.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.10),
+            deleteImgButton.widthAnchor.constraint(equalTo: deleteImgButton.heightAnchor)
             ])
     }
+    
+    //MARK: - configure table view cell
+    public func configureTableViewCell(for cityName: String){ //pass in forecast
+        //setting properties for the custom collection view cell
+        //nameLabel.text = "\(cityName)"
+       
+    }
+    
 }

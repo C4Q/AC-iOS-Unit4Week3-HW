@@ -39,7 +39,10 @@ class WeatherView: UIView {
         tField.backgroundColor = UIColor.darkGray
         tField.font = UIFont.systemFont(ofSize: 17, weight: .medium)
         tField.textAlignment = .center
-        tField.placeholder = "12345"
+        //tField.placeholder = "12345"
+        tField.tintColor = .white
+        tField.attributedPlaceholder = NSAttributedString(string: "12345",
+                                                           attributes: [NSAttributedStringKey.foregroundColor: UIColor.darkGray])
         tField.textColor = .white
         tField.keyboardType = .numbersAndPunctuation
         tField.keyboardAppearance = .dark

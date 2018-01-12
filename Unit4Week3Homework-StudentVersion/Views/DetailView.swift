@@ -46,7 +46,7 @@ class DetailView: UIView {
     
     lazy var cityImageView: UIImageView = {
         let imageView = UIImageView()
-        imageView.contentMode = .scaleAspectFill
+        imageView.contentMode = .scaleToFill
         imageView.image = #imageLiteral(resourceName: "noImg")
         return imageView
     }()
