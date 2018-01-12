@@ -19,7 +19,6 @@
 		D239991720047D930020A034 /* WeatherDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D239991620047D930020A034 /* WeatherDetailView.swift */; };
 		D2548F912001BC6100DC0305 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2548F902001BC6100DC0305 /* TabBarController.swift */; };
 		D2548F932001BD0E00DC0305 /* FavoritesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2548F922001BD0E00DC0305 /* FavoritesViewController.swift */; };
-		D26839082002A79100D852DC /* ImageCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = D26839072002A79100D852DC /* ImageCache.swift */; };
 		D268390A2002AAB600D852DC /* NetworkHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = D26839092002AAB600D852DC /* NetworkHelper.swift */; };
 		D268390C2002ACC700D852DC /* AerisAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = D268390B2002ACC700D852DC /* AerisAPIClient.swift */; };
 		D268390E2002B38400D852DC /* WeatherCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D268390D2002B38400D852DC /* WeatherCell.swift */; };
@@ -43,7 +42,6 @@
 		D239991620047D930020A034 /* WeatherDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherDetailView.swift; sourceTree = "<group>"; };
 		D2548F902001BC6100DC0305 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		D2548F922001BD0E00DC0305 /* FavoritesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesViewController.swift; sourceTree = "<group>"; };
-		D26839072002A79100D852DC /* ImageCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCache.swift; sourceTree = "<group>"; };
 		D26839092002AAB600D852DC /* NetworkHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkHelper.swift; sourceTree = "<group>"; };
 		D268390B2002ACC700D852DC /* AerisAPIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AerisAPIClient.swift; sourceTree = "<group>"; };
 		D268390D2002B38400D852DC /* WeatherCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherCell.swift; sourceTree = "<group>"; };
@@ -115,7 +113,6 @@
 			isa = PBXGroup;
 			children = (
 				5410A6D21FFFDF6500935A9A /* ZipCodeHelper.swift */,
-				D26839072002A79100D852DC /* ImageCache.swift */,
 				D26839092002AAB600D852DC /* NetworkHelper.swift */,
 				D268390B2002ACC700D852DC /* AerisAPIClient.swift */,
 				D2B442132006FD4A00322E23 /* PixabayImageAPIClient.swift */,
@@ -220,7 +217,6 @@
 				D239991720047D930020A034 /* WeatherDetailView.swift in Sources */,
 				D201154120081D6400F54810 /* FavoriteView.swift in Sources */,
 				D268390A2002AAB600D852DC /* NetworkHelper.swift in Sources */,
-				D26839082002A79100D852DC /* ImageCache.swift in Sources */,
 				D201151A2007150200F54810 /* ImageAPIClient.swift in Sources */,
 				D268390E2002B38400D852DC /* WeatherCell.swift in Sources */,
 				D201153A2007C71E00F54810 /* DataModel.swift in Sources */,

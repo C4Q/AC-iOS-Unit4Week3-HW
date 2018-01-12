@@ -23,6 +23,7 @@ class MainWeatherViewController: UIViewController {
                 //print("got images \(self.pixabayImageURLS)")
             }
             PixabayImageAPIClient.manager.getImage(from: pixabayURL, completionHandler: completion, errorHandler: {print($0,"error getting images")})
+            
         }
     }
     
