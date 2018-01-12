@@ -29,3 +29,4 @@ struct Details: Codable {
     let sunriseISO: String
     let sunsetISO: String
 }
+
