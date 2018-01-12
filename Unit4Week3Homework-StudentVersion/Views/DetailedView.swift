@@ -21,7 +21,7 @@ class DetailedView: UIView {
     //Date label
     lazy var cityLabel: UILabel = {
         let label = UILabel()
-        label.text = "City"
+        label.font = UIFont(name: "AmericanTypewriter-Bold", size: 20)
         label.textAlignment = .center //centers label
         label.font = UIFont.systemFont(ofSize: 17, weight: .medium)
         return label
@@ -32,13 +32,13 @@ class DetailedView: UIView {
     lazy var weatherTypeImage: UIImageView = {
         let imageview = UIImageView()
         imageview.contentMode = .scaleAspectFit
-        imageview.image = #imageLiteral(resourceName: "sunny")
         return imageview
     }()
     
     lazy var textScroll: UITextView = {
         let ts = UITextView()
-        ts.text = "ngcgfhjcfhzdsdbbgkdsdagfdvbhgjhfdSZdxfcgvhbjnkmlmkjhgcfxdzsAZsxdcfgvbhjnknhbgvfcdxszawsedrfgvbhjnknhgftdrseawesrtfyguhjkhgfdresawesrdtfyguhijkjhugyftdresawesrdtfyhijkohgfdxszawsedrftgvbhnjkmjnhbvgcfxdzsAAZSXDFCGVHBJNKBHVGCFXDSZAAZsdxfcgvhbjnkmjnhugyftdrseawesdrftgyhujiokihugyftdresaweszxdrcfgvhbjvgcfxdrzsexdcfgvhb"
+        ts.textAlignment = .center
+        ts.font = UIFont(name: "AmericanTypewriter-Bold", size: 20)
         return ts
     }()
     
@@ -59,7 +59,6 @@ class DetailedView: UIView {
     }
     
     private func commonInit(){
-        backgroundColor = .white
         setUpSaveButton()
         setCityLabel()
         setUpImageConstraints()
@@ -81,6 +80,7 @@ class DetailedView: UIView {
         cityLabel.topAnchor.constraint(equalTo: saveButton.bottomAnchor, constant: 20).isActive = true
         cityLabel.trailingAnchor.constraint(equalTo: sf.trailingAnchor).isActive = true
         cityLabel.leadingAnchor.constraint(equalTo: sf.leadingAnchor).isActive = true
+
         
     }
     
@@ -92,16 +92,17 @@ class DetailedView: UIView {
         weatherTypeImage.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 8).isActive = true
         weatherTypeImage.trailingAnchor.constraint(equalTo: trailingAnchor, constant: 8).isActive = true 
         weatherTypeImage.centerXAnchor.constraint(equalTo: sf.centerXAnchor).isActive = true
-        weatherTypeImage.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.3).isActive = true
+        weatherTypeImage.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.2).isActive = true
     }
     
     func setUpTextScroll() {
         let sf = safeAreaLayoutGuide
         addSubview(textScroll)
         textScroll.translatesAutoresizingMaskIntoConstraints = false
-        textScroll.topAnchor.constraint(equalTo: weatherTypeImage.bottomAnchor).isActive = true
+        textScroll.topAnchor.constraint(equalTo: weatherTypeImage.bottomAnchor, constant: 8).isActive = true
         textScroll.trailingAnchor.constraint(equalTo: sf.trailingAnchor).isActive = true
         textScroll.leadingAnchor.constraint(equalTo: sf.leadingAnchor).isActive = true
+        textScroll.bottomAnchor.constraint(equalTo: sf.bottomAnchor).isActive = true
     }
     
     
