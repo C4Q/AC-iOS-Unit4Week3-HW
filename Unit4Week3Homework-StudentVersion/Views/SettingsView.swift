@@ -33,7 +33,7 @@ class SettingsView: UIView {
         textField.backgroundColor = .white
         textField.borderStyle = .roundedRect
         textField.tintColor = .blue
-        textField.placeholder = "Enter a zip code."
+        textField.placeholder = "Enter a zip code to save."
         return textField
     }()
     
@@ -45,7 +45,7 @@ class SettingsView: UIView {
         NSLayoutConstraint.activate([
             
             zipCodeTextField.topAnchor.constraint(equalTo: segmentedControl.bottomAnchor, constant: 25),
-            
+            zipCodeTextField.centerXAnchor.constraint(equalTo: segmentedControl.centerXAnchor, constant: 0)
             ])
         
         
