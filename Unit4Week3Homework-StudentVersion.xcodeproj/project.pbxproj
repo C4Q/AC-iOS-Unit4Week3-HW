@@ -12,6 +12,21 @@
 		5410A6C81FFFDF1200935A9A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5410A6C71FFFDF1200935A9A /* Assets.xcassets */; };
 		5410A6CB1FFFDF1200935A9A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5410A6C91FFFDF1200935A9A /* LaunchScreen.storyboard */; };
 		5410A6D31FFFDF6500935A9A /* ZipCodeHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5410A6D21FFFDF6500935A9A /* ZipCodeHelper.swift */; };
+		81CC41BF2006A54C00C61E91 /* WeatherViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81CC41BE2006A54C00C61E91 /* WeatherViewController.swift */; };
+		81CC41C12006A6AC00C61E91 /* DetailWeatherViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81CC41C02006A6AC00C61E91 /* DetailWeatherViewController.swift */; };
+		81CC41C32006A6BA00C61E91 /* FavoritesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81CC41C22006A6B900C61E91 /* FavoritesViewController.swift */; };
+		81CC41C72007063100C61E91 /* WeatherView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81CC41C62007063100C61E91 /* WeatherView.swift */; };
+		81CC41CD2007479900C61E91 /* ImageAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81CC41CC2007479900C61E91 /* ImageAPIClient.swift */; };
+		81CC41CF200747B900C61E91 /* WeatherAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81CC41CE200747B900C61E91 /* WeatherAPIClient.swift */; };
+		81CC41D1200747CE00C61E91 /* NetworkHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81CC41D0200747CE00C61E91 /* NetworkHelper.swift */; };
+		81CC41D32007CDEB00C61E91 /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81CC41D22007CDEB00C61E91 /* DetailView.swift */; };
+		81CC41D52007D47A00C61E91 /* FileManagerHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81CC41D42007D47A00C61E91 /* FileManagerHelper.swift */; };
+		81CC41D72007D49400C61E91 /* CachingHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81CC41D62007D49400C61E91 /* CachingHelper.swift */; };
+		81CC41D92007D4AF00C61E91 /* UserDefaultHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81CC41D82007D4AF00C61E91 /* UserDefaultHelper.swift */; };
+		81CC42152007F9C000C61E91 /* ForecastModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81CC42142007F9C000C61E91 /* ForecastModel.swift */; };
+		81CC4218200812E500C61E91 /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81CC4217200812E500C61E91 /* TabBarViewController.swift */; };
+		81CC421A2008244C00C61E91 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81CC42192008244C00C61E91 /* SettingsView.swift */; };
+		81CC421E200834D200C61E91 /* WeatherCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81CC421D200834D200C61E91 /* WeatherCollectionViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +37,21 @@
 		5410A6CA1FFFDF1200935A9A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		5410A6CC1FFFDF1200935A9A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5410A6D21FFFDF6500935A9A /* ZipCodeHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZipCodeHelper.swift; sourceTree = "<group>"; };
+		81CC41BE2006A54C00C61E91 /* WeatherViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherViewController.swift; sourceTree = "<group>"; };
+		81CC41C02006A6AC00C61E91 /* DetailWeatherViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailWeatherViewController.swift; sourceTree = "<group>"; };
+		81CC41C22006A6B900C61E91 /* FavoritesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesViewController.swift; sourceTree = "<group>"; };
+		81CC41C62007063100C61E91 /* WeatherView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherView.swift; sourceTree = "<group>"; };
+		81CC41CC2007479900C61E91 /* ImageAPIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageAPIClient.swift; sourceTree = "<group>"; };
+		81CC41CE200747B900C61E91 /* WeatherAPIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherAPIClient.swift; sourceTree = "<group>"; };
+		81CC41D0200747CE00C61E91 /* NetworkHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkHelper.swift; sourceTree = "<group>"; };
+		81CC41D22007CDEB00C61E91 /* DetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailView.swift; sourceTree = "<group>"; };
+		81CC41D42007D47A00C61E91 /* FileManagerHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileManagerHelper.swift; sourceTree = "<group>"; };
+		81CC41D62007D49400C61E91 /* CachingHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CachingHelper.swift; sourceTree = "<group>"; };
+		81CC41D82007D4AF00C61E91 /* UserDefaultHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultHelper.swift; sourceTree = "<group>"; };
+		81CC42142007F9C000C61E91 /* ForecastModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForecastModel.swift; sourceTree = "<group>"; };
+		81CC4217200812E500C61E91 /* TabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
+		81CC42192008244C00C61E91 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		81CC421D200834D200C61E91 /* WeatherCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherCollectionViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,14 +84,61 @@
 		5410A6BF1FFFDF1200935A9A /* Unit4Week3Homework-StudentVersion */ = {
 			isa = PBXGroup;
 			children = (
-				5410A6D21FFFDF6500935A9A /* ZipCodeHelper.swift */,
-				5410A6C01FFFDF1200935A9A /* AppDelegate.swift */,
+				81CC42162007F9C500C61E91 /* Model */,
+				81CC41CA200746A500C61E91 /* APIClients */,
+				81CC41C82007460B00C61E91 /* ViewControllers */,
+				81CC41CB200746EB00C61E91 /* Helpers */,
 				5410A6C21FFFDF1200935A9A /* ViewController.swift */,
+				5410A6C01FFFDF1200935A9A /* AppDelegate.swift */,
 				5410A6C71FFFDF1200935A9A /* Assets.xcassets */,
 				5410A6C91FFFDF1200935A9A /* LaunchScreen.storyboard */,
 				5410A6CC1FFFDF1200935A9A /* Info.plist */,
 			);
 			path = "Unit4Week3Homework-StudentVersion";
+			sourceTree = "<group>";
+		};
+		81CC41C82007460B00C61E91 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				81CC4217200812E500C61E91 /* TabBarViewController.swift */,
+				81CC42192008244C00C61E91 /* SettingsView.swift */,
+				81CC41BE2006A54C00C61E91 /* WeatherViewController.swift */,
+				81CC421D200834D200C61E91 /* WeatherCollectionViewCell.swift */,
+				81CC41C62007063100C61E91 /* WeatherView.swift */,
+				81CC41C02006A6AC00C61E91 /* DetailWeatherViewController.swift */,
+				81CC41D22007CDEB00C61E91 /* DetailView.swift */,
+				81CC41C22006A6B900C61E91 /* FavoritesViewController.swift */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		81CC41CA200746A500C61E91 /* APIClients */ = {
+			isa = PBXGroup;
+			children = (
+				81CC41CE200747B900C61E91 /* WeatherAPIClient.swift */,
+				81CC41CC2007479900C61E91 /* ImageAPIClient.swift */,
+			);
+			path = APIClients;
+			sourceTree = "<group>";
+		};
+		81CC41CB200746EB00C61E91 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				81CC41D0200747CE00C61E91 /* NetworkHelper.swift */,
+				5410A6D21FFFDF6500935A9A /* ZipCodeHelper.swift */,
+				81CC41D42007D47A00C61E91 /* FileManagerHelper.swift */,
+				81CC41D62007D49400C61E91 /* CachingHelper.swift */,
+				81CC41D82007D4AF00C61E91 /* UserDefaultHelper.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
+		81CC42162007F9C500C61E91 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				81CC42142007F9C000C61E91 /* ForecastModel.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -135,8 +212,23 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				81CC4218200812E500C61E91 /* TabBarViewController.swift in Sources */,
+				81CC41C12006A6AC00C61E91 /* DetailWeatherViewController.swift in Sources */,
 				5410A6D31FFFDF6500935A9A /* ZipCodeHelper.swift in Sources */,
+				81CC41D92007D4AF00C61E91 /* UserDefaultHelper.swift in Sources */,
+				81CC41D1200747CE00C61E91 /* NetworkHelper.swift in Sources */,
+				81CC421A2008244C00C61E91 /* SettingsView.swift in Sources */,
+				81CC41BF2006A54C00C61E91 /* WeatherViewController.swift in Sources */,
+				81CC41D72007D49400C61E91 /* CachingHelper.swift in Sources */,
+				81CC41CF200747B900C61E91 /* WeatherAPIClient.swift in Sources */,
+				81CC421E200834D200C61E91 /* WeatherCollectionViewCell.swift in Sources */,
+				81CC41D52007D47A00C61E91 /* FileManagerHelper.swift in Sources */,
+				81CC41D32007CDEB00C61E91 /* DetailView.swift in Sources */,
+				81CC41CD2007479900C61E91 /* ImageAPIClient.swift in Sources */,
 				5410A6C31FFFDF1200935A9A /* ViewController.swift in Sources */,
+				81CC41C32006A6BA00C61E91 /* FavoritesViewController.swift in Sources */,
+				81CC41C72007063100C61E91 /* WeatherView.swift in Sources */,
+				81CC42152007F9C000C61E91 /* ForecastModel.swift in Sources */,
 				5410A6C11FFFDF1200935A9A /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -268,6 +360,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = "Unit4Week3Homework-StudentVersion/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "c4q.Unit4Week3Homework-StudentVersion";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -282,6 +375,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = "Unit4Week3Homework-StudentVersion/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "c4q.Unit4Week3Homework-StudentVersion";
 				PRODUCT_NAME = "$(TARGET_NAME)";
