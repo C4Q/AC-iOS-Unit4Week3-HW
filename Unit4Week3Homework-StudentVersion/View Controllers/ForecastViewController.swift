@@ -44,17 +44,45 @@ extension ForecastViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ForecastCell", for: indexPath) as! ForecastCollectionViewCell
-        cell.backgroundColor = .green
+        cell.backgroundColor = .white
         cell.layer.cornerRadius = 10.0
         cell.layer.shadowOpacity = 1.0
         cell.layer.shadowOffset = CGSize(width: 5, height: 5)
         
-        
-        let forecast = forecasts[indexPath.row]
-        cell.dateLabel.text = forecast.dateTimeISO.components(separatedBy: "T")[0]
-        cell.conditionImageView.image = UIImage(imageLiteralResourceName: forecast.icon)
-        cell.highLabel.text = "High: \(forecast.maxTempF.description) ℉"
-        cell.lowLabel.text = "Low: \(forecast.minTempF.description) ℉"
+        if let myDefaults = UserDefaultsHelper.manager.getValue() {
+            switch myDefaults.measurementSystem {
+            case 0:
+                let forecast = forecasts[indexPath.row]
+                cell.dateLabel.text = forecast.dateTimeISO.components(separatedBy: "T")[0]
+                cell.conditionImageView.image = UIImage(imageLiteralResourceName: forecast.icon)
+                cell.highLabel.text = "High: \(forecast.maxTempF.description) ℉"
+                cell.lowLabel.text = "Low: \(forecast.minTempF.description) ℉"
+                
+                
+                
+            case 1:
+                
+                
+                let forecast = forecasts[indexPath.row]
+                cell.dateLabel.text = forecast.dateTimeISO.components(separatedBy: "T")[0]
+                cell.conditionImageView.image = UIImage(imageLiteralResourceName: forecast.icon)
+                cell.highLabel.text = "High: \(forecast.maxTempC.description) ℃"
+                cell.lowLabel.text = "Low: \(forecast.minTempC.description) ℃"
+                
+                
+            default:
+                break
+                
+            }
+        } else {
+            let forecast = forecasts[indexPath.row]
+            cell.dateLabel.text = forecast.dateTimeISO.components(separatedBy: "T")[0]
+            cell.conditionImageView.image = UIImage(imageLiteralResourceName: forecast.icon)
+            cell.highLabel.text = "High: \(forecast.maxTempF.description) ℉"
+            cell.lowLabel.text = "Low: \(forecast.minTempF.description) ℉"
+            
+            return cell
+        }
         return cell
     }
     
@@ -90,26 +118,10 @@ extension ForecastViewController: UICollectionViewDelegateFlowLayout {
 extension ForecastViewController: UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        //let cell = collectionView.cellForItem(at: indexPath) as! ForecastCollectionViewCell
-        
-//        let detailView = WeatherDetailView(city: forecastView.cityNameLabel.text!, forecast: forecasts[indexPath.row])
         
         let detailVC = WeatherDetailViewController(city: forecastView.cityNameLabel.text!, forecast: forecasts[indexPath.row])
         
         present(detailVC, animated: true, completion: nil)
-        
-        /*
-         Presenting a view controller from a view
-         https://stackoverflow.com/a/31289401
-         */
-        
-//        var currentVC = UIApplication.shared.keyWindow?.rootViewController
-//
-//        while(currentVC!.presentedViewController != nil) {
-//            currentVC = currentVC!.presentedViewController
-//        }
-//
-//        currentVC?.present(detailVC, animated: true, completion: { print("successful presentation"); detailVC.detailView.setupLabelsAndImage(); detailVC.view.viewWithTag(999)?.removeFromSuperview() })
         
     }
     
@@ -127,14 +139,21 @@ extension ForecastViewController: UITextFieldDelegate {
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         
-        guard let text = textField.text else { return false }
-        guard let zip = Int(text) else { return false }
+        guard let text = textField.text else { textField.resignFirstResponder(); return false }
+        guard let zip = Int(text), text.count == 5 else { textField.resignFirstResponder(); alertController(title: "Invalid Input", message: "Please enter a valid zip code."); return false }
         
-        ZipCodeHelper.manager.getLocationName(from: zip.description, completionHandler: { self.forecastView.cityNameLabel.text = $0 }, errorHandler: { print($0) })
+
         
-        AerisWeatherAPIClient.manager.getForecast(zip: zip.description, completionHandler: { self.forecasts = $0 }, errorHandler: { print($0) })
+        AerisWeatherAPIClient.manager.getForecast(zip: zip.description, completionHandler: { self.forecasts = $0; ZipCodeHelper.manager.getLocationName(from: zip.description, completionHandler: { self.forecastView.cityNameLabel.text = $0 }, errorHandler: { print($0) }) }, errorHandler: { print($0); textField.resignFirstResponder(); self.alertController(title: "No Data", message: "No forecast data for the provided zip code.") })
         
+        textField.resignFirstResponder();
         return true
+    }
+    
+    func alertController(title: String, message: String) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Ok", style: .cancel))
+        self.present(alert, animated: true, completion: nil)
     }
     
 }

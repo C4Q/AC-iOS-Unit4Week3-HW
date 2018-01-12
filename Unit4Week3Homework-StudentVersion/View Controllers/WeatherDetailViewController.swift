@@ -27,21 +27,25 @@ class WeatherDetailViewController: UIViewController {
     }
     
     @objc func saveImage() {
+        if DataPersistenceHelper.manager.alreadyFavorited(imgUrl: imageUrl) {
+            alertController(title: "Error", message: "Already saved!")
+
+            return
+        }
         
         if DataPersistenceHelper.manager.addFavoritedImage(city: city, imgUrl: imageUrl, image: detailView.cityImageView.image!) {
-            
-            
+        
             UIView.animate(withDuration: 2.0, animations: {
                 self.detailView.cityImageView.layer.opacity = 0.0
                 self.detailView.cityImageView.transform = CGAffineTransform(translationX: self.view.bounds.maxX * 0.66, y: self.view.bounds.maxY).scaledBy(x: 0.001, y: 0.001)
                 
             }) { if $0 {
-                UIView.animate(withDuration: 1.0, animations: {
+                UIView.animate(withDuration: 0.1, animations: {
                 }, completion: nil)
                 self.detailView.cityImageView.layer.opacity = 1.0
                 self.detailView.cityImageView.transform = CGAffineTransform.identity
                 self.alertController(title: "Success", message: "You have saved the image.")
-                self.detailView.saveButton.isEnabled = false
+                //self.detailView.saveButton.isEnabled = false
                 } }
             
             
@@ -78,14 +82,42 @@ class WeatherDetailViewController: UIViewController {
 
         PixabayAPIClient.manager.getImages(searchTerm: city, completionHandler: { self.imageUrl = $0.webformatURL; ImageHelper.manager.getImage(from: $0.webformatURL, completionHandler: { self.detailView.cityImageView.image = $0; self.detailView.saveButton.isEnabled = true; self.view.viewWithTag(999)?.removeFromSuperview() }, errorHandler: { print($0); self.view.viewWithTag(999)?.removeFromSuperview() }) }, errorHandler: { print($0) })
         
-        detailView.titleLabel.text = city
-        detailView.conditionLabel.text = forecast.weather
-        detailView.highLabel.text = "High: \(forecast.maxTempF.description)"
-        detailView.lowLabel.text = "Low: \(forecast.minTempF.description)"
-        detailView.precipitationLabel.text = "Rainfall: \(forecast.precipIN.description)"
-        detailView.windspeedLabel.text = "Windspeed: \(forecast.windSpeedMPH.description)"
-        detailView.sunriseLabel.text = "Sunrise: \(forecast.sunrise.description)"
-        detailView.sunsetLabel.text = "Sunset: \(forecast.sunset.description)"
+        if let myDefaults = UserDefaultsHelper.manager.getValue() {
+            switch myDefaults.measurementSystem {
+            case 0:
+                detailView.titleLabel.text = city
+                detailView.conditionLabel.text = forecast.weather
+                detailView.highLabel.text = "High: \(forecast.maxTempC.description) ℉"
+                detailView.lowLabel.text = "Low: \(forecast.minTempC.description) ℉"
+                detailView.precipitationLabel.text = "Rainfall: \(forecast.precipIN.description) inches"
+                detailView.windspeedLabel.text = "Windspeed: \(forecast.windSpeedMPH.description) mph"
+                detailView.sunriseLabel.text = "Sunrise: \(forecast.sunrise.description)"
+                detailView.sunsetLabel.text = "Sunset: \(forecast.sunset.description)"
+                
+            case 1:
+                detailView.titleLabel.text = city
+                detailView.conditionLabel.text = forecast.weather
+                detailView.highLabel.text = "High: \(forecast.maxTempF.description) ℃"
+                detailView.lowLabel.text = "Low: \(forecast.minTempF.description) ℃"
+                detailView.precipitationLabel.text = "Rainfall: \(forecast.precipMM.description) mm"
+                detailView.windspeedLabel.text = "Windspeed: \(forecast.windSpeedKPH.description) kph"
+                detailView.sunriseLabel.text = "Sunrise: \(forecast.sunrise.description)"
+                detailView.sunsetLabel.text = "Sunset: \(forecast.sunset.description)"
+            default:
+                break
+                
+            }
+        } else {
+            detailView.titleLabel.text = city
+            detailView.conditionLabel.text = forecast.weather
+            detailView.highLabel.text = "High: \(forecast.maxTempC.description) ℉"
+            detailView.lowLabel.text = "Low: \(forecast.minTempC.description) ℉"
+            detailView.precipitationLabel.text = "Rainfall: \(forecast.precipIN.description) inches"
+            detailView.windspeedLabel.text = "Windspeed: \(forecast.windSpeedMPH.description) mph"
+            detailView.sunriseLabel.text = "Sunrise: \(forecast.sunrise.description)"
+            detailView.sunsetLabel.text = "Sunset: \(forecast.sunset.description)"
+        }
+
     }
     
     func alertController(title: String, message: String) {

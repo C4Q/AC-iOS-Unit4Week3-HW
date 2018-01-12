@@ -38,7 +38,7 @@ class ImageHelper {
         let completion = {(data: Data) in
             if let onlineImage = UIImage(data: data) {
                 NSCacheHelper.manager.addImage(with: urlStr, and: onlineImage)
-                DataPersistenceHelper.manager.saveImage(with: urlStr, image: onlineImage)
+//                DataPersistenceHelper.manager.saveImage(with: urlStr, image: onlineImage)
                 completionHandler(onlineImage)
             } else {
                 errorHandler(ImageError.badData)

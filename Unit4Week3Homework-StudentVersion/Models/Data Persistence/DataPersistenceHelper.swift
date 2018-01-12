@@ -22,7 +22,7 @@ class DataPersistenceHelper {
     }
     
     
-    // Save hands everytime it changes
+    // Save everytime it changes
     private var favoritedImages = [FavoritedImage]() {
         didSet {
             saveFavoritedImages()
@@ -40,7 +40,7 @@ class DataPersistenceHelper {
         return DataPersistenceHelper.manager.documentsDirectory().appendingPathComponent(path)
     }
     
-    // Loads the hands into this object
+    // Loads
     func loadFavoritedImages() {
         var data = Data()
         do {
@@ -57,7 +57,7 @@ class DataPersistenceHelper {
         }
     }
     
-    // Returns this object's array of hands
+    // Returns this object's array
     func getFavoritedImages() -> [FavoritedImage] {
         return favoritedImages
     }
@@ -94,7 +94,7 @@ class DataPersistenceHelper {
     
     
     
-    // Saves current array of hands into a plist into the doc dir
+    // Saves current array into the doc dir
     private func saveFavoritedImages() {
         var data = Data()
         

@@ -13,6 +13,7 @@ class FavoriteCollectionViewCell: UICollectionViewCell {
     lazy var cityImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFill
+        imageView.layer.masksToBounds = true
         return imageView
     }()
     

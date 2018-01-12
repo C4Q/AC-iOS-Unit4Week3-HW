@@ -28,6 +28,31 @@ class SettingsView: UIView {
             ])
     }
     
+    lazy var zipCodeTextField: UITextField = {
+        let textField = UITextField()
+        textField.backgroundColor = .white
+        textField.borderStyle = .roundedRect
+        textField.tintColor = .blue
+        textField.placeholder = "Enter a zip code."
+        return textField
+    }()
+    
+    private func setupZipCodeTextField() {
+        addSubview(zipCodeTextField)
+        
+        zipCodeTextField.translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint.activate([
+            
+            zipCodeTextField.topAnchor.constraint(equalTo: segmentedControl.bottomAnchor, constant: 25),
+            
+            ])
+        
+        
+        
+    }
+    
+    
     override init(frame: CGRect) {
         super.init(frame: UIScreen.main.bounds)
         commonInit()
@@ -45,6 +70,7 @@ class SettingsView: UIView {
     
     private func setupViews() {
         setupSegmentedControl()
+        setupZipCodeTextField()
     }
     
 }

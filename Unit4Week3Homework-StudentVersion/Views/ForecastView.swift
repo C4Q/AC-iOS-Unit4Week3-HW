@@ -68,6 +68,7 @@ class ForecastView: UIView {
         textField.backgroundColor = .gray
         textField.borderStyle = .roundedRect
         textField.tintColor = .blue
+        textField.placeholder = "Enter a zip code."
         return textField
     }()
     
@@ -86,58 +87,7 @@ class ForecastView: UIView {
             ])
         
     }
-    
-    // Search by zip code button
-    lazy var searchByZipButton: UIButton = {
-        let button = UIButton(type: .roundedRect)
-        
-        button.setTitleColor(.green, for: .normal)
-        button.setTitle("Zip Code", for: .normal)
-        
-        button.setTitleColor(.red, for: .disabled)
-        
-        button.backgroundColor = .purple
-        
-        return button
-    }()
-    
-    // Zip button constraints
-    private func setupSearchByZipButton() {
-        addSubview(searchByZipButton)
-        
-        searchByZipButton.translatesAutoresizingMaskIntoConstraints = false
-        
-        NSLayoutConstraint.activate([
-            searchByZipButton.centerYAnchor.constraint(equalTo: searchTextField.centerYAnchor, constant: 0),
-            searchByZipButton.trailingAnchor.constraint(equalTo: searchTextField.leadingAnchor, constant: -5)
-            ])
-    }
-    
-    // Search by city button
-    lazy var searchByCityButton: UIButton = {
-        let button = UIButton(type: .roundedRect)
-        
-        button.setTitleColor(.green, for: .normal)
-        button.setTitle("City Name", for: .normal)
-        
-        button.setTitleColor(.red, for: .disabled)
-        
-        button.backgroundColor = .purple
-        
-        return button
-    }()
-    
-    // City button constraints
-    private func setupSearchByCityButton() {
-        addSubview(searchByCityButton)
-        
-        searchByCityButton.translatesAutoresizingMaskIntoConstraints = false
-        
-        NSLayoutConstraint.activate([
-            searchByCityButton.centerYAnchor.constraint(equalTo: searchTextField.centerYAnchor, constant: 0),
-            searchByCityButton.leadingAnchor.constraint(equalTo: searchTextField.trailingAnchor, constant: 5)
-            ])
-    }
+
     
     
     override init(frame: CGRect) {
@@ -153,15 +103,13 @@ class ForecastView: UIView {
     private func commonInit() {
         backgroundColor = .darkGray
         setupViews()
-        searchByZipButton.isEnabled = false
     }
     
     private func setupViews() {
         setupCityNameLabel()
         setupCollectionView()
         setupSearchTextField()
-        setupSearchByZipButton()
-        setupSearchByCityButton()
+
     }
     
     

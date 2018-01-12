@@ -129,13 +129,9 @@
 		8145BAB62003E53E0065DA9F /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				8145BA8B200089000065DA9F /* NetworkHelper.swift */,
-				8145BA93200311190065DA9F /* AerisWeatherAPIClient.swift */,
-				8145BAD52004288E0065DA9F /* PixabayAPIClient.swift */,
+				81A0BABC200857D8006414EE /* Network */,
 				81A0BA952007C707006414EE /* Data Persistence */,
-				8145BAD7200428A70065DA9F /* Pixabay.swift */,
-				8145BA952003163E0065DA9F /* Forecast.swift */,
-				8145BA8D20008A750065DA9F /* ImageHelper.swift */,
+				81A0BABD200857E4006414EE /* JSON */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -148,6 +144,26 @@
 				8145BAFD2006A28B0065DA9F /* DataPersistenceHelper.swift */,
 			);
 			path = "Data Persistence";
+			sourceTree = "<group>";
+		};
+		81A0BABC200857D8006414EE /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				8145BA8B200089000065DA9F /* NetworkHelper.swift */,
+				8145BA93200311190065DA9F /* AerisWeatherAPIClient.swift */,
+				8145BAD52004288E0065DA9F /* PixabayAPIClient.swift */,
+				8145BA8D20008A750065DA9F /* ImageHelper.swift */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
+		81A0BABD200857E4006414EE /* JSON */ = {
+			isa = PBXGroup;
+			children = (
+				8145BAD7200428A70065DA9F /* Pixabay.swift */,
+				8145BA952003163E0065DA9F /* Forecast.swift */,
+			);
+			path = JSON;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

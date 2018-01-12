@@ -21,7 +21,7 @@ class UserDefaultsHelper {
     // Object to hold default values instead of making key-values for everything
     struct MyDefaults: Codable {
         let zipCode: Int
-        var location: String
+        let measurementSystem: Int
     }
     
     
@@ -29,6 +29,7 @@ class UserDefaultsHelper {
     func createDefaultSetting(value: MyDefaults) {
         do {
             let data = try PropertyListEncoder().encode(value)
+            print(value.measurementSystem, value.zipCode)
             defaults.set(data, forKey: key)
         } catch {
             print(error.localizedDescription)
