@@ -8,9 +8,28 @@
 
 import UIKit
 
-class MainWeatherViewController: UIViewController {
+class SearchViewController: UIViewController {
 
     let cellSpacing: CGFloat = 5.0
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        view.backgroundColor = .white
+        navigationItem.title = "Search"
+        navigationItem.rightBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "setting_32x32"), style: UIBarButtonItemStyle.done, target: self, action: #selector(settingBtn))
+        self.zipCodeTextField.delegate = self
+        self.collectionView.delegate = self
+        self.collectionView.dataSource = self
+        setupSubViews()
+        if let zipCode = UserDefaultsHelper.manager.getLastSearch() {
+            getWeatherFromOnline(from: zipCode)
+        }
+        self.zipCodeTextField.becomeFirstResponder()
+    }
+    
+    @objc func settingBtn() {
+        
+    }
     
     var weatherDays = [Weather]() {
         didSet {
@@ -37,10 +56,11 @@ class MainWeatherViewController: UIViewController {
     lazy var zipCodeTextField: UITextField = {
         let textField = UITextField()
         textField.placeholder = "zipcode"
-        
+        //textField.font = UIFont(name: "<#T##String#>", size: <#T##CGFloat#>)
         textField.textAlignment = .center
         textField.keyboardType = .numberPad
         textField.backgroundColor = .lightGray
+        textField.layer.cornerRadius = 8
         return textField
     }()
     
@@ -78,19 +98,6 @@ class MainWeatherViewController: UIViewController {
         return stView
     }()
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        view.backgroundColor = .white
-        navigationItem.title = "Search"
-        self.zipCodeTextField.delegate = self
-        self.collectionView.delegate = self
-        self.collectionView.dataSource = self
-        setupSubViews()
-        if let zipCode = UserDefaultsHelper.manager.getLastSearch() {
-            getWeatherFromOnline(from: zipCode)
-        }
-        self.zipCodeTextField.becomeFirstResponder()
-    }
     
     func getWeatherFromOnline(from zipCode: String) {
         ZipCodeHelper.manager.getLocationName(from: zipCode, completionHandler: {self.nameCityLabel.text = "Weather Forecast for " + $0}, errorHandler: {print($0)})
@@ -100,7 +107,8 @@ class MainWeatherViewController: UIViewController {
     
 }
 
-extension MainWeatherViewController {
+// MARK: Add Views and Constraints
+extension SearchViewController {
     private func setupSubViews(){
         addMainStackViewIntoView()
         mainStackViewConstraints()
@@ -142,5 +150,22 @@ extension MainWeatherViewController {
         zipCodeStackView.translatesAutoresizingMaskIntoConstraints = false
         zipCodeTextField.translatesAutoresizingMaskIntoConstraints = false
         zipCodeLabel.translatesAutoresizingMaskIntoConstraints = false
+    }
+}
+
+// MARK:- Functions
+extension SearchViewController {
+    func getDateFormatted(from isoDate: String, format: String) -> String {
+        let fromISODate = ISO8601DateFormatter()
+        let getStrDateFormatted = DateFormatter()
+        getStrDateFormatted.dateFormat = format
+        if let dateFromISODate = fromISODate.date(from: isoDate) {
+            var stringFromDate = getStrDateFormatted.string(from: dateFromISODate)
+            if stringFromDate == getStrDateFormatted.string(from: Date()) && format == "EEEE, d" {
+                stringFromDate = "Today"
+            }
+            return stringFromDate
+        }
+        return "N/A"
     }
 }

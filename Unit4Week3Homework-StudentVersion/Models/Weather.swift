@@ -8,12 +8,25 @@
 
 import Foundation
 
+struct FavoriteImage: Codable {
+    var title: String
+    var url: String
+}
+
 struct WeatherAllInfo: Codable {
-    let response: [Response]
+    let allInfo: [Response]
+    
+    enum CodingKeys: String, CodingKey {
+        case allInfo = "response"
+    }
 }
 
 struct Response: Codable {
-    let periods: [Weather]
+    let weather: [Weather]
+    
+    enum CodingKeys: String, CodingKey {
+        case weather = "periods"
+    }
 }
 
 struct Weather: Codable {
@@ -31,5 +44,21 @@ struct Weather: Codable {
     let icon: String
     let sunriseISO: String
     let sunsetISO: String
+}
+
+struct AllPictures: Codable {
+    let picture: [Picture]?
+    
+    enum CodingKeys: String, CodingKey {
+        case picture = "hits"
+    }
+}
+
+struct Picture: Codable {
+    let imageURL: String
+    
+    enum CodingKeys: String, CodingKey {
+        case imageURL = "webformatURL"
+    }
 }
 

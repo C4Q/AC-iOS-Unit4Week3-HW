@@ -15,14 +15,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+        FileManagerHelper.manager.loadImages()
+        // TabBarController
         let tbc = UITabBarController()
-        let searchVC = MainWeatherViewController()
-        searchVC.tabBarItem = UITabBarItem(tabBarSystemItem: UITabBarSystemItem.search, tag: 0)
+        // ViewControllers
+        let searchVC = SearchViewController()
+        let favoriteVC = FavoriteViewController()
         let navController = UINavigationController(rootViewController: searchVC)
         
-        let favoriteVC = FavoriteViewController()
+        // Icons|Tags in barViewControllers
+        searchVC.tabBarItem = UITabBarItem(tabBarSystemItem: UITabBarSystemItem.search, tag: 0)
         favoriteVC.tabBarItem = UITabBarItem(tabBarSystemItem: UITabBarSystemItem.favorites, tag: 1)
         
+        // connect my TBC with my ViewControllers
         tbc.setViewControllers([navController, favoriteVC], animated: true)
         
         window = UIWindow(frame: UIScreen.main.bounds)

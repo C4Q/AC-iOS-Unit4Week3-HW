@@ -8,7 +8,8 @@
 
 import UIKit
 
-extension MainWeatherViewController: UITextFieldDelegate {
+// MARK:- TextField Delegate 
+extension SearchViewController: UITextFieldDelegate {
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         // control input number
         let allowedCharacters = CharacterSet.decimalDigits
@@ -29,7 +30,8 @@ extension MainWeatherViewController: UITextFieldDelegate {
     }
 }
 
-extension MainWeatherViewController: UICollectionViewDelegate {
+// MARK:- Collection View Delegate
+extension SearchViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let forecastDVC = WeatherDetailViewController()
         forecastDVC.weather = weatherDays[indexPath.row]
@@ -37,7 +39,8 @@ extension MainWeatherViewController: UICollectionViewDelegate {
     }
 }
 
-extension MainWeatherViewController: UICollectionViewDelegateFlowLayout {
+// MARK:- Collection View Flow Layout
+extension SearchViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let numCells: CGFloat = 3
         let numSpaces: CGFloat = numCells + 1
@@ -61,7 +64,8 @@ extension MainWeatherViewController: UICollectionViewDelegateFlowLayout {
     }
 }
 
-extension MainWeatherViewController: UICollectionViewDataSource {
+// MARK:- Collection View Datasource
+extension SearchViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return self.weatherDays.count
     }
@@ -69,14 +73,7 @@ extension MainWeatherViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let weather = self.weatherDays[indexPath.row]
         if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CollectionCell", for: indexPath) as? WeatherCVCell {
-            let dateFormatterGet = ISO8601DateFormatter()
-            let dateFormatterPrint = DateFormatter()
-            dateFormatterPrint.dateFormat = "EEEE, d"
-            let date = dateFormatterGet.date(from: weather.dateTimeISO)
-            var stringFromDate = dateFormatterPrint.string(from: date!)
-            if stringFromDate == dateFormatterPrint.string(from: Date()) {
-                stringFromDate = "Today"
-            }
+            let stringFromDate = getDateFormatted(from: weather.dateTimeISO, format: "EEEE, d")
             cell.dateLabel.text = "\(stringFromDate)"
             cell.weatherImageView.image = UIImage(named: weather.icon)
             cell.highLabel.text = "High: \(weather.maxTempF)ºF"

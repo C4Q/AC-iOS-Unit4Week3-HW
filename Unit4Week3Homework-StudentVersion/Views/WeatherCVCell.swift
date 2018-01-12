@@ -10,6 +10,7 @@ import UIKit
 
 class WeatherCVCell: UICollectionViewCell {
     
+    
     lazy var dateLabel: UILabel = {
         let label = UILabel()
         label.textAlignment = .center
@@ -34,6 +35,7 @@ class WeatherCVCell: UICollectionViewCell {
         return label
     }()
     
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         commonInit()
@@ -45,13 +47,13 @@ class WeatherCVCell: UICollectionViewCell {
     }
     
     private func commonInit() {
-        self.contentView.backgroundColor = .orange
-        addSubViewsIntoRootView()
+        self.contentView.backgroundColor = .white
+        addSubViews()
         subViewDisplay()
-        rootViewConstraints()
+        subViewConstraints()
     }
     
-    private func addSubViewsIntoRootView() {
+    private func addSubViews() {
         self.contentView.addSubview(dateLabel)
         self.contentView.addSubview(weatherImageView)
         self.contentView.addSubview(highLabel)
@@ -65,7 +67,7 @@ class WeatherCVCell: UICollectionViewCell {
         lowLabel.translatesAutoresizingMaskIntoConstraints = false
     }
     
-    private func rootViewConstraints() {
+    private func subViewConstraints() {
         dateLabel.topAnchor.constraint(equalTo: self.contentView.topAnchor).isActive = true
         dateLabel.centerXAnchor.constraint(equalTo: self.contentView.centerXAnchor).isActive = true
         weatherImageView.topAnchor.constraint(equalTo: dateLabel.bottomAnchor).isActive = true
