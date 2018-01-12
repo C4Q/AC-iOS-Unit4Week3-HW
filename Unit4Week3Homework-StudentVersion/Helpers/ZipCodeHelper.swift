@@ -20,10 +20,13 @@ class ZipCodeHelper {
                     if let placemark = placemarks?.first, let name = placemark.locality {
                         completionHandler(name)
                     } else {
-                        errorHandler(error)
+                        errorHandler(error!)
                     }
                 }
             }
         }
+    }
+    func getLocationName(from zipCode: String) -> String {
+        return "the name of the place"
     }
 }
