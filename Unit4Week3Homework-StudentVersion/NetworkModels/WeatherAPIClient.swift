@@ -7,41 +7,7 @@
 //
 
 import Foundation
-
-
-//struct WeatherResponseWrapper: Codable {
-//    let response: [WeatherResponse]
-//}
-//
-//struct WeatherResponse: Codable {
-//    let location: CoordinateWrapper
-//    let periods: [SevenDayForecast] //gives stats for each of the seven days
-//
-//    enum CodingKeys: String, CodingKey {
-//        case location = "loc"
-//        case periods = "periods"
-//    }
-//}
-//
-//struct CoordinateWrapper: Codable {
-//    let long: Double
-//    let lat: Double
-//}
-//
-//struct SevenDayForecast : Codable {
-//    let currentDateAndTime: String
-//    let highTempF: Double
-//    let lowTempF: Double
-//    let avgTempF: Double
-//    let rainPrecipIN: Double
-//    let windSpeedMPH: Double
-//    let weatherConditions: String // "Mostly Cloudy"
-//    let weatherIcon: String
-//    let isTheDayToday : Bool //perfect for date check!
-//    let sunrise: String
-//    let sunset: String
-//}
-
+import UIKit
 
 class WeatherAPIClient {
     private init(){}
@@ -60,6 +26,7 @@ class WeatherAPIClient {
             do{
                 let decoder = JSONDecoder()
                 let results = try decoder.decode(WeatherResponseWrapper.self, from: data) // when you decode the top layer you see what's inside.
+                
                 if let forecast = results.response.first?.periods{ //[SevenDayResponse]
                 //call completionHandler ON the forecast
                     completionHandler(forecast)

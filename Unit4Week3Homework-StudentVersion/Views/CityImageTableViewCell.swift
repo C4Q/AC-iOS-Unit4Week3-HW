@@ -17,6 +17,18 @@ class CityImageTableViewCell: UITableViewCell {
         return imageView
     }()
     
+    //cityLabel
+    lazy var nameLabel: UILabel = {
+        let label  = UILabel()
+        label.textAlignment = .center
+        label.backgroundColor = .black
+        label.textColor = UIColor.white
+        label.font = UIFont.systemFont(ofSize: 35, weight: .bold)
+        label.text = "cityName".uppercased()
+        //label.isHidden = true
+        return label
+    }()
+    
     //This is boiler plate for UIView
     // This overrides the default set-up of a tbv cell that noramlly has a textLabel and a detail Text label
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {//We aren't using a storyboard, so we need to tell the app what our screen size is. Storyboard does this for us automatically.
@@ -45,7 +57,7 @@ class CityImageTableViewCell: UITableViewCell {
     private func setupAndConstrainObjects(){
         
         //ARRAY MUST BE ON ORDER!!
-        let tableViewCellObjects = [cityImageView] as [UIView]
+        let tableViewCellObjects = [cityImageView, nameLabel] as [UIView]
         
         tableViewCellObjects.forEach{addSubview($0); ($0).translatesAutoresizingMaskIntoConstraints = false}
         
@@ -58,39 +70,10 @@ class CityImageTableViewCell: UITableViewCell {
             cityImageView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
             cityImageView.topAnchor.constraint(equalTo: contentView.topAnchor),
             cityImageView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
+            
+            //nameLabel
+            nameLabel.centerXAnchor.constraint(equalTo: centerXAnchor),
+            nameLabel.centerYAnchor.constraint(equalTo: centerYAnchor)
             ])
     }
-    
-    // TODO: - do animation for name to pop up when you click on the cell
-    
-    
-    
-    
-    
-    //This data is coming from the json that was used to populate
-    //    public func configureTableViewCellFor(fellow: Fellow){
-    //        nameLabel.text = fellow.name
-    //
-    //        if let imageURL = fellow.imageURL {
-    //            //If the image is in cache then use that FIRST
-    //            if let image = ImageCache.manager.cachedImage(url: imageURL){
-    //                profileImageView.image = image
-    //            } else {
-    //                //If image is not in cache, make the network call to get the image and store in cache
-    //                ImageCache.manager.processImageInBackground(imageURL: imageURL,
-    //                                                            completion: {(error, image) in
-    //                                                                if let error = error {
-    //                                                                    print("fellowCell- error processing image: \(error.localizedDescription)")
-    //                                                                } else if let image = image {
-    //                                                                    DispatchQueue.main.async {
-    //                                                                        self.profileImageView.image = image
-    //                                                                    }
-    //                                                                }
-    //                })
-    //            }
-    //        }else{
-    //            cityImageView.image = #imageLiteral(resourceName: "placeholder-image")
-    //        }
-    //    }
-    
 }

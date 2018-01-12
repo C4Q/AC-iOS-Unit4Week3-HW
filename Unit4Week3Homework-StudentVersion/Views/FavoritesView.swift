@@ -15,7 +15,7 @@ class FavoritesView: UIView {
         let tv = UITableView()
         //create and register a cell
         tv.register(CityImageTableViewCell.self, forCellReuseIdentifier: "CityImageCell")
-        tv.backgroundColor = .blue
+        tv.backgroundColor = .clear
         return tv
     }()
     
@@ -31,7 +31,7 @@ class FavoritesView: UIView {
     }
     
     private func setUpGUI() {
-        backgroundColor = .white
+        //backgroundColor = .white
         setupAndConstrainObjects()
     }
     

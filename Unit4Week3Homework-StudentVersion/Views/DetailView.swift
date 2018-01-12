@@ -47,7 +47,7 @@ class DetailView: UIView {
     lazy var cityImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFill
-        imageView.image = #imageLiteral(resourceName: "Chicago-IL")
+        imageView.image = #imageLiteral(resourceName: "noImg")
         return imageView
     }()
     
@@ -132,6 +132,8 @@ class DetailView: UIView {
         super.layoutSubviews()
         // To add round edges
         cityImageView.layer.cornerRadius = cityImageView.bounds.width / 6.0
+        cityImageView.layer.borderWidth = 2.0
+        cityImageView.layer.borderColor = UIColor.black.cgColor
         cityImageView.layer.masksToBounds = true
     }
     
@@ -232,6 +234,7 @@ class DetailView: UIView {
             ])
     }
 
+    //MARK: - ConfigureCell for Detail View Controller
     public func configureDetailView(forecast: SevenDayForecast, city: String) {
         topLabel.text = "\(city)'s forecast for \(Date.dateStringFromTimeInterval(timeinterval: forecast.timeStamp))"
         weatherLabel.text = forecast.weatherConditions

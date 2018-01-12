@@ -15,9 +15,9 @@ class WeatherView: UIView {
         let label  = UILabel()
         label.textAlignment = .center
         label.backgroundColor = .clear
-        label.textColor = .white
+        label.textColor = UIColor.darkGray
         label.font = UIFont.systemFont(ofSize: 20, weight: .medium)
-        label.text = "Weather Forecast for..."
+        label.text = "7 Day Forecast for..."
         return label
     }()
     
@@ -26,7 +26,7 @@ class WeatherView: UIView {
         let layout = UICollectionViewFlowLayout()
         let cv = UICollectionView(frame: frame, collectionViewLayout: layout)
         layout.scrollDirection = .horizontal
-        cv.backgroundColor = .clear
+        cv.backgroundColor = UIColor(red: 206, green: 214, blue: 226, alpha: 0.50)
         //register collectionViewCell
         cv.register(WeatherCollectionViewCell.self, forCellWithReuseIdentifier: "CollectionViewCell")
         return cv
@@ -43,6 +43,7 @@ class WeatherView: UIView {
         tField.textColor = .white
         tField.keyboardType = .numbersAndPunctuation
         tField.keyboardAppearance = .dark
+        tField.borderStyle =  .roundedRect
         return tField
     }()
     
@@ -53,9 +54,9 @@ class WeatherView: UIView {
         label.textAlignment = .center
         label.font = UIFont.systemFont(ofSize: 17, weight: .medium)
         label.backgroundColor = .clear
-        label.textColor = .white
+        label.textColor = UIColor.darkGray
         label.numberOfLines = 0
-        label.text = "Enter a Zone Improvement Plan Code"
+        label.text = "Enter zipcode for your city's weather"
         return label
     }()
 
@@ -69,6 +70,16 @@ class WeatherView: UIView {
     required init?(coder aDecoder: NSCoder) { //now the new initializer required for this uiView
         super.init(coder: aDecoder)
         //setUpGUI()
+    }
+    
+    override func layoutSubviews() {
+        // here you get the actual frame size of the elements before getting
+        // laid out on screen
+        super.layoutSubviews()
+        // To add round edges
+        //textField.layer.cornerRadius = textField.bounds.width / 1.0
+        //textField.layer.masksToBounds = true
+        
     }
     
     private func setUpGUI() {

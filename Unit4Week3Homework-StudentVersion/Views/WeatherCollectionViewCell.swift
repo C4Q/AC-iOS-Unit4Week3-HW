@@ -32,7 +32,7 @@ class WeatherCollectionViewCell: UICollectionViewCell {
     //highLabel
     lazy var highLabel: UILabel = {
         let label = UILabel()
-        label.textColor = UIColor(red: 176, green: 196, blue: 229, alpha: 1)
+        label.textColor = UIColor(red: 234/255, green: 171/255, blue: 23/255, alpha: 1)
         label.font = UIFont.systemFont(ofSize: 17, weight: .bold)
         label.backgroundColor = .clear
         label.textAlignment = .center

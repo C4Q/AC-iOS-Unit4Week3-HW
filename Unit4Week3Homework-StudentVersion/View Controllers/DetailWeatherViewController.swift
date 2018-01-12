@@ -12,11 +12,9 @@ import UIKit
 class DetailWeatherViewController: UIViewController {
     
     let detailView = DetailView()
-    
+    let weatherVC = WeatherViewController()
     var detailCityImage = ""
-        
-    
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .clear
@@ -44,8 +42,30 @@ class DetailWeatherViewController: UIViewController {
         //just saving string of url
         FileManagerHelper.manager.addFavoriteImageToFileManager(from: detailCityImage)
         print("Saved image url to file manager")
-        //TODO: - create alert
-
+        savedImageAlert()
+        
+        UIView.animate(withDuration: 10.0, animations: {
+            let originalSaveImg = UIImage(named: "save")
+            let tintedImage = originalSaveImg?.withRenderingMode(.alwaysTemplate)
+            self.detailView.saveButton.setImage(tintedImage, for: .normal)
+            self.self.detailView.saveButton.tintColor = .red
+        })
     }
+}
+
+//MARK: - Save Alert
+extension DetailWeatherViewController{
+    
+    func savedImageAlert(){
+        let alertController = UIAlertController(title: "Saved!",
+                                                message:"Image saved to favorites",
+                                                preferredStyle: UIAlertControllerStyle.alert)
+        
+        let okAction = UIAlertAction(title: "Ok", style: UIAlertActionStyle.default) //for other actions add in actions incompletion{}
+        alertController.addAction(okAction)
+        //present alert controller
+        self.present(alertController, animated: true, completion: nil)
+    }
+    
 }
 
