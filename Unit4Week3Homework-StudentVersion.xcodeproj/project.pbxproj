@@ -23,6 +23,13 @@
 		8145BA9220008DDA0065DA9F /* FavoriteCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8145BA9120008DD90065DA9F /* FavoriteCollectionViewCell.swift */; };
 		8145BA94200311190065DA9F /* AerisWeatherAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8145BA93200311190065DA9F /* AerisWeatherAPIClient.swift */; };
 		8145BA962003163E0065DA9F /* Forecast.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8145BA952003163E0065DA9F /* Forecast.swift */; };
+		8145BAD62004288E0065DA9F /* PixabayAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8145BAD52004288E0065DA9F /* PixabayAPIClient.swift */; };
+		8145BAD8200428A70065DA9F /* Pixabay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8145BAD7200428A70065DA9F /* Pixabay.swift */; };
+		8145BAFC2006A0580065DA9F /* UserDefaultsHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8145BAFB2006A0580065DA9F /* UserDefaultsHelper.swift */; };
+		8145BAFE2006A28B0065DA9F /* DataPersistenceHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8145BAFD2006A28B0065DA9F /* DataPersistenceHelper.swift */; };
+		81A0BAB720080083006414EE /* NSCacheHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81A0BAB620080083006414EE /* NSCacheHelper.swift */; };
+		81A0BAB9200844FF006414EE /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81A0BAB8200844FF006414EE /* SettingsViewController.swift */; };
+		81A0BABB200847B7006414EE /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81A0BABA200847B7006414EE /* SettingsView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -44,6 +51,13 @@
 		8145BA9120008DD90065DA9F /* FavoriteCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteCollectionViewCell.swift; sourceTree = "<group>"; };
 		8145BA93200311190065DA9F /* AerisWeatherAPIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AerisWeatherAPIClient.swift; sourceTree = "<group>"; };
 		8145BA952003163E0065DA9F /* Forecast.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Forecast.swift; sourceTree = "<group>"; };
+		8145BAD52004288E0065DA9F /* PixabayAPIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PixabayAPIClient.swift; sourceTree = "<group>"; };
+		8145BAD7200428A70065DA9F /* Pixabay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pixabay.swift; sourceTree = "<group>"; };
+		8145BAFB2006A0580065DA9F /* UserDefaultsHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsHelper.swift; sourceTree = "<group>"; };
+		8145BAFD2006A28B0065DA9F /* DataPersistenceHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataPersistenceHelper.swift; sourceTree = "<group>"; };
+		81A0BAB620080083006414EE /* NSCacheHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSCacheHelper.swift; sourceTree = "<group>"; };
+		81A0BAB8200844FF006414EE /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		81A0BABA200847B7006414EE /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -93,6 +107,7 @@
 			children = (
 				8114D8A52000053B00D2E4CF /* FavoritesViewController.swift */,
 				8114D8A7200005A000D2E4CF /* ForecastViewController.swift */,
+				81A0BAB8200844FF006414EE /* SettingsViewController.swift */,
 				8114D8A9200005BB00D2E4CF /* WeatherDetailViewController.swift */,
 			);
 			path = "View Controllers";
@@ -102,6 +117,7 @@
 			isa = PBXGroup;
 			children = (
 				8145BA85200062700065DA9F /* ForecastView.swift */,
+				81A0BABA200847B7006414EE /* SettingsView.swift */,
 				8145BA872000627D0065DA9F /* FavoritesView.swift */,
 				8145BA9120008DD90065DA9F /* FavoriteCollectionViewCell.swift */,
 				8145BA8F20008D160065DA9F /* ForecastCollectionViewCell.swift */,
@@ -115,10 +131,23 @@
 			children = (
 				8145BA8B200089000065DA9F /* NetworkHelper.swift */,
 				8145BA93200311190065DA9F /* AerisWeatherAPIClient.swift */,
+				8145BAD52004288E0065DA9F /* PixabayAPIClient.swift */,
+				81A0BA952007C707006414EE /* Data Persistence */,
+				8145BAD7200428A70065DA9F /* Pixabay.swift */,
 				8145BA952003163E0065DA9F /* Forecast.swift */,
 				8145BA8D20008A750065DA9F /* ImageHelper.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		81A0BA952007C707006414EE /* Data Persistence */ = {
+			isa = PBXGroup;
+			children = (
+				8145BAFB2006A0580065DA9F /* UserDefaultsHelper.swift */,
+				81A0BAB620080083006414EE /* NSCacheHelper.swift */,
+				8145BAFD2006A28B0065DA9F /* DataPersistenceHelper.swift */,
+			);
+			path = "Data Persistence";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -192,16 +221,23 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				81A0BABB200847B7006414EE /* SettingsView.swift in Sources */,
 				8145BA8A200062900065DA9F /* WeatherDetailView.swift in Sources */,
+				81A0BAB720080083006414EE /* NSCacheHelper.swift in Sources */,
 				8145BA8E20008A750065DA9F /* ImageHelper.swift in Sources */,
+				81A0BAB9200844FF006414EE /* SettingsViewController.swift in Sources */,
 				8145BA962003163E0065DA9F /* Forecast.swift in Sources */,
 				8145BA8C200089000065DA9F /* NetworkHelper.swift in Sources */,
 				5410A6D31FFFDF6500935A9A /* ZipCodeHelper.swift in Sources */,
 				8145BA9220008DDA0065DA9F /* FavoriteCollectionViewCell.swift in Sources */,
+				8145BAD8200428A70065DA9F /* Pixabay.swift in Sources */,
 				8145BA9020008D160065DA9F /* ForecastCollectionViewCell.swift in Sources */,
 				8114D8A8200005A000D2E4CF /* ForecastViewController.swift in Sources */,
+				8145BAFE2006A28B0065DA9F /* DataPersistenceHelper.swift in Sources */,
 				8114D8A62000053B00D2E4CF /* FavoritesViewController.swift in Sources */,
 				8114D8AA200005BB00D2E4CF /* WeatherDetailViewController.swift in Sources */,
+				8145BAD62004288E0065DA9F /* PixabayAPIClient.swift in Sources */,
+				8145BAFC2006A0580065DA9F /* UserDefaultsHelper.swift in Sources */,
 				8145BA882000627D0065DA9F /* FavoritesView.swift in Sources */,
 				5410A6C11FFFDF1200935A9A /* AppDelegate.swift in Sources */,
 				8145BA86200062700065DA9F /* ForecastView.swift in Sources */,

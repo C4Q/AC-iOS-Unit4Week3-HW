@@ -10,11 +10,34 @@ import UIKit
 
 class WeatherDetailView: UIView {
     
+    lazy var saveButton: UIButton = {
+       let button = UIButton()
+        
+        button.setImage(#imageLiteral(resourceName: "save"), for: .normal)
+        button.isEnabled = false
+        
+        return button
+    }()
+    
+    private func setupSaveButton() {
+        addSubview(saveButton)
+        
+        saveButton.translatesAutoresizingMaskIntoConstraints = false
+        
+        let safeArea = safeAreaLayoutGuide
+        
+        NSLayoutConstraint.activate([
+            saveButton.bottomAnchor.constraint(equalTo: safeArea.bottomAnchor, constant: 0),
+            saveButton.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor, constant: 0)
+            
+            ])
+    }
+    
     lazy var titleLabel: UILabel = {
         let label = UILabel()
-        
+        label.textAlignment = .center
+        label.font = UIFont.systemFont(ofSize: 32, weight: .heavy)
         label.text = "TEST"
-        
         return label
     }()
     
@@ -31,13 +54,14 @@ class WeatherDetailView: UIView {
             titleLabel.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor, constant: -8)
             ])
         
-        
     }
     
     lazy var cityImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.backgroundColor = .purple
         imageView.contentMode = .scaleAspectFill
+        imageView.layer.masksToBounds = true
+        imageView.image = #imageLiteral(resourceName: "photo-placeholder")
         return imageView
     }()
     
@@ -51,12 +75,11 @@ class WeatherDetailView: UIView {
         NSLayoutConstraint.activate([
             cityImageView.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 8),
             cityImageView.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor, constant: 0),
-            cityImageView.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor, constant: 0)
-            
-            
-            
+            cityImageView.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor, constant: 0),
+            cityImageView.heightAnchor.constraint(equalTo: widthAnchor, multiplier: 1)
             ])
         
+        cityImageView.layer.shadowOpacity = 1.0
     }
     
     
@@ -102,7 +125,7 @@ class WeatherDetailView: UIView {
         return label
     }()
     
-    lazy var percipitationLabel: UILabel = {
+    lazy var precipitationLabel: UILabel = {
         let label = UILabel()
         label.text = "TEST"
 
@@ -110,7 +133,7 @@ class WeatherDetailView: UIView {
     }()
     
     lazy var stackView: UIStackView = {
-       let stackView = UIStackView(arrangedSubviews: [conditionLabel, highLabel, lowLabel, sunriseLabel, sunsetLabel, windspeedLabel, percipitationLabel])
+       let stackView = UIStackView(arrangedSubviews: [conditionLabel, highLabel, lowLabel, sunriseLabel, sunsetLabel, windspeedLabel, precipitationLabel])
         stackView.axis = UILayoutConstraintAxis.vertical
         stackView.alignment = UIStackViewAlignment.center
         
@@ -133,6 +156,10 @@ class WeatherDetailView: UIView {
             ])
     }
     
+    convenience init(city: String, forecast: Forecast) {
+        self.init(frame: UIScreen.main.bounds)
+    }
+    
     override init(frame: CGRect) {
         super.init(frame: UIScreen.main.bounds)
         commonInit()
@@ -144,7 +171,7 @@ class WeatherDetailView: UIView {
     }
     
     private func commonInit() {
-        backgroundColor = .white
+        backgroundColor = .lightGray
         setupViews()
     }
     
@@ -152,6 +179,8 @@ class WeatherDetailView: UIView {
         setupTitleLabel()
         setupCityImageView()
         setupStackView()
+        setupSaveButton()
+
     }
 
 }

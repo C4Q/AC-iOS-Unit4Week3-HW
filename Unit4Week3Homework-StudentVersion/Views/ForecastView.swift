@@ -10,23 +10,13 @@ import UIKit
 
 class ForecastView: UIView {
     
-    let cellSpacing = UIScreen.main.bounds.width * 0.01
-
-    var forecasts = [Forecast]() {
-        didSet {
-            collectionView.reloadData()
-        }
-    }
-    
     // Label to display city name
     lazy var cityNameLabel: UILabel = {
         let label = UILabel()
-        
-        label.text = "NEW YORK CITY"
+        label.text = " "
         label.textAlignment = .center
         label.font = UIFont.systemFont(ofSize: 24, weight: .heavy)
         label.minimumScaleFactor = 0.50
-        
         return label
     }()
     
@@ -51,9 +41,7 @@ class ForecastView: UIView {
         layout.scrollDirection = .horizontal
         let collectionView = UICollectionView(frame: bounds, collectionViewLayout: layout)
         collectionView.register(ForecastCollectionViewCell.self, forCellWithReuseIdentifier: "ForecastCell")
-        collectionView.isPagingEnabled = true
-        collectionView.backgroundColor = .orange
-        
+        collectionView.backgroundColor = .lightGray
         return collectionView
     }()
     
@@ -72,8 +60,6 @@ class ForecastView: UIView {
             collectionView.heightAnchor.constraint(equalTo: safeArea.heightAnchor, multiplier: 0.40)
             ])
 
-        collectionView.dataSource = self
-        collectionView.delegate = self
     }
     
     // Text field for the user to initiate search
@@ -99,7 +85,6 @@ class ForecastView: UIView {
             searchTextField.widthAnchor.constraint(equalTo: safeArea.widthAnchor, multiplier: 0.50)
             ])
         
-        searchTextField.delegate = self
     }
     
     // Search by zip code button
@@ -166,7 +151,7 @@ class ForecastView: UIView {
     }
     
     private func commonInit() {
-        backgroundColor = .purple
+        backgroundColor = .darkGray
         setupViews()
         searchByZipButton.isEnabled = false
     }
@@ -179,75 +164,6 @@ class ForecastView: UIView {
         setupSearchByCityButton()
     }
     
-    
-    
-}
-
-// Collection View Data Source
-extension ForecastView: UICollectionViewDataSource {
-    
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return forecasts.count
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ForecastCell", for: indexPath) as! ForecastCollectionViewCell
-        cell.backgroundColor = .green
-        let forecast = forecasts[indexPath.row]
-        cell.dateLabel.text = forecast.dateTimeISO
-        cell.conditionImageView.image = UIImage(imageLiteralResourceName: forecast.icon)
-        cell.highLabel.text = "High: \(forecast.maxTempF.description) ℉"
-        cell.lowLabel.text = "Low: \(forecast.minTempF.description) ℉"
-        return cell
-    }
-    
-}
-
-// Collection View Flow Layout
-extension ForecastView: UICollectionViewDelegateFlowLayout {
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let numCells: CGFloat = 3
-        let numSpaces: CGFloat = numCells + 1
-        
-        let collectionViewWidth = collectionView.bounds.width
-        let collectionViewHeight = collectionView.bounds.height
-        
-        return CGSize(width: (collectionViewWidth - (cellSpacing * numSpaces)) / numCells, height: collectionViewHeight * 0.90)
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-        return UIEdgeInsets(top: cellSpacing, left: cellSpacing, bottom: 0, right: cellSpacing)
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return cellSpacing
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-        return cellSpacing
-    }
-    
-}
-
-extension ForecastView: UICollectionViewDelegate {
-    
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        
-    }
-    
-}
-
-extension ForecastView: UITextFieldDelegate {
-    
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        
-        guard let text = textField.text else { return false }
-        guard let zip = Int(text) else { return false }
-        
-        AerisWeatherAPIClient.manager.getForecast(zip: zip.description, completionHandler: { self.forecasts = $0 }, errorHandler: { print($0) })
-        return true
-    }
     
 }
 

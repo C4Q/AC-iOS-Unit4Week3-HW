@@ -16,7 +16,7 @@ class FavoritesView: UIView {
         layout.scrollDirection = .vertical
         let collectionView = UICollectionView(frame: bounds, collectionViewLayout: layout)
         collectionView.register(FavoriteCollectionViewCell.self, forCellWithReuseIdentifier: "FavoriteCell")
-        collectionView.backgroundColor = .cyan
+        collectionView.backgroundColor = .black
         
         return collectionView
     }()
@@ -36,10 +36,6 @@ class FavoritesView: UIView {
             collectionView.bottomAnchor.constraint(equalTo: safeArea.bottomAnchor, constant: 0)
             ])
     }
-    
-    
-    
-    
     
     override init(frame: CGRect) {
         super.init(frame: UIScreen.main.bounds)
@@ -61,3 +57,5 @@ class FavoritesView: UIView {
     }
 
 }
+
+

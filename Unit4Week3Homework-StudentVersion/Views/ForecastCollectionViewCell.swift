@@ -22,7 +22,7 @@ class ForecastCollectionViewCell: UICollectionViewCell {
         
         NSLayoutConstraint.activate([
             dateLabel.topAnchor.constraint(equalTo: topAnchor, constant: 8),
-            dateLabel.centerXAnchor.constraintEqualToSystemSpacingAfter(centerXAnchor, multiplier: 0)
+            dateLabel.centerXAnchor.constraint(equalTo: centerXAnchor, constant: 0)
             ])
     }
     
@@ -39,8 +39,8 @@ class ForecastCollectionViewCell: UICollectionViewCell {
         
         NSLayoutConstraint.activate([
             conditionImageView.topAnchor.constraint(equalTo: dateLabel.bottomAnchor, constant: 0),
-            conditionImageView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 0),
-            conditionImageView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: 0),
+            conditionImageView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20),
+            conditionImageView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -20),
             conditionImageView.heightAnchor.constraint(equalTo: widthAnchor)
             ])
     }
@@ -59,7 +59,6 @@ class ForecastCollectionViewCell: UICollectionViewCell {
             highLabel.topAnchor.constraint(equalTo: conditionImageView.bottomAnchor, constant: 5),
             highLabel.centerXAnchor.constraint(equalTo: centerXAnchor, constant: 0)
             ])
-        
     }
     
     lazy var lowLabel: UILabel = {
