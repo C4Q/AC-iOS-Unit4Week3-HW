@@ -64,30 +64,6 @@ class CityImageTableViewCell: UITableViewCell {
             ])
     }
     
-    //This data is coming from the json that was used to populate
-    //    public func configureTableViewCellFor(fellow: Fellow){
-    //        nameLabel.text = fellow.name
-    //
-    //        if let imageURL = fellow.imageURL {
-    //            //If the image is in cache then use that FIRST
-    //            if let image = ImageCache.manager.cachedImage(url: imageURL){
-    //                profileImageView.image = image
-    //            } else {
-    //                //If image is not in cache, make the network call to get the image and store in cache
-    //                ImageCache.manager.processImageInBackground(imageURL: imageURL,
-    //                                                            completion: {(error, image) in
-    //                                                                if let error = error {
-    //                                                                    print("fellowCell- error processing image: \(error.localizedDescription)")
-    //                                                                } else if let image = image {
-    //                                                                    DispatchQueue.main.async {
-    //                                                                        self.profileImageView.image = image
-    //                                                                    }
-    //                                                                }
-    //                })
-    //            }
-    //        }else{
-    //            cityImageView.image = #imageLiteral(resourceName: "placeholder-image")
-    //        }
-    //    }
+    
 
 }

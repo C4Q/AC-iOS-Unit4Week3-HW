@@ -13,6 +13,7 @@
 		5410A6D31FFFDF6500935A9A /* ZipCodeHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5410A6D21FFFDF6500935A9A /* ZipCodeHelper.swift */; };
 		DB626B4C2002DBD80001D74B /* CityImageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB626B4B2002DBD80001D74B /* CityImageTableViewCell.swift */; };
 		DB626B4E2002DC0E0001D74B /* WeatherCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB626B4D2002DC0E0001D74B /* WeatherCollectionViewCell.swift */; };
+		DBA1C63C20083D17009AAAC5 /* LaunchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBA1C63B20083D17009AAAC5 /* LaunchView.swift */; };
 		DBA47935200688650069A02E /* Date+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBA47934200688650069A02E /* Date+Additions.swift */; };
 		DBA4793720069D950069A02E /* FavImagesModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBA4793620069D950069A02E /* FavImagesModel.swift */; };
 		DBE8087420015F6E000D9CAF /* NetworkHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBE8087320015F6E000D9CAF /* NetworkHelper.swift */; };
@@ -41,6 +42,7 @@
 		5410A6D21FFFDF6500935A9A /* ZipCodeHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZipCodeHelper.swift; sourceTree = "<group>"; };
 		DB626B4B2002DBD80001D74B /* CityImageTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityImageTableViewCell.swift; sourceTree = "<group>"; };
 		DB626B4D2002DC0E0001D74B /* WeatherCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherCollectionViewCell.swift; sourceTree = "<group>"; };
+		DBA1C63B20083D17009AAAC5 /* LaunchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchView.swift; sourceTree = "<group>"; };
 		DBA47934200688650069A02E /* Date+Additions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Additions.swift"; sourceTree = "<group>"; };
 		DBA4793620069D950069A02E /* FavImagesModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavImagesModel.swift; sourceTree = "<group>"; };
 		DBE8087320015F6E000D9CAF /* NetworkHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkHelper.swift; sourceTree = "<group>"; };
@@ -117,6 +119,7 @@
 			children = (
 				DBE8088720016419000D9CAF /* WeatherView.swift */,
 				DBE8088920016453000D9CAF /* FavoritesView.swift */,
+				DBA1C63B20083D17009AAAC5 /* LaunchView.swift */,
 				DB626B4D2002DC0E0001D74B /* WeatherCollectionViewCell.swift */,
 				DBE8088B2001646A000D9CAF /* DetailView.swift */,
 				DB626B4B2002DBD80001D74B /* CityImageTableViewCell.swift */,
@@ -248,6 +251,7 @@
 				DBE8087A20015FDB000D9CAF /* NSCacheHelper.swift in Sources */,
 				DBE8088820016419000D9CAF /* WeatherView.swift in Sources */,
 				DB626B4C2002DBD80001D74B /* CityImageTableViewCell.swift in Sources */,
+				DBA1C63C20083D17009AAAC5 /* LaunchView.swift in Sources */,
 				DBE80884200161DC000D9CAF /* DetailWeatherViewController.swift in Sources */,
 				DBE8087C20016092000D9CAF /* WeatherModel.swift in Sources */,
 				5410A6D31FFFDF6500935A9A /* ZipCodeHelper.swift in Sources */,

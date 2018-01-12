@@ -25,6 +25,7 @@ class WeatherViewController: UIViewController {
     }
     
     let weatherView = WeatherView()
+    let launchView = LaunchView()
     
     let cellSpacing: CGFloat =  10.0
     
@@ -35,9 +36,11 @@ class WeatherViewController: UIViewController {
         
         //CV Delegates
         view.addSubview(weatherView)
+        view.addSubview(launchView)
         weatherView.collectionView.delegate = self
         weatherView.collectionView.dataSource = self
         weatherView.textField.delegate = self
+        launchView.delegate = self
         
         //loading most recent zipcode from user defaults
         if let savedZipcode = UserDefaultsHelper.manager.getZipcodeAsString() {
@@ -54,7 +57,7 @@ class WeatherViewController: UIViewController {
         //Animate textfield to indicate user should enter a zipcode
         
         // only works if it starts as not .bezel
-        UIView.animate(withDuration: 2.0, delay: 0, usingSpringWithDamping: 0.2, initialSpringVelocity: 10, options: .curveEaseInOut, animations: {
+        UIView.animate(withDuration: 5.0, delay: 0, usingSpringWithDamping: 0.2, initialSpringVelocity: 10, options: .curveEaseInOut, animations: {
             self.weatherView.textField.backgroundColor = .green
         }) { (success:Bool) in
             if success {
@@ -238,3 +241,11 @@ extension WeatherViewController: UITextFieldDelegate {
     
     
 }
+extension WeatherViewController: LaunchViewDelegate {
+    func animationEnded() {
+        launchView.removeFromSuperview()
+    }
+    
+    
+}
+

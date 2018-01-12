@@ -30,6 +30,7 @@ class DetailWeatherViewController: UIViewController {
         dismiss(animated: true, completion: nil)
     }
     
+    // Animation for save button being clicked
     @objc func saveImage() {
         FileManagerHelper.manager.addFavoriteImage(from: imageURLtoSave)
         print("Save Button clicked")
@@ -43,7 +44,6 @@ class DetailWeatherViewController: UIViewController {
             })
     }
     
-    // TODO: Add animation for save button being clicked
     
 
 }
