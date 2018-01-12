@@ -91,8 +91,8 @@ class WeatherDetailViewController: UIViewController {
                 detailView.lowLabel.text = "Low: \(forecast.minTempC.description) ℉"
                 detailView.precipitationLabel.text = "Rainfall: \(forecast.precipIN.description) inches"
                 detailView.windspeedLabel.text = "Windspeed: \(forecast.windSpeedMPH.description) mph"
-                detailView.sunriseLabel.text = "Sunrise: \(forecast.sunrise.description)"
-                detailView.sunsetLabel.text = "Sunset: \(forecast.sunset.description)"
+                detailView.sunriseLabel.text = "Sunrise: \(Date.init(timeIntervalSince1970: TimeInterval(forecast.sunrise)).description.components(separatedBy: " ")[1])"
+                detailView.sunsetLabel.text = "Sunset: \(Date.init(timeIntervalSince1970: TimeInterval(forecast.sunset)).description.components(separatedBy: " ")[1])"
                 
             case 1:
                 detailView.titleLabel.text = city
@@ -101,8 +101,8 @@ class WeatherDetailViewController: UIViewController {
                 detailView.lowLabel.text = "Low: \(forecast.minTempF.description) ℃"
                 detailView.precipitationLabel.text = "Rainfall: \(forecast.precipMM.description) mm"
                 detailView.windspeedLabel.text = "Windspeed: \(forecast.windSpeedKPH.description) kph"
-                detailView.sunriseLabel.text = "Sunrise: \(forecast.sunrise.description)"
-                detailView.sunsetLabel.text = "Sunset: \(forecast.sunset.description)"
+                detailView.sunriseLabel.text = "Sunrise: \(Date.init(timeIntervalSince1970: TimeInterval(forecast.sunrise)).description.components(separatedBy: " ")[1])"
+                detailView.sunsetLabel.text = "Sunset: \(Date.init(timeIntervalSince1970: TimeInterval(forecast.sunset)).description.components(separatedBy: " ")[1])"
             default:
                 break
                 
@@ -114,8 +114,8 @@ class WeatherDetailViewController: UIViewController {
             detailView.lowLabel.text = "Low: \(forecast.minTempC.description) ℉"
             detailView.precipitationLabel.text = "Rainfall: \(forecast.precipIN.description) inches"
             detailView.windspeedLabel.text = "Windspeed: \(forecast.windSpeedMPH.description) mph"
-            detailView.sunriseLabel.text = "Sunrise: \(forecast.sunrise.description)"
-            detailView.sunsetLabel.text = "Sunset: \(forecast.sunset.description)"
+            detailView.sunriseLabel.text = "Sunrise: \(Date.init(timeIntervalSince1970: TimeInterval(forecast.sunrise)).description.components(separatedBy: " ")[1])"
+            detailView.sunsetLabel.text = "Sunset: \(Date.init(timeIntervalSince1970: TimeInterval(forecast.sunset)).description.components(separatedBy: " ")[1])"
         }
 
     }

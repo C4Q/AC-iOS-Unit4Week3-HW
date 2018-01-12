@@ -28,10 +28,18 @@ class SettingsViewController: UIViewController {
     
     @objc func segmentedControlTapped() {
         
-        let myDefault = UserDefaultsHelper.MyDefaults(zipCode: Int(settingsView.zipCodeTextField.text!)!, measurementSystem: self.settingsView.segmentedControl.selectedSegmentIndex)
+        if let zip = Int(settingsView.zipCodeTextField.text!){
+        
+        let myDefault = UserDefaultsHelper.MyDefaults(zipCode: zip, measurementSystem: self.settingsView.segmentedControl.selectedSegmentIndex)
         
         UserDefaultsHelper.manager.createDefaultSetting(value: myDefault)
-        
+        } else {
+            let myDefault = UserDefaultsHelper.MyDefaults(zipCode: 11101, measurementSystem: self.settingsView.segmentedControl.selectedSegmentIndex)
+            
+            UserDefaultsHelper.manager.createDefaultSetting(value: myDefault)
+            
+            
+        }
         
     }
     

@@ -29,7 +29,6 @@ class UserDefaultsHelper {
     func createDefaultSetting(value: MyDefaults) {
         do {
             let data = try PropertyListEncoder().encode(value)
-            print(value.measurementSystem, value.zipCode)
             defaults.set(data, forKey: key)
         } catch {
             print(error.localizedDescription)

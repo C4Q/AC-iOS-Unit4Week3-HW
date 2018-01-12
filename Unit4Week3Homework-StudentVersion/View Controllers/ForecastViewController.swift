@@ -30,6 +30,21 @@ class ForecastViewController: UIViewController {
         forecastView.collectionView.delegate  = self
         forecastView.searchTextField.delegate = self
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        
+        if let myDefaults = UserDefaultsHelper.manager.getValue() {
+
+        forecastView.searchTextField.text = myDefaults.zipCode.description
+        
+        AerisWeatherAPIClient.manager.getForecast(zip: myDefaults.zipCode.description, completionHandler: { self.forecasts = $0; ZipCodeHelper.manager.getLocationName(from: myDefaults.zipCode.description, completionHandler: { self.forecastView.cityNameLabel.text = $0 }, errorHandler: { print($0) }) }, errorHandler: { print($0); self.alertController(title: "No Data", message: "No forecast data for the provided zip code.") })
+        }
+        
+        
+        
+    }
 
 }
 
