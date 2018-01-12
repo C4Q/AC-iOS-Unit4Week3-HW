@@ -13,7 +13,7 @@ class FavoritesView: UIView {
     lazy var favoritesTableView: UITableView = {
         let tableView = UITableView()
         tableView.register(FavoritesTableViewCell.self, forCellReuseIdentifier: "FavoritesTableViewCell")
-        tableView.backgroundColor = UIColor.red
+        tableView.backgroundColor = UIColor.gray
         return tableView
     }()
     
@@ -36,10 +36,10 @@ class FavoritesView: UIView {
         addSubview(favoritesTableView)
         favoritesTableView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            favoritesTableView.topAnchor.constraint(equalTo: topAnchor),
-            favoritesTableView.leadingAnchor.constraint(equalTo: leadingAnchor),
-            favoritesTableView.trailingAnchor.constraint(equalTo: trailingAnchor),
-            favoritesTableView.bottomAnchor.constraint(equalTo: bottomAnchor)
+            favoritesTableView.topAnchor.constraint(equalTo:   safeAreaLayoutGuide.topAnchor),
+            favoritesTableView.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor),
+            favoritesTableView.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor),
+            favoritesTableView.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor)
             
             ])
     }

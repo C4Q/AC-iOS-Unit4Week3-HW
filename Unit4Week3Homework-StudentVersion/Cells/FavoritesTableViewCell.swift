@@ -12,7 +12,7 @@ class FavoritesTableViewCell: UITableViewCell {
     
     lazy var favoritesImageView: UIImageView = {
         let imageView = UIImageView()
-        imageView.contentMode = UIViewContentMode.scaleToFill
+        imageView.contentMode = UIViewContentMode.scaleAspectFit
         return imageView
     }()
     
@@ -29,7 +29,7 @@ class FavoritesTableViewCell: UITableViewCell {
     }
     
     private func commonInit() {
-        backgroundColor = UIColor.purple
+        backgroundColor = UIColor.gray
         setUpFavoriteImageViews()
         
     }

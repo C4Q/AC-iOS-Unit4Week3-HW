@@ -26,7 +26,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let favoritesNavController = UINavigationController(rootViewController: favoritesViewController)
         let tabController = UITabBarController()
         tabController.setViewControllers([weatherNavController, favoritesNavController], animated: true)
-        tabController.tabBar.barTintColor = UIColor.lightGray
+//        tabController.tabBar.barTintColor = UIColor.blue
         weatherViewController.tabBarItem = UITabBarItem(title: "Weather", image: nil, tag: 0)
         favoritesViewController.tabBarItem = UITabBarItem(title: "Saved Images", image: nil, tag: 1)
         window = UIWindow(frame: UIScreen.main.bounds) //create window for view controller

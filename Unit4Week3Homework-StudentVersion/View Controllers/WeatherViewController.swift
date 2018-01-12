@@ -9,9 +9,9 @@
 import UIKit
 
 /*To Do/Need Help:
- - Set up Favorites View Controller
- - Figure out autoresizing?
+ - Figure out autoresizing for favorites and landscape
  - Reset collection view to first cell when new city entered
+ - Fix tab bar 
  */
 
 class WeatherViewController: UIViewController {

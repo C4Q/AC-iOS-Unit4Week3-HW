@@ -20,7 +20,7 @@ class FavoritesViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = UIColor.magenta
+        view.backgroundColor = UIColor.gray
         view.addSubview(favoritesView)
         navigationItem.title =  "Favorties"
         favoritesView.favoritesTableView.dataSource = self
