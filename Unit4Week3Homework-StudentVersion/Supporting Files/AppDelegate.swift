@@ -23,11 +23,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //        let weatherDetailedViewController = WeatherDetailedViewController(
 //        let weatherDetailedNavController = UINavigationController(rootViewController: weatherDetailedViewController)
         let favoritesViewController = FavoritesViewController()
-
+        let favoritesNavController = UINavigationController(rootViewController: favoritesViewController)
+        let tabController = UITabBarController()
+        tabController.setViewControllers([weatherNavController, favoritesNavController], animated: true)
+        tabController.tabBar.barTintColor = UIColor.lightGray
+        weatherViewController.tabBarItem = UITabBarItem(title: "Weather", image: nil, tag: 0)
+        favoritesViewController.tabBarItem = UITabBarItem(title: "Saved Images", image: nil, tag: 1)
         window = UIWindow(frame: UIScreen.main.bounds) //create window for view controller
-        window?.rootViewController = weatherNavController//makes a rootController
+        window?.rootViewController = tabController//makes a rootController
         window?.makeKeyAndVisible() //makes window seen on screen
-        
+        FileManagerHelper.manager.loadImages()
         return true
     }
 

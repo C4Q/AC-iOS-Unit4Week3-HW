@@ -12,6 +12,7 @@ class FavoritesTableViewCell: UITableViewCell {
     
     lazy var favoritesImageView: UIImageView = {
         let imageView = UIImageView()
+        imageView.contentMode = UIViewContentMode.scaleToFill
         return imageView
     }()
     
@@ -34,9 +35,14 @@ class FavoritesTableViewCell: UITableViewCell {
     }
     
     private func setUpFavoriteImageViews() {
+        contentView.addSubview(favoritesImageView)
+        
         favoritesImageView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-//            favoritesImageView.topAnchor.constraint(equalTo: <#T##NSLayoutAnchor<NSLayoutYAxisAnchor>#>)
+            favoritesImageView.topAnchor.constraint(equalTo: contentView.topAnchor),
+            favoritesImageView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
+            favoritesImageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
+            favoritesImageView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor)
             ])
      
     }

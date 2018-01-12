@@ -32,11 +32,14 @@ class ImageCache {
                 if let image = image {
                     self.sharedCached.setObject(image, forKey: imageURL.absoluteString as NSString)
                 }
-                
-                completion(nil, image)
+                DispatchQueue.main.async {
+                    completion(nil, image)
+                }
             } catch {
                 print("ImageCache - image processing error: \(error.localizedDescription)")
+                DispatchQueue.main.async {
                 completion(error, nil)
+                }
             }
         }
     }

@@ -17,9 +17,8 @@ class FileManagerHelper {
     var savedPixaBayImagesPath = "SavedCityImages.plist"
     static let manager = FileManagerHelper()
     
-    private var pixaBayImages = [UIImage]() {
+    private var pixaBayImages = [Pixabay]() {
         didSet {
-//            removeDupes()
             saveImages()
         }
     }
@@ -40,6 +39,7 @@ class FileManagerHelper {
     func getImage(with urlStr: String) -> UIImage? {
         do {
             let imagePathName = urlStr.components(separatedBy: "/").last!
+            print(imagePathName)
             let url = dataFilePath(withPathName: imagePathName)
             let data = try Data(contentsOf: url)
             return UIImage(data: data)
@@ -79,7 +79,7 @@ class FileManagerHelper {
         do {
             let phoneURL = dataFilePath(withPathName: savedPixaBayImagesPath)
             let encodedData = try Data(contentsOf: phoneURL)
-            let savedImages = try propertyListDecoder.decode([UIImage].self, from: encodedData)
+            let savedImages = try propertyListDecoder.decode([Pixabay].self, from: encodedData)
            pixaBayImages = savedImages
         }
         catch {
@@ -87,11 +87,11 @@ class FileManagerHelper {
         }
     }
     
-    func addNew(savedImage: UIImage) {
+    func addNew(savedImage: Pixabay) {
         pixaBayImages.append(savedImage)
     }
     
-    func getAllPixabayImages() -> [UIImage] {
+    func getAllPixabayImages() -> [Pixabay] {
         return pixaBayImages
     }
     
@@ -100,7 +100,7 @@ class FileManagerHelper {
         return FileManagerHelper.manager.documentsDirectory().appendingPathComponent(path)
     }
     
-    //THIS IS ONLY FOR THE ABOVE METH.a.OD
+    //THIS IS ONLY FOR THE ABOVE METHOD
     private func documentsDirectory() -> URL {
         let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
         return paths[0]

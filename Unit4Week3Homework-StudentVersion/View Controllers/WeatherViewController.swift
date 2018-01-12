@@ -9,8 +9,6 @@
 import UIKit
 
 /*To Do/Need Help:
- - give text drop shadow
- - How to make tab bar controller
  - Set up Favorites View Controller
  - Figure out autoresizing?
  - Reset collection view to first cell when new city entered
@@ -89,11 +87,6 @@ class WeatherViewController: UIViewController {
             ZipCodeHelper.manager.getLocationName(from: savedZipCode , completionHandler: completion, errorHandler: errorHandler)
         }
     }
-    
-    
-    //    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-    //
-    //    }
 }
 
 
@@ -130,10 +123,7 @@ extension WeatherViewController: UICollectionViewDataSource {
         destination.fullWeatherDetail = selectedWeather
         destination.navigationItem.title = cityName
         destination.cityName = cityName
-        // destination.weather = selectedFoo
-        //        weatherInfo = [twoWeekWeather[indexPath.row]]
-        //        self.performSegue(withIdentifier: "ToDetailWeather", sender: self)
-    }
+       }
 }
 
 extension WeatherViewController: UITextFieldDelegate {

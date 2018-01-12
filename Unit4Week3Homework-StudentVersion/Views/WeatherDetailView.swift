@@ -12,6 +12,7 @@ import QuartzCore
 class WeatherDetailView: UIView {
     
     var weatherOfTheDay: Weather!
+    var nameToSaveAs: String!
     
     lazy var cityLabel: UILabel = {
         let label = UILabel()
@@ -133,8 +134,6 @@ class WeatherDetailView: UIView {
     private func setUpDetailImageViewConstraints() {
         //change constraints
         NSLayoutConstraint.activate([
-            detailImageView.centerXAnchor.constraint(equalTo: centerXAnchor),
-            detailImageView.centerYAnchor.constraint(equalTo: centerYAnchor),
             detailImageView.topAnchor.constraint(equalTo: topAnchor),
             detailImageView.leadingAnchor.constraint(equalTo: leadingAnchor),
             detailImageView.trailingAnchor.constraint(equalTo: trailingAnchor),

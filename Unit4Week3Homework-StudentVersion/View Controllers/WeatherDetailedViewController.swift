@@ -26,6 +26,7 @@ class WeatherDetailedViewController: UIViewController {
     var fullWeatherDetail: Weather!
     var pixaBayImages = [Pixabay]()
     var cityName: String!
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,8 +35,6 @@ class WeatherDetailedViewController: UIViewController {
         setUpSaveButton()
         setUpWeatherDetailWithInformation()
         loadPixabayImages()
-
-        print(pixaBayImages)
     }
     
     
@@ -61,9 +60,10 @@ class WeatherDetailedViewController: UIViewController {
     }
     
     @objc func savePhoto() {
-        if let userSavedImage = detailedWeatherView.detailImageView.image {
-        FileManagerHelper.manager.addNew(savedImage: userSavedImage)
-        }
+        guard let image = detailedWeatherView.detailImageView.image else { return }
+        FileManagerHelper.manager.saveImage(with: pixaBayImages[0].webformatURL, image: image)
+        FileManagerHelper.manager.addNew(savedImage: pixaBayImages[0])
+        
     }
     
     func loadPixabayImages() {
@@ -72,10 +72,7 @@ class WeatherDetailedViewController: UIViewController {
             self.pixaBayImages = GKRandomSource.sharedRandom().arrayByShufflingObjects(in: onlineImages) as! [Pixabay]
             print(self.pixaBayImages)
             self.setUpImage()
-    
         }
-        
-        
         let errorHandler: (Error) -> Void = { (error: Error) in
             print(error.localizedDescription)
         }
@@ -83,34 +80,22 @@ class WeatherDetailedViewController: UIViewController {
     }
     
     
-
+    
     func setUpImage() {
-//        detailedWeatherView.detailImageView.image = nil
         let urlStr =  pixaBayImages[0].webformatURL
         guard let url = URL(string: urlStr)  else { print("Problem with url"); return }
+        if let picture = ImageCache.manager.cachedImage(url: url) {
+            self.detailedWeatherView.detailImageView.image = picture
+            self.detailedWeatherView.nameToSaveAs = urlStr
+            return
+        }
         DispatchQueue.main.async {
-            guard let rawImageData = try? Data(contentsOf: url) else {return}
-            DispatchQueue.main.async {
-                guard let onlineImage = UIImage(data: rawImageData) else { return }
-                self.detailedWeatherView.detailImageView.image = onlineImage
-//                let backgroundImage = UIImageView(frame: UIScreen.main.bounds)
-//                backgroundImage.contentMode = UIViewContentMode.scaleToFill
-//                backgroundImage.image = onlineImage
-//                self.detailedWeatherView.detailImageView = backgroundImage
-//                self.view.layoutIfNeeded()
-//                self.detailedWeatherView.backgroundColor = UIColor(patternImage: onlineImage)
-            }
+            ImageCache.manager.processImageInBackground(imageURL: url, completion: {(error: Error?, image: UIImage?) in
+                self.detailedWeatherView.detailImageView.image = image
+            })
+            
+            
         }
     }
-    
-    /*
-     // MARK: - Navigation
-     
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
-     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-     // Get the new view controller using segue.destinationViewController.
-     // Pass the selected object to the new view controller.
-     }
-     */
     
 }
