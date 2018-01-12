@@ -12,7 +12,7 @@ class TabBarController: UITabBarController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .cyan
+        view.backgroundColor = .lightGray
         let navigation = UINavigationController(rootViewController: MainWeatherViewController())
         let favoriteVC = FavoriteImageViewController()
         navigation.tabBarItem = UITabBarItem(tabBarSystemItem: .search, tag: 0)

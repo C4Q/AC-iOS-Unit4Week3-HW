@@ -11,7 +11,12 @@ import UIKit
 class MainWeatherViewController: UIViewController {
     
     let cellSpacing: CGFloat = 10
-    var zipCode = "10452"
+    var zipCode = ""
+    var cityName = "" {
+        didSet {
+            weatherView.cityLabel.text = "Weather forecast in \(cityName)"
+        }
+    }
     
     var weatherArray = [Weather]() {
         didSet {
@@ -29,14 +34,22 @@ class MainWeatherViewController: UIViewController {
         weatherView.collectionView.delegate = self
         navigationItem.title = "Search"
         constraintView()
+        if let myDefault = UserDefaultHelper.manager.getZipCode() {
+            zipCode = myDefault
+            weatherView.inputZipCode.text = myDefault
+        } else {
+            zipCode = "11101"
+        }
         getWeatherData()
+        getCityName()
+        
     }
     
     func getWeatherData() {
-        WeatherAPIClient.manager.getWeather(from: zipCode, completionHandler: {self.weatherArray = $0}, errorHandler: {print($0)})
+        WeatherAPIClient.manager.getWeather(from: zipCode, completionHandler: {self.weatherArray = $0; }, errorHandler: {print($0)})
     }
     func getCityName() {
-        ZipCodeHelper.manager.getLocationName(from: zipCode.description, completionHandler: {ZipCodeHelper.manager.setCityName(name: $0)}, errorHandler: {print($0)})
+        ZipCodeHelper.manager.getLocationName(from: zipCode.description, completionHandler: {self.cityName = $0}, errorHandler: {print($0)})
     }
     
     func constraintView() {
@@ -70,8 +83,15 @@ UICollectionViewDelegateFlowLayout, UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let detailVC = WeatherDetailViewController()
         detailVC.weatherObject = weatherArray[indexPath.row]
-        //TODO add extra descriptions
-        navigationController?.pushViewController(detailVC, animated: true)
+        detailVC.cityName = cityName
+        
+        let cell = collectionView.cellForItem(at: indexPath)
+        
+        UIView.animate(withDuration: 0.1, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 5, options: [], animations: {
+                        cell!.transform = CGAffineTransform(scaleX: 0.9, y: 0.9) }, completion: { finished in
+                            UIView.animate(withDuration: 0.06, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 5, options: .curveEaseIn, animations: { cell!.transform = CGAffineTransform(scaleX: 1, y: 1) }, completion: { (_) in
+                                self.navigationController?.pushViewController(detailVC, animated: true)
+                            } )})
 
     }
 
@@ -98,14 +118,25 @@ UICollectionViewDelegateFlowLayout, UICollectionViewDelegate {
     }
 }
 extension MainWeatherViewController: UITextFieldDelegate {
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        textField.becomeFirstResponder()
+    }
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        let allowOnlyNumbers = CharacterSet.decimalDigits
+        let characterSet = CharacterSet(charactersIn: string)
+        
+        return allowOnlyNumbers.isSuperset(of: characterSet)
+    }
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        if let text = textField.text?.description {
-        zipCode = text
+        if textField.text?.count == 5 {
+            zipCode = textField.text!
+            UserDefaultHelper.manager.setZipCode(to: zipCode)
+            getWeatherData()
+            getCityName()
+            textField.resignFirstResponder()
+            return true
         }
-        getWeatherData()
-        getCityName()
-        print("return")
-        return true
+        return false
     }
 }
 

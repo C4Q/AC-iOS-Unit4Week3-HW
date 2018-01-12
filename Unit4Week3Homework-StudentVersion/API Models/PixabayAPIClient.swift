@@ -18,7 +18,7 @@ struct Pixabay: Codable {
 struct PixabayAPIClient {
     private init() {}
     static let manager = PixabayAPIClient()
-    func getImages(from city: String, completionHandler: @escaping (PixabayResults) -> Void, errorHandler: (Error) -> Void) {
+    func getImages(from city: String, completionHandler: @escaping (Pixabay) -> Void, errorHandler: (Error) -> Void) {
         
         let key = "7289923-0b68ed7d233fab7c0c5f1be3f"
         guard let url = URL(string: "https://pixabay.com/api/?key=\(key)&q=\(city)") else {return}
@@ -26,7 +26,11 @@ struct PixabayAPIClient {
         let completion: (Data) -> Void = {(data: Data) in
             do {
                 let images = try JSONDecoder().decode(PixabayResults.self, from: data)
-                completionHandler(images)
+                
+                if !images.hits.isEmpty {
+                    let randomImage = Int(arc4random_uniform(UInt32(images.hits.count-1)))
+                    completionHandler(images.hits[randomImage])
+                }
             }
             catch {
                 print(error)

@@ -10,31 +10,43 @@ import UIKit
 
 class WeatherDetailViewController: UIViewController {
 
-    var weatherObject: Weather!
-    
     let detailView = DetailView()
     var picture: PixabayResults?
+    var imageURL = String()
+    
+    var weatherObject: Weather!
+    var cityName: String!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         view.addSubview(detailView)
         constraintView()
         setView()
-        PixabayAPIClient.manager.getImages(from: ZipCodeHelper.manager.CityName(), completionHandler: {self.picture = $0}, errorHandler: {print($0)})
-        navigationItem.title = ZipCodeHelper.manager.CityName()
+        PixabayAPIClient.manager.getImages(from: cityName.replacingOccurrences(of: " ", with: ""), completionHandler: {self.imageURL = $0.webformatURL
+            ImageAPIClient.manager.loadImage(from: self.imageURL, completionHandler: {self.detailView.cityImage.image = $0}, errorHandler: {print($0)})
+        }, errorHandler: {print($0)})
+        navigationItem.title = cityName
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Save", style: .plain, target: self, action: #selector(saveImage))
     }
     
     @objc func saveImage() {
         guard let image = detailView.cityImage.image else { return }
+//        guard let imageURL = imageURL else {return}
         //TODO: Save Image
-        
+        KeyedArchiverClient.shared.saveImageToDisk(image: image, artworkPath: imageURL)
+        alert()
+    }
+    
+    func alert() {
+        let alert = UIAlertController(title: "Saved", message: "You saved the Image!", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Okay", style: .cancel))
+        self.present(alert, animated: true, completion: nil)
     }
     
     func setView() {
-        
-        detailView.cityDateLabel.text = "Weather forecast in \(ZipCodeHelper.manager.CityName()) for \(Date.dateStringFromTimeInterval(timeinterval: TimeInterval(weatherObject.timestamp))) "
-        
+        if let cityName = cityName {
+        detailView.cityDateLabel.text = "Weather forecast in \(cityName) for \(Date.dateStringFromTimeInterval(timeinterval: TimeInterval(weatherObject.timestamp))) "
+        }
         //TODO: Image
         
         detailView.weatherDescriptionLabel.text = weatherObject.weather

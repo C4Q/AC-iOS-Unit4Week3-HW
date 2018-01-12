@@ -11,11 +11,10 @@ import UIKit
 class FavoriteCell: UITableViewCell {
 
     lazy var CityImage: UIImageView = {
-        let image = UIImageView(frame: CGRect(x: 0, y: 0, width: self.bounds.width, height: self.bounds.height))
+        let image = UIImageView(frame: .zero)
         return image
     }()
 
-    
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: "DetailCell")
         commonInit()
@@ -30,11 +29,13 @@ class FavoriteCell: UITableViewCell {
         setupViews()
     }
     private func setupViews() {
-        addSubview(CityImage)
+        contentView.addSubview(CityImage)
         CityImage.translatesAutoresizingMaskIntoConstraints = false
-//        NSLayoutConstraint.activate([
-//            CityImage
-//            ])
+        NSLayoutConstraint.activate([
+            CityImage.widthAnchor.constraint(equalTo: contentView.widthAnchor),
+            CityImage.heightAnchor.constraint(equalTo: contentView.heightAnchor),
+            CityImage.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
+            CityImage.trailingAnchor.constraint(equalTo: contentView.trailingAnchor)
+            ])
     }
-
 }

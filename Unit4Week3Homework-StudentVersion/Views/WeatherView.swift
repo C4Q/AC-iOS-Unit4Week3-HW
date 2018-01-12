@@ -16,7 +16,7 @@ class WeatherView: UIView {
         tf.placeholder = "Zip Code"
         tf.borderStyle = UITextBorderStyle.roundedRect
         tf.autocorrectionType = UITextAutocorrectionType.no
-        tf.keyboardType = UIKeyboardType.numberPad
+        tf.keyboardType = UIKeyboardType.numbersAndPunctuation
         tf.returnKeyType = UIReturnKeyType.done
         tf.clearButtonMode = UITextFieldViewMode.whileEditing;
         tf.contentVerticalAlignment = UIControlContentVerticalAlignment.center
@@ -26,7 +26,6 @@ class WeatherView: UIView {
     
     lazy var cityLabel: UILabel = {
        let label = UILabel()
-        label.text = "Weather forecast in \(ZipCodeHelper.manager.CityName())"
         return label
     }()
     lazy var instructionLabel: UILabel = {
@@ -77,6 +76,19 @@ class WeatherView: UIView {
             instructionLabel.topAnchor.constraint(equalTo: inputZipCode.bottomAnchor, constant: 10)
             
             ])
+    }
+    
+    var widthConstraint = NSLayoutConstraint()
+    
+    func animateLabel() {
+        let animation = CABasicAnimation(keyPath: "labelPosition")
+        let fromValue = CATransform3DMakeScale(1, 1, 0)
+        let toValue = CATransform3DMakeScale(0, 50, 0)
+        
+        animation.fromValue = fromValue
+        animation.toValue = toValue
+        animation.duration = 0.5
+//        weatherView.cityLabel.layer.add(animation, forKey: nil)
     }
 
 }

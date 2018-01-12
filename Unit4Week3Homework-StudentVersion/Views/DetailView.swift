@@ -13,6 +13,7 @@ class DetailView: UIView {
     ///Top of view
     lazy var cityDateLabel: UILabel = {
         let label = UILabel()
+        label.textAlignment = .center
         return label
     }()
     
@@ -82,16 +83,16 @@ class DetailView: UIView {
     }
     private func setupTopConstraints() {
         NSLayoutConstraint.activate([
-            cityDateLabel.topAnchor.constraint(equalTo: topAnchor, constant: 11),
+            cityDateLabel.topAnchor.constraint(equalTo: topAnchor, constant: 10),
             cityDateLabel.widthAnchor.constraint(equalTo: widthAnchor),
             
             cityImage.topAnchor.constraint(equalTo: cityDateLabel.bottomAnchor, constant: 10),
-            cityImage.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.5),
+            cityImage.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.7),
             cityImage.heightAnchor.constraint(equalTo: cityImage.widthAnchor),
             
             weatherDescriptionLabel.topAnchor.constraint(equalTo: cityImage.bottomAnchor, constant: 10),
             
-            highLabel.topAnchor.constraint(equalTo: weatherDescriptionLabel.bottomAnchor, constant: 10),
+            highLabel.topAnchor.constraint(equalTo: weatherDescriptionLabel.bottomAnchor, constant: 20),
             
             lowLabel.topAnchor.constraint(equalTo: highLabel.bottomAnchor, constant: 10),
             

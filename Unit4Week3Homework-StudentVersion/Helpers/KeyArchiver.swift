@@ -15,9 +15,9 @@ class KeyedArchiverClient {
     
     static let plistPathName = "SavedImages.plist"
     
-    private var listOfSavedImageNames = [String]() {
+    private var listOfImageNames = [String]() {
         didSet {
-            dump(listOfSavedImageNames)
+            savePixabays()
         }
     }
     
@@ -27,30 +27,33 @@ class KeyedArchiverClient {
     }
     
     private func dataFilePath(pathName: String) -> URL {
-        return KeyedArchiverClient.shared.documentsDirectory().appendingPathComponent(pathName)
+        let formattedPathName = pathName.components(separatedBy: "/").last!
+        
+        return KeyedArchiverClient.shared.documentsDirectory().appendingPathComponent(formattedPathName)
     }
 
-//Image Saver
+    
 func saveImageToDisk(image: UIImage, artworkPath: String) -> Bool {
     // Use UIImagePNGRepresentation to convert the file to data and write to the file path
     guard let imageData = UIImagePNGRepresentation(image) else { return false }
     let imageURL = dataFilePath(pathName: artworkPath)
     do {
         try imageData.write(to: imageURL)
-        listOfSavedImageNames.insert(artworkPath, at: 0)
+        listOfImageNames.append(artworkPath)
     } catch {
         print("image saving error: \(error.localizedDescription)")
     }
     return true
 }
 
-func getImageFromDisk(artworkPath: String) -> UIImage? {
-    let imageURL = dataFilePath(pathName: artworkPath)
+func getImage(artworkPath: String) -> UIImage? {
+    let formattedPathName = artworkPath.components(separatedBy: "/").last!
+    let imageURL = dataFilePath(pathName: formattedPathName)
     let image = UIImage(contentsOfFile: imageURL.path)
     return image
 }
 
-func deleteImageFromDisk(artworkPath: String) {
+func deleteImage(artworkPath: String) {
     let imageURL = dataFilePath(pathName: artworkPath)
     do {
         try FileManager.default.removeItem(at: imageURL)
@@ -58,19 +61,34 @@ func deleteImageFromDisk(artworkPath: String) {
         print("error removing: \(error.localizedDescription)")
     }
 }
-
-func replaceImage(oldArtworkPath: String, with newArtworkPath: String) {
-    let oldImage = dataFilePath(pathName: oldArtworkPath)
-    let newImage = dataFilePath(pathName: newArtworkPath)
-    do {
-        let _ = try FileManager.default.replaceItemAt(oldImage, withItemAt: newImage)
-    } catch {
-        print("error swapping images: \(error.localizedDescription)")
+    
+    private func savePixabays() {
+        let propertyListEncoder = PropertyListEncoder()
+        do {
+            let encodedData = try propertyListEncoder.encode(listOfImageNames)
+            let phoneURL = dataFilePath(pathName: KeyedArchiverClient.plistPathName)
+            try encodedData.write(to: phoneURL, options: .atomic)
+        }
+        catch {
+            print("Encoding error: " + error.localizedDescription)
+        }
     }
-}
+    
+    func loadPixabays() {
+        let propertyListDecoder = PropertyListDecoder()
+        do {
+            let phoneURL = dataFilePath(pathName: KeyedArchiverClient.plistPathName)
+            let encodedData = try Data(contentsOf: phoneURL)
+            let savedPixabays = try propertyListDecoder.decode([String].self, from: encodedData)
+            listOfImageNames = savedPixabays
+        }
+        catch {
+            print("Decoding error: " + error.localizedDescription)
+        }
+    }
 
 func fetchListOfImages() -> [String] {
-    return listOfSavedImageNames
+    return listOfImageNames
 }
 
 }
