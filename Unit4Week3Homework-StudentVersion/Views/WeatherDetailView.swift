@@ -15,12 +15,14 @@ class WeatherDetailView: UIView {
         let detailTitleLabel = UILabel()
         detailTitleLabel.textAlignment = .center
         detailTitleLabel.text = "title"
+        detailTitleLabel.font = UIFont.systemFont(ofSize: 15, weight: UIFont.Weight(rawValue: 250))
+        detailTitleLabel.textColor = .white
         return detailTitleLabel
     }()
     
     lazy var detailImageView: UIImageView = {
         let detailImageView = UIImageView()
-        detailImageView.image = #imageLiteral(resourceName: "fair")
+        //detailImageView.image = #imageLiteral(resourceName: "fair")
         detailImageView.contentMode = .scaleAspectFit
         return detailImageView
     }()
@@ -29,6 +31,7 @@ class WeatherDetailView: UIView {
         let weatherLabel = UILabel()
         weatherLabel.textAlignment = .center
         weatherLabel.text = "weather condition"
+        weatherLabel.textColor = .white
         return weatherLabel
     }()
     
@@ -36,6 +39,7 @@ class WeatherDetailView: UIView {
         let highTempLabel = UILabel()
         //highTempLabel.textAlignment = .center
         highTempLabel.text = "high temp"
+        highTempLabel.textColor = .white
         return highTempLabel
     }()
     
@@ -43,6 +47,7 @@ class WeatherDetailView: UIView {
         let lowTempLabel = UILabel()
        // lowTempLabel.textAlignment = .center
         lowTempLabel.text = "low temp"
+        lowTempLabel.textColor = .white
         return lowTempLabel
     }()
     
@@ -50,6 +55,7 @@ class WeatherDetailView: UIView {
         let sunriseLabel = UILabel()
         //sunriseLabel.textAlignment = .center
         sunriseLabel.text = "sunrise"
+        sunriseLabel.textColor = .white
         return sunriseLabel
     }()
     
@@ -57,6 +63,7 @@ class WeatherDetailView: UIView {
         let sunsetLabel = UILabel()
         //sunsetLabel.textAlignment = .center
         sunsetLabel.text = "sunset"
+        sunsetLabel.textColor = .white
         return sunsetLabel
     }()
     
@@ -64,6 +71,7 @@ class WeatherDetailView: UIView {
         let windSpeedLabel = UILabel()
         //windSpeedLabel.textAlignment = .center
         windSpeedLabel.text = "wind speed"
+        windSpeedLabel.textColor = .white
         return windSpeedLabel
     }()
     
@@ -71,6 +79,7 @@ class WeatherDetailView: UIView {
         let precipitationLabel = UILabel()
         //precipitationLabel.textAlignment = .center
         precipitationLabel.text = "precipitation"
+        precipitationLabel.textColor = .white
         return precipitationLabel
     }()
     
@@ -89,6 +98,10 @@ class WeatherDetailView: UIView {
         backgroundColor = .white
         setupViews()
         //print("this city set to \(thisCity)")
+        let backgroundImage = UIImageView(frame: UIScreen.main.bounds)
+        backgroundImage.image = UIImage(named: "sunset.jpg")
+        backgroundImage.contentMode = UIViewContentMode.scaleAspectFill
+        insertSubview(backgroundImage, at: 0)
     }
     
     private func setupViews() {
@@ -107,7 +120,7 @@ class WeatherDetailView: UIView {
         addSubview(detailTitleLabel)
         detailTitleLabel.translatesAutoresizingMaskIntoConstraints = false
         detailTitleLabel.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 30).isActive = true
-       detailTitleLabel.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.9).isActive = true
+       detailTitleLabel.widthAnchor.constraint(equalTo: widthAnchor).isActive = true
         detailTitleLabel.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
     }
     
@@ -177,8 +190,7 @@ class WeatherDetailView: UIView {
     }
     
     public func configureDetailView(weatherInfo: DailyForecast, city: String, imageUrl : String) {
-        
-        //TODO: Add images
+    
         let date = weatherInfo.validTime
         let formattedDate = date.components(separatedBy: "T")
         let sunriseTime = weatherInfo.sunriseISO
@@ -194,11 +206,5 @@ class WeatherDetailView: UIView {
         windSpeedLabel.text = "Windspeed: \(weatherInfo.windSpeedMPH)Mph"
         precipitationLabel.text = "Inches of Precipitation: \(weatherInfo.precipIN)"
         
-        
-        //detailImageView
-        
     }
-    
-    
-    
 }

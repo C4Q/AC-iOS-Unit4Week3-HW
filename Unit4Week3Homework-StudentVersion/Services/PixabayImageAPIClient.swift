@@ -9,17 +9,18 @@
 import Foundation
 
 struct PixabayImages: Codable {
-    let hits: [PixabayWrapper]
+    let hits: [Hits]
 }
 
-struct PixabayWrapper: Codable {
+struct Hits: Codable {
     let webformatURL: String
+    let id: Int
 }
 
 struct PixabayImageAPIClient {
     private init() {}
     static let manager = PixabayImageAPIClient()
-    func getImage(from urlStr: String, completionHandler: @escaping ([PixabayWrapper]) -> Void, errorHandler: @escaping (Error) -> Void) {
+    func getImage(from urlStr: String, completionHandler: @escaping ([Hits]) -> Void, errorHandler: @escaping (Error) -> Void) {
         guard let url = URL(string: urlStr) else {return}
         let request = URLRequest(url:url)
         let completion: (Data) -> Void = {(data: Data) in

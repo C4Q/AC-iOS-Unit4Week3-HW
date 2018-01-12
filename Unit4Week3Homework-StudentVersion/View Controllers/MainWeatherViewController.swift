@@ -11,12 +11,18 @@ import UIKit
 class MainWeatherViewController: UIViewController {
     
     let weatherView = WeatherView()
-    //TODO: format city name before image api call, get array of urls, var randomImg = array[ar4random]
     
     var cityName = "" {
         didSet{
             weatherView.titleLabel.text = "Weather Forecast for \(cityName)"
             print("city: \(cityName)")
+            let key = "7316927-2a8380daf1fdd7eb7b23df261"
+            let pixabayURL = "https://pixabay.com/api/?key=\(key)&q=\(cityName.replacingOccurrences(of: " ", with: "+"))&safe_search=true&orientation=horizontal"
+            let completion = {(onlineImages: [Hits]) in
+                self.pixabayImageUrls = onlineImages
+                //print("got images \(self.pixabayImageURLS)")
+            }
+            PixabayImageAPIClient.manager.getImage(from: pixabayURL, completionHandler: completion, errorHandler: {print($0,"error getting images")})
         }
     }
     
@@ -24,10 +30,11 @@ class MainWeatherViewController: UIViewController {
     var weatherForecasts = [DailyForecast]() {
         didSet {
             weatherView.collectionView.reloadData()
+
         }
     }
     
-    var pixabayImageUrls = [PixabayWrapper]()
+    var pixabayImageUrls = [Hits]()
 
     let cellSpacing: CGFloat = 15.0
 
@@ -39,12 +46,15 @@ class MainWeatherViewController: UIViewController {
         
         self.title = "Search"
         view.addSubview(weatherView)
-        //loadData()
     }
-//    func passCity() {
-//        let view = WeatherDetailView()
-//        view.thisCity = cityName
-//    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        if let zipCode = UserDefaults.standard.object(forKey: "previousZipcode") as? String {
+            weatherView.zipTextField.text = zipCode
+            loadData(zipcode: zipCode)
+        }
+    }
+    
     func loadData(zipcode: String) {
         let clientId = "4rkzyfD1kqeSpt9wZ9Py7"
         let clientSecret = "zeAypPfgH6ccGB2Nk5I17blQM4TdusP9qEepLlog"
@@ -59,17 +69,16 @@ class MainWeatherViewController: UIViewController {
         ZipCodeHelper.manager.getLocationName(from: zipcode, completionHandler: {(self.cityName = $0)}, errorHandler: {print($0)})
     }
     
-    //MARK: Sends weatherforecasts object to detail vc
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let forecastInfo = weatherForecasts[indexPath.row]
-        let randomNumber = arc4random_uniform((UInt32(pixabayImageUrls.count)))
-        let randomPictureUrl = pixabayImageUrls[Int(randomNumber)]
-        let stringRandomPictureUrl = randomPictureUrl.webformatURL
-        let detailVC = WeatherDetailViewController.init(weather: forecastInfo, city: cityName, imageUrl: stringRandomPictureUrl)
+        guard pixabayImageUrls.count > 0 else {
+            sleep(1)
+            return
+        }
+        let randomNumber = arc4random_uniform((UInt32(pixabayImageUrls.count - 1)))
+        let randomPixabay = pixabayImageUrls[Int(randomNumber)]
+        let detailVC = WeatherDetailViewController.init(weather: forecastInfo, city: cityName, pixabay: randomPixabay)
         navigationController?.pushViewController(detailVC, animated: true)
-        
-        print("random url \(stringRandomPictureUrl)")
-        
     }
 }
 
@@ -81,7 +90,6 @@ extension MainWeatherViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let weatherForecast = weatherForecasts[indexPath.row]
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "WeatherCell", for: indexPath) as! WeatherCell
-        //cell.alpha = 0.1
         let formattedDate = weatherForecast.validTime
         let date = formattedDate.components(separatedBy: "T")
         cell.dateLabel.text = date[0]
@@ -128,19 +136,9 @@ extension MainWeatherViewController: UITextFieldDelegate {
         }
         if let zipCodeInput = textField.text {
         loadData(zipcode: zipCodeInput)
+        UserDefaults.standard.set(zipCodeInput, forKey: "previousZipcode")
         }
         textField.resignFirstResponder()
-        //TODO: formattedcityname is not being set before pixa api call is made
-        let formattedCityName = cityName.lowercased().replacingOccurrences(of: "", with: "+")
-        let key = "7316927-2a8380daf1fdd7eb7b23df261"
-        print(formattedCityName)
-        let pixabayURL = "https://pixabay.com/api/?key=\(key)&q=\(formattedCityName)+travel&safe_search=true"
-        let completion = {(onlineImages: [PixabayWrapper]) in
-            self.pixabayImageUrls = onlineImages
-            //print("got images \(self.pixabayImageURLS)")
-        }
-        PixabayImageAPIClient.manager.getImage(from: pixabayURL, completionHandler: completion, errorHandler: {print($0,"error getting images")})
-        
         return true
     }
 }

@@ -14,17 +14,18 @@ class WeatherDetailViewController: UIViewController {
     
     private var dayForecast: DailyForecast!
     var chosenCity: String!
+    var image: UIImage!
+    var pixabay: Hits!
     
-    var imageUrl: String!
-    
-    init(weather: DailyForecast, city: String, imageUrl: String) {
+    init(weather: DailyForecast, city: String, pixabay: Hits) {
         super.init(nibName: nil, bundle: nil)
         self.dayForecast = weather
         self.chosenCity = city
-        self.imageUrl = imageUrl
+        self.pixabay = pixabay
+        
         print("this is the weather in dvc\(weather)")
-        weatherDetailView.configureDetailView(weatherInfo: weather, city: city, imageUrl: imageUrl)
-        ImageAPIClient.manager.getImage(from: imageUrl, completionHandler: {self.weatherDetailView.detailImageView.image = $0}, errorHandler: {print($0,"error getting image")})
+        weatherDetailView.configureDetailView(weatherInfo: weather, city: city, imageUrl: pixabay.webformatURL)
+        ImageAPIClient.manager.getImage(from: pixabay.webformatURL, completionHandler: {self.image = $0; self.weatherDetailView.detailImageView.image = $0}, errorHandler: {print($0,"error getting image")})
     }
     
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
@@ -43,7 +44,6 @@ class WeatherDetailViewController: UIViewController {
         view.addSubview(weatherDetailView)
         configureNavBar()
         print("chosen city: \(chosenCity)")
-
     }
     
     private func configureNavBar() {
@@ -53,7 +53,14 @@ class WeatherDetailViewController: UIViewController {
     }
     
     @objc func saveImageToFavorites() {
+        guard let image = self.weatherDetailView.detailImageView.image else {return}
+        PersistentStoreManager.manager.addToFavorites(pixabay: pixabay, cityName: chosenCity, andImage: image)
         
+        //ALERT AFTER CLICKING SAVE
+        let alert = UIAlertController(title: "Save to Favorites", message: "Saved to Favorites", preferredStyle: .alert)
+        let ok = UIAlertAction(title: "Ok", style: .cancel, handler: nil)
+        alert.addAction(ok)
+        present(alert, animated: true, completion: nil)
     }
 }
 

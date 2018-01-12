@@ -15,7 +15,8 @@ class WeatherView: UIView {
         nameLabel.textAlignment = .center
         nameLabel.text = "7 Day Forecast"
         nameLabel.textColor = .white
-        //TODO: Make text bigger & bolder
+        nameLabel.font = UIFont.systemFont(ofSize: 20, weight: UIFont.Weight(rawValue: 250))
+        nameLabel.textColor = .white
         return nameLabel
     }()
     
@@ -25,7 +26,6 @@ class WeatherView: UIView {
         let cv = UICollectionView(frame:self.bounds, collectionViewLayout: layout)
         cv.register(WeatherCell.self, forCellWithReuseIdentifier: "WeatherCell")
         cv.backgroundColor = .clear
-        //cv.backgroundColor?.withAlphaComponent(0.2)
         return cv
     }()
     
@@ -78,7 +78,7 @@ class WeatherView: UIView {
         addSubview(titleLabel)
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
         titleLabel.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 20).isActive = true
-        titleLabel.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.8).isActive = true
+        titleLabel.widthAnchor.constraint(equalTo: widthAnchor).isActive = true
         titleLabel.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
     }
     
