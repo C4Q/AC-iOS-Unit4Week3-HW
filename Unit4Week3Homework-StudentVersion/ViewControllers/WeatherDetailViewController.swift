@@ -33,15 +33,26 @@ class WeatherDetailViewController: UIViewController {
         guard let image = detailView.cityImage.image else { return }
 //        guard let imageURL = imageURL else {return}
         //TODO: Save Image
-        KeyedArchiverClient.shared.saveImageToDisk(image: image, artworkPath: imageURL)
+            
         alert()
+        KeyedArchiverClient.shared.saveImageToDisk(image: image, artworkPath: imageURL)
+
     }
     
     func alert() {
-        let alert = UIAlertController(title: "Saved", message: "You saved the Image!", preferredStyle: .alert)
+        if KeyedArchiverClient.shared.favoriteCheck(with: imageURL) {
+            alertController(title: "Error", message: "Image already saved!")
+            
+        }
+        alertController(title: "Saved", message: "You saved the Image!")
+        
+    }
+    func alertController(title: String, message: String) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "Okay", style: .cancel))
         self.present(alert, animated: true, completion: nil)
     }
+    
     
     func setView() {
         if let cityName = cityName {

@@ -22,6 +22,7 @@ class FavoriteImageViewController: UIViewController {
         tableView.register(FavoriteCell.self, forCellReuseIdentifier: "DetailCell")
         view.addSubview(tableView)
         tableView.dataSource = self
+        tableView.delegate = self
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -38,6 +39,24 @@ extension FavoriteImageViewController: UITableViewDataSource {
         let image = KeyedArchiverClient.shared.getImage(artworkPath: KeyedArchiverClient.shared.fetchListOfImages()[indexPath.row])
         cell.CityImage.image = image
         return cell
+    }
+    
+}
+extension FavoriteImageViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let selectedImage = KeyedArchiverClient.shared.fetchListOfImages()[indexPath.row]
+        deleteAlert(name: selectedImage)
+        
+    }
+    func deleteAlert(name: String) {
+        let alert = UIAlertController(title: nil, message: "Do you want to delete this Image?", preferredStyle: .actionSheet)
+        alert.addAction(UIAlertAction(title: "Delete", style: .destructive, handler: { (_) in
+            KeyedArchiverClient.shared.deleteImage(artworkPath: name)
+            self.tableView.reloadData()
+        }))
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        
+        self.present(alert, animated: true, completion: nil)
     }
 }
 

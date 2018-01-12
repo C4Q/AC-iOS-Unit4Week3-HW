@@ -12,6 +12,7 @@ class FavoriteCell: UITableViewCell {
 
     lazy var CityImage: UIImageView = {
         let image = UIImageView(frame: .zero)
+        image.contentMode = .scaleAspectFill
         return image
     }()
 

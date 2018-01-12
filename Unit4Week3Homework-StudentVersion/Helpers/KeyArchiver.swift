@@ -15,7 +15,7 @@ class KeyedArchiverClient {
     
     static let plistPathName = "SavedImages.plist"
     
-    private var listOfImageNames = [String]() {
+    public var listOfImageNames = [String]() {
         didSet {
             savePixabays()
         }
@@ -36,6 +36,7 @@ class KeyedArchiverClient {
 func saveImageToDisk(image: UIImage, artworkPath: String) -> Bool {
     // Use UIImagePNGRepresentation to convert the file to data and write to the file path
     guard let imageData = UIImagePNGRepresentation(image) else { return false }
+    guard !listOfImageNames.contains(artworkPath) else {return false}
     let imageURL = dataFilePath(pathName: artworkPath)
     do {
         try imageData.write(to: imageURL)
@@ -45,6 +46,14 @@ func saveImageToDisk(image: UIImage, artworkPath: String) -> Bool {
     }
     return true
 }
+    
+    public func favoriteCheck(with webURL: String) -> Bool {
+        let index = listOfImageNames.index(where: {$0 == webURL.components(separatedBy: "/").last! })
+        if index != nil {return true}
+        return false
+        
+    }
+
 
 func getImage(artworkPath: String) -> UIImage? {
     let formattedPathName = artworkPath.components(separatedBy: "/").last!
@@ -53,14 +62,25 @@ func getImage(artworkPath: String) -> UIImage? {
     return image
 }
 
-func deleteImage(artworkPath: String) {
-    let imageURL = dataFilePath(pathName: artworkPath)
-    do {
-        try FileManager.default.removeItem(at: imageURL)
-    } catch {
-        print("error removing: \(error.localizedDescription)")
+    func deleteImage(artworkPath: String) {
+        let imageURL = dataFilePath(pathName: artworkPath)
+        do {
+            try FileManager.default.removeItem(at: imageURL)
+        } catch {
+            print("error removing: \(error.localizedDescription)")
+        }
+        var indexCounter = 0
+        if listOfImageNames.contains(artworkPath) {
+            
+            for savedImageURL in listOfImageNames {
+                
+                if savedImageURL == artworkPath {
+                    listOfImageNames.remove(at: indexCounter)
+                }
+                indexCounter += 1
+            }
+        }
     }
-}
     
     private func savePixabays() {
         let propertyListEncoder = PropertyListEncoder()
