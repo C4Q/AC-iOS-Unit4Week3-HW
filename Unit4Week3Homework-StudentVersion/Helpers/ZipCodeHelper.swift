@@ -12,6 +12,7 @@ import CoreLocation
 class ZipCodeHelper {
     private init() {}
     static let manager = ZipCodeHelper()
+    
     func getLocationName(from zipCode: String, completionHandler: @escaping (String) -> Void, errorHandler: @escaping (Error) -> Void) {
         let geocoder = CLGeocoder()
         DispatchQueue.global(qos: .userInitiated).async {
@@ -20,7 +21,7 @@ class ZipCodeHelper {
                     if let placemark = placemarks?.first, let name = placemark.locality {
                         completionHandler(name)
                     } else {
-                        errorHandler(error)
+                        errorHandler(error!)
                     }
                 }
             }
