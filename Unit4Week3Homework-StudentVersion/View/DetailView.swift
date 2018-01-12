@@ -116,6 +116,7 @@ class DetailView: UIView {
     private func setupCityImageView() {
         self.addSubview(cityImageView)
         cityImageView.translatesAutoresizingMaskIntoConstraints = false
+        cityImageView.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor, constant: 0).isActive = true
         cityImageView.bottomAnchor.constraint(equalTo: self.centerYAnchor, constant: 30).isActive = true
         cityImageView.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
         cityImageView.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 1).isActive = true

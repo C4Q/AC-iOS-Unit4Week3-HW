@@ -25,10 +25,9 @@ class SearchView: UIView {
     lazy var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
+//        layout.sectionInset = UIEdgeInsets(top: 120, left: 20, bottom: 20, right: 20)
         
         let cv = UICollectionView(frame: CGRect.zero, collectionViewLayout: layout)
-//        cv.dataSource = self
-//        cv.delegate = self
         cv.backgroundColor = UIColor(hue: 1, saturation: 1, brightness: 1, alpha: 0)
         cv.register(WeatherCell.self, forCellWithReuseIdentifier: "WeatherCell")
         return cv
@@ -77,17 +76,31 @@ class SearchView: UIView {
    
     
     private func setupViews() {
+         setupZipLabel()
         setupCollectionView()
         setupZipInputField()
-        setupZipLabel()
+       
         setupCollectionImageView()
+    }
+    
+    func setBackgroundImage(temp: Int) {
+        switch temp {
+        case ...40:
+            self.backgroundColor = UIColor(patternImage: #imageLiteral(resourceName: "coldestDay"))
+        case 41...70:
+            self.backgroundColor = UIColor(patternImage: #imageLiteral(resourceName: "rainyDay"))
+        case 70...:
+            self.backgroundColor = UIColor(patternImage: #imageLiteral(resourceName: "sunnyDay"))
+        default:
+            self.backgroundColor = UIColor(patternImage: #imageLiteral(resourceName: "sunnyDay"))
+        }
     }
     
     private func setupCollectionView() {
         self.addSubview(collectionView)
         collectionView.translatesAutoresizingMaskIntoConstraints = false
-        collectionView.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
-        collectionView.bottomAnchor.constraint(equalTo: self.centerYAnchor, constant: 10).isActive = true
+        collectionView.topAnchor.constraint(equalTo: self.zipLabel.bottomAnchor, constant: 10).isActive = true
+        collectionView.bottomAnchor.constraint(equalTo: self.centerYAnchor, constant: 0).isActive = true
         collectionView.rightAnchor.constraint(equalTo: self.rightAnchor).isActive = true
         collectionView.leftAnchor.constraint(equalTo: self.leftAnchor).isActive = true
     }
@@ -95,7 +108,8 @@ class SearchView: UIView {
     private func setupZipInputField() {
         self.addSubview(zipInputField)
         zipInputField.translatesAutoresizingMaskIntoConstraints = false
-        zipInputField.topAnchor.constraint(equalTo: collectionView.bottomAnchor, constant: 5).isActive = true
+        zipInputField.topAnchor.constraint(equalTo: collectionView.bottomAnchor, constant: 10).isActive = true
+
         zipInputField.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
         zipInputField.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.5).isActive = true
     }
@@ -103,7 +117,7 @@ class SearchView: UIView {
     private func setupZipLabel() {
         self.addSubview(zipLabel)
         zipLabel.translatesAutoresizingMaskIntoConstraints = false
-        zipLabel.topAnchor.constraint(equalTo: zipInputField.bottomAnchor, constant: 30).isActive = true
+        zipLabel.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor, constant: 10).isActive = true
         zipLabel.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
     }
     

@@ -21,7 +21,7 @@ class DateManager {
     
     var dateformatterToString: DateFormatter = {
         let dateformatterToString = DateFormatter()
-        dateformatterToString.dateFormat = "EEEE, MMM d, yyyy"
+        dateformatterToString.dateFormat = "EEEE MMM d"
         return dateformatterToString
         
     }()
@@ -33,9 +33,11 @@ class DateManager {
     }
     
     
-    func convertDateToString(date: String) -> String? {
+    func convertDateToString(date: String) -> DateObject? {
         let newDate = dateformatterToDate.date(from: date)
-        return dateformatterToString.string(from: newDate!)
+        let dateStr = dateformatterToString.string(from: newDate!)
+        let dateComponents = dateStr.components(separatedBy: " ")
+        return DateObject(day: dateComponents[0], month: dateComponents[1], numericalDay: dateComponents[2])
     }
     
     func convertDateToTime(date: String) -> String? {
@@ -43,4 +45,10 @@ class DateManager {
         return dateFormatterForTime.string(from: newDate!)
     }
     
+}
+
+struct DateObject {
+    let day: String
+    let month: String
+    let numericalDay: String
 }

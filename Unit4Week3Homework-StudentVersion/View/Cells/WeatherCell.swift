@@ -11,15 +11,24 @@ import UIKit
 class WeatherCell: UICollectionViewCell {
     
     func configureCell(_ weatherData: Period) {
-        self.dateLabel.text = DateManager.shared.convertDateToString(date: weatherData.validTime)
-        self.highTempLabel.text = "Max Temp (F): " + weatherData.maxTempF.description
-        self.lowTempLabel.text = "Min Temp (F): " + weatherData.minTempF.description
+        guard let date = DateManager.shared.convertDateToString(date: weatherData.validTime) else { return }
+        self.dayLabel.text = date.day.uppercased()
+        self.dateLabel.text = date.month + " " + date.numericalDay
+        self.highTempLabel.text = "Max \(weatherData.maxTempF.description)F/\(weatherData.maxTempC.description)C"
+        self.lowTempLabel.text = "Min \(weatherData.minTempF.description)F/\(weatherData.minTempC.description)C"
         self.imageView.image = UIImage(named: weatherData.icon)
     }
     
-    lazy var dateLabel: UILabel = {
+    lazy var dayLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont(name: "EuphemiaUCAS-Bold", size: 24)
+        label.textColor = .white
+        return label
+    }()
+    
+    lazy var dateLabel: UILabel = {
+        let label = UILabel()
+        label.font = UIFont(name: "EuphemiaUCAS-Bold", size: 18)
         label.textColor = .white
         return label
     }()
@@ -59,26 +68,35 @@ class WeatherCell: UICollectionViewCell {
     }
     
     private func setupViews() {
+        setupDayLabel()
         setupDateLabel()
         setupImageView()
         setupHighTempLabel()
         setupLowTempLabel()
+        
+    }
+    
+    private func setupDayLabel() {
+        addSubview(dayLabel)
+        dayLabel.translatesAutoresizingMaskIntoConstraints = false
+        dayLabel.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
+        dayLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: 10).isActive = true
     }
     
     private func setupDateLabel() {
         addSubview(dateLabel)
         dateLabel.translatesAutoresizingMaskIntoConstraints = false
         dateLabel.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
-        dateLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: 30).isActive = true
+        dateLabel.topAnchor.constraint(equalTo: self.dayLabel.bottomAnchor, constant: 0).isActive = true
     }
     
     private func setupImageView() {
         addSubview(imageView)
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
-        imageView.topAnchor.constraint(equalTo: dateLabel.bottomAnchor, constant: 30).isActive = true
-        imageView.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.4).isActive = true
-        imageView.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 0.4).isActive = true
+        imageView.topAnchor.constraint(equalTo: dateLabel.bottomAnchor, constant: 10).isActive = true
+        imageView.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.3).isActive = true
+        imageView.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 0.3).isActive = true
     }
     
     private func setupHighTempLabel() {
@@ -93,7 +111,7 @@ class WeatherCell: UICollectionViewCell {
         lowTempLabel.translatesAutoresizingMaskIntoConstraints = false
         lowTempLabel.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
         lowTempLabel.topAnchor.constraint(equalTo: highTempLabel.bottomAnchor, constant: 20).isActive = true
-        lowTempLabel.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -10).isActive = true
+        lowTempLabel.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -30).isActive = true
     }
     
 }

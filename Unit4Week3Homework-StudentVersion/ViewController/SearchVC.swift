@@ -18,21 +18,8 @@ class SearchVC: UIViewController {
     var weatherData: Weather? {
         didSet {
             let temp = weatherData?.response.first?.periods.first?.maxTempF
-            self.setBackgroundImage(temp: temp!)
+            searchView.setBackgroundImage(temp: temp!)
             searchView.collectionView.reloadData()
-        }
-    }
-    
-    func setBackgroundImage(temp: Int) {
-        switch temp {
-        case ...40:
-            searchView.backgroundColor = UIColor(patternImage: #imageLiteral(resourceName: "coldestDay"))
-        case 41...70:
-            searchView.backgroundColor = UIColor(patternImage: #imageLiteral(resourceName: "rainyDay"))
-        case 70...:
-            searchView.backgroundColor = UIColor(patternImage: #imageLiteral(resourceName: "sunnyDay"))
-        default:
-            searchView.backgroundColor = UIColor(patternImage: #imageLiteral(resourceName: "sunnyDay"))
         }
     }
     
@@ -40,6 +27,11 @@ class SearchVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.title = "Search"
+//        navigationController?.navigationBar.barTintColor = UIColor(hue: 1, saturation: 1, brightness: 1, alpha: 0)
+        navigationController?.navigationBar.isTranslucent = true
+        navigationController?.navigationBar.setBackgroundImage(#imageLiteral(resourceName: "cloudyBanner"), for: .default)
+        
+        
         setupSearchView()
         getForecast()
     }
@@ -82,8 +74,6 @@ class SearchVC: UIViewController {
 
 }
 
-    
-
 // MARK: Table View Data Source
 extension SearchVC: UICollectionViewDataSource {
     
@@ -109,7 +99,6 @@ extension SearchVC: UICollectionViewDataSource {
         cell.configureCell(dailyForecast)
         return cell
     }
-    
     
 }
 
@@ -146,13 +135,13 @@ extension SearchVC: UITextFieldDelegate {
         if zipCode == "00000" {
             return false
         }
-        textFieldDidReturn(text: zipCode)
+        textFieldDidReturn(zipCode: zipCode)
         return true
     }
     
-    func textFieldDidReturn(text: String) {
-        WeatherModel.manager.setZipCode(zip: text)
-        UserDefaultManager.shared.setDefaultZip(value: text, key: UserDefaultManager.shared.userDefaultKey)
+    func textFieldDidReturn(zipCode: String) {
+        WeatherModel.manager.setZipCode(zip: zipCode)
+        UserDefaultManager.shared.setDefaultZip(value: zipCode, key: UserDefaultManager.shared.userDefaultKey)
         getForecast()
     }
     
