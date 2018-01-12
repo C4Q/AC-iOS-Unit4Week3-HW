@@ -52,7 +52,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         //loading favorites as soon as app opens
         FileManagerHelper.manager.loadFavoritesFromSandBox()
-        FileManagerHelper.manager.loadFavorites()
+        
         
         return true
     }

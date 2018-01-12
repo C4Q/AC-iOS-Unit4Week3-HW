@@ -13,21 +13,30 @@ class WeatherViewController: UIViewController {
     let sampleArray = [1,2,3,4,5,6] //for testing ONLY
     let weatherView = WeatherView()
     let cellSpacing: CGFloat =  10.0
-    var keyWord = "" //what the user enters into the textField
+    var keyWord = "60613" //what the user enters into the textField
     var weeklyForecast = [SevenDayForecast](){
         didSet {
             weatherView.collectionView.reloadData()
         }
     }
     
-    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(true)
+        animateCloudImage()
+        print("its animating")
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .red
+        weatherView.backgroundColor = .white
+        view.backgroundColor = .white
         navigationItem.title = "7 Day Forecast"
         
         //CV Delegates
         view.addSubview(weatherView)
+
+        view.addSubview(cloudImage1)
+        view.addSubview(cloudImage2)
+        view.addSubview(cloudImage3)
         weatherView.collectionView.delegate = self
         weatherView.collectionView.dataSource = self
         weatherView.textField.delegate = self
@@ -45,15 +54,61 @@ class WeatherViewController: UIViewController {
         
     }
     
-    //    func loadSavedForecastFromSandBox(){
-    //        //load forecast from sandbox to FM
-    //        FileManagerHelper.manager.sendForecastToFileManager(forecast: weeklyForecast, with: keyWord)
-    //        print("forecast loaded from sanbox to fm")
-    //        //load forecast from FM to VC
-    //        FileManagerHelper.manager.loadForecastFromFileManager(using: keyWord)
-    //        print("forecast loaded from fm to vc")
-    //    }
+    lazy var cloudImage1: UIImageView = {
+        let iv = UIImageView(frame: CGRect(x: 0, y: 20, width: 500, height: weatherView.bounds.height)) //will give constraints later
+        iv.image = UIImage(named: "clouds")
+        iv.backgroundColor?.withAlphaComponent(0.5)
+        return iv
+    }()
     
+    
+    lazy var cloudImage2: UIImageView = {
+        let iv = UIImageView(frame: CGRect(x: view.bounds.width, y: 20, width: 500, height: weatherView.bounds.height))
+        iv.image = UIImage(named: "clouds")
+        iv.backgroundColor?.withAlphaComponent(0.5)
+        return iv
+    }()
+    
+    lazy var cloudImage3: UIImageView = {
+        let iv = UIImageView(frame: CGRect(x: view.bounds.width, y: 20, width: 500, height: weatherView.bounds.height))
+        iv.image = UIImage(named: "clouds")
+        iv.backgroundColor?.withAlphaComponent(0.5)
+        return iv
+    }()
+    
+
+    
+    
+    func animateCloudImage(){
+        
+        let rightToLeft = CATransform3DMakeTranslation(-1000, 0, 0)
+        
+        let keyFrameAnimation = CAKeyframeAnimation(keyPath: "transform")
+        keyFrameAnimation.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionLinear)
+        
+        keyFrameAnimation.values = [CATransform3DIdentity,rightToLeft]
+        
+        
+        keyFrameAnimation.duration = 30
+        keyFrameAnimation.repeatCount = Float.infinity
+        
+        cloudImage1.layer.add(keyFrameAnimation, forKey: nil)
+        cloudImage1.alpha = 0.15
+        let delay = DispatchTime.now() + 2.3
+        
+        DispatchQueue.main.asyncAfter(deadline: delay, execute: {
+            self.cloudImage2.layer.add(keyFrameAnimation, forKey: nil)
+            self.cloudImage2.alpha = 0.15
+            let delay2 = DispatchTime.now() + 14.3
+            self.cloudImage1.stopAnimating()
+            DispatchQueue.main.asyncAfter(deadline: delay2, execute: {
+                self.cloudImage3.layer.add(keyFrameAnimation, forKey: nil)
+                self.cloudImage3.alpha = 0.15
+                
+            })
+            
+        })
+    }
 }
 
 extension WeatherViewController: UICollectionViewDataSource {
@@ -64,7 +119,7 @@ extension WeatherViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CollectionViewCell", for: indexPath) as! WeatherCollectionViewCell
         
-        cell.backgroundColor = .white
+        cell.backgroundColor = .black
         
         let forcast = weeklyForecast[indexPath.row]
         
@@ -164,10 +219,10 @@ extension WeatherViewController: UITextFieldDelegate {
             textField.text = ""
         }
         //calling userDefaults to save zipcode entered
-        if let textFieldAsInt = Int(text){
-            UserDefaultsHelper.manager.setZipcode(to: textFieldAsInt)
-            print("\(textFieldAsInt) zipcode was saved!")
-        }
+       // if let textFieldAsStr = text{
+            UserDefaultsHelper.manager.setZipcode(to: text)
+            print("\(text) zipcode was saved!")
+        //}
         //setting the empty string to whatever the user inputs
         keyWord = text
         

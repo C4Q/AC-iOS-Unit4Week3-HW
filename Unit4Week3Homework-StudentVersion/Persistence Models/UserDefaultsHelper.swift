@@ -17,15 +17,15 @@ struct UserDefaultsHelper {
     func getTomorrowDate() -> Date? {
         return UserDefaults.standard.value(forKey: dateKey) as? Date
     }
-    func getZipcode() -> Int? {
-        return UserDefaults.standard.integer(forKey: zipcodeKey)
+    func getZipcode() -> String? {
+        return UserDefaults.standard.string(forKey: zipcodeKey)
     }
     
     //Get Stuff
     func setTomorrowDate(to newDate: Date) {
         UserDefaults.standard.setValue(newDate, forKey: dateKey)
     }
-    func setZipcode(to newZipcode: Int) {
+    func setZipcode(to newZipcode: String) {
         UserDefaults.standard.setValue(newZipcode, forKey: zipcodeKey)
     }
 }

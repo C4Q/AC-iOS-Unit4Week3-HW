@@ -1,3 +1,86 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 //
 //  PixabayAPIClient.swift
 //  Unit4Week3Homework-StudentVersion
@@ -16,6 +99,7 @@ class PixabayAPIClient {
     func getCityImage(from urlStr: String,
                      completionHandler: @escaping (PixabayImage) -> Void,
                      errorHandler: @escaping (Error) -> Void){
+        
          guard let request = buildRequest(with: urlStr) else {errorHandler(AppError.badURL(str: urlStr)); return}
 
         //set completion
@@ -41,7 +125,8 @@ class PixabayAPIClient {
     private func buildRequest(with str: String) -> URLRequest? {
         //string being used to pass into Weather API call
         let urlStr = "https://pixabay.com/api/?key=\(APIKeys.pixabayAPIKey)&q=" + str + "&photo&safesearch=true"
-        guard let url = URL(string: urlStr.removingWhitespaces()) else { return nil }
+        let searchString = urlStr.removingWhitespaces()
+        guard let url = URL(string: searchString) else { return nil }
         let request = URLRequest(url: url)
         return request
     }

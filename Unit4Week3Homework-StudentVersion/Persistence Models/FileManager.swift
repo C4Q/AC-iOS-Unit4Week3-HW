@@ -9,6 +9,12 @@ import UIKit
 import Foundation
 
 
+//public -> if you need to use it in any other  file: USUALLY AT THE TOP OF THE PAGE : loading and adding
+
+//private -> if you don't want any other file to see your func
+
+
+
 class FileManagerHelper {
     private init() {}
     
@@ -17,12 +23,15 @@ class FileManagerHelper {
     var pathName = "sevenDayForecast.plist"
     var favPathName = "Favorites.plist"
     
+    
+    //don't really want to persist the forecast
     private var sevenDayForecast = [SevenDayForecast]() {
         didSet {
             saveForecastToSandBox()
         }
     }
     
+    //what you are wanting to persist
     var favoriteImages = [UIImage]()
     
     private var favoriteURLS = [String]() {
@@ -154,6 +163,11 @@ class FileManagerHelper {
             print("error encoding items: \(error.localizedDescription)")
         }
     }
+    
+    
+    
+    
+    
     
     //returns documents directory path for app sandbox
     private func documentsDirectory() -> URL {

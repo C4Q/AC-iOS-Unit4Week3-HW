@@ -32,6 +32,7 @@ class FavoritesViewController: UIViewController {
         favoritesView.tableView.estimatedRowHeight = 100
         favoritesView.tableView.rowHeight = UITableViewAutomaticDimension
         
+        FileManagerHelper.manager.loadFavorites()
         self.favoriteImages = FileManagerHelper.manager.getFavoriteImagesFromFileManager()
     }
 }

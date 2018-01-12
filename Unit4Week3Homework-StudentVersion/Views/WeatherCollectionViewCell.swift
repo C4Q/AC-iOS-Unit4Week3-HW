@@ -13,7 +13,7 @@ class WeatherCollectionViewCell: UICollectionViewCell {
     //dateLabel
     lazy var dateLabel: UILabel = {
         let label = UILabel()
-        label.textColor = .black
+        label.textColor = .white
         label.font = UIFont.systemFont(ofSize: 15, weight: .bold)
         label.backgroundColor = .clear
         label.textAlignment = .center
@@ -32,8 +32,8 @@ class WeatherCollectionViewCell: UICollectionViewCell {
     //highLabel
     lazy var highLabel: UILabel = {
         let label = UILabel()
-        label.textColor = .black
-        label.font = UIFont.systemFont(ofSize: 15, weight: .medium)
+        label.textColor = UIColor(red: 176, green: 196, blue: 229, alpha: 1)
+        label.font = UIFont.systemFont(ofSize: 17, weight: .bold)
         label.backgroundColor = .clear
         label.textAlignment = .center
         //label.text = "10 F"
@@ -43,8 +43,8 @@ class WeatherCollectionViewCell: UICollectionViewCell {
     //lowLabel
     lazy var lowLabel: UILabel = {
         let label = UILabel()
-        label.textColor = .black
-        label.font = UIFont.systemFont(ofSize: 15, weight: .medium)
+        label.textColor = .white
+        label.font = UIFont.systemFont(ofSize: 15, weight: .regular)
         label.backgroundColor = .clear
         label.textAlignment = .center
         //label.text = "5 F"
@@ -71,12 +71,12 @@ class WeatherCollectionViewCell: UICollectionViewCell {
         //you get the frame of the UI Objects here
         weatherImage.layer.cornerRadius = weatherImage.bounds.width / 2.0
         weatherImage.layer.borderWidth = 1
-        weatherImage.layer.borderColor = UIColor.black.cgColor
+        weatherImage.layer.borderColor = UIColor.white.cgColor
         weatherImage.layer.masksToBounds = true
     }
     
     private func setUpGUI() {
-        backgroundColor = .white
+        //backgroundColor = .white
         setupAndConstrainObjects()
     }
     
@@ -112,8 +112,8 @@ class WeatherCollectionViewCell: UICollectionViewCell {
     public func configureCollectionViewCell(for forecast: SevenDayForecast){ //pass in forecast
         //setting properties for the custom collection view cell
         dateLabel.text = Date.dateStringFromTimeInterval(timeinterval: forecast.timeStamp) //need to filter out time
-        highLabel.text = "High: \(forecast.highTempF)°F"
-        lowLabel.text = "Low: \(forecast.lowTempF)°F"
+        highLabel.text = "\(forecast.highTempF)°F"
+        lowLabel.text = "\(forecast.lowTempF)°F"
         weatherImage.image = (UIImage(named: forecast.weatherIcon))
     }
 }
