@@ -9,13 +9,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Unit4Week3Homework-StudentVersion/Models/Weather.swift"
-            timestampString = "537318602.35022"
+            filePath = "Unit4Week3Homework-StudentVersion/View Controllers/WeatherDetailedViewController.swift"
+            timestampString = "537407723.563712"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "56"
-            endingLineNumber = "56"
-            landmarkName = "getWeather(from:completionHandler:errorHandler:)"
+            startingLineNumber = "87"
+            endingLineNumber = "87"
+            landmarkName = "setUpImage()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -25,61 +25,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Unit4Week3Homework-StudentVersion/Models/Weather.swift"
-            timestampString = "537318602.350314"
+            filePath = "Unit4Week3Homework-StudentVersion/View Controllers/WeatherDetailedViewController.swift"
+            timestampString = "537407723.5638241"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "52"
-            endingLineNumber = "52"
-            landmarkName = "getWeather(from:completionHandler:errorHandler:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Unit4Week3Homework-StudentVersion/Models/Weather.swift"
-            timestampString = "537318602.350369"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "59"
-            endingLineNumber = "59"
-            landmarkName = "getWeather(from:completionHandler:errorHandler:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Unit4Week3Homework-StudentVersion/Models/Weather.swift"
-            timestampString = "537318602.350417"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "46"
-            endingLineNumber = "46"
-            landmarkName = "getWeather(from:completionHandler:errorHandler:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Unit4Week3Homework-StudentVersion/Models/Weather.swift"
-            timestampString = "537318602.350463"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "50"
-            endingLineNumber = "50"
-            landmarkName = "getWeather(from:completionHandler:errorHandler:)"
+            startingLineNumber = "69"
+            endingLineNumber = "69"
+            landmarkName = "loadPixabayImages()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

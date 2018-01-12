@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import QuartzCore
 
 class WeatherDetailView: UIView {
     
@@ -16,13 +17,15 @@ class WeatherDetailView: UIView {
         let label = UILabel()
         label.backgroundColor = UIColor.darkGray
         label.text = "City Name"
+        label.textDropShadow()
         return label
     }()
     
     lazy var detailImageView: UIImageView = {
         let imageView = UIImageView()
-        imageView.backgroundColor = UIColor.green
-        imageView.image = #imageLiteral(resourceName: "fantasy-2543658_1920")
+        imageView.backgroundColor = UIColor.white
+        imageView.contentMode = UIViewContentMode.scaleAspectFill
+        imageView.clipsToBounds = true
         return imageView
     }()
     
@@ -32,13 +35,17 @@ class WeatherDetailView: UIView {
         label.text = "Partly Cloudy"
         label.textAlignment = .left
         label.adjustsFontSizeToFitWidth = true
+        label.textColor = .white
+        label.textDropShadow()
         return label
     }()
     
     lazy var weatherStatusTextView: UITextView = {
         let textView = UITextView()
         textView.backgroundColor = .clear
+        textView.textColor = .white
         textView.font = UIFont(name: "Avenir Next", size: 18)
+        textView.textDropShadow()
         textView.textAlignment = .left
         textView.text =
         """
@@ -66,8 +73,8 @@ class WeatherDetailView: UIView {
     private func commonInit() {
         backgroundColor = UIColor.brown
         setupViews()
-        //        setUpCityLabelConstraints()
-//        setUpDetailImageViewConstraints()
+//                setUpCityLabelConstraints()
+        setUpDetailImageViewConstraints()
         setUpShortWeatherDescriptionLabelConstraints()
                 setUpWeatherStatusTextViewConstraints()
     }
@@ -76,7 +83,21 @@ class WeatherDetailView: UIView {
         let weatherDetailedItems = [cityLabel, detailImageView, shortWeatherDescriptionLabel, weatherStatusTextView] as [UIView]
         weatherDetailedItems.forEach{ addSubview($0); ($0).translatesAutoresizingMaskIntoConstraints = false }
         
+//        let shadowForText = CALayer()
+//        shadowForText.shadowOpacity = 1.0
+//        shadowForText.shadowOffset = CGSize(width: 5, height: 4)
+//        shadowForText.shadowColor = UIColor.white.cgColor
+//        shadowForText.shadowRadius = 1.0
+//        shadowForText.shouldRasterize = true
+//
+//
+//        let weatherText = [cityLabel, shortWeatherDescriptionLabel]
+//        weatherText.forEach{ $0.layer.addSublayer(shadowForText)}
+//        weatherStatusTextView.layer.addSublayer(shadowForText)
+        
     }
+    
+ 
     
     private func setUpCityLabelConstraints() {
         NSLayoutConstraint.activate([
@@ -110,15 +131,49 @@ class WeatherDetailView: UIView {
     }
     
     private func setUpDetailImageViewConstraints() {
+        //change constraints
         NSLayoutConstraint.activate([
             detailImageView.centerXAnchor.constraint(equalTo: centerXAnchor),
-            detailImageView.centerYAnchor.constraint(equalTo: centerYAnchor, constant: -90),
-            detailImageView.heightAnchor.constraint(equalTo: safeAreaLayoutGuide.heightAnchor, multiplier: 0.4),
-            detailImageView.widthAnchor.constraint(equalTo: safeAreaLayoutGuide.widthAnchor, multiplier: 0.9)
-        
-        
+            detailImageView.centerYAnchor.constraint(equalTo: centerYAnchor),
+            detailImageView.topAnchor.constraint(equalTo: topAnchor),
+            detailImageView.leadingAnchor.constraint(equalTo: leadingAnchor),
+            detailImageView.trailingAnchor.constraint(equalTo: trailingAnchor),
+            detailImageView.bottomAnchor.constraint(equalTo: shortWeatherDescriptionLabel.bottomAnchor)
             ])
         
     }
     
+}
+
+//To give text shadow
+extension UILabel {
+    func textDropShadow() {
+        self.layer.masksToBounds = false
+        self.layer.shadowRadius = 2.0
+        self.layer.shadowOpacity = 1
+        self.layer.shadowColor = UIColor.black.cgColor
+        self.layer.shadowOffset = CGSize(width: 2, height: 2)
+    }
+    
+    static func createCustomLabel() -> UILabel {
+        let label = UILabel()
+        label.textDropShadow()
+        return label
+    }
+}
+
+extension UITextView {
+    func textDropShadow() {
+        self.layer.masksToBounds = false
+        self.layer.shadowRadius = 2.0
+        self.layer.shadowOpacity = 1
+        self.layer.shadowColor = UIColor.black.cgColor
+        self.layer.shadowOffset = CGSize(width: 2, height: 2)
+    }
+    
+    static func createCustomUITextView() -> UITextView {
+        let tv = UITextView()
+        tv.textDropShadow()
+        return tv
+    }
 }

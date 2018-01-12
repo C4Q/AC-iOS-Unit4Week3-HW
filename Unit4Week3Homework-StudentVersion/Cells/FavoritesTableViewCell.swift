@@ -34,6 +34,10 @@ class FavoritesTableViewCell: UITableViewCell {
     }
     
     private func setUpFavoriteImageViews() {
+        favoritesImageView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+//            favoritesImageView.topAnchor.constraint(equalTo: <#T##NSLayoutAnchor<NSLayoutYAxisAnchor>#>)
+            ])
      
     }
 

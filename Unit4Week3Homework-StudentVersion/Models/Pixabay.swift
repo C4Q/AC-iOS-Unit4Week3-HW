@@ -9,13 +9,13 @@
 import Foundation
 
 struct PixabayResults: Codable {
-    var hits: [Pixabay]
+    let hits: [Pixabay]
+    
 }
 
 struct Pixabay: Codable {
-    let tags: String
     let webformatURL: String
-    let userImageURL: URL
+    let previewURL: String
     
 }
 
@@ -25,9 +25,10 @@ struct PixabayAPIClient {
     func getPixaBayImages(from url: URL, completionHandler: @escaping([Pixabay]) -> Void, errorHandler: @escaping (Error) -> Void) {
         let urlRequest = URLRequest(url: url)
         let completion: (Data) -> Void = { (data: Data) in
+          
             do {
-                let onlinePixabayImages = try JSONDecoder().decode([Pixabay].self, from: data)
-                completionHandler(onlinePixabayImages)
+                let onlinePixabayImages = try JSONDecoder().decode(PixabayResults.self, from: data)
+                completionHandler(onlinePixabayImages.hits)
             }
             catch {
                 errorHandler(error)

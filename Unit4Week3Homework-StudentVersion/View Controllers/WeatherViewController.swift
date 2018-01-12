@@ -9,7 +9,7 @@
 import UIKit
 
 /*To Do/Need Help:
- - Setting random image
+ - give text drop shadow
  - How to make tab bar controller
  - Set up Favorites View Controller
  - Figure out autoresizing?
@@ -129,6 +129,7 @@ extension WeatherViewController: UICollectionViewDataSource {
         self.navigationController?.pushViewController(destination, animated: true)
         destination.fullWeatherDetail = selectedWeather
         destination.navigationItem.title = cityName
+        destination.cityName = cityName
         // destination.weather = selectedFoo
         //        weatherInfo = [twoWeekWeather[indexPath.row]]
         //        self.performSegue(withIdentifier: "ToDetailWeather", sender: self)

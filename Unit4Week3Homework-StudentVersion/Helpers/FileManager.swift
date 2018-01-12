@@ -17,6 +17,13 @@ class FileManagerHelper {
     var savedPixaBayImagesPath = "SavedCityImages.plist"
     static let manager = FileManagerHelper()
     
+    private var pixaBayImages = [UIImage]() {
+        didSet {
+//            removeDupes()
+            saveImages()
+        }
+    }
+    
     //Saving Images To Disk
     func saveImage(with urlStr: String, image: UIImage) {
         let imageData = UIImagePNGRepresentation(image)
@@ -29,6 +36,7 @@ class FileManagerHelper {
             print(error.localizedDescription)
         }
     }
+    
     func getImage(with urlStr: String) -> UIImage? {
         do {
             let imagePathName = urlStr.components(separatedBy: "/").last!
@@ -42,33 +50,17 @@ class FileManagerHelper {
         }
     }
     
-    
-    private var pixaBayImages = [Pixabay]() {
-        didSet {
-            removeDupes()
-            saveImages()
-        }
-    }
-    
-    func removeDupes() {
-        var imageURLSet = Set<String>()
-        var noDupeArr = [Pixabay]()
-        for image in pixaBayImages {
-            let (inserted, _) = imageURLSet.insert(image.webformatURL)
-            if inserted {
-                noDupeArr.append(image)
-            }
-        }
-        if pixaBayImages.count != noDupeArr.count { pixaBayImages = noDupeArr }
-    }
-    
-    func addNew(savedImage: Pixabay) {
-        pixaBayImages.append(savedImage)
-    }
-    
-    func getAllNasaImages() -> [Pixabay] {
-        return pixaBayImages
-    }
+//    func removeDupes() {
+//        var imageURLSet = Set<String>()
+//        var noDupeArr = [Pixabay]()
+//        for image in pixaBayImages {
+//            let (inserted, _) = imageURLSet.insert(image.webformatURL)
+//            if inserted {
+//                noDupeArr.append(image)
+//            }
+//        }
+//        if pixaBayImages.count != noDupeArr.count { pixaBayImages = noDupeArr }
+//    }
     
     private func saveImages() {
         let propertyListEncoder = PropertyListEncoder()
@@ -87,12 +79,20 @@ class FileManagerHelper {
         do {
             let phoneURL = dataFilePath(withPathName: savedPixaBayImagesPath)
             let encodedData = try Data(contentsOf: phoneURL)
-            let savedImages = try propertyListDecoder.decode([Pixabay].self, from: encodedData)
+            let savedImages = try propertyListDecoder.decode([UIImage].self, from: encodedData)
            pixaBayImages = savedImages
         }
         catch {
             print(error.localizedDescription)
         }
+    }
+    
+    func addNew(savedImage: UIImage) {
+        pixaBayImages.append(savedImage)
+    }
+    
+    func getAllPixabayImages() -> [UIImage] {
+        return pixaBayImages
     }
     
     //USE THIS ONE

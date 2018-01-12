@@ -10,7 +10,12 @@ import UIKit
 
 class FavoritesViewController: UIViewController {
 
-    let favoritesView = FavoritesView()
+    var favoritesView = FavoritesView()
+    var favePictures = [UIImage]() {
+        didSet {
+            favoritesView.favoritesTableView.reloadData()
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -19,32 +24,22 @@ class FavoritesViewController: UIViewController {
         navigationItem.title =  "Favorties"
         favoritesView.favoritesTableView.dataSource = self
         favoritesView.favoritesTableView.delegate = self
-        // Do any additional setup after loading the view.
+        self.favePictures = FileManagerHelper.manager.getAllPixabayImages()
+        
     }
-
-   
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }
 
 extension FavoritesViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 10
+        return favePictures.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = favoritesView.favoritesTableView.dequeueReusableCell(withIdentifier: "FavoritesTableViewCell", for: indexPath) 
+        let cell = favoritesView.favoritesTableView.dequeueReusableCell(withIdentifier: "FavoritesTableViewCell", for: indexPath) as! FavoritesTableViewCell
+        let picture = favePictures[indexPath.row]
+        cell.favoritesImageView.image = picture
         return cell
     }
     
