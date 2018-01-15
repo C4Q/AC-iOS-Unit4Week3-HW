@@ -107,14 +107,4 @@ class WeatherCollectionViewCell: UICollectionViewCell {
             ])
     }
     
-    //Logic
-    public func configureCollectionViewCell(){ //pass in forecast
-        //TODO: Fill this when I get data
-        //set date label
-        //set high Label
-        //set low label
-        //set image
-        //set default image to placeholder image
-    }
-    
 }
