@@ -34,23 +34,32 @@ class DetailView: UIView {
         return iv
     }()
     
+    func configureLabels(weatherData: Period) {
+        highLabel.text = weatherData.maxTempF.description
+        lowLabel.text = weatherData.minTempF.description
+        sunriseLabel.text = weatherData.sunrise.description
+        sunsetLabel.text = weatherData.sunset.description
+        windSpeedLabel.text = weatherData.windSpeed80mMPH.description
+        precipLabel.text = weatherData.precipIN.description
+    }
+    
     lazy var highLabel: UILabel = {
         let label = UILabel()
-        let text = "High : " + "°F"
+        let text = ""
         label.text = text
         return label
     }()
     
     lazy var lowLabel: UILabel = {
         let label = UILabel()
-        let text = "Low : " + "°F"
+        let text = ""
         label.text = text
         return label
     }()
     
     lazy var sunriseLabel: UILabel = {
         let label = UILabel()
-        let text = "Sunrise: "
+        let text = ""
         label.text = text
         return label
     }()
@@ -64,7 +73,21 @@ class DetailView: UIView {
     
     lazy var dayLabel: UILabel = {
         let label = UILabel()
-        let text = "Day: "
+        let text = ""
+        label.text = text
+        return label
+    }()
+    
+    lazy var windSpeedLabel: UILabel = {
+        let label = UILabel()
+        let text = ""
+        label.text = text
+        return label
+    }()
+    
+    lazy var precipLabel: UILabel = {
+        let label = UILabel()
+        let text = ""
         label.text = text
         return label
     }()
@@ -78,6 +101,12 @@ class DetailView: UIView {
         return ai
     }()
     
+    lazy var testView: UIView = {
+        let view = UIView()
+        view.backgroundColor = .orange
+        return view
+    }()
+    
     lazy var stackView: UIStackView = {
         let stack = UIStackView()
         stack.axis = .vertical
@@ -89,7 +118,9 @@ class DetailView: UIView {
         stack.addArrangedSubview(lowLabel)
         stack.addArrangedSubview(sunriseLabel)
         stack.addArrangedSubview(sunsetLabel)
-        stack.addArrangedSubview(dayLabel)
+        stack.addArrangedSubview(windSpeedLabel)
+        stack.addArrangedSubview(precipLabel)
+        
         
         stack.translatesAutoresizingMaskIntoConstraints = false
         return stack
@@ -104,14 +135,8 @@ class DetailView: UIView {
     func setupViews() {
         setupCityImageView()
         setupStackView()
-//        setupNavBar()
         setupAI()
     }
-    
-//    func setupNavBar() {
-//        navigationItem.title = ZipCodeHelper.manager.viewLocationName()
-//        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Save", style: .plain, target: self, action: #selector(saveButtonPressed))
-//    }
     
     private func setupCityImageView() {
         self.addSubview(cityImageView)

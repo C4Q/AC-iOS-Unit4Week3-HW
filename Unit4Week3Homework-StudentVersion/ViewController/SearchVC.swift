@@ -17,8 +17,9 @@ class SearchVC: UIViewController {
     // MARK: - Properties
     var weatherData: Weather? {
         didSet {
-            let temp = weatherData?.response.first?.periods.first?.maxTempF
-            searchView.setBackgroundImage(temp: temp!)
+            if let temp = weatherData?.response.first?.periods.first?.maxTempF {
+                searchView.setBackgroundImage(temp: temp)
+            }
             searchView.collectionView.reloadData()
         }
     }
@@ -64,7 +65,8 @@ class SearchVC: UIViewController {
         
         print("Running api")
         ZipCodeHelper.manager.getLocationName(from: zipCode,
-                                              completionHandler: { ZipCodeHelper.manager.setLocationName(name: $0)},
+                                              completionHandler: { ZipCodeHelper.manager.setLocationName(name: $0);
+                                                self.searchView.setLocationLabel() },
                                               errorHandler: {print($0)})
         
         WeatherAPIClient.manager.getForecast(from: weatherEndpoint,

@@ -45,6 +45,12 @@ class DateManager {
         return dateFormatterForTime.string(from: newDate!)
     }
     
+    func convertDateToTimeOnly(date: String) -> String? {
+        let newDate = dateformatterToDate.date(from: date)
+        let str = dateFormatterForTime.string(from: newDate!)
+        return str.components(separatedBy: " ")[2...].joined(separator: " ")
+    }
+    
 }
 
 struct DateObject {

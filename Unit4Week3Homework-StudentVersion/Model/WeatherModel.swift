@@ -64,10 +64,12 @@ struct Period: Codable {
     let maxTempC, maxTempF, minTempC, minTempF: Int
     let avgTempC, avgTempF: Int
     let pop: Int
+    let precipMM, precipIN: Double
     let sky: Int
     let weather: String
     let weatherCoded: [WeatherCoded]
     let weatherPrimary, weatherPrimaryCoded, cloudsCoded, icon: String
+    let windSpeed80mMPH, windSpeedMax80mMPH, windSpeedMin80mMPH: Int
     let isDay: Bool
     let sunrise: Int
     let sunriseISO: String

@@ -21,6 +21,7 @@ class DetailVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupViews()
+        configureLabels(weatherData: weatherData)
         PixabayModel.manager.fetchPictures(searchTerm: ZipCodeHelper.manager.viewLocationName(),
                                            completion: completionForPictures)
     }
@@ -50,7 +51,6 @@ class DetailVC: UIViewController {
         navigationItem.title = ZipCodeHelper.manager.viewLocationName()
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Save", style: .plain, target: self, action: #selector(saveButtonPressed))
     }
-    
     
     // MARK: - Setup - View/Data
     lazy var completionForPictures: (PixabayResults) -> Void = { results in
@@ -99,6 +99,18 @@ class DetailVC: UIViewController {
         iv.frame = CGRect(x: 265, y: 261, width: 82, height: 73)
         superView.addSubview(iv)
         return iv
+    }
+    
+    func configureLabels(weatherData: Period) {
+        guard let sunriseTime = DateManager.shared.convertDateToTimeOnly(date: weatherData.sunriseISO) else { return }
+        guard let sunsetTime = DateManager.shared.convertDateToTimeOnly(date: weatherData.sunsetISO) else { return }
+        
+        detailView.highLabel.text = "High : \(weatherData.maxTempF.description)°F"
+        detailView.lowLabel.text = "Low : \(weatherData.minTempF.description)°F"
+        detailView.sunriseLabel.text = "Sunrise : \(sunriseTime)"
+        detailView.sunsetLabel.text = "Sunset : \(sunsetTime)"
+        detailView.windSpeedLabel.text = "Windspeed : \(weatherData.windSpeed80mMPH.description)MPH"
+        detailView.precipLabel.text = "Precipitation : \(weatherData.precipIN.description)IN"
     }
     
     // MARK: - Animations

@@ -40,23 +40,27 @@ class SearchView: UIView {
     
     lazy var zipInputField: UITextField = {
         let tf = UITextField()
-        tf.backgroundColor = .gray
+        tf.backgroundColor = UIColor(red:0.67, green:0.73, blue:0.80, alpha:1.00)
         tf.borderStyle = .roundedRect
 //        tf.delegate = self
         tf.textColor = .white
         tf.textAlignment = .center
         tf.autocorrectionType = .no
         tf.placeholder = "Enter a zip code"
-        tf.keyboardType = .numbersAndPunctuation
+        tf.keyboardType = .numberPad
         return tf
     }()
     
     lazy var zipLabel: UILabel = {
         let label = UILabel()
-        let text = "Enter a Zip Code"
+        let text = ZipCodeHelper.manager.viewLocationName()
         label.text = text
         return label
     }()
+    
+    func setLocationLabel() {
+        zipLabel.text = ZipCodeHelper.manager.viewLocationName()
+    }
     
     lazy var backgroundView: UILabel = {
         let label = UILabel()
