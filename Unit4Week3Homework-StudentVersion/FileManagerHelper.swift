@@ -28,7 +28,7 @@ class FileManagerHelper {
             try imageData?.write(to: url)
         }
         catch {
-            print(error.localizedDescription)
+            print("Saving image error: \(error.localizedDescription)")
         }
     }
     func getImage(with urlStr: String) -> UIImage? {
@@ -39,7 +39,7 @@ class FileManagerHelper {
             return UIImage(data: data)
         }
         catch {
-            print(error.localizedDescription)
+            print(" \(error.localizedDescription)")
             return nil
         }
     }
@@ -62,7 +62,7 @@ class FileManagerHelper {
             try encodedData.write(to: phoneURL, options: .atomic)
         }
         catch {
-            print(error.localizedDescription)
+            print("Saving images error: \(error.localizedDescription)")
         }
     }
     
@@ -75,8 +75,12 @@ class FileManagerHelper {
             cityImages = savedImages
         }
         catch {
-            print(error.localizedDescription)
+            print("Loading images error:  \(error.localizedDescription)")
         }
+        
+        print("==============================")
+        print(dataFilePath(withPathName: cityImagesPath))
+         print("==============================")
     }
     
     //USE THIS ONE

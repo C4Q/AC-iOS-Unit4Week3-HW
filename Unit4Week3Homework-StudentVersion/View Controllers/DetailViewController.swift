@@ -13,20 +13,28 @@ class DetailViewController: UIViewController {
     
     var weather: DayWeather?
     var city: String?
-    var cities = [CityImage]()
+   // var cities = [CityImage]()
+    var cityImage: CityImage!
+    var urlPathStr: String!
     override func viewDidLoad() {
         super.viewDidLoad()
      self.view.backgroundColor = .white
-        let saveButton = UIBarButtonItem(title: "Save", style: UIBarButtonItemStyle.plain, target: self, action: #selector(saveImage))
+        let saveButton = UIBarButtonItem(title: "Save", style: UIBarButtonItemStyle.done, target: self, action: #selector(saveImage))
+        
         self.navigationItem.rightBarButtonItem = saveButton
         
         self.view.addSubview(containerView)
         setupContainerView()
         configureViews()
+    }
+    
+    @objc func saveImage() {
+        guard let newImage = containerView.imageView.image else {return}
+        FileManagerHelper.manager.addNew(newImage: self.cityImage)
+        FileManagerHelper.manager.saveImage(with: urlPathStr , image: newImage)
         
     }
-    @objc func saveImage() {
-    }
+    
     func setupContainerView() {
         containerView.translatesAutoresizingMaskIntoConstraints = false
         containerView.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor).isActive = true
@@ -62,8 +70,10 @@ class DetailViewController: UIViewController {
             let index = Int(arc4random_uniform(UInt32(onlineCities.count)))
             print("============================")
             print(index)
-            let city = onlineCities[index]
-            let urlStr = city.webformatURL
+           // let city = onlineCities[index]
+            self.cityImage = onlineCities[index]
+            let urlStr = self.cityImage.webformatURL
+            self.urlPathStr = self.cityImage.webformatURL
             print(urlStr)
             ImageAPIClient.manager.loadImage(from: urlStr, completionHandler: {self.containerView.imageView.image = $0}, errorHandler: {print($0)})
         }

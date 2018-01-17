@@ -11,8 +11,11 @@ import UIKit
 class SearchViewController: UIViewController {
     let searchView = CustomSearchView()
     let cellSpacing: CGFloat = 8.0
-    var zipCode = "" {
+    var zipCode: String! {
         didSet {
+            if zipCode != "" {
+            UserDefaults.standard.setValue(zipCode, forKeyPath: "zipCode")
+            }
           loadWeathers(from: zipCode)
         }
     }
@@ -37,6 +40,7 @@ class SearchViewController: UIViewController {
         searchView.collectionView.delegate = self
         searchView.collectionView.dataSource = self
         
+        self.zipCode = UserDefaults.standard.value(forKeyPath: "zipCode") as? String ?? ""
         searchView.textField.delegate = self
     }
 
@@ -65,6 +69,19 @@ extension SearchViewController: UITextFieldDelegate {
         self.zipCode = textField.text!
         textField.resignFirstResponder()
         return true
+    }
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        if "".contains(string) {
+            return true
+        }
+        if !"1234567890".contains(string) {
+            return false
+        }
+       
+        return true
+    }
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        textField.text = ""
     }
    
 }

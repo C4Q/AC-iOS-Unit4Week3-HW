@@ -246,15 +246,15 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Unit4Week3Homework-StudentVersion/View Controllers/DetailViewController.swift"
-            timestampString = "537417571.192964"
+            timestampString = "537915594.879907"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "46"
-            endingLineNumber = "46"
+            startingLineNumber = "54"
+            endingLineNumber = "54"
             landmarkName = "configureViews()"
             landmarkType = "7">
          </BreakpointContent>
@@ -266,11 +266,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Unit4Week3Homework-StudentVersion/View Controllers/DetailViewController.swift"
-            timestampString = "537417571.19319"
+            timestampString = "537915594.880043"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "62"
-            endingLineNumber = "62"
+            startingLineNumber = "70"
+            endingLineNumber = "70"
             landmarkName = "loadCityImage()"
             landmarkType = "7">
          </BreakpointContent>
@@ -282,11 +282,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Unit4Week3Homework-StudentVersion/View Controllers/DetailViewController.swift"
-            timestampString = "537417571.193375"
+            timestampString = "537915594.880124"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "21"
-            endingLineNumber = "21"
+            startingLineNumber = "24"
+            endingLineNumber = "24"
             landmarkName = "viewDidLoad()"
             landmarkType = "7">
          </BreakpointContent>
@@ -298,11 +298,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Unit4Week3Homework-StudentVersion/View Controllers/DetailViewController.swift"
-            timestampString = "537417571.193449"
+            timestampString = "537915594.880197"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "59"
-            endingLineNumber = "59"
+            startingLineNumber = "67"
+            endingLineNumber = "67"
             landmarkName = "loadCityImage()"
             landmarkType = "7">
          </BreakpointContent>
@@ -314,11 +314,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Unit4Week3Homework-StudentVersion/View Controllers/DetailViewController.swift"
-            timestampString = "537417571.193503"
+            timestampString = "537915594.880268"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "70"
-            endingLineNumber = "70"
+            startingLineNumber = "80"
+            endingLineNumber = "80"
             landmarkName = "loadCityImage()"
             landmarkType = "7">
             <Locations>
@@ -330,12 +330,12 @@
                   moduleName = "Unit4Week3Homework-StudentVersion"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/c4q/Desktop/IOSProjectsFolder/Unit4AppFolder/AC-iOS-Unit4Week3-HW/Unit4Week3Homework-StudentVersion/View%20Controllers/DetailViewController.swift"
-                  timestampString = "537417085.744031"
+                  timestampString = "537909705.049889"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "69"
-                  endingLineNumber = "69"
-                  offsetFromSymbolStart = "190">
+                  startingLineNumber = "74"
+                  endingLineNumber = "74"
+                  offsetFromSymbolStart = "415">
                </Location>
                <Location
                   shouldBeEnabled = "No"
@@ -345,11 +345,11 @@
                   moduleName = "Unit4Week3Homework-StudentVersion"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/c4q/Desktop/IOSProjectsFolder/Unit4AppFolder/AC-iOS-Unit4Week3-HW/Unit4Week3Homework-StudentVersion/View%20Controllers/DetailViewController.swift"
-                  timestampString = "537417085.748227"
+                  timestampString = "537909705.056494"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "69"
-                  endingLineNumber = "69"
+                  startingLineNumber = "74"
+                  endingLineNumber = "74"
                   offsetFromSymbolStart = "15">
                </Location>
             </Locations>
@@ -362,7 +362,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Unit4Week3Homework-StudentVersion/View Controllers/DetailViewController.swift"
-            timestampString = "537417571.193553"
+            timestampString = "537915594.880338"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "15"
@@ -440,11 +440,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Unit4Week3Homework-StudentVersion/View Controllers/DetailViewController.swift"
-            timestampString = "537417571.193609"
+            timestampString = "537915594.880408"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "68"
-            endingLineNumber = "68"
+            startingLineNumber = "78"
+            endingLineNumber = "78"
             landmarkName = "loadCityImage()"
             landmarkType = "7">
             <Locations>
@@ -456,12 +456,12 @@
                   moduleName = "Unit4Week3Homework-StudentVersion"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/c4q/Desktop/IOSProjectsFolder/Unit4AppFolder/AC-iOS-Unit4Week3-HW/Unit4Week3Homework-StudentVersion/View%20Controllers/DetailViewController.swift"
-                  timestampString = "537417364.3986191"
+                  timestampString = "537909705.0655169"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "68"
-                  endingLineNumber = "68"
-                  offsetFromSymbolStart = "957">
+                  startingLineNumber = "72"
+                  endingLineNumber = "72"
+                  offsetFromSymbolStart = "1042">
                </Location>
                <Location
                   shouldBeEnabled = "No"
@@ -471,11 +471,11 @@
                   moduleName = "Unit4Week3Homework-StudentVersion"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/c4q/Desktop/IOSProjectsFolder/Unit4AppFolder/AC-iOS-Unit4Week3-HW/Unit4Week3Homework-StudentVersion/View%20Controllers/DetailViewController.swift"
-                  timestampString = "537417364.401194"
+                  timestampString = "537909705.068437"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "68"
-                  endingLineNumber = "68"
+                  startingLineNumber = "72"
+                  endingLineNumber = "72"
                   offsetFromSymbolStart = "18">
                </Location>
                <Location
@@ -486,14 +486,236 @@
                   moduleName = "Unit4Week3Homework-StudentVersion"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/c4q/Desktop/IOSProjectsFolder/Unit4AppFolder/AC-iOS-Unit4Week3-HW/Unit4Week3Homework-StudentVersion/View%20Controllers/DetailViewController.swift"
-                  timestampString = "537417364.40346"
+                  timestampString = "537909705.072826"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "68"
-                  endingLineNumber = "68"
+                  startingLineNumber = "72"
+                  endingLineNumber = "72"
                   offsetFromSymbolStart = "15">
                </Location>
             </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Unit4Week3Homework-StudentVersion/View Controllers/DetailViewController.swift"
+            timestampString = "537915594.880479"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "64"
+            endingLineNumber = "64"
+            landmarkName = "configureViews()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Unit4Week3Homework-StudentVersion/View Controllers/DetailViewController.swift"
+            timestampString = "537915594.880546"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "16"
+            endingLineNumber = "16"
+            landmarkName = "DetailViewController"
+            landmarkType = "3">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Unit4Week3Homework_StudentVersion.DetailViewController.cities.getter : Swift.Array&lt;Unit4Week3Homework_StudentVersion.CityImage&gt;"
+                  moduleName = "Unit4Week3Homework-StudentVersion"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/c4q/Desktop/IOSProjectsFolder/Unit4AppFolder/AC-iOS-Unit4Week3-HW/Unit4Week3Homework-StudentVersion/View%20Controllers/DetailViewController.swift"
+                  timestampString = "537909705.106352"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "16"
+                  endingLineNumber = "16"
+                  offsetFromSymbolStart = "109">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Unit4Week3Homework_StudentVersion.DetailViewController.cities.setter : Swift.Array&lt;Unit4Week3Homework_StudentVersion.CityImage&gt;"
+                  moduleName = "Unit4Week3Homework-StudentVersion"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/c4q/Desktop/IOSProjectsFolder/Unit4AppFolder/AC-iOS-Unit4Week3-HW/Unit4Week3Homework-StudentVersion/View%20Controllers/DetailViewController.swift"
+                  timestampString = "537909705.109027"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "16"
+                  endingLineNumber = "16"
+                  offsetFromSymbolStart = "112">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Unit4Week3Homework_StudentVersion.DetailViewController.init(nibName: Swift.Optional&lt;Swift.String&gt;, bundle: Swift.Optional&lt;__ObjC.Bundle&gt;) -&gt; Unit4Week3Homework_StudentVersion.DetailViewController"
+                  moduleName = "Unit4Week3Homework-StudentVersion"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/c4q/Desktop/IOSProjectsFolder/Unit4AppFolder/AC-iOS-Unit4Week3-HW/Unit4Week3Homework-StudentVersion/View%20Controllers/DetailViewController.swift"
+                  timestampString = "537909705.113923"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "16"
+                  endingLineNumber = "16"
+                  offsetFromSymbolStart = "1378">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Unit4Week3Homework_StudentVersion.DetailViewController.init(coder: __ObjC.NSCoder) -&gt; Swift.Optional&lt;Unit4Week3Homework_StudentVersion.DetailViewController&gt;"
+                  moduleName = "Unit4Week3Homework-StudentVersion"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/c4q/Desktop/IOSProjectsFolder/Unit4AppFolder/AC-iOS-Unit4Week3-HW/Unit4Week3Homework-StudentVersion/View%20Controllers/DetailViewController.swift"
+                  timestampString = "537909705.1183"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "16"
+                  endingLineNumber = "16"
+                  offsetFromSymbolStart = "1302">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Unit4Week3Homework-StudentVersion/View Controllers/DetailViewController.swift"
+            timestampString = "537915594.880628"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "22"
+            endingLineNumber = "22"
+            landmarkName = "viewDidLoad()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Unit4Week3Homework-StudentVersion/View Controllers/FavoritesViewController.swift"
+            timestampString = "537915594.880705"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "52"
+            endingLineNumber = "52"
+            landmarkName = "tableView(_:cellForRowAt:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Unit4Week3Homework-StudentVersion/View Controllers/FavoritesViewController.swift"
+            timestampString = "537915594.880796"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "36"
+            endingLineNumber = "36"
+            landmarkName = "setupTableView()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Unit4Week3Homework-StudentVersion/View Controllers/FavoritesViewController.swift"
+            timestampString = "537915594.8808759"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "23"
+            endingLineNumber = "23"
+            landmarkName = "viewDidLoad()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Unit4Week3Homework-StudentVersion/View Controllers/FavoritesViewController.swift"
+            timestampString = "537915594.880951"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "25"
+            endingLineNumber = "25"
+            landmarkName = "viewDidLoad()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Unit4Week3Homework-StudentVersion/View Controllers/FavoritesViewController.swift"
+            timestampString = "537915594.881025"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "14"
+            endingLineNumber = "14"
+            landmarkName = "tableView"
+            landmarkType = "24">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Unit4Week3Homework-StudentVersion/View Controllers/FavoritesViewController.swift"
+            timestampString = "537915594.881099"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "55"
+            endingLineNumber = "55"
+            landmarkName = "tableView(_:cellForRowAt:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Unit4Week3Homework-StudentVersion/View Controllers/FavoritesViewController.swift"
+            timestampString = "537915594.8811719"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "26"
+            endingLineNumber = "26"
+            landmarkName = "viewDidLoad()"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>
