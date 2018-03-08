@@ -40,6 +40,9 @@ class FileManagerHelper {
         }
     }
     
+    
+    
+    //MARK: Saving FAVORITES
     //This saves the array of Favorites to the phone: DONT WORRY ABOUT IT.. LOOK UP!
     private func saveFavoriteImageToSandBox() {
         //Save URLs
@@ -91,6 +94,31 @@ class FileManagerHelper {
         self.favoriteImages = arrayOfFavorites
     }
     
+    //Delete func for favorites
+        func deleteFavImage(favPathName: String) {
+            let imageURL = dataFilePath(withPathName: favPathName) // let the Image URL get the file path name where it is stored in the phone
+            do {
+                try FileManager.default.removeItem(at: imageURL) //try to remove that URL at the place it is stord in the phone
+            } catch {
+                print("error removing: \(error.localizedDescription)")
+            }
+            var indexCounter = 0
+            if favoriteURLS.contains(favPathName) {// if the [URLString] contains that filePathName
+                
+                for savedImageURL in favoriteURLS {//iterate thru
+                    
+                    if savedImageURL == favPathName {//if that saved image URL steing matches the path name that it's supposed to be saved under
+                        favoriteURLS.remove(at: indexCounter) // remove that URL from the sandbox
+                    }
+                    indexCounter += 1 //move onto the next index to do the check
+                }
+            }
+        }
+
+    
+    
+    
+    //MARK: SAVING IMAGES
     //Saving Images To Disk
     func saveImage(with urlStr: String, image: UIImage) {
         let imageData = UIImagePNGRepresentation(image)
@@ -120,6 +148,7 @@ class FileManagerHelper {
     }
     
     
+    //MARK: FORECAST SAVING
     // takes forecast from phone(sandbox) brings it to FileManager
     func loadForecastFromFileManager(using zipCode: String) {
         let newPathName = zipCode + ".plist" // EX) 60506.plist
@@ -184,7 +213,7 @@ class FileManagerHelper {
     }
     
 }
-//
+
 //class FileManagerHelper {
 //    private init() {}
 //    static let manager = FileManagerHelper()

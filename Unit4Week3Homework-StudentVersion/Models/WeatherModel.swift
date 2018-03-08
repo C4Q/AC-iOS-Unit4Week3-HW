@@ -8,7 +8,6 @@
 
 import Foundation
 
-
 struct WeatherResponseWrapper: Codable {
     let response: [WeatherResponse]
 }
@@ -40,6 +39,7 @@ struct SevenDayForecast : Codable {
     let isTheDayToday : Bool //perfect for date check!
     let sunrise: Double
     let sunset: Double
+    let dateTimeISO: String
     
     enum CodingKeys: String, CodingKey {
         case timeStamp = "timestamp"
@@ -53,6 +53,7 @@ struct SevenDayForecast : Codable {
         case isTheDayToday = "isDay"
         case sunrise
         case sunset
+        case dateTimeISO
     }
 }
 

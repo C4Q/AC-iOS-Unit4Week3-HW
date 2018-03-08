@@ -110,9 +110,7 @@ class PixabayAPIClient {
                 let pixabayImage = allResults.hits.first ?? PixabayImage(previewURL: "", webURL: "", id: 0.0) //PixabayImage
                 //call completionHandler ON the pixabay
                 completionHandler(pixabayImage)
-
                 print("JSON Data is now a PixabayImage")
-
             } catch {
                 errorHandler(AppError.badData)
                 print("bad data from pixabay")

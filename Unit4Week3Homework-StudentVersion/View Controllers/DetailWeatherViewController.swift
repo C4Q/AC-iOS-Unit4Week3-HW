@@ -17,6 +17,7 @@ class DetailWeatherViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.definesPresentationContext = true
         view.backgroundColor = .clear
         view.addSubview(detailView)
         

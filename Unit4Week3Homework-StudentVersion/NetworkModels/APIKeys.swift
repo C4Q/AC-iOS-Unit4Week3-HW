@@ -20,8 +20,8 @@ import Foundation
 
 struct APIKeys{
     private init(){}
-    static let weatherClientID = "IG2CMqgjQ7CTs9A58ipt7"
-    static let weatherSecretKey = "wt32P2wpKj5jkZc0mpaGdaJ38rZGdLxpk0KscnQO"
+    static let weatherClientID = "IG2CMqgjQ7CTs9A58ipt7"//"IG2CMqgjQ7CTs9A58ipt7"
+    static let weatherSecretKey = "wt32P2wpKj5jkZc0mpaGdaJ38rZGdLxpk0KscnQO"//"wt32P2wpKj5jkZc0mpaGdaJ38rZGdLxpk0KscnQO"
     static let pixabayAPIKey = "6859963-67ff765beafa661121af31c31"
 }
 

@@ -21,7 +21,7 @@ extension Date {
     
     static func dateStringFromTimeInterval(timeinterval: TimeInterval) -> String  {
         let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "E, MMM D" // Sat, Jan 6
+        dateFormatter.dateFormat = "E, MMM d" // Sat, Jan 6
         let date = Date.init(timeIntervalSince1970: timeinterval)
         let dateString = dateFormatter.string(from: date)
         return dateString

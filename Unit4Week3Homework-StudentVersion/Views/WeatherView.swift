@@ -17,7 +17,7 @@ class WeatherView: UIView {
         label.backgroundColor = .clear
         label.textColor = UIColor.darkGray
         label.font = UIFont.systemFont(ofSize: 20, weight: .medium)
-        label.text = "7 Day Forecast for..."
+        label.text = "7 Day Forecast"
         return label
     }()
     
@@ -39,9 +39,8 @@ class WeatherView: UIView {
         tField.backgroundColor = UIColor.darkGray
         tField.font = UIFont.systemFont(ofSize: 17, weight: .medium)
         tField.textAlignment = .center
-        //tField.placeholder = "12345"
         tField.tintColor = .white
-        tField.attributedPlaceholder = NSAttributedString(string: "12345",
+        tField.attributedPlaceholder = NSAttributedString(string: "ZipCode",
                                                            attributes: [NSAttributedStringKey.foregroundColor: UIColor.darkGray])
         tField.textColor = .white
         tField.keyboardType = .numbersAndPunctuation

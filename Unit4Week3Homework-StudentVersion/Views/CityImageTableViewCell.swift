@@ -66,7 +66,7 @@ class CityImageTableViewCell: UITableViewCell {
         
         tableViewCellObjects.forEach{addSubview($0); ($0).translatesAutoresizingMaskIntoConstraints = false}
         
-        //let marginGuide = contentView.layoutMarginsGuide
+        
         contentView.addSubview(cityImageView)
         
         NSLayoutConstraint.activate([

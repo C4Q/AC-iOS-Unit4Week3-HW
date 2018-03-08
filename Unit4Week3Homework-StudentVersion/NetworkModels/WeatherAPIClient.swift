@@ -26,14 +26,11 @@ class WeatherAPIClient {
             do{
                 let decoder = JSONDecoder()
                 let results = try decoder.decode(WeatherResponseWrapper.self, from: data) // when you decode the top layer you see what's inside.
-                
                 if let forecast = results.response.first?.periods{ //[SevenDayResponse]
                 //call completionHandler ON the forecast
                     completionHandler(forecast)
                 }
-                
                 print("JSON Data is now an [WeatherResponse]")
-                
             } catch {
                 errorHandler(AppError.badData)
                 print("bad data from weather")
