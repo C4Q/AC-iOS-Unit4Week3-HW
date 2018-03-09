@@ -47,7 +47,6 @@ class NetworkHelper {
                 
                 if let response = response as? HTTPURLResponse {
                     errorHandler(AppError.goodStatusCode(num: response.statusCode))
-                    
                 }
                 
                 if let error = error as? URLError {
@@ -70,7 +69,6 @@ class NetworkHelper {
                         errorHandler(AppError.other(rawError: error))
                     }
                 }
-                
                 completionHandler(data)
             }
             }.resume()

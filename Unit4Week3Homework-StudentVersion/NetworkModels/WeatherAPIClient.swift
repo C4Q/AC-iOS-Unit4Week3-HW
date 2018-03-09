@@ -13,7 +13,7 @@ class WeatherAPIClient {
     private init(){}
     static let manager = WeatherAPIClient()
     
-    func getForecast(from urlStr: String,
+    func getForecast(fromString urlStr: String,
                      completionHandler: @escaping ([SevenDayForecast]) -> Void,
                      errorHandler: @escaping (Error) -> Void){
         
@@ -39,5 +39,35 @@ class WeatherAPIClient {
         NetworkHelper.manager.performDataTask(with: request,
                                               completionHandler: parseDataIntoWeather,
                                               errorHandler: errorHandler)
+    }
+    
+    
+    
+    func getForecast(usingZipCode zipCode: String, completion: @escaping ([SevenDayForecast]) -> Void, errorHandler: @escaping (Error) -> Void){
+        guard let formattedZip = zipCode.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlHostAllowed) else {print("zipcode not formatted correctly");return}
+        
+        let endPoint = "https://api.aerisapi.com/forecasts/\(formattedZip)?client_id=\(APIKeys.weatherClientID)&client_secret=\(APIKeys.weatherSecretKey)"
+        
+        guard let url = URL(string: endPoint) else {print("not a valid url"); return}
+        
+        let request = URLRequest(url: url)
+        
+        let parseDataIntoWeather: (Data) -> Void = {(data) in
+            do{
+                let decoder = JSONDecoder()
+                let results = try decoder.decode(WeatherResponseWrapper.self, from: data) // when you decode the top layer you see what's inside.
+                if let forecast = results.response.first?.periods{ //[SevenDayResponse]
+                    //call completionHandler ON the forecast
+                    completion(forecast)
+                }
+                print("JSON Data is now an [WeatherResponse]")
+            } catch {
+                print("error:\(AppError.badData)")
+                print("bad data from weather")
+            }
+        }
+        NetworkHelper.manager.performDataTask(with: request,
+                                              completionHandler: parseDataIntoWeather,
+                                              errorHandler: {print($0)})
     }
 }

@@ -29,6 +29,7 @@
 		811A1B8D20027B8A000EE49B /* WeatherCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 811A1B8C20027B8A000EE49B /* WeatherCollectionViewCell.swift */; };
 		813893B92006EE3100988B84 /* DateHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 813893B82006EE3100988B84 /* DateHelper.swift */; };
 		81663F7E2002D78F0023ECD1 /* CityImageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81663F7D2002D78F0023ECD1 /* CityImageTableViewCell.swift */; };
+		81B565DC2052179A008A6166 /* LocationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81B565DB2052179A008A6166 /* LocationService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -56,6 +57,7 @@
 		811A1B8C20027B8A000EE49B /* WeatherCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherCollectionViewCell.swift; sourceTree = "<group>"; };
 		813893B82006EE3100988B84 /* DateHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateHelper.swift; sourceTree = "<group>"; };
 		81663F7D2002D78F0023ECD1 /* CityImageTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityImageTableViewCell.swift; sourceTree = "<group>"; };
+		81B565DB2052179A008A6166 /* LocationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -88,6 +90,7 @@
 		5410A6BF1FFFDF1200935A9A /* Unit4Week3Homework-StudentVersion */ = {
 			isa = PBXGroup;
 			children = (
+				81B565D820519139008A6166 /* Services */,
 				811A1B85200184BC000EE49B /* Models */,
 				811A1B77200139F2000EE49B /* NetworkModels */,
 				811A1B722001381E000EE49B /* Persistence Models */,
@@ -161,6 +164,14 @@
 				811A1B832001402B000EE49B /* WeatherModel.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		81B565D820519139008A6166 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				81B565DB2052179A008A6166 /* LocationService.swift */,
+			);
+			path = Services;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -240,6 +251,7 @@
 				811A1B842001402B000EE49B /* WeatherModel.swift in Sources */,
 				81663F7E2002D78F0023ECD1 /* CityImageTableViewCell.swift in Sources */,
 				813893B92006EE3100988B84 /* DateHelper.swift in Sources */,
+				81B565DC2052179A008A6166 /* LocationService.swift in Sources */,
 				811A1B8220013BD5000EE49B /* FavoritesView.swift in Sources */,
 				811A1B8920018512000EE49B /* PixabayAPIClient.swift in Sources */,
 				5410A6D31FFFDF6500935A9A /* ZipCodeHelper.swift in Sources */,

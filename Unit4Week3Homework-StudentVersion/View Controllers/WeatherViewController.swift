@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreLocation //for locationService
 
 class WeatherViewController: UIViewController {
     
@@ -14,6 +15,8 @@ class WeatherViewController: UIViewController {
     let weatherView = WeatherView()
     let cellSpacing: CGFloat =  10.0
     var keyWord = "" //what the user enters into the textField
+
+    
     var weeklyForecast = [SevenDayForecast](){
         didSet {
             weatherView.collectionView.reloadData()
@@ -35,22 +38,24 @@ class WeatherViewController: UIViewController {
         setUpDelegates()
         setUpVCElements()
         setUpUserDefaults()
+        askUserForPermission()
     }
-    
     //MARK: Helper Functions
+    func askUserForPermission(){
+        //calling the LocationService class
+        let _ = LocationService.manager.checkForLocationServices()
+    }
     func setUpDelegates(){
         weatherView.collectionView.delegate = self
         weatherView.collectionView.dataSource = self
         weatherView.textField.delegate = self
     }
-    
     func setUpVCElements(){
         weatherView.backgroundColor = .white
         navigationItem.title = "On-The-Go Weather"
         weatherView.messageLabel.isHidden = true
         weatherView.zipcodeMessageLabel.isHidden = false
     }
-    
     func setUpUserDefaults(){
         //MARK: getting the last zipcode that was entered by the user
         if let savedZipcode = UserDefaultsHelper.manager.getZipcode() {
@@ -59,6 +64,14 @@ class WeatherViewController: UIViewController {
         } else {
             weatherView.textField.text = ""
         }
+    }
+    //MARK: scrolling to beginning of index in Collection View when user enters a new zipcode
+    func scrollWhenWeatherChanges(){
+        let startIndex = self.weeklyForecast.startIndex
+        guard startIndex == 0 else {return}
+        //creates an indexpath based on the startIndex and whatever section you are referencing
+        let beginningOfForecastArray = IndexPath(item: startIndex, section: 0)
+        weatherView.collectionView.scrollToItem(at: beginningOfForecastArray, at: .left, animated: true)
     }
     
     
@@ -105,20 +118,16 @@ extension WeatherViewController: UICollectionViewDataSource {
 extension WeatherViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         //Using dependency injection to pass Fellow Model Object to DetailVC
-        //Seguing information over to the DWVC
         let forecast = weeklyForecast[indexPath.row]
         let cityName = keyWord
-        
-        let detailWVC = DetailWeatherViewController()//take in things that we need in the DVC that we already have in the WVC?
+        let detailWVC = DetailWeatherViewController()
         detailWVC.modalTransitionStyle = .crossDissolve
         detailWVC.modalPresentationStyle = .overCurrentContext
         detailWVC.detailView.configureDetailView(forecast: forecast, city: cityName )
         present(detailWVC, animated: true, completion: nil)
         
         //MARK: - Making Pixabay API Call to get random city image
-        //Pixabay API completion
         let loadImageFromInternet: (PixabayImage) -> Void = {(onlineImage: PixabayImage) in
-            
             //Image API completion
             let setImageToOnlineImage: (UIImage) -> Void = {(onlineImageTwo: UIImage) in
                 
@@ -135,8 +144,8 @@ extension WeatherViewController: UICollectionViewDelegate {
             errorHandler: {print($0)})
         
         //MARK: Spring animation when user clicks on a specific day for details
-        let forecastCell = collectionView.cellForItem(at: indexPath)
-        
+//        let forecastCell = collectionView.cellForItem(at: indexPath)
+//        
 //        UIView.animate(withDuration: 0.1, delay: 0, usingSpringWithDamping: 3, initialSpringVelocity: 5, options: [], animations: {
 //            forecastCell!.transform = CGAffineTransform(scaleX: 0.9, y: 0.9) }, completion: { finished in
 //                UIView.animate(withDuration: 0.06, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 5, options: .curveEaseIn, animations: { forecastCell!.transform = CGAffineTransform(scaleX: 1, y: 1) }, completion: { (_) in
@@ -190,7 +199,10 @@ extension WeatherViewController: UITextFieldDelegate {
     //MARK: - Meat of the functionality
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         guard let text = textField.text else {return true}
-        //weatherView.zipcodeMessageLabel.isHidden = true
+        
+        if !weeklyForecast.isEmpty{
+        scrollWhenWeatherChanges()
+        }
         
         if text.count != 5 {
             textField.text = ""
@@ -207,12 +219,12 @@ extension WeatherViewController: UITextFieldDelegate {
         
         keyWord = text //user entry == textfield.text
         
-        //MARK: - Weather API call: string being used to pass into Weather API call
-        let urlStr = "https://api.aerisapi.com/forecasts/\(keyWord)?client_id=\(APIKeys.weatherClientID)&client_secret=\(APIKeys.weatherSecretKey)"
+        //
+        //        //MARK: - Weather API call: string being used to pass into Weather API call
+        //        let urlStr = "https://api.aerisapi.com/forecasts/\(keyWord)?client_id=\(APIKeys.weatherClientID)&client_secret=\(APIKeys.weatherSecretKey)"
         
         let loadForecastFromInternet: ([SevenDayForecast]) -> Void = {(onlineForcast: [SevenDayForecast]) in
             self.weeklyForecast = onlineForcast
-            
             //MARK: Zipcode completion
             let zipCodeToNameConversion: (String) -> Void = {(cityName: String) in
                 self.keyWord = cityName
@@ -220,13 +232,12 @@ extension WeatherViewController: UITextFieldDelegate {
                 self.weatherView.messageLabel.isHidden = false
                 self.weatherView.messageLabel.text = "Weather forecast for \(self.keyWord)"
             }
-            print(self.keyWord)
             ZipCodeHelper.manager.getLocationName(from: self.keyWord,
                                                   completionHandler: zipCodeToNameConversion,
                                                   errorHandler: {print($0)})
         }
-        WeatherAPIClient.manager.getForecast(from: urlStr,
-                                             completionHandler: loadForecastFromInternet,
+        WeatherAPIClient.manager.getForecast(usingZipCode: text,
+                                             completion: loadForecastFromInternet,
                                              errorHandler: {print($0)})
         textField.resignFirstResponder()
         return true
@@ -240,9 +251,8 @@ extension WeatherViewController {
                                                 message:"ZipCode Not Found",
                                                 preferredStyle: UIAlertControllerStyle.alert)
         
-        let tryAnotherAction = UIAlertAction(title: "Try Another", style: UIAlertActionStyle.default) //for other actions add in actions incompletion{}
+        let tryAnotherAction = UIAlertAction(title: "Try Another", style: UIAlertActionStyle.default)//for other actions add in actions incompletion{}
         alertController.addAction(tryAnotherAction)
-        //present alert controller
         self.present(alertController, animated: true, completion: nil)
     }
     
@@ -251,9 +261,8 @@ extension WeatherViewController {
                                                 message:"Please enter a 5 digit ZipCode",
                                                 preferredStyle: UIAlertControllerStyle.alert)
         
-        let okAction = UIAlertAction(title: "Ok", style: UIAlertActionStyle.default) //for other actions add in actions incompletion{}
+        let okAction = UIAlertAction(title: "Ok", style: UIAlertActionStyle.default)
         alertController.addAction(okAction)
-        //present alert controller
         self.present(alertController, animated: true, completion: nil)
     }
 }
