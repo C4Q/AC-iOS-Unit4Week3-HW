@@ -17,11 +17,11 @@ import Foundation
 
 class FileManagerHelper {
     private init() {}
-    
     static let manager = FileManagerHelper()
     
     var pathName = "sevenDayForecast.plist"
-    var favPathName = "Favorites.plist"
+    
+    var favPathName = "favorites.plist"
     
     
     //don't really want to persist the forecast
@@ -39,7 +39,6 @@ class FileManagerHelper {
             saveFavoriteImageToSandBox()
         }
     }
-    
     
     
     //MARK: Saving FAVORITES
@@ -115,9 +114,7 @@ class FileManagerHelper {
             }
         }
 
-    
-    
-    
+
     //MARK: SAVING IMAGES
     //Saving Images To Disk
     func saveImage(with urlStr: String, image: UIImage) {

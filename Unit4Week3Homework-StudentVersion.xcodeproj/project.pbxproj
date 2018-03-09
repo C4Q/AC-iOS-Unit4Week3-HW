@@ -30,9 +30,12 @@
 		813893B92006EE3100988B84 /* DateHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 813893B82006EE3100988B84 /* DateHelper.swift */; };
 		81663F7E2002D78F0023ECD1 /* CityImageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81663F7D2002D78F0023ECD1 /* CityImageTableViewCell.swift */; };
 		81B565DC2052179A008A6166 /* LocationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81B565DB2052179A008A6166 /* LocationService.swift */; };
+		81B565E0205221E3008A6166 /* EmptyStateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81B565DF205221E3008A6166 /* EmptyStateView.swift */; };
+		F75376CFD1A24B2FBE4FE471 /* Pods_Unit4Week3Homework_StudentVersion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DB574F5ADC6AE59B8D4BBDFE /* Pods_Unit4Week3Homework_StudentVersion.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		18E6E0C854ABF4765BEDC7A8 /* Pods-Unit4Week3Homework-StudentVersion.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Unit4Week3Homework-StudentVersion.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Unit4Week3Homework-StudentVersion/Pods-Unit4Week3Homework-StudentVersion.debug.xcconfig"; sourceTree = "<group>"; };
 		5410A6BD1FFFDF1200935A9A /* Unit4Week3Homework-StudentVersion.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Unit4Week3Homework-StudentVersion.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		5410A6C01FFFDF1200935A9A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5410A6C71FFFDF1200935A9A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -58,6 +61,9 @@
 		813893B82006EE3100988B84 /* DateHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateHelper.swift; sourceTree = "<group>"; };
 		81663F7D2002D78F0023ECD1 /* CityImageTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityImageTableViewCell.swift; sourceTree = "<group>"; };
 		81B565DB2052179A008A6166 /* LocationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationService.swift; sourceTree = "<group>"; };
+		81B565DF205221E3008A6166 /* EmptyStateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyStateView.swift; sourceTree = "<group>"; };
+		DB574F5ADC6AE59B8D4BBDFE /* Pods_Unit4Week3Homework_StudentVersion.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Unit4Week3Homework_StudentVersion.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		DF66056B9EB040F0C84F25DC /* Pods-Unit4Week3Homework-StudentVersion.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Unit4Week3Homework-StudentVersion.release.xcconfig"; path = "Pods/Target Support Files/Pods-Unit4Week3Homework-StudentVersion/Pods-Unit4Week3Homework-StudentVersion.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -65,6 +71,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F75376CFD1A24B2FBE4FE471 /* Pods_Unit4Week3Homework_StudentVersion.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -76,6 +83,8 @@
 			children = (
 				5410A6BF1FFFDF1200935A9A /* Unit4Week3Homework-StudentVersion */,
 				5410A6BE1FFFDF1200935A9A /* Products */,
+				84803E051B6708E781F3CC2B /* Pods */,
+				F37405EEC249E6F79998D782 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -153,6 +162,7 @@
 				811A1B8120013BD5000EE49B /* FavoritesView.swift */,
 				811A1B8C20027B8A000EE49B /* WeatherCollectionViewCell.swift */,
 				81663F7D2002D78F0023ECD1 /* CityImageTableViewCell.swift */,
+				81B565DF205221E3008A6166 /* EmptyStateView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -174,6 +184,23 @@
 			path = Services;
 			sourceTree = "<group>";
 		};
+		84803E051B6708E781F3CC2B /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				18E6E0C854ABF4765BEDC7A8 /* Pods-Unit4Week3Homework-StudentVersion.debug.xcconfig */,
+				DF66056B9EB040F0C84F25DC /* Pods-Unit4Week3Homework-StudentVersion.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		F37405EEC249E6F79998D782 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				DB574F5ADC6AE59B8D4BBDFE /* Pods_Unit4Week3Homework_StudentVersion.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -181,9 +208,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 5410A6CF1FFFDF1200935A9A /* Build configuration list for PBXNativeTarget "Unit4Week3Homework-StudentVersion" */;
 			buildPhases = (
+				963B3BA36807D3B6B794C15F /* [CP] Check Pods Manifest.lock */,
 				5410A6B91FFFDF1200935A9A /* Sources */,
 				5410A6BA1FFFDF1200935A9A /* Frameworks */,
 				5410A6BB1FFFDF1200935A9A /* Resources */,
+				E08BE06AE78B1F5BE5328B60 /* [CP] Embed Pods Frameworks */,
+				49F3D7A2C4A14A3FECC1597E /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -240,6 +270,60 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		49F3D7A2C4A14A3FECC1597E /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Unit4Week3Homework-StudentVersion/Pods-Unit4Week3Homework-StudentVersion-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		963B3BA36807D3B6B794C15F /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Unit4Week3Homework-StudentVersion-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E08BE06AE78B1F5BE5328B60 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-Unit4Week3Homework-StudentVersion/Pods-Unit4Week3Homework-StudentVersion-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SnapKit.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Unit4Week3Homework-StudentVersion/Pods-Unit4Week3Homework-StudentVersion-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		5410A6B91FFFDF1200935A9A /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -255,6 +339,7 @@
 				811A1B8220013BD5000EE49B /* FavoritesView.swift in Sources */,
 				811A1B8920018512000EE49B /* PixabayAPIClient.swift in Sources */,
 				5410A6D31FFFDF6500935A9A /* ZipCodeHelper.swift in Sources */,
+				81B565E0205221E3008A6166 /* EmptyStateView.swift in Sources */,
 				811A1B8B20018529000EE49B /* APIKeys.swift in Sources */,
 				811A1B68200137BD000EE49B /* WeatherViewController.swift in Sources */,
 				811A1B8D20027B8A000EE49B /* WeatherCollectionViewCell.swift in Sources */,
@@ -392,6 +477,7 @@
 		};
 		5410A6D01FFFDF1200935A9A /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 18E6E0C854ABF4765BEDC7A8 /* Pods-Unit4Week3Homework-StudentVersion.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -408,6 +494,7 @@
 		};
 		5410A6D11FFFDF1200935A9A /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = DF66056B9EB040F0C84F25DC /* Pods-Unit4Week3Homework-StudentVersion.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;

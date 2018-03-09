@@ -40,13 +40,13 @@ class DetailWeatherViewController: UIViewController {
     
     //TODO: - save button action
     @objc func saveImage() {
-        //just saving string of url
+        //MARK: saving string of url
         FileManagerHelper.manager.addFavoriteImageToFileManager(from: detailCityImage)
         print("Saved image url to file manager")
         savedImageAlert()
         
         UIView.animate(withDuration: 10.0, animations: {
-            let originalSaveImg = UIImage(named: "save")
+            let originalSaveImg = UIImage(named: "saveIcon30")
             let tintedImage = originalSaveImg?.withRenderingMode(.alwaysTemplate)
             self.detailView.saveButton.setImage(tintedImage, for: .normal)
             self.self.detailView.saveButton.tintColor = .red
@@ -64,7 +64,6 @@ extension DetailWeatherViewController{
         
         let okAction = UIAlertAction(title: "Ok", style: UIAlertActionStyle.default) //for other actions add in actions incompletion{}
         alertController.addAction(okAction)
-        //present alert controller
         self.present(alertController, animated: true, completion: nil)
     }
     

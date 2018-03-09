@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SnapKit
 
 protocol ButtonDeletingCellDelegate : class {
     func buttonWasPressed(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
@@ -17,21 +18,8 @@ class FavoritesViewController: UIViewController{
     
     var delegate: ButtonDeletingCellDelegate?
     
+    let emptyStateView = EmptyStateView()
     var sampleCityArray = [#imageLiteral(resourceName: "Chicago-IL"), #imageLiteral(resourceName: "Hastings"), #imageLiteral(resourceName: "phili"), #imageLiteral(resourceName: "tokyo")] //testing ONLY
-    
-    
-    //Dependency Injection for CityName
-    //    init(image: String) {
-    //        self.cityName = cityName
-    //        super.init(nibName: nil, bundle: nil)
-    //    }
-    //
-    //    required init?(coder aDecoder: NSCoder) {
-    //        fatalError("init(coder:) has not been implemented")
-    //    }
-    //
-    //    var : Foo
-    
     let favoritesView = FavoritesView()
     let weatherVC = WeatherViewController()
     let cityCustomCell = CityImageTableViewCell()
@@ -44,14 +32,21 @@ class FavoritesViewController: UIViewController{
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.addSubview(favoritesView) //adding the custom view into the View Controller
+        if favoriteImages.isEmpty {
+            view.addSubview(emptyStateView)
+            emptyStateView.snp.makeConstraints({ (make) in
+                make.edges.equalTo(self.view.safeAreaLayoutGuide.snp.edges)
+            })
+             print("empty state added")
+        } else {
+            view.addSubview(favoritesView) //adding the custom view into the View Controller
+        }
         
         //TBV Delegates
         favoritesView.tableView.delegate = self
         favoritesView.tableView.dataSource = self
         favoritesView.tableView.estimatedRowHeight = 100
         favoritesView.tableView.rowHeight = UITableViewAutomaticDimension
-    
         
         //Getting saved images to tableView
         FileManagerHelper.manager.loadFavorites()
@@ -71,19 +66,19 @@ class FavoritesViewController: UIViewController{
 extension FavoritesViewController: UITableViewDataSource {
     //, ButtonDeletingCellDelegate
     
-//    func buttonWasPressed(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-//        let deletedImg = favoriteImages[indexPath.row]
-//        favoriteImages.remove(at: indexPath.row)
-//
-//        //remove it from the file manager
-//        func deleteImage(using imageURLStr: String){
-//            FileManagerHelper.manager.deleteFavImage(favPathName: imageURLStr)
-//            print("Image successfully deleted from file manager")
-//        }
-//
-//        return
-//    }
-
+    //    func buttonWasPressed(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    //        let deletedImg = favoriteImages[indexPath.row]
+    //        favoriteImages.remove(at: indexPath.row)
+    //
+    //        //remove it from the file manager
+    //        func deleteImage(using imageURLStr: String){
+    //            FileManagerHelper.manager.deleteFavImage(favPathName: imageURLStr)
+    //            print("Image successfully deleted from file manager")
+    //        }
+    //
+    //        return
+    //    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return favoriteImages.count
     }

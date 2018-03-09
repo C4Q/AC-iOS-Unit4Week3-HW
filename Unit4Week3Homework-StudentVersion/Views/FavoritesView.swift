@@ -15,7 +15,8 @@ class FavoritesView: UIView {
         let tv = UITableView()
         //create and register a cell
         tv.register(CityImageTableViewCell.self, forCellReuseIdentifier: "CityImageCell")
-        tv.backgroundColor = .clear
+        tv.tableFooterView = UIView(frame: .zero)
+        tv.backgroundColor = UIColor(displayP3Red: 239/255, green: 242/255, blue: 247/255, alpha: 0.7)
         return tv
     }()
     

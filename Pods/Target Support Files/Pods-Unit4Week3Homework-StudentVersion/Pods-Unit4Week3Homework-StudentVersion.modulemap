@@ -1,0 +1,6 @@
+framework module Pods_Unit4Week3Homework_StudentVersion {
+  umbrella header "Pods-Unit4Week3Homework-StudentVersion-umbrella.h"
+
+  export *
+  module * { export * }
+}

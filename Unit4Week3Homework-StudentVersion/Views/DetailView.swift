@@ -26,13 +26,13 @@ class DetailView: UIView {
     
     lazy var saveButton: UIButton = {
         let button = UIButton()
-        button.setImage(UIImage(named:"save"), for: .normal)
+        button.setImage(UIImage(named:"saveIcon30"), for: .normal)
         return button
     }()
     
     lazy var exitButton: UIButton = {
         let button = UIButton()
-        button.setImage(UIImage(named:"exit"), for: .normal)
+        button.setImage(UIImage(named:"cancelIcon30"), for: .normal)
         return button
     }()
     
@@ -107,10 +107,7 @@ class DetailView: UIView {
         label.text = "inchesLabel"
         return label
     }()
-    
-    
-    
-    
+
     override init(frame: CGRect) {
         super.init(frame: UIScreen.main.bounds)
         commonInit()
@@ -131,7 +128,7 @@ class DetailView: UIView {
         // laid out on screen
         super.layoutSubviews()
         // To add round edges
-        cityImageView.layer.cornerRadius = cityImageView.bounds.width / 6.0
+        cityImageView.layer.cornerRadius = cityImageView.bounds.width / 4.0
         cityImageView.layer.borderWidth = 2.0
         cityImageView.layer.borderColor = UIColor.black.cgColor
         cityImageView.layer.masksToBounds = true
@@ -244,7 +241,6 @@ class DetailView: UIView {
         sunsetLabel.text = "Sunset: \(Date.timeStringFromTimeInterval(timeinterval: forecast.sunset))"
         windspeedLabel.text = " Wind Speed: \(forecast.windSpeedMPH) MPH"
         inchesOfPrecipitationLabel.text = "Rain Precipitation: \(forecast.rainPrecipIN)"
-        //cityImageView.image = UIImage(named: "\(forecast.weatherIcon)")
     }
 }
 
