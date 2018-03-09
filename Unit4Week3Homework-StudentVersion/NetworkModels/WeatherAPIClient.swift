@@ -25,12 +25,11 @@ class WeatherAPIClient {
         let parseDataIntoWeather: (Data) -> Void = {(data) in
             do{
                 let decoder = JSONDecoder()
-                let results = try decoder.decode(WeatherResponseWrapper.self, from: data) // when you decode the top layer you see what's inside.
+                let results = try decoder.decode(WeatherResponseWrapper.self, from: data) //top layer
                 if let forecast = results.response.first?.periods{ //[SevenDayResponse]
-                //call completionHandler ON the forecast
                     completionHandler(forecast)
                 }
-                print("JSON Data is now an [WeatherResponse]")
+                //print("JSON Data is now an [WeatherResponse]")
             } catch {
                 errorHandler(AppError.badData)
                 print("bad data from weather")
@@ -55,12 +54,11 @@ class WeatherAPIClient {
         let parseDataIntoWeather: (Data) -> Void = {(data) in
             do{
                 let decoder = JSONDecoder()
-                let results = try decoder.decode(WeatherResponseWrapper.self, from: data) // when you decode the top layer you see what's inside.
+                let results = try decoder.decode(WeatherResponseWrapper.self, from: data) //top layer
                 if let forecast = results.response.first?.periods{ //[SevenDayResponse]
-                    //call completionHandler ON the forecast
                     completion(forecast)
                 }
-                print("JSON Data is now an [WeatherResponse]")
+                //print("JSON Data is now an [WeatherResponse]")
             } catch {
                 print("error:\(AppError.badData)")
                 print("bad data from weather")

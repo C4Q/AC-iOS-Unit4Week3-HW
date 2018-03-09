@@ -112,7 +112,6 @@ class WeatherCollectionViewCell: UICollectionViewCell {
     public func configureCollectionViewCell(for forecast: SevenDayForecast){ //pass in forecast
         //setting properties for the custom collection view cell
         dateLabel.text = Date.dateStringFromTimeInterval(timeinterval: forecast.timeStamp)
-        print(dateLabel.text!)
         highLabel.text = "\(forecast.highTempF)°F"
         lowLabel.text = "\(forecast.lowTempF)°F"
         weatherImage.image = (UIImage(named: forecast.weatherIcon))

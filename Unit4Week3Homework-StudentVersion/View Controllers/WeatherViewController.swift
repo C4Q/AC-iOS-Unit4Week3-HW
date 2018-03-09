@@ -13,6 +13,7 @@ class WeatherViewController: UIViewController {
     
     //MARK: Global variables
     let weatherView = WeatherView()
+    let customCell = CityImageTableViewCell()
     let cellSpacing: CGFloat =  10.0
     var keyWord = "" //what the user enters into the textField
 
@@ -60,7 +61,7 @@ class WeatherViewController: UIViewController {
         //MARK: getting the last zipcode that was entered by the user
         if let savedZipcode = UserDefaultsHelper.manager.getZipcode() {
             weatherView.textField.text = String(savedZipcode)
-            print("zipcode loaded from UD")
+            //print("zipcode loaded from UD")
         } else {
             weatherView.textField.text = ""
         }
@@ -137,11 +138,13 @@ extension WeatherViewController: UICollectionViewDelegate {
             }
             ImageAPIClient.manager.loadImage(from: onlineImage.webURL, //get image from webURL String
                 completionHandler: setImageToOnlineImage,
-                errorHandler: {print($0)})
+                errorHandler: {print($0)})//will return status code
         }
         PixabayAPIClient.manager.getCityImage(from: keyWord, //get pic based off of what the user inputs
             completionHandler: loadImageFromInternet,
             errorHandler: {print($0)})
+        
+        
         
         //MARK: Spring animation when user clicks on a specific day for details
 //        let forecastCell = collectionView.cellForItem(at: indexPath)
@@ -225,7 +228,7 @@ extension WeatherViewController: UITextFieldDelegate {
         
         let loadForecastFromInternet: ([SevenDayForecast]) -> Void = {(onlineForcast: [SevenDayForecast]) in
             self.weeklyForecast = onlineForcast
-            //MARK: Zipcode completion
+            //MARK: Zipcode completion: THIS IS WHERE THE NAME IS BEING SET
             let zipCodeToNameConversion: (String) -> Void = {(cityName: String) in
                 self.keyWord = cityName
                 print(self.keyWord)

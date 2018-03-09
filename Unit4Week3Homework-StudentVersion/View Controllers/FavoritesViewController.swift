@@ -9,75 +9,63 @@
 import UIKit
 import SnapKit
 
-protocol ButtonDeletingCellDelegate : class {
-    func buttonWasPressed(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
-    
-}
 
 class FavoritesViewController: UIViewController{
     
-    var delegate: ButtonDeletingCellDelegate?
     
     let emptyStateView = EmptyStateView()
     var sampleCityArray = [#imageLiteral(resourceName: "Chicago-IL"), #imageLiteral(resourceName: "Hastings"), #imageLiteral(resourceName: "phili"), #imageLiteral(resourceName: "tokyo")] //testing ONLY
     let favoritesView = FavoritesView()
     let weatherVC = WeatherViewController()
     let cityCustomCell = CityImageTableViewCell()
+    private var keyword: String!
     
+    
+    //dependency injection?
+    
+    var forecast = [SevenDayForecast]()
+ 
     var favoriteImages = [UIImage]() {
         didSet {
             favoritesView.tableView.reloadData()
         }
     }
     
+    // Load and retrieve saved images in view will appear
+//    override func viewWillAppear(_ animated: Bool) {
+//        super.viewWillAppear(animated)
+//        //Getting saved images to tableView
+//        FileManagerHelper.manager.loadFavorites()
+//        self.favoriteImages = FileManagerHelper.manager.getFavoriteImagesFromFileManager()
+//        print(self.favoriteImages)
+//    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        if favoriteImages.isEmpty {
-            view.addSubview(emptyStateView)
-            emptyStateView.snp.makeConstraints({ (make) in
-                make.edges.equalTo(self.view.safeAreaLayoutGuide.snp.edges)
-            })
-             print("empty state added")
-        } else {
+//        if favoriteImages.isEmpty {
+//            view.addSubview(emptyStateView)
+//            emptyStateView.snp.makeConstraints({ (make) in
+//                make.edges.equalTo(self.view.safeAreaLayoutGuide.snp.edges)
+//            })
+//             print("empty state added")
+//        } else {
             view.addSubview(favoritesView) //adding the custom view into the View Controller
-        }
+        //}
         
         //TBV Delegates
         favoritesView.tableView.delegate = self
         favoritesView.tableView.dataSource = self
         favoritesView.tableView.estimatedRowHeight = 100
         favoritesView.tableView.rowHeight = UITableViewAutomaticDimension
-        
+
         //Getting saved images to tableView
         FileManagerHelper.manager.loadFavorites()
         self.favoriteImages = FileManagerHelper.manager.getFavoriteImagesFromFileManager()
         print(self.favoriteImages)
-        
-        //TODO: - button action
-        cityCustomCell.deleteImgButton.addTarget(self, action: #selector(deleteCell), for: .touchUpInside)
-    }
-    
-    @objc func deleteCell() {
-        //TODO: custom delegation to delete the row when delete button is clicked
-        //delegate?.buttonWasPressed(favoritesView.tableView, cellForRowAt: IndexPath.row )
     }
 }
 
 extension FavoritesViewController: UITableViewDataSource {
-    //, ButtonDeletingCellDelegate
-    
-    //    func buttonWasPressed(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-    //        let deletedImg = favoriteImages[indexPath.row]
-    //        favoriteImages.remove(at: indexPath.row)
-    //
-    //        //remove it from the file manager
-    //        func deleteImage(using imageURLStr: String){
-    //            FileManagerHelper.manager.deleteFavImage(favPathName: imageURLStr)
-    //            print("Image successfully deleted from file manager")
-    //        }
-    //
-    //        return
-    //    }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return favoriteImages.count
@@ -95,17 +83,19 @@ extension FavoritesViewController: UITableViewDataSource {
 
 extension FavoritesViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
         //MARK: Getting the current cell from the index path
         let currentCell = tableView.cellForRow(at: indexPath) as! CityImageTableViewCell
-        let cityName = ""
-        
-        currentCell.nameLabel.text = "test"
+        //currentCell = favoriteImages[indexPath.row]
+        let cityName = keyword
+
+        currentCell.nameLabel.text = "test"//cityName
         currentCell.nameLabel.isHidden = false
         currentCell.nameLabel.backgroundColor = .black
         currentCell.nameLabel.layer.cornerRadius = 3.0
         currentCell.nameLabel.layer.masksToBounds = true
-        currentCell.configureTableViewCell(for: cityName) //HOW TO PASS IN CITY NAME!
+        
+        //HOW TO PASS IN CITY NAME?!
+        //currentCell.configureTableViewCell(for: currentCell.nameLabel.text!)
         
         //MARK: Name label animation
         let animation = CABasicAnimation(keyPath: "opacity") //expects a string

@@ -31,6 +31,7 @@
 		81663F7E2002D78F0023ECD1 /* CityImageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81663F7D2002D78F0023ECD1 /* CityImageTableViewCell.swift */; };
 		81B565DC2052179A008A6166 /* LocationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81B565DB2052179A008A6166 /* LocationService.swift */; };
 		81B565E0205221E3008A6166 /* EmptyStateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81B565DF205221E3008A6166 /* EmptyStateView.swift */; };
+		81B7F9232052DADA00BA29B9 /* NSCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81B7F9222052DADA00BA29B9 /* NSCache.swift */; };
 		F75376CFD1A24B2FBE4FE471 /* Pods_Unit4Week3Homework_StudentVersion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DB574F5ADC6AE59B8D4BBDFE /* Pods_Unit4Week3Homework_StudentVersion.framework */; };
 /* End PBXBuildFile section */
 
@@ -62,6 +63,7 @@
 		81663F7D2002D78F0023ECD1 /* CityImageTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityImageTableViewCell.swift; sourceTree = "<group>"; };
 		81B565DB2052179A008A6166 /* LocationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationService.swift; sourceTree = "<group>"; };
 		81B565DF205221E3008A6166 /* EmptyStateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyStateView.swift; sourceTree = "<group>"; };
+		81B7F9222052DADA00BA29B9 /* NSCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSCache.swift; sourceTree = "<group>"; };
 		DB574F5ADC6AE59B8D4BBDFE /* Pods_Unit4Week3Homework_StudentVersion.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Unit4Week3Homework_StudentVersion.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DF66056B9EB040F0C84F25DC /* Pods-Unit4Week3Homework-StudentVersion.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Unit4Week3Homework-StudentVersion.release.xcconfig"; path = "Pods/Target Support Files/Pods-Unit4Week3Homework-StudentVersion/Pods-Unit4Week3Homework-StudentVersion.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -136,6 +138,7 @@
 			children = (
 				811A1B7020013817000EE49B /* FileManager.swift */,
 				811A1B6E20013807000EE49B /* UserDefaultsHelper.swift */,
+				81B7F9222052DADA00BA29B9 /* NSCache.swift */,
 			);
 			path = "Persistence Models";
 			sourceTree = "<group>";
@@ -344,6 +347,7 @@
 				811A1B68200137BD000EE49B /* WeatherViewController.swift in Sources */,
 				811A1B8D20027B8A000EE49B /* WeatherCollectionViewCell.swift in Sources */,
 				811A1B7920013A7C000EE49B /* WeatherAPIClient.swift in Sources */,
+				81B7F9232052DADA00BA29B9 /* NSCache.swift in Sources */,
 				811A1B8020013BC7000EE49B /* DetailView.swift in Sources */,
 				811A1B7120013817000EE49B /* FileManager.swift in Sources */,
 				811A1B6A200137C9000EE49B /* DetailWeatherViewController.swift in Sources */,

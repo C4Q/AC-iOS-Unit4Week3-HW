@@ -24,17 +24,11 @@ class CityImageTableViewCell: UITableViewCell {
         label.backgroundColor = .black
         label.textColor = UIColor.white
         label.font = UIFont.systemFont(ofSize: 35, weight: .bold)
-        label.text = "cityName".uppercased()
+        //label.text = "cityName".uppercased()
         return label
     }()
     
-    lazy var deleteImgButton: UIButton = {
-        let button = UIButton()
-        button.setImage(UIImage(named:"exit"), for: .normal)
-        return button
-    }()
-    
-    //This is boiler plate for UIView
+
     // This overrides the default set-up of a tbv cell that noramlly has a textLabel and a detail Text label
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {//We aren't using a storyboard, so we need to tell the app what our screen size is. Storyboard does this for us automatically.
         super.init(style: style , reuseIdentifier: "CityImageCell")
@@ -50,8 +44,6 @@ class CityImageTableViewCell: UITableViewCell {
     override func layoutSubviews() {
         super.layoutSubviews()
         //you get the frame of the UI elements here
-        //        cityImageView.layer.cornerRadius = cityImageView.bounds.width / 2.0
-        //        cityImageView.layer.masksToBounds = true // keeps the image withing th bounds
         setUpGUI()
     }
     
@@ -62,7 +54,7 @@ class CityImageTableViewCell: UITableViewCell {
     private func setupAndConstrainObjects(){
         
         //ARRAY MUST BE ON ORDER!!
-        let tableViewCellObjects = [cityImageView, nameLabel, deleteImgButton] as [UIView]
+        let tableViewCellObjects = [cityImageView, nameLabel] as [UIView]
         
         tableViewCellObjects.forEach{addSubview($0); ($0).translatesAutoresizingMaskIntoConstraints = false}
         
@@ -79,12 +71,6 @@ class CityImageTableViewCell: UITableViewCell {
             //nameLabel
             nameLabel.centerXAnchor.constraint(equalTo: centerXAnchor),
             nameLabel.centerYAnchor.constraint(equalTo: centerYAnchor),
-            
-            //deleteImg
-            deleteImgButton.topAnchor.constraint(equalTo: topAnchor , constant: 10),
-            deleteImgButton.trailingAnchor.constraint(equalTo: trailingAnchor),
-            deleteImgButton.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.10),
-            deleteImgButton.widthAnchor.constraint(equalTo: deleteImgButton.heightAnchor)
             ])
     }
     
