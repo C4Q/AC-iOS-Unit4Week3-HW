@@ -15,7 +15,7 @@ import Foundation
 
 //1. create protocol
 protocol FileManagerDelegate: class {
-    func didRefresh(_ service: FileManagerHelper, favoriteImage: [String] )
+    func didRefresh(_ service: FileManagerHelper, favoriteImage: [String])
 }
 
 class FileManagerHelper {
@@ -30,8 +30,8 @@ class FileManagerHelper {
     //MARK: objects being persisted
     var favoriteImages = [UIImage](){
         didSet{
-            //3. Call delegate here
-            self.delegate?.didRefresh(self, favoriteImage: self.favoriteURLS)
+//            //3. Call delegate here
+//            self.delegate?.didRefresh(self, favoriteImage: self.favoriteURLS)
         }
     }
     
@@ -73,6 +73,8 @@ class FileManagerHelper {
         do {
             let data = try PropertyListEncoder().encode(favoriteURLS)
             try data.write(to: path, options: .atomic)
+            //3. Call delegate here
+            self.delegate?.didRefresh(self, favoriteImage: self.favoriteURLS)
         }
         catch {
             print("WHYYYYYYYYY")
@@ -167,4 +169,5 @@ class FileManagerHelper {
         }
     }
 }
+
 

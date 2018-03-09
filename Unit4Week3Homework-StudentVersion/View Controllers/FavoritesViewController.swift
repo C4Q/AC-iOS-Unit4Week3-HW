@@ -25,20 +25,13 @@ class FavoritesViewController: UIViewController{
     
     var forecast = [SevenDayForecast]()
     
+    var pixabayImage: PixabayImage!
+    
     var favoriteImages = [UIImage]() {
         didSet {
             favoritesView.tableView.reloadData()
         }
     }
-    
-    // Load and retrieve saved images in view will appear
-    //    override func viewWillAppear(_ animated: Bool) {
-    //        super.viewWillAppear(animated)
-    //        //Getting saved images to tableView
-    //        FileManagerHelper.manager.loadFavorites()
-    //        self.favoriteImages = FileManagerHelper.manager.getFavoriteImagesFromFileManager()
-    //        print(self.favoriteImages)
-    //    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -131,9 +124,21 @@ extension FavoritesViewController: UITableViewDelegate {
 //MARK: Custom delegate extension
 extension FavoritesViewController: FileManagerDelegate {
     func didRefresh(_ service: FileManagerHelper, favoriteImage: [String]) {
+        //1. image urls need to be converted and set to UIImages
+        
+        guard let url = URL(string: pixabayImage.webURL) else {return} //crashes and returns nil
+            if let data = try? Data(contentsOf: url){
+                let image: UIImage = UIImage(data: data)!
+                //2.added to favorite images data model
+                favoriteImages.append(image)
+                print("image added")
+                //                favoritesView.tableView.reloadData()
+            }
+        
         favoritesView.tableView.reloadData()
     }
 }
+
 
 
 
