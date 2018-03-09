@@ -1,3 +1,4 @@
+
 //
 //  FileManager.swift
 //  Unit4Week3Homework-StudentVersion
@@ -12,14 +13,28 @@ import Foundation
 //public -> if you need to use it in any other  file: USUALLY AT THE TOP OF THE PAGE : loading and adding
 //private -> if you don't want any other file to see your func
 
+//1. create protocol
+protocol FileManagerDelegate: class {
+    func didRefresh(_ service: FileManagerHelper, favoriteImage: [String] )
+}
+
 class FileManagerHelper {
     private init() {}
     static let manager = FileManagerHelper()
     
     var pathName = "favorites.plist"
     
+    //2. Instantiate delegate
+    var delegate: FileManagerDelegate?
+    
     //MARK: objects being persisted
-    var favoriteImages = [UIImage]()
+    var favoriteImages = [UIImage](){
+        didSet{
+            //3. Call delegate here
+            self.delegate?.didRefresh(self, favoriteImage: self.favoriteURLS)
+        }
+    }
+    
     private var favoriteURLS = [String]() {
         didSet {
             saveFavoriteImageToSandBox()
@@ -97,7 +112,13 @@ class FileManagerHelper {
         self.favoriteImages = arrayOfFavorites
     }
     
-    //MARK: deleting one image
+     //MARK: deleting one image from tableview
+    func removeFavorite(from index: Int) {
+        favoriteImages.remove(at: index)
+    }
+    
+    
+    //MARK: deleting one image url
     func deleteFavImage(favPathName: String) {
         let imageURL = dataFilePath(withPathName: favPathName) // let the Image URL get the file path name where it is stored in the phone
         do {
@@ -115,7 +136,6 @@ class FileManagerHelper {
             }
         }
     }
-    
     
     ///////////////////SAVING AND GETTING IMAGES
     
@@ -142,7 +162,7 @@ class FileManagerHelper {
             return UIImage(data: data)
         }
         catch {
-            print(error.localizedDescription)
+            print("error getting images \(error.localizedDescription)")
             return nil
         }
     }

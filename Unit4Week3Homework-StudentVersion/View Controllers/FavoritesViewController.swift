@@ -21,10 +21,10 @@ class FavoritesViewController: UIViewController{
     private var keyword: String!
     
     
-    //dependency injection?
+    //dependency injection for city name?
     
     var forecast = [SevenDayForecast]()
- 
+    
     var favoriteImages = [UIImage]() {
         didSet {
             favoritesView.tableView.reloadData()
@@ -32,32 +32,33 @@ class FavoritesViewController: UIViewController{
     }
     
     // Load and retrieve saved images in view will appear
-//    override func viewWillAppear(_ animated: Bool) {
-//        super.viewWillAppear(animated)
-//        //Getting saved images to tableView
-//        FileManagerHelper.manager.loadFavorites()
-//        self.favoriteImages = FileManagerHelper.manager.getFavoriteImagesFromFileManager()
-//        print(self.favoriteImages)
-//    }
+    //    override func viewWillAppear(_ animated: Bool) {
+    //        super.viewWillAppear(animated)
+    //        //Getting saved images to tableView
+    //        FileManagerHelper.manager.loadFavorites()
+    //        self.favoriteImages = FileManagerHelper.manager.getFavoriteImagesFromFileManager()
+    //        print(self.favoriteImages)
+    //    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-//        if favoriteImages.isEmpty {
-//            view.addSubview(emptyStateView)
-//            emptyStateView.snp.makeConstraints({ (make) in
-//                make.edges.equalTo(self.view.safeAreaLayoutGuide.snp.edges)
-//            })
-//             print("empty state added")
-//        } else {
-            view.addSubview(favoritesView) //adding the custom view into the View Controller
+        //        if favoriteImages.isEmpty {
+        //            view.addSubview(emptyStateView)
+        //            emptyStateView.snp.makeConstraints({ (make) in
+        //                make.edges.equalTo(self.view.safeAreaLayoutGuide.snp.edges)
+        //            })
+        //             print("empty state added")
+        //        } else {
+        view.addSubview(favoritesView) //adding the custom view into the View Controller
         //}
         
         //TBV Delegates
         favoritesView.tableView.delegate = self
         favoritesView.tableView.dataSource = self
+        FileManagerHelper.manager.delegate = self
         favoritesView.tableView.estimatedRowHeight = 100
         favoritesView.tableView.rowHeight = UITableViewAutomaticDimension
-
+        
         //Getting saved images to tableView
         FileManagerHelper.manager.loadFavorites()
         self.favoriteImages = FileManagerHelper.manager.getFavoriteImagesFromFileManager()
@@ -87,7 +88,7 @@ extension FavoritesViewController: UITableViewDelegate {
         let currentCell = tableView.cellForRow(at: indexPath) as! CityImageTableViewCell
         //currentCell = favoriteImages[indexPath.row]
         let cityName = keyword
-
+        
         currentCell.nameLabel.text = "test"//cityName
         currentCell.nameLabel.isHidden = false
         currentCell.nameLabel.backgroundColor = .black
@@ -105,6 +106,32 @@ extension FavoritesViewController: UITableViewDelegate {
         animation.duration = 2.0
         currentCell.nameLabel.layer.add(animation, forKey: nil) //adding animation to label opacity
         currentCell.nameLabel.layer.opacity = 0 //ending value
+    }
+    
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        if !favoriteImages.isEmpty {
+            return true
+        }
+        return false
+    }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        if !favoriteImages.isEmpty {
+            if editingStyle == .delete {
+                tableView.beginUpdates()
+                favoriteImages.remove(at: indexPath.row)
+                tableView.deleteRows(at: [indexPath], with: .fade)
+                FileManagerHelper.manager.removeFavorite(from: indexPath.row)
+                tableView.endUpdates()
+            }
+        }
+    }
+}
+
+//MARK: Custom delegate extension
+extension FavoritesViewController: FileManagerDelegate {
+    func didRefresh(_ service: FileManagerHelper, favoriteImage: [String]) {
+        favoritesView.tableView.reloadData()
     }
 }
 
