@@ -20,7 +20,6 @@ class FavoritesViewController: UIViewController{
     let cityCustomCell = CityImageTableViewCell()
     private var keyword: String!
     
-    
     //dependency injection for city name?
     
     var forecast = [SevenDayForecast]()
@@ -123,21 +122,13 @@ extension FavoritesViewController: UITableViewDelegate {
 
 //MARK: Custom delegate extension
 extension FavoritesViewController: FileManagerDelegate {
-    func didRefresh(_ service: FileManagerHelper, favoriteImage: [String]) {
-        //1. image urls need to be converted and set to UIImages
-        
-        guard let url = URL(string: pixabayImage.webURL) else {return} //crashes and returns nil
-            if let data = try? Data(contentsOf: url){
-                let image: UIImage = UIImage(data: data)!
-                //2.added to favorite images data model
-                favoriteImages.append(image)
-                print("image added")
-                //                favoritesView.tableView.reloadData()
-            }
-        
+    func didRefresh(_ service: FileManagerHelper, favoriteImage: [UIImage]) {
+        self.favoriteImages = favoriteImage
         favoritesView.tableView.reloadData()
+        print("image added")
     }
 }
+
 
 
 

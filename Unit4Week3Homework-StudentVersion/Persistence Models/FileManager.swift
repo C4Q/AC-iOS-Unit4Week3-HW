@@ -15,7 +15,7 @@ import Foundation
 
 //1. create protocol
 protocol FileManagerDelegate: class {
-    func didRefresh(_ service: FileManagerHelper, favoriteImage: [String])
+    func didRefresh(_ service: FileManagerHelper, favoriteImage: [UIImage])
 }
 
 class FileManagerHelper {
@@ -28,12 +28,7 @@ class FileManagerHelper {
     var delegate: FileManagerDelegate?
     
     //MARK: objects being persisted
-    var favoriteImages = [UIImage](){
-        didSet{
-//            //3. Call delegate here
-//            self.delegate?.didRefresh(self, favoriteImage: self.favoriteURLS)
-        }
-    }
+    private var favoriteImages = [UIImage]()
     
     private var favoriteURLS = [String]() {
         didSet {
@@ -50,15 +45,13 @@ class FileManagerHelper {
         return paths[0]
     }
     
-    // returns the path for supplied name from the documents directory
+    //returns the path for supplied name from the documents directory
     private func dataFilePath(withPathName path: String) -> URL {
         //now you can write to the file/pathName you pass in! (If the file name doesn't exsist, it will create it)
         return FileManagerHelper.manager.documentsDirectory().appendingPathComponent(path)
     }
     
-    
-    
-/////////////////////Loading, adding, getting, deleting favorite urls
+    /////////////////////Loading, adding, getting, deleting favorite urls
     
     //MARK: adds image
     func addFavoriteImageToFileManager(from urlstr: String) {
@@ -66,29 +59,29 @@ class FileManagerHelper {
     }
     
     
-    //MARK: Saving favorites : This saves the array of Favorites to the phone
+    //MARK: Saving favorites: This saves the array of Favorites to the phone
     private func saveFavoriteImageToSandBox() {
         //Save URLs
-        let path = dataFilePath(withPathName: pathName)
+        let path = dataFilePath(withPathName: pathName) //getting path where image url is going to be stored
         do {
-            let data = try PropertyListEncoder().encode(favoriteURLS)
-            try data.write(to: path, options: .atomic)
+            let data = try PropertyListEncoder().encode(favoriteURLS)//encoding urls to data
+            try data.write(to: path, options: .atomic) //writing data to sandbox
+            loadFavorites()// takes loaded UIImages
             //3. Call delegate here
-            self.delegate?.didRefresh(self, favoriteImage: self.favoriteURLS)
+            self.delegate?.didRefresh(self, favoriteImage: self.favoriteImages)
         }
         catch {
             print("WHYYYYYYYYY")
         }
     }
     
-    
     //Get favorites images to VC from FM : this will set the favorited object in favorites VC the image object in File Manager
     func getFavoriteImagesFromFileManager() -> [UIImage]{
         return favoriteImages
     }
-
-        //MARK: Called in the app delegate to bring up all favorited images
-    func loadFavoritesFromSandBox() {
+    
+    //MARK: Called in the app delegate to bring up all favorited images
+    func loadFavoritesFromSandBox() {//Bringing back from sandbox so need to decode back url strings
         //Save URLs
         let path = dataFilePath(withPathName: pathName)
         do {
@@ -100,12 +93,12 @@ class FileManagerHelper {
             print("loadFavoritesFromSandBox error decoding items: \(error.localizedDescription)")
         }
     }
-
-    //MARK: called when the favorites VC view loads
+    
+    //MARK: called when the favorites VC view loads : goes through all image urls and if it's an UIImage adds to array
     func loadFavorites() {
         var arrayOfFavorites = [UIImage]()
         for imageURLS in favoriteURLS {
-            if let loadedimage = getImage(with: imageURLS) {
+            if let loadedimage = getImage(with: imageURLS){//if loaded image is an image made from an image url add to array
                 arrayOfFavorites.append(loadedimage)
             } else {
                 print("No image with that name saved on phone")
@@ -114,7 +107,8 @@ class FileManagerHelper {
         self.favoriteImages = arrayOfFavorites
     }
     
-     //MARK: deleting one image from tableview
+    
+    //MARK: deleting one image from tableview
     func removeFavorite(from index: Int) {
         favoriteImages.remove(at: index)
     }
@@ -155,8 +149,8 @@ class FileManagerHelper {
     }
     
     
-//    //MARK: Getting images from disk
-    public func getImage(with urlStr: String) -> UIImage? {
+    //MARK: Getting images from disk: gets image urls and converts them into data
+    public func getImage(with urlStr: String) -> UIImage? { //turns image url into an UIImage
         do {
             let imagePathName = urlStr.components(separatedBy: "/").last!
             let url = dataFilePath(withPathName: imagePathName)
