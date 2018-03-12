@@ -10,6 +10,7 @@ import UIKit
 import CoreLocation
 
 class WeatherViewController: UIViewController {
+    //TODO: add progress bar activity indicator when images are loading
     
     //MARK: Global variables
     let weatherView = WeatherView()
@@ -143,17 +144,14 @@ extension WeatherViewController: UICollectionViewDelegate {
             completionHandler: loadImageFromInternet,
             errorHandler: {print($0)})
         
-        
-        
         //MARK: Spring animation when user clicks on a specific day for details
-        //        let forecastCell = collectionView.cellForItem(at: indexPath)
-        //        
-        //        UIView.animate(withDuration: 0.1, delay: 0, usingSpringWithDamping: 3, initialSpringVelocity: 5, options: [], animations: {
-        //            forecastCell!.transform = CGAffineTransform(scaleX: 0.9, y: 0.9) }, completion: { finished in
-        //                UIView.animate(withDuration: 0.06, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 5, options: .curveEaseIn, animations: { forecastCell!.transform = CGAffineTransform(scaleX: 1, y: 1) }, completion: { (_) in
-        //                    self.navigationController?.pushViewController(detailWVC, animated: true)
-        //                    //self.present(detailWVC, animated: true, completion: nil)
-        //                })})
+        let forecastCell = collectionView.cellForItem(at: indexPath)
+        
+        UIView.animate(withDuration: 0.1, delay: 0, usingSpringWithDamping: 3, initialSpringVelocity: 5, options: [], animations: {
+            forecastCell!.transform = CGAffineTransform(scaleX: 0.9, y: 0.9) }, completion: { finished in
+                UIView.animate(withDuration: 0.06, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 5, options: .curveEaseIn, animations: { forecastCell!.transform = CGAffineTransform(scaleX: 1, y: 1) }, completion: { (_) in
+                    self.navigationController?.pushViewController(detailWVC, animated: true)
+                })})
     }
 }
 
