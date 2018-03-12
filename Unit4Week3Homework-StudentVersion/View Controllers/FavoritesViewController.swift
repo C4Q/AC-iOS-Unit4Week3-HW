@@ -9,10 +9,8 @@
 import UIKit
 import SnapKit
 
-
 class FavoritesViewController: UIViewController{
-    
-    
+
     var sampleCityArray = [#imageLiteral(resourceName: "Chicago-IL"), #imageLiteral(resourceName: "Hastings"), #imageLiteral(resourceName: "phili"), #imageLiteral(resourceName: "tokyo")] //testing ONLY
     let emptyStateView = EmptyStateView()
     let favoritesView = FavoritesView()
@@ -33,6 +31,7 @@ class FavoritesViewController: UIViewController{
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
+                //adding empty view if no images have been saved to the favorite images array
         if favoriteImages.isEmpty {
             configureEmptyStateView()
         } else {
@@ -41,12 +40,6 @@ class FavoritesViewController: UIViewController{
     }
     override func viewDidLoad() {
         super.viewDidLoad()
-        //adding empty view if no images have been saved to the favorite images array
-//        if favoriteImages.isEmpty {
-//            configureEmptyStateView()
-//        } else {
-//            configureFavoritesView()
-//        }
         //TBV Delegates
         favoritesView.tableView.delegate = self
         favoritesView.tableView.dataSource = self
@@ -59,6 +52,7 @@ class FavoritesViewController: UIViewController{
         self.favoriteImages = FileManagerHelper.manager.getFavoriteImagesFromFileManager()
     }
     
+    //MARK: Helper functions to set constraints for favorites and empty state views
     func configureFavoritesView(){
         view.addSubview(favoritesView)
         favoritesView.snp.makeConstraints{ (make) in
@@ -74,6 +68,7 @@ class FavoritesViewController: UIViewController{
     }
 }
 
+//MARK: Tableview Datsource Methods
 extension FavoritesViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -89,7 +84,7 @@ extension FavoritesViewController: UITableViewDataSource {
     }
 }
 
-
+//MARK: Tableview Delegate Methods
 extension FavoritesViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath){
         //MARK: Getting the current cell from the index path

@@ -20,25 +20,19 @@ class DetailWeatherViewController: UIViewController {
         self.definesPresentationContext = true
         view.backgroundColor = .clear
         view.addSubview(detailView)
-        
         //setup buttons
         detailView.dismissView.addTarget(self, action: #selector(dismissView), for: .touchUpInside)
         detailView.exitButton.addTarget(self, action: #selector(dismissViewWithButton), for: .touchUpInside)
         detailView.saveButton.addTarget(self, action: #selector(saveImage), for: .touchUpInside)
     }
     
-    
     //MARK: - button functionality
     @objc func dismissView() {
         dismiss(animated: true, completion: nil)
     }
-    
-    
     @objc func dismissViewWithButton() {
         dismiss(animated: true, completion: nil)
     }
-    
-    //TODO: - save button action
     @objc func saveImage() {
         //MARK: saving string of url
         FileManagerHelper.manager.addFavoriteImageToFileManager(from: detailCityImage)
