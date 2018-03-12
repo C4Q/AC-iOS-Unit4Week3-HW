@@ -14,7 +14,7 @@ class DetailWeatherViewController: UIViewController {
     let detailView = DetailView()
     let weatherVC = WeatherViewController()
     var detailCityImage = ""
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.definesPresentationContext = true
@@ -56,7 +56,6 @@ class DetailWeatherViewController: UIViewController {
 
 //MARK: - Save Alert
 extension DetailWeatherViewController{
-    
     func savedImageAlert(){
         let alertController = UIAlertController(title: "Saved!",
                                                 message:"Image saved to favorites",
@@ -66,6 +65,5 @@ extension DetailWeatherViewController{
         alertController.addAction(okAction)
         self.present(alertController, animated: true, completion: nil)
     }
-    
 }
 

@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import CoreLocation //for locationService
+import CoreLocation
 
 class WeatherViewController: UIViewController {
     
@@ -16,7 +16,7 @@ class WeatherViewController: UIViewController {
     let customCell = CityImageTableViewCell()
     let cellSpacing: CGFloat =  10.0
     var keyWord = "" //what the user enters into the textField
-
+    
     
     var weeklyForecast = [SevenDayForecast](){
         didSet {
@@ -61,7 +61,6 @@ class WeatherViewController: UIViewController {
         //MARK: getting the last zipcode that was entered by the user
         if let savedZipcode = UserDefaultsHelper.manager.getZipcode() {
             weatherView.textField.text = String(savedZipcode)
-            //print("zipcode loaded from UD")
         } else {
             weatherView.textField.text = ""
         }
@@ -70,7 +69,7 @@ class WeatherViewController: UIViewController {
     func scrollWhenWeatherChanges(){
         let startIndex = self.weeklyForecast.startIndex
         guard startIndex == 0 else {return}
-        //creates an indexpath based on the startIndex and whatever section you are referencing
+        //creates an index path based on the startIndex and whatever section you are referencing
         let beginningOfForecastArray = IndexPath(item: startIndex, section: 0)
         weatherView.collectionView.scrollToItem(at: beginningOfForecastArray, at: .left, animated: true)
     }
@@ -118,7 +117,7 @@ extension WeatherViewController: UICollectionViewDataSource {
 //MARK: - Collection View Delegate
 extension WeatherViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        //Using dependency injection to pass Fellow Model Object to DetailVC
+        //MARK: Using dependency injection to pass Fellow Model Object to DetailVC
         let forecast = weeklyForecast[indexPath.row]
         let cityName = keyWord
         let detailWVC = DetailWeatherViewController()
@@ -147,14 +146,14 @@ extension WeatherViewController: UICollectionViewDelegate {
         
         
         //MARK: Spring animation when user clicks on a specific day for details
-//        let forecastCell = collectionView.cellForItem(at: indexPath)
-//        
-//        UIView.animate(withDuration: 0.1, delay: 0, usingSpringWithDamping: 3, initialSpringVelocity: 5, options: [], animations: {
-//            forecastCell!.transform = CGAffineTransform(scaleX: 0.9, y: 0.9) }, completion: { finished in
-//                UIView.animate(withDuration: 0.06, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 5, options: .curveEaseIn, animations: { forecastCell!.transform = CGAffineTransform(scaleX: 1, y: 1) }, completion: { (_) in
-//                    self.navigationController?.pushViewController(detailWVC, animated: true)
-//                    //self.present(detailWVC, animated: true, completion: nil)
-//                })})
+        //        let forecastCell = collectionView.cellForItem(at: indexPath)
+        //        
+        //        UIView.animate(withDuration: 0.1, delay: 0, usingSpringWithDamping: 3, initialSpringVelocity: 5, options: [], animations: {
+        //            forecastCell!.transform = CGAffineTransform(scaleX: 0.9, y: 0.9) }, completion: { finished in
+        //                UIView.animate(withDuration: 0.06, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 5, options: .curveEaseIn, animations: { forecastCell!.transform = CGAffineTransform(scaleX: 1, y: 1) }, completion: { (_) in
+        //                    self.navigationController?.pushViewController(detailWVC, animated: true)
+        //                    //self.present(detailWVC, animated: true, completion: nil)
+        //                })})
     }
 }
 
@@ -163,7 +162,6 @@ extension WeatherViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let numCells: CGFloat = 3
         let numSpaces: CGFloat = numCells + 1
-        
         let screenWidth = UIScreen.main.bounds.width
         let screenHeight = UIScreen.main.bounds.height
         
@@ -204,7 +202,7 @@ extension WeatherViewController: UITextFieldDelegate {
         guard let text = textField.text else {return true}
         
         if !weeklyForecast.isEmpty{
-        scrollWhenWeatherChanges()
+            scrollWhenWeatherChanges()
         }
         
         if text.count != 5 {
@@ -222,16 +220,11 @@ extension WeatherViewController: UITextFieldDelegate {
         
         keyWord = text //user entry == textfield.text
         
-        //
-        //        //MARK: - Weather API call: string being used to pass into Weather API call
-        //        let urlStr = "https://api.aerisapi.com/forecasts/\(keyWord)?client_id=\(APIKeys.weatherClientID)&client_secret=\(APIKeys.weatherSecretKey)"
-        
         let loadForecastFromInternet: ([SevenDayForecast]) -> Void = {(onlineForcast: [SevenDayForecast]) in
             self.weeklyForecast = onlineForcast
             //MARK: Zipcode completion: THIS IS WHERE THE NAME IS BEING SET
             let zipCodeToNameConversion: (String) -> Void = {(cityName: String) in
                 self.keyWord = cityName
-                print(self.keyWord)
                 self.weatherView.messageLabel.isHidden = false
                 self.weatherView.messageLabel.text = "Weather forecast for \(self.keyWord)"
             }
@@ -253,7 +246,6 @@ extension WeatherViewController {
         let alertController = UIAlertController(title: "Unknown ZipCode",
                                                 message:"ZipCode Not Found",
                                                 preferredStyle: UIAlertControllerStyle.alert)
-        
         let tryAnotherAction = UIAlertAction(title: "Try Another", style: UIAlertActionStyle.default)//for other actions add in actions incompletion{}
         alertController.addAction(tryAnotherAction)
         self.present(alertController, animated: true, completion: nil)
@@ -269,5 +261,4 @@ extension WeatherViewController {
         self.present(alertController, animated: true, completion: nil)
     }
 }
-
 

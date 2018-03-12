@@ -13,37 +13,40 @@ import SnapKit
 class FavoritesViewController: UIViewController{
     
     
-    let emptyStateView = EmptyStateView()
     var sampleCityArray = [#imageLiteral(resourceName: "Chicago-IL"), #imageLiteral(resourceName: "Hastings"), #imageLiteral(resourceName: "phili"), #imageLiteral(resourceName: "tokyo")] //testing ONLY
+    let emptyStateView = EmptyStateView()
     let favoritesView = FavoritesView()
     let weatherVC = WeatherViewController()
     let cityCustomCell = CityImageTableViewCell()
-    private var keyword: String!
+    var nameOfCity: String!
+    
     
     //dependency injection for city name?
     
     var forecast = [SevenDayForecast]()
-    
-    var pixabayImage: PixabayImage!
-    
     var favoriteImages = [UIImage]() {
         didSet {
             favoritesView.tableView.reloadData()
+            print("There are \(favoriteImages.count) images in hte favorite images array")
         }
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        if favoriteImages.isEmpty {
+            configureEmptyStateView()
+        } else {
+            configureFavoritesView()
+        }
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
-        //        if favoriteImages.isEmpty {
-        //            view.addSubview(emptyStateView)
-        //            emptyStateView.snp.makeConstraints({ (make) in
-        //                make.edges.equalTo(self.view.safeAreaLayoutGuide.snp.edges)
-        //            })
-        //             print("empty state added")
-        //        } else {
-        view.addSubview(favoritesView) //adding the custom view into the View Controller
-        //}
-        
+        //adding empty view if no images have been saved to the favorite images array
+//        if favoriteImages.isEmpty {
+//            configureEmptyStateView()
+//        } else {
+//            configureFavoritesView()
+//        }
         //TBV Delegates
         favoritesView.tableView.delegate = self
         favoritesView.tableView.dataSource = self
@@ -54,7 +57,20 @@ class FavoritesViewController: UIViewController{
         //Getting saved images to tableView
         FileManagerHelper.manager.loadFavorites()
         self.favoriteImages = FileManagerHelper.manager.getFavoriteImagesFromFileManager()
-        print(self.favoriteImages)
+    }
+    
+    func configureFavoritesView(){
+        view.addSubview(favoritesView)
+        favoritesView.snp.makeConstraints{ (make) in
+            make.edges.equalTo(self.view.safeAreaLayoutGuide.snp.edges)
+        }
+    }
+    
+    func configureEmptyStateView(){
+        view.addSubview(emptyStateView)
+        emptyStateView.snp.makeConstraints{ (make) in
+            make.edges.equalTo(self.view.safeAreaLayoutGuide.snp.edges)
+        }
     }
 }
 
@@ -75,29 +91,23 @@ extension FavoritesViewController: UITableViewDataSource {
 
 
 extension FavoritesViewController: UITableViewDelegate {
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath){
         //MARK: Getting the current cell from the index path
         let currentCell = tableView.cellForRow(at: indexPath) as! CityImageTableViewCell
-        //currentCell = favoriteImages[indexPath.row]
-        let cityName = keyword
-        
-        currentCell.nameLabel.text = "test"//cityName
+        //currentCell.nameLabel.text = "test"
         currentCell.nameLabel.isHidden = false
         currentCell.nameLabel.backgroundColor = .black
         currentCell.nameLabel.layer.cornerRadius = 3.0
         currentCell.nameLabel.layer.masksToBounds = true
         
-        //HOW TO PASS IN CITY NAME?!
-        //currentCell.configureTableViewCell(for: currentCell.nameLabel.text!)
-        
-        //MARK: Name label animation
-        let animation = CABasicAnimation(keyPath: "opacity") //expects a string
-        animation.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseOut)
-        animation.fromValue = 0
-        animation.toValue = 1.0
-        animation.duration = 2.0
-        currentCell.nameLabel.layer.add(animation, forKey: nil) //adding animation to label opacity
-        currentCell.nameLabel.layer.opacity = 0 //ending value
+        //TODO: Animate city name label and pass in city name
+        //        let animation = CABasicAnimation(keyPath: "opacity") //expects a string
+        //        animation.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseOut)
+        //        animation.fromValue = 0
+        //        animation.toValue = 1.0
+        //        animation.duration = 2.0
+        //        currentCell.nameLabel.layer.add(animation, forKey: nil) //adding animation to label opacity
+        //        currentCell.nameLabel.layer.opacity = 0 //ending value
     }
     
     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
@@ -120,16 +130,12 @@ extension FavoritesViewController: UITableViewDelegate {
     }
 }
 
-//MARK: Custom delegate extension
+//MARK: Custom delegate extension to update the tableView when an image is added
 extension FavoritesViewController: FileManagerDelegate {
     func didRefresh(_ service: FileManagerHelper, favoriteImage: [UIImage]) {
         self.favoriteImages = favoriteImage
         favoritesView.tableView.reloadData()
-        print("image added")
     }
 }
-
-
-
 
 

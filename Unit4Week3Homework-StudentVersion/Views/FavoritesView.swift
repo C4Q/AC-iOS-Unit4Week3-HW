@@ -28,7 +28,7 @@ class FavoritesView: UIView {
     
     required init?(coder aDecoder: NSCoder) { //now the new initializer required for this uiView
         super.init(coder: aDecoder)
-        //setUpGUI()
+        setUpGUI()
     }
     
     private func setUpGUI() {
@@ -36,8 +36,7 @@ class FavoritesView: UIView {
         setupAndConstrainObjects()
     }
     
-    private func setupAndConstrainObjects() {
-        
+    private func setupAndConstrainObjects(){
         //ARRAY MUST BE ON ORDER!!
         let favoriteObjects = [tableView] as [UIView]
         

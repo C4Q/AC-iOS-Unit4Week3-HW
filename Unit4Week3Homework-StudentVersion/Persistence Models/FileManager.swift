@@ -10,9 +10,6 @@ import UIKit
 import Foundation
 
 
-//public -> if you need to use it in any other  file: USUALLY AT THE TOP OF THE PAGE : loading and adding
-//private -> if you don't want any other file to see your func
-
 //1. create protocol
 protocol FileManagerDelegate: class {
     func didRefresh(_ service: FileManagerHelper, favoriteImage: [UIImage])
@@ -27,7 +24,7 @@ class FileManagerHelper {
     //2. Instantiate delegate
     var delegate: FileManagerDelegate?
     
-    //MARK: objects being persisted
+    //MARK: object being persisted
     private var favoriteImages = [UIImage]()
     
     private var favoriteURLS = [String]() {
@@ -53,11 +50,9 @@ class FileManagerHelper {
     
     /////////////////////Loading, adding, getting, deleting favorite urls
     
-    //MARK: adds image
     func addFavoriteImageToFileManager(from urlstr: String) {
         favoriteURLS.append(urlstr)
     }
-    
     
     //MARK: Saving favorites: This saves the array of Favorites to the phone
     private func saveFavoriteImageToSandBox() {
@@ -75,7 +70,7 @@ class FileManagerHelper {
         }
     }
     
-    //Get favorites images to VC from FM : this will set the favorited object in favorites VC the image object in File Manager
+    //MARK: Get favorites images to VC from FM : This will set the favorited object in favorites VC the image object in File Manager
     func getFavoriteImagesFromFileManager() -> [UIImage]{
         return favoriteImages
     }

@@ -107,6 +107,7 @@
 				811A1B722001381E000EE49B /* Persistence Models */,
 				811A1B6D200137DF000EE49B /* View Controllers */,
 				811A1B7C20013B4F000EE49B /* Views */,
+				812B8DAC205508EE00F8C999 /* Custom Cells */,
 				811A1B6620012E10000EE49B /* Supporting Files */,
 				5410A6CC1FFFDF1200935A9A /* Info.plist */,
 			);
@@ -163,8 +164,6 @@
 				811A1B7D20013BBD000EE49B /* WeatherView.swift */,
 				811A1B7F20013BC7000EE49B /* DetailView.swift */,
 				811A1B8120013BD5000EE49B /* FavoritesView.swift */,
-				811A1B8C20027B8A000EE49B /* WeatherCollectionViewCell.swift */,
-				81663F7D2002D78F0023ECD1 /* CityImageTableViewCell.swift */,
 				81B565DF205221E3008A6166 /* EmptyStateView.swift */,
 			);
 			path = Views;
@@ -177,6 +176,15 @@
 				811A1B832001402B000EE49B /* WeatherModel.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		812B8DAC205508EE00F8C999 /* Custom Cells */ = {
+			isa = PBXGroup;
+			children = (
+				811A1B8C20027B8A000EE49B /* WeatherCollectionViewCell.swift */,
+				81663F7D2002D78F0023ECD1 /* CityImageTableViewCell.swift */,
+			);
+			path = "Custom Cells";
 			sourceTree = "<group>";
 		};
 		81B565D820519139008A6166 /* Services */ = {

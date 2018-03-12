@@ -8,6 +8,7 @@
 import UIKit
 
 class CityImageTableViewCell: UITableViewCell {
+    //let currentIndexPath: IndexPath?
     
     //imageView
     lazy var cityImageView: UIImageView = {
@@ -28,10 +29,11 @@ class CityImageTableViewCell: UITableViewCell {
         return label
     }()
     
-
+    
     // This overrides the default set-up of a tbv cell that noramlly has a textLabel and a detail Text label
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {//We aren't using a storyboard, so we need to tell the app what our screen size is. Storyboard does this for us automatically.
         super.init(style: style , reuseIdentifier: "CityImageCell")
+        
         setUpGUI()
     }
     
@@ -73,12 +75,4 @@ class CityImageTableViewCell: UITableViewCell {
             nameLabel.centerYAnchor.constraint(equalTo: centerYAnchor),
             ])
     }
-    
-    //MARK: - configure table view cell
-    public func configureTableViewCell(for cityName: String){ //pass in forecast
-        //setting properties for the custom collection view cell
-        //nameLabel.text = "\(cityName)"
-       
-    }
-    
 }

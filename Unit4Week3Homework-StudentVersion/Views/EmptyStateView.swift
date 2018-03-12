@@ -17,7 +17,6 @@ class EmptyStateView: UIView {
         label.text = "No favorite city images yet!"
         label.font = UIFont.systemFont(ofSize: 25, weight: .semibold)
         label.textColor = UIColor(displayP3Red: 167/255, green: 173/255, blue: 183/255, alpha: 1.0)
-        //label.backgroundColor =  UIColor(displayP3Red: 239/255, green: 242/255, blue: 247/255, alpha: 1.0)
         return label
     }()
     
@@ -29,36 +28,22 @@ class EmptyStateView: UIView {
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
+    
     private func commonInit() {
         backgroundColor = UIColor(displayP3Red: 239/255, green: 242/255, blue: 247/255, alpha: 1.0)
         setupViews()
     }
-    override func layoutSubviews() {
-        // here you get the actual frame size of the elements before getting
-        // laid out on screen
-        super.layoutSubviews()
-        // To add round edges
-    }
-    
     private func setupViews() {
         //Remember that you need to call EVERY FUNCTION that deals with setting up the view
         setupDismissView()
         setupAndConstrainObjects()
     }
-    
-    private func setupBlurEffectView() {
-        let blurEffect = UIBlurEffect(style: UIBlurEffectStyle.dark) // .light, .dark, .prominent, .regular, .extraLight
-        let visualEffect = UIVisualEffectView(frame: UIScreen.main.bounds)
-        visualEffect.effect = blurEffect
-        addSubview(visualEffect)
-    }
-    
     private func setupDismissView() {
         addSubview(emptyStateLabel)
     }
     
     private func setupAndConstrainObjects() {
-        
         //ARRAY MUST BE ON ORDER!!
         let allDetailViewObjects = [emptyStateLabel] as [UIView]
         
