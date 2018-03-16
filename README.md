@@ -2,14 +2,18 @@
 
 # Overview
 
-Create a weather app using programmatic Autolayout.  Your app should let the user input a zipcode, then see the 7-day forecast.  Selecting a forecast should display more information about the weather for that day, along with a random image of the city matching the zip code.  The user can favorite the image, then view a list of all of their favorited images.
+SevenDay allows the users to see their weekly forecast based on their zipcode.
 
-# Gif
+Create a weather app using programmatic Autolayout. Your app should let the user input a zipcode, then see the 7-day forecast.  Selecting a forecast should display more information about the weather for that day, along with a random image of the city matching the zip code.  The user can favorite the image, then view a list of all of their favorited images.
+
+# App Flow
+Enter zipcode to retreive weekly forecast | See additional weather information and add image to favorites | Delete photos if necessary 
+:---: | :---: | :---:
 
 ![gif](https://github.com/C4Q/AC-iOS-Unit4Week3-HW/blob/master/unit4week3hwV2.gif)
 
 
-# Detailed Overview
+# Future Updates
 
 There should be 3 Main View Controllers
 
@@ -70,19 +74,4 @@ All views and Autolayout should be done programmatically.  For full credit, do n
 
 # Rubric
 
-Criteria | Points
-:---|:---
-App uses Programmatic AutoLayout correctly for all iPhones in portrait | 8 Points
-Variable Naming and Readability | 4 Points
-App uses MVC Design Patterns | 4 Points
-App loads forecast based on zip code into collection view | 4 Points
-Selecting a forecast segues to a detail view with more information | 4 Points
-Detail view loads a random image from the city | 4 Points
-User can save images to the File Manager | 4 Points
-Favorite images view controller loads all favorited images | 4 Points
-Most recent zip code is persisted with user defaults | 4 Points
-Extra Credit: Allow the user to search by the cityname or zipcode | 1 Point
-Extra Credit: Allow the user to toggle whether the displays should be US or Metric.  Persist this to User Defaults | 1 Point
-Extra Credit: Add animations that we think look good | 2 Point
 
-A total of 40 points, with 4 points extra credit.
