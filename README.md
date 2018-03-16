@@ -6,10 +6,9 @@ SevenDay allows users to see their weekly forecast based on their zipcode.
 ## App Flow
 Enter zipcode to retrieve weekly forecast | Select a day to view additional weather information including a random image of the city matching the zip code and add to their favorites | User can delete photos from their list of favorites
 :---: | :---: | :---:
-
-![gif](file:///Users/c4q/Desktop/Tech/SevenDaygifs/gettingForecastWithZipcode.gif)
-![gif](file:///Users/c4q/Desktop/Tech/SevenDaygifs/addingToFavorites.gif)
-![gif](file:///Users/c4q/Desktop/Tech/SevenDaygifs/deletingFavorites.gif)
+![gif](https://github.com/ncsouvenir/SevenDay/blob/master/Gifs/gettingForecastWithZipcode.gif)
+![gif](https://github.com/ncsouvenir/SevenDay/blob/master/Gifs/addingToFavorites.gif)
+![gif](https://github.com/ncsouvenir/SevenDay/blob/master/Gifs/deletingFavorites.gif)
 
 
 
