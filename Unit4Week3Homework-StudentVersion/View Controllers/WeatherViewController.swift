@@ -54,7 +54,7 @@ class WeatherViewController: UIViewController {
     }
     func setUpVCElements(){
         weatherView.backgroundColor = .white
-        navigationItem.title = "On-The-Go Weather"
+        navigationItem.title = "SevenDay"
         weatherView.messageLabel.isHidden = true
         weatherView.zipcodeMessageLabel.isHidden = false
     }
