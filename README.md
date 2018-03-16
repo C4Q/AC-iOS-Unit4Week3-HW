@@ -11,8 +11,8 @@ Enter zipcode to retreive weekly forecast | Select a forecast to view additional
 :---: | :---: | :---:
 
 ![gif](file:///Users/c4q/Desktop/Tech/SevenDaygifs/gettingForecastWithZipcode.gif)
-![gif](https://github.com/C4Q/AC-iOS-Unit4Week3-HW/blob/master/unit4week3hwV2.gif)
-![gif](https://github.com/C4Q/AC-iOS-Unit4Week3-HW/blob/master/unit4week3hwV2.gif)
+![gif](file:///Users/c4q/Desktop/Tech/SevenDaygifs/addingToFavorites.gif)
+![gif](file:///Users/c4q/Desktop/Tech/SevenDaygifs/deletingFavorites.gif)
 
 
 # Future Updates
