@@ -2,14 +2,16 @@
 
 # Overview
 
-SevenDay allows the users to see their weekly forecast based on their zipcode.
+SevenDay allows users to see their weekly forecast based on their zipcode.
 
 Create a weather app using programmatic Autolayout. Your app should let the user input a zipcode, then see the 7-day forecast.  Selecting a forecast should display more information about the weather for that day, along with a random image of the city matching the zip code.  The user can favorite the image, then view a list of all of their favorited images.
 
 # App Flow
-Enter zipcode to retreive weekly forecast | See additional weather information and add image to favorites | Delete photos if necessary 
+Enter zipcode to retreive weekly forecast | Select a forecast to view additional information including a random image of the city matching the zip code and add to favorites | User can delete photos from their listof favorites
 :---: | :---: | :---:
 
+![gif](file:///Users/c4q/Desktop/Tech/SevenDaygifs/gettingForecastWithZipcode.gif)
+![gif](https://github.com/C4Q/AC-iOS-Unit4Week3-HW/blob/master/unit4week3hwV2.gif)
 ![gif](https://github.com/C4Q/AC-iOS-Unit4Week3-HW/blob/master/unit4week3hwV2.gif)
 
 
