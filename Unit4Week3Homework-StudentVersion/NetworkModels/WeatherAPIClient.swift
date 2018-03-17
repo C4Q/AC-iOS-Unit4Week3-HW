@@ -17,16 +17,15 @@ class WeatherAPIClient {
                      completionHandler: @escaping ([SevenDayForecast]) -> Void,
                      errorHandler: @escaping (Error) -> Void){
         
-        //valid url check
         guard let url = URL(string: urlStr) else {return}
-        //internet request using urlStr
+        
         let request = URLRequest(url: url)
-        //set completion
+        
         let parseDataIntoWeather: (Data) -> Void = {(data) in
             do{
                 let decoder = JSONDecoder()
-                let results = try decoder.decode(WeatherResponseWrapper.self, from: data) //top layer
-                if let forecast = results.response.first?.periods{ //[SevenDayResponse]
+                let results = try decoder.decode(WeatherResponseWrapper.self, from: data)
+                if let forecast = results.response.first?.periods{
                     completionHandler(forecast)
                 }
                 //print("JSON Data is now an [WeatherResponse]")
@@ -39,6 +38,7 @@ class WeatherAPIClient {
                                               completionHandler: parseDataIntoWeather,
                                               errorHandler: errorHandler)
     }
+}
     
     
     
@@ -68,4 +68,4 @@ class WeatherAPIClient {
                                               completionHandler: parseDataIntoWeather,
                                               errorHandler: {print($0)})
     }
-}
+

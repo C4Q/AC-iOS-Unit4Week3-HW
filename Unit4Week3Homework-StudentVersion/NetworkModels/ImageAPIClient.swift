@@ -34,7 +34,6 @@ class ImageAPIClient {
                     
                 }
                 completionHandler(onlineImage)
-                
                 //This saves the image to the phone
                 FileManagerHelper.manager.saveImage(with: urlStr, image: onlineImage)
                 print("Saved Image to Phone")
