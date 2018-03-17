@@ -1,7 +1,5 @@
-# SevenDay
+![Introduction](https://github.com/ncsouvenir/SevenDay/blob/master/Gifs/Screen%20Shot%202018-03-17%20at%206.47.10%20PM.png)
 
-SevenDay allows users to see their weekly forecast based on their zipcode and see additional information.
-https://github.com/ncsouvenir/SevenDay/blob/master/Gifs/Screen%20Shot%202018-03-17%20at%206.47.10%20PM.png
 ## Code Samples
 
 ### ZipCode Helper
