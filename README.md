@@ -83,9 +83,9 @@ Enter zipcode to retrieve weekly forecast | Select a day to view additional fore
 ## Endpoints
 
 1. [Aeris Weather API](https://www.aerisweather.com/support/docs/api/)
-    - endpoint: https://api.aerisapi.com/forecasts/\(ZIPCODE)?client_id=\(CLIENT-ID)&client_secret=\(SECRET-KEY)
+    - endpoint: https://api.aerisapi.com/forecasts/{ ZIPCODE }?client_id={ CLIENT-ID }&client_secret={ SECRET-KEY }
 2. [Pixabay API](https://pixabay.com/api/docs/)
-
+    - endpoint: https://pixabay.com/api/?key={ KEY }&q=yellow+flowers&image_type=photo
 
 
 
