@@ -33,7 +33,7 @@ class ZipCodeHelper {
 ```
 
 ### Weather API Client
-- This API Client class is a singleton that wraps a function for getting a forecast
+- This API Client wraps a function for getting a forecast
 - The function does the following:
   - makes asynchronous calls to retrieve data from the internet
   - makes sure there is a valid url passed when the function is called
@@ -83,6 +83,7 @@ Enter zipcode to retrieve weekly forecast | Select a day to view additional fore
 ## Endpoints
 
 1. [Aeris Weather API](https://www.aerisweather.com/support/docs/api/)
+    - endpoint: https://api.aerisapi.com/forecasts/\(ZIPCODE)?client_id=\(CLIENT-ID)&client_secret=\(SECRET-KEY)
 2. [Pixabay API](https://pixabay.com/api/docs/)
 
 
@@ -90,7 +91,7 @@ Enter zipcode to retrieve weekly forecast | Select a day to view additional fore
 
 ## Technologies used
 
-- Progrommatic AutoLayout
+- Progrommatic AutoLayout in native code using SnapKit
 - File Manager to store favorites
 - UIView Animation
 
