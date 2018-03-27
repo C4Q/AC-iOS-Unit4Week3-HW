@@ -91,7 +91,7 @@ Enter zipcode to retrieve weekly forecast | Select a day to view additional fore
 
 ## Technologies used
 
-- Progrommatic AutoLayout in native code using SnapKit
+- Programmatic AutoLayout in native code using SnapKit
 - File Manager to store favorites
 - UIView Animation
 
